@@ -361,7 +361,6 @@ in
             lancache.nixosModules.dns
             lancache.nixosModules.cache
             aagl.nixosModules.default
-            sops-nix.nixosModules.sops
             nix-minecraft.nixosModules.minecraft-servers
             quartus.nixosModules.quartus
         ]);

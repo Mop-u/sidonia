@@ -12,11 +12,6 @@
             inputs.nixpkgs.follows = "nixpkgs";
         };
 
-        sops-nix = {
-            url = "github:Mic92/sops-nix";
-            inputs.nixpkgs.follows = "nixpkgs";
-        };
-
         hyprswitch = {
             url = "github:h3rmt/hyprswitch/old-release-hyprswitch";
             inputs.nixpkgs.follows = "nixpkgs";

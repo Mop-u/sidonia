@@ -14,17 +14,13 @@ let
 in
 {
     boot.initrd.systemd.enable = true;
-    
+
     # https://github.com/NixOS/nixpkgs/issues/343975
     # system.switch.enableNg = false;
 
     nix.gc.automatic = true;
     nix.settings.auto-optimise-store = true;
     nix.settings.trusted-users = [ cfg.userName ];
-
-    sops.defaultSopsFile = ../../../secrets/secrets.yaml;
-    sops.defaultSopsFormat = "yaml";
-    sops.age.keyFile = "/home/${cfg.userName}/.config/sops/age/keys.txt";
 
     catppuccin = {
         enable = true;
