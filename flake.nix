@@ -80,10 +80,40 @@
 
     outputs =
         { self, nixpkgs, ... }@inputs:
-        {
+        rec {
             nixosModules = rec {
                 sidonia = (import ./module.nix) { inherit inputs; };
                 default = sidonia;
             };
+            mkSidonia =
+                dir:
+                {
+                    specialArgs ? { },
+                    modules ? [ ],
+                }:
+                let
+                    inherit (nixpkgs) lib;
+
+                    hosts = lib.filterAttrs (n: v: v == "directory") (builtins.readDir dir);
+
+                    mkConfig =
+                        hostName:
+                        let
+                            otherHostNames = lib.filterAttrs (n: v: n != hostName) hosts;
+                            otherHosts = lib.mapAttrsToList (n: v: { inherit (allConfigs.${n}) config; }) otherHostNames;
+                        in
+                        (lib.nixosSystem {
+                            specialArgs = {
+                                inherit otherHosts;
+                            } // specialArgs;
+                            modules = [
+                                nixosModules.sidonia
+                                (lib.path.append dir hostName)
+                            ] ++ modules;
+                        });
+
+                    allConfigs = lib.mapAttrs (n: v: (mkConfig n)) hosts;
+                in
+                allConfigs;
         };
 }
