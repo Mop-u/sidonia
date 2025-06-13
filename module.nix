@@ -358,11 +358,7 @@ in
         ++ (with inputs; [
             catppuccin.nixosModules.catppuccin
             home-manager.nixosModules.home-manager
-            lancache.nixosModules.dns
-            lancache.nixosModules.cache
             aagl.nixosModules.default
-            nix-minecraft.nixosModules.minecraft-servers
-            quartus.nixosModules.quartus
         ]);
 
     config = lib.mkMerge [

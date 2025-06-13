@@ -28,31 +28,8 @@
         };
         catppuccin.url = "github:catppuccin/nix";
 
-        lancache-domains = {
-            url = "github:uklans/cache-domains";
-            flake = false;
-        };
-        lancache-monolithic = {
-            url = "github:lancachenet/monolithic";
-            flake = false;
-        };
-        lancache = {
-            url = "github:Mop-u/nix-lancache";
-            inputs.cache-domains.follows = "lancache-domains";
-            inputs.monolithic.follows = "lancache-monolithic";
-            inputs.nixpkgs.follows = "nixpkgs";
-        };
         nonfree-fonts = {
             url = "github:Mop-u/nonfree-fonts";
-            inputs.nixpkgs.follows = "nixpkgs";
-        };
-        quartus = {
-            url = "github:Mop-u/nix-quartus";
-            #url = "git+file:../nix-quartus";
-            inputs.nixpkgs.follows = "nixpkgs";
-        };
-        nix-minecraft = {
-            url = "github:Infinidoge/nix-minecraft";
             inputs.nixpkgs.follows = "nixpkgs";
         };
         nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
