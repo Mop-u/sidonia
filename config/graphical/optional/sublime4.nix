@@ -1,5 +1,4 @@
 {
-    inputs,
     config,
     pkgs,
     lib,
@@ -55,7 +54,7 @@ in
                     stextCatppuccin = {
                         enable = true;
                         target = stextPkg + "/Catppuccin color schemes";
-                        source = inputs.stextCatppuccin;
+                        source = cfg.src.stextCatppuccin;
                     };
                 })
                 (lib.mkIf cfg.programs.sublime-text.enable {
@@ -63,27 +62,27 @@ in
                     stextPackageControl = {
                         enable = true;
                         target = stextPkg + "/Package Control";
-                        source = inputs.stextPackageControl;
+                        source = cfg.src.stextPackageControl;
                     };
                     stextLSP = {
                         enable = true;
                         target = stextPkg + "/LSP";
-                        source = inputs.stextLSP;
+                        source = cfg.src.stextLSP;
                     };
                     stextNix = {
                         enable = true;
                         target = stextPkg + "/Nix";
-                        source = inputs.stextNix;
+                        source = cfg.src.stextNix;
                     };
                     stextSystemVerilog = {
                         enable = true;
                         target = stextPkg + "/SystemVerilog";
-                        source = inputs.stextSystemVerilog;
+                        source = cfg.src.stextSystemVerilog;
                     };
                     stextHooks = {
                         enable = true;
                         target = stextPkg + "/hooks";
-                        source = inputs.stextHooks;
+                        source = cfg.src.stextHooks;
                     };
 
                     #Config

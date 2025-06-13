@@ -1,5 +1,4 @@
 {
-    inputs,
     config,
     pkgs,
     lib,
@@ -21,7 +20,6 @@ in
         services.goxlr-utility.autoStart.xdg = false; # respect goxlr-utility's autostart toggle
         home-manager.users.${config.sidonia.userName} = {
             home.packages = [
-                #inputs.goxlr-utility-ui.packages.${pkgs.system}.goxlr-utility-ui
                 pkgs.goxlr-utility
             ];
             #wayland.windowManager.hyprland.settings.windowrulev2 = [

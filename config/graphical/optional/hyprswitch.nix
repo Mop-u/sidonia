@@ -1,5 +1,4 @@
 {
-    inputs,
     config,
     pkgs,
     lib,
@@ -8,7 +7,6 @@
 let
     cfg = config.sidonia;
     configFile = "/home/${config.sidonia.userName}/.config/hypr/hyprswitch.css";
-    hyprswitch = inputs.hyprswitch.packages.${pkgs.system}.default;
 in
 {
     options.sidonia.services.hyprswitch.enable = lib.mkEnableOption "Enable Hyprswitch";
@@ -27,7 +25,7 @@ in
             })
         ];
         home-manager.users.${config.sidonia.userName} = {
-            home.packages = [ hyprswitch ];
+            home.packages = [ pkgs.hyprswitch ];
 
             home.file.hyprswitch = {
                 enable = true;
@@ -109,7 +107,7 @@ in
             enable = true;
             wantedBy = [ "wayland-session@Hyprland.target" ];
             serviceConfig = {
-                ExecStart = "${hyprswitch}/bin/hyprswitch init --show-title --custom-css '${configFile}'";
+                ExecStart = "${pkgs.hyprswitch}/bin/hyprswitch init --show-title --custom-css '${configFile}'";
             };
             unitConfig = {
                 Description = "Hyprland workspace switcher";

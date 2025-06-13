@@ -1,5 +1,4 @@
 {
-    inputs,
     config,
     pkgs,
     lib,
@@ -17,29 +16,6 @@ in
             default = cfg.graphics.enable;
         };
     config = lib.mkIf (cfg.programs.vscodium.enable) {
-        nixpkgs.overlays = [
-            #(final: prev: {
-            #    vscodium = inputs.unstable.legacyPackages.${final.system}.vscodium;
-            #})
-            (
-                final: prev:
-                let
-                    version = lib.versions.pad 3 final.vscodium.version;
-                    flakeExts = inputs.nix-vscode-extensions.extensions.${final.system}.forVSCodeVersion version;
-                in
-                {
-                    vscode-extensions =
-                        with flakeExts;
-                        lib.zipAttrsWith (name: values: (lib.mergeAttrsList values)) [
-                            prev.vscode-extensions
-                            open-vsx
-                            open-vsx-release
-                            vscode-marketplace
-                            vscode-marketplace-release
-                        ];
-                }
-            )
-        ];
         home-manager.users.${cfg.userName} = {
             catppuccin.vscode = {
                 enable = true;

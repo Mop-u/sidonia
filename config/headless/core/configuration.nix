@@ -5,7 +5,6 @@
 {
     config,
     pkgs,
-    inputs,
     lib,
     ...
 }:
@@ -266,7 +265,7 @@ in
         foot.terminfo
         smartmontools
         usbutils
-        inputs.nixfmt-git.packages.${pkgs.system}.default
+        nixfmt
     ];
 
     fonts = {

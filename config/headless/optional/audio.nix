@@ -1,7 +1,6 @@
 {
     config,
     pkgs,
-    inputs,
     lib,
     ...
 }:
@@ -60,7 +59,7 @@ in
                 value = "90";
             }
         ];
-        
+
         # increase output headroom.  this may make latency worse (not sure how
         # noticeably) -- so if you game you may want to first try doing
         # without it

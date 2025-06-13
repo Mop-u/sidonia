@@ -1,5 +1,4 @@
 {
-    inputs,
     config,
     pkgs,
     lib,
@@ -147,7 +146,7 @@ lib.mkIf (cfg.graphics.enable) {
                         );
                         theme.package =
                             (pkgs.magnetic-catppuccin-gtk.overrideAttrs {
-                                src = inputs.magnetic-catppuccin-gtk;
+                                src = cfg.src.magnetic-catppuccin-gtk;
                             }).override
                                 {
                                     inherit shade;

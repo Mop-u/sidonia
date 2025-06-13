@@ -1,5 +1,4 @@
 {
-    inputs,
     config,
     pkgs,
     lib,
@@ -15,7 +14,6 @@ lib.mkIf (cfg.graphics.enable) {
         programs.waybar = {
             enable = true;
             systemd.enable = true;
-            #package = inputs.waybar.packages.${pkgs.system}.waybar;
             settings.mainBar =
                 let
                     palette = builtins.mapAttrs (n: v: "#${v.hex}") theme.color;

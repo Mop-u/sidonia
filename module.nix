@@ -10,11 +10,27 @@
 }:
 let
     cfg = config.sidonia;
-    inherit inputs;
 in
 {
     options = with lib; {
         sidonia = {
+            src = mkOption {
+                readOnly = true;
+                type = types.attrs;
+                default = {
+                    inherit (inputs)
+                        kmscon
+                        libtsm
+                        magnetic-catppuccin-gtk
+                        stextCatppuccin
+                        stextPackageControl
+                        stextLSP
+                        stextNix
+                        stextSystemVerilog
+                        stextHooks
+                        ;
+                };
+            };
             lib = mkOption {
                 readOnly = true;
                 type = types.attrs;
@@ -367,6 +383,33 @@ in
                 catppuccin.homeModules.catppuccin
                 hyprshell.homeModules.hyprshell
             ];
+            nixpkgs.overlays =
+                [
+                    (final: prev: {
+                        hyprswitch = inputs.hyprswitch.packages.${final.system}.default;
+                    })
+                    (final: prev: {
+                        nixfmt = inputs.nixfmt-git.packages.${final.system}.default;
+                    })
+                ]
+                ++ (lib.optional cfg.programs.vscodium.enable (
+                    final: prev:
+                    let
+                        version = lib.versions.pad 3 final.vscodium.version;
+                        flakeExts = inputs.nix-vscode-extensions.extensions.${final.system}.forVSCodeVersion version;
+                    in
+                    {
+                        vscode-extensions =
+                            with flakeExts;
+                            lib.zipAttrsWith (name: values: (lib.mergeAttrsList values)) [
+                                prev.vscode-extensions
+                                open-vsx
+                                open-vsx-release
+                                vscode-marketplace
+                                vscode-marketplace-release
+                            ];
+                    }
+                ));
         }
         (lib.mkIf cfg.tweaks.withBehringerAudioInterface {
             # Fix Behringer UV1 stutter https://github.com/arterro/notes/blob/main/behringer_uv1_linux_stutter.org

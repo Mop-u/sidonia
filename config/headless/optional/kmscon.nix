@@ -3,7 +3,6 @@
 {
     config,
     pkgs,
-    inputs,
     lib,
     ...
 }:
@@ -89,7 +88,7 @@ in
                 (final: prev: {
                     kmscon = (
                         prev.kmscon.overrideAttrs {
-                            src = inputs.kmscon;
+                            src = cfg.src.kmscon;
                             buildInputs = with pkgs; [
                                 util-linux
                                 check
@@ -97,7 +96,7 @@ in
                                 libGL
                                 libdrm
                                 libgbm
-                                (libtsm.overrideAttrs { src = inputs.libtsm; }) # https://github.com/Aetf/kmscon/issues/64
+                                (libtsm.overrideAttrs { src = cfg.src.libtsm; }) # https://github.com/Aetf/kmscon/issues/64
                                 libxkbcommon
                                 pango
                                 pixman
