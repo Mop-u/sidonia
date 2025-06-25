@@ -244,6 +244,8 @@ in
 
                                 "float, class:(gtkwave),title:(gtkwave)"
 
+                                "float, class:(zenity)"
+
                                 "float, class:(nemo)"
 
                                 "float,                       class:.*, title:(Open File)"
