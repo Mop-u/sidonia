@@ -17,7 +17,7 @@ in
         };
     config = lib.mkIf (cfg.programs.vscodium.enable) {
         home-manager.users.${cfg.userName} = {
-            catppuccin.vscode = {
+            catppuccin.vscode.profiles.default = {
                 enable = true;
                 inherit (theme) accent flavor;
             };
