@@ -62,11 +62,11 @@
 
         # get up-to-date kmscon version
         kmscon = {
-            url = "github:Aetf/kmscon/develop";
+            url = "github:Aetf/kmscon/main";
             flake = false;
         };
         libtsm = {
-            url = "github:Aetf/libtsm/develop";
+            url = "github:Aetf/libtsm/main";
             flake = false;
         };
 

@@ -219,11 +219,22 @@ in
                 comicCode = mkOption {
                     default = { };
                     type = types.submodule {
-                        options.enable = mkEnableOption "Use Comic Code monospace font";
+                        options = {
+                            enable = mkEnableOption "Use Comic Code monospace font";
+                            source = mkOption {
+                                description = "Source zip file containing the font";
+                                type = types.nullOr types.path;
+                                default = null;
+                            };
+                        };
                     };
                     apply = x: {
                         inherit (x) enable;
-                        package = inputs.nonfree-fonts.packages.${config.nixpkgs.system}.comic-code;
+                        package =
+                            let
+                                comicCode = inputs.nonfree-fonts.packages.${config.nixpkgs.system}.comic-code;
+                            in
+                            if (x.source == null) then comicCode else (comicCode.overrideAttrs { src = x.source; });
                         name = if x.enable then "Comic Code" else "ComicShannsMono Nerd Font";
                     };
                 };
@@ -383,33 +394,32 @@ in
                 catppuccin.homeModules.catppuccin
                 hyprshell.homeModules.hyprshell
             ];
-            nixpkgs.overlays =
-                [
-                    (final: prev: {
-                        hyprswitch = inputs.hyprswitch.packages.${final.system}.default;
-                    })
-                    (final: prev: {
-                        nixfmt = inputs.nixfmt-git.packages.${final.system}.default;
-                    })
-                ]
-                ++ (lib.optional cfg.programs.vscodium.enable (
-                    final: prev:
-                    let
-                        version = lib.versions.pad 3 final.vscodium.version;
-                        flakeExts = inputs.nix-vscode-extensions.extensions.${final.system}.forVSCodeVersion version;
-                    in
-                    {
-                        vscode-extensions =
-                            with flakeExts;
-                            lib.zipAttrsWith (name: values: (lib.mergeAttrsList values)) [
-                                prev.vscode-extensions
-                                open-vsx
-                                open-vsx-release
-                                vscode-marketplace
-                                vscode-marketplace-release
-                            ];
-                    }
-                ));
+            nixpkgs.overlays = [
+                (final: prev: {
+                    hyprswitch = inputs.hyprswitch.packages.${final.system}.default;
+                })
+                (final: prev: {
+                    nixfmt = inputs.nixfmt-git.packages.${final.system}.default;
+                })
+            ]
+            ++ (lib.optional cfg.programs.vscodium.enable (
+                final: prev:
+                let
+                    version = lib.versions.pad 3 final.vscodium.version;
+                    flakeExts = inputs.nix-vscode-extensions.extensions.${final.system}.forVSCodeVersion version;
+                in
+                {
+                    vscode-extensions =
+                        with flakeExts;
+                        lib.zipAttrsWith (name: values: (lib.mergeAttrsList values)) [
+                            prev.vscode-extensions
+                            open-vsx
+                            open-vsx-release
+                            vscode-marketplace
+                            vscode-marketplace-release
+                        ];
+                }
+            ));
         }
         (lib.mkIf cfg.tweaks.withBehringerAudioInterface {
             # Fix Behringer UV1 stutter https://github.com/arterro/notes/blob/main/behringer_uv1_linux_stutter.org

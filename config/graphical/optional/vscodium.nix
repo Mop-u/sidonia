@@ -33,7 +33,6 @@ in
                         llvm-vs-code-extensions.vscode-clangd
                         mkhl.direnv
                         gruntfuggly.triggertaskonsave
-                        catppuccin.catppuccin-vsc-icons
                         christian-kohler.path-intellisense
                         mshr-h.veriloghdl
                     ];
@@ -45,8 +44,6 @@ in
                             ];
                         in
                         {
-                            "workbench.iconTheme" = "catppuccin-${theme.flavor}"; # remove when 25.05 is stable
-                            "workbench.colorTheme" = "Catppuccin ${cfg.lib.capitalize theme.flavor}"; # remove when 25.05 is stable
                             "typescript.suggest.paths" = false;
                             "javascript.suggest.paths" = false;
                             "nix.enableLanguageServer" = true;
