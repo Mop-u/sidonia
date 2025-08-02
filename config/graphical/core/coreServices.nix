@@ -92,74 +92,66 @@ lib.mkIf (cfg.graphics.enable) {
                 color-scheme = if theme.flavor == "latte" then "prefer-light" else "prefer-dark";
             };
         };
-        gtk =
-            {
-                enable = true;
-            }
-            // (
-                if
-                    (builtins.elem theme.accent [
-                        "rosewater"
-                        "flamingo"
-                        "maroon"
-                        "sky"
-                        "lavender"
-                    ])
-                then
-                    (builtins.warn
-                        ''
-                            The selected theme accent `${theme.accent}` is not yet supported by magnetic-catppuccin-gtk.
-                            Falling back to the deprecated `gtk.catppuccin.enable` method.
-                        ''
+        gtk = {
+            enable = true;
+        }
+        // (
+            if
+                (builtins.elem theme.accent [
+                    "rosewater"
+                    "flamingo"
+                    "maroon"
+                    "sky"
+                    "lavender"
+                ])
+            then
+                (builtins.throw ''
+                    The selected theme accent `${theme.accent}` is not yet supported by magnetic-catppuccin-gtk.
+                '')
+            else
+                let
+                    shade = if theme.flavor == "latte" then "light" else "dark";
+                    accent =
                         {
-                            catppuccin = {
-                                enable = true;
-                                icon.enable = true;
-                            };
+                            # Renamed colours
+                            mauve = "purple";
+                            sapphire = "cyan";
+                            peach = "orange";
                         }
-                    )
-                else
-                    let
-                        shade = if theme.flavor == "latte" then "light" else "dark";
-                        accent =
+                        .${theme.accent} or theme.accent;
+                    doTweak = builtins.elem theme.flavor [
+                        "frappe"
+                        "macchiato"
+                    ];
+                in
+                {
+                    theme.name = lib.strings.concatStringsSep "-" (
+                        [
+                            "Catppuccin"
+                            "GTK"
+                            (cfg.lib.capitalize accent)
+                            (cfg.lib.capitalize shade)
+                        ]
+                        ++ (lib.optional doTweak (cfg.lib.capitalize theme.flavor))
+                    );
+                    theme.package =
+                        (pkgs.magnetic-catppuccin-gtk.overrideAttrs {
+                            src = cfg.src.magnetic-catppuccin-gtk;
+                        }).override
                             {
-                                # Renamed colours
-                                mauve = "purple";
-                                sapphire = "cyan";
-                                peach = "orange";
-                            }
-                            .${theme.accent} or theme.accent;
-                        doTweak = builtins.elem theme.flavor [
-                            "frappe"
-                            "macchiato"
-                        ];
-                    in
-                    {
-                        theme.name = lib.strings.concatStringsSep "-" (
-                            [
-                                "Catppuccin"
-                                "GTK"
-                                (cfg.lib.capitalize accent)
-                                (cfg.lib.capitalize shade)
-                            ]
-                            ++ (lib.optional doTweak (cfg.lib.capitalize theme.flavor))
-                        );
-                        theme.package =
-                            (pkgs.magnetic-catppuccin-gtk.overrideAttrs {
-                                src = cfg.src.magnetic-catppuccin-gtk;
-                            }).override
-                                {
-                                    inherit shade;
-                                    accent = [ accent ];
-                                    tweaks = lib.optional doTweak theme.flavor;
-                                };
-                        iconTheme.name = "Papirus";
-                        iconTheme.package = pkgs.catppuccin-papirus-folders.override {
+                                inherit shade;
+                                accent = [ accent ];
+                                tweaks = lib.optional doTweak theme.flavor;
+                            };
+                    iconTheme = lib.mkDefault {
+                        name = "Papirus";
+                        package = pkgs.catppuccin-papirus-folders.override {
                             flavor = theme.flavor;
                             accent = theme.accent;
                         };
-                    }
-            );
+                    };
+                }
+        );
         qt = {
             enable = true;
             style.name = "kvantum";
