@@ -96,7 +96,16 @@ in
                                 libGL
                                 libdrm
                                 libgbm
-                                (libtsm.overrideAttrs { src = cfg.src.libtsm; }) # https://github.com/Aetf/kmscon/issues/64
+                                (libtsm.overrideAttrs {
+                                    src = cfg.src.libtsm;
+                                    nativeBuildInputs = [
+                                        meson
+                                        cmake
+                                        check
+                                        ninja
+                                        pkg-config
+                                    ];
+                                }) # https://github.com/Aetf/kmscon/issues/64
                                 libxkbcommon
                                 pango
                                 pixman
