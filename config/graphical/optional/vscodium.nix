@@ -58,7 +58,7 @@ in
                                     formatting.command = nixfmt;
                                     nix.flake = {
                                         autoArchive = true;
-                                        autoEvalInputs = true;
+                                        autoEvalInputs = false;
                                         nixpkgsInputName = "nixpkgs";
                                     };
                                 };
