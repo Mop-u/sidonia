@@ -15,8 +15,11 @@ in
     boot.initrd.systemd.enable = true;
 
     nix.gc.automatic = true;
-    nix.settings.auto-optimise-store = true;
-    nix.settings.trusted-users = [ cfg.userName ];
+    nix.settings = {
+        auto-optimise-store = true;
+        trusted-users = [ cfg.userName ];
+        fallback = lib.mkDefault true;
+    };
 
     catppuccin = {
         enable = true;

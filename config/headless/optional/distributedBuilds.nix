@@ -79,6 +79,7 @@ in
                                         Hostname ${builtins.head remoteHost.hostNames}
                                         IdentitiesOnly yes
                                         IdentityFile ${client.ssh.privKeyPath}
+                                        ConnectTimeout 3
                                 '';
                             };
                             nix = {
