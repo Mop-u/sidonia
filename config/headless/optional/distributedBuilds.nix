@@ -85,7 +85,7 @@ in
                             nix = {
                                 settings = {
                                     trusted-public-keys = [ remoteHost.signing.pubKey ];
-                                    substituters = [ "ssh-ng://${builderName}" ];
+                                    #substituters = [ "ssh-ng://${builderName}" ];
                                 };
                                 buildMachines = [
                                     {
@@ -111,6 +111,7 @@ in
                     ++ [
                         {
                             nix.distributedBuilds = true;
+                            nix.settings.builders-use-substitutes = true;
                         }
                     ]
                 )
