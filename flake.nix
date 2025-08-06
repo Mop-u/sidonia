@@ -26,7 +26,7 @@
             url = "github:nix-community/home-manager/release-25.05";
             inputs.nixpkgs.follows = "nixpkgs";
         };
-        catppuccin.url = "github:catppuccin/nix";
+        catppuccin.url = "github:catppuccin/nix/release-25.05";
 
         nonfree-fonts = {
             url = "github:Mop-u/nonfree-fonts";
