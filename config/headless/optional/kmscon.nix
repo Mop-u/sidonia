@@ -97,6 +97,7 @@ in
                                 libdrm
                                 libgbm
                                 (libtsm.overrideAttrs {
+                                    # https://github.com/Aetf/kmscon/issues/64
                                     src = cfg.src.libtsm;
                                     nativeBuildInputs = [
                                         meson
@@ -105,7 +106,7 @@ in
                                         ninja
                                         pkg-config
                                     ];
-                                }) # https://github.com/Aetf/kmscon/issues/64
+                                })
                                 libxkbcommon
                                 pango
                                 pixman
@@ -114,28 +115,37 @@ in
                             ];
 
                             env.NIX_CFLAGS_COMPILE =
-                                "-O" # _FORTIFY_SOURCE requires compiling with optimization (-O)
-                                # https://github.com/Aetf/kmscon/issues/49
-                                + " -Wno-error=maybe-uninitialized"
-                                # https://github.com/Aetf/kmscon/issues/64
-                                + " -Wno-error=implicit-function-declaration";
+                                lib.optionalString pkgs.stdenv.cc.isGNU "-O" # _FORTIFY_SOURCE requires compiling with optimization (-O)
+                                + " -Wno-error=maybe-uninitialized" # https://github.com/Aetf/kmscon/issues/49
+                                + " -Wno-error=implicit-function-declaration"; # https://github.com/Aetf/kmscon/issues/64
 
                             patches = [
-                                # Stop meson from writing systemd units to ${pkgs.systemd}/systemd/system, they should be written to ${pkgs.kmscon}/systemd/system
-                                (pkgs.writeText "meson.build.patch" ''
+                                # https://github.com/NixOS/nixpkgs/blob/nixos-unstable/pkgs/by-name/km/kmscon/sandbox.patch
+                                (pkgs.writeText "sandbox.patch" ''
+                                    From d51e35a7ab936983b2a544992adae66093c6028f Mon Sep 17 00:00:00 2001
+                                    From: hustlerone <nine-ball@tutanota.com>
+                                    Date: Thu, 20 Feb 2025 11:05:56 +0100
+                                    Subject: [PATCH] Patch for nixpkgs
+                                    
+                                    ---
+                                     meson.build | 2 +-
+                                     1 file changed, 1 insertion(+), 1 deletion(-)
+                                    
                                     diff --git a/meson.build b/meson.build
-                                    index 964b44b..fc043c7 100644
+                                    index 964b44b..4415084 100644
                                     --- a/meson.build
                                     +++ b/meson.build
                                     @@ -39,7 +39,7 @@ mandir = get_option('mandir')
                                      moduledir = get_option('libdir') / meson.project_name()
                                      
                                      systemd_deps = dependency('systemd', required: false)
-                                    -systemdsystemunitdir = systemd_deps.get_variable('systemdsystemunitdir', default_value: get_option('libdir') / 'systemd/system')
-                                    +systemdsystemunitdir = get_option('libdir') / 'systemd/system'
+                                    -systemdsystemunitdir = systemd_deps.get_variable('systemdsystemunitdir', default_value: 'lib/systemd/system')
+                                    +systemdsystemunitdir = 'lib/systemd'
                                      
                                      #
                                      # Required dependencies
+                                    -- 
+                                    2.47.2
                                 '')
                                 # Fix agetty binary paths and link the configuration directory
                                 (pkgs.writeText "kmscon.service.in.patch" ''
