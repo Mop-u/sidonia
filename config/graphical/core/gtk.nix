@@ -39,7 +39,7 @@ lib.mkIf (cfg.graphics.enable) {
             };
             theme =
                 let
-                    baseName = "Catppuccin-GTK";
+                    baseName = "Catppuccin";
                     shade = if theme.flavor == "latte" then "light" else "dark";
                     doTweak = builtins.elem theme.flavor [
                         "frappe"
