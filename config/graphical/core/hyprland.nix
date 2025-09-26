@@ -31,25 +31,6 @@ in
             }
         );
 
-        catppuccin.sddm = {
-            enable = true;
-            assertQt6Sddm = true;
-            inherit (theme) flavor;
-            background = "";
-            font = cfg.text.comicCode.name;
-            fontSize = "9";
-            loginBackground = false;
-        };
-
-        services.displayManager = {
-            sddm.enable = true;
-            sddm.wayland.enable = true;
-            sddm.package = pkgs.kdePackages.sddm;
-            autoLogin.enable = false;
-            autoLogin.user = cfg.userName;
-            defaultSession = "hyprland-uwsm";
-        };
-
         programs.hyprland = {
             enable = true;
             withUWSM = true;
