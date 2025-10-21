@@ -256,11 +256,11 @@
     "kmscon": {
       "flake": false,
       "locked": {
-        "lastModified": 1760097467,
-        "narHash": "sha256-2Oce2FXTsFcM6kE1YKSyKvekrqECV1oVtgkUVQ1DGpY=",
+        "lastModified": 1761127349,
+        "narHash": "sha256-r+o8+cMDcFkiZndwcKWNZL2vnoOz/Sepu+G+sWCssPA=",
         "owner": "Aetf",
         "repo": "kmscon",
-        "rev": "30198f1863a973c9e4bf7ca9e2afe441fe56b933",
+        "rev": "d7b7066d5ee9335ae529d3f2ef93b11ec6a76475",
         "type": "github"
       },
       "original": {
@@ -327,11 +327,11 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1760925854,
-        "narHash": "sha256-mUEWKL7IMA0gzZlP5V/C6bFU12PcQWs1J/5Ucwzp9wY=",
+        "lastModified": 1761098495,
+        "narHash": "sha256-aE2Vp0Q/Ra95sHk/YgQI6z9PvqPttgcIVUk3uSOWj9g=",
         "owner": "nix-community",
         "repo": "nix-vscode-extensions",
-        "rev": "ffbbd7f46ff61967e8ad010dc08e31385abbc483",
+        "rev": "bd4690e402591e99a091dcd49663d3d6c9bf0ada",
         "type": "github"
       },
       "original": {
@@ -568,11 +568,11 @@
     "stextLSP": {
       "flake": false,
       "locked": {
-        "lastModified": 1760035140,
-        "narHash": "sha256-rSiIkww9x6XieR77D+eddWjjrridZLc6lewzVMsLY2E=",
+        "lastModified": 1761065106,
+        "narHash": "sha256-hZD5IYw6xbfW+kw61ZcAmnoQkuh8oSQWYxwiCxfooxI=",
         "owner": "sublimelsp",
         "repo": "LSP",
-        "rev": "aec423a51dda1c12a9c44aef834133a5abd732c5",
+        "rev": "5ff516ca9d869f93f52e84afcaa9652a5ef91742",
         "type": "github"
       },
       "original": {
