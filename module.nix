@@ -232,7 +232,7 @@ in
                         inherit (x) enable;
                         package =
                             let
-                                comicCode = inputs.nonfree-fonts.packages.${config.nixpkgs.system}.comic-code;
+                                comicCode = inputs.nonfree-fonts.packages.${cfg.system}.comic-code;
                             in
                             if (x.source == null) then comicCode else (comicCode.overrideAttrs { src = x.source; });
                         name = if x.enable then "Comic Code" else "ComicShannsMono Nerd Font";
