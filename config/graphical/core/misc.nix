@@ -13,6 +13,7 @@ lib.mkIf (cfg.graphics.enable) {
         steam = {
             enable = true;
             protontricks.enable = true;
+            localNetworkGameTransfers.openFirewall = true;
             extest.enable = true;
             gamescopeSession = {
                 enable = true;
