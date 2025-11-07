@@ -28,7 +28,6 @@ lib.mkIf (cfg.graphics.enable) {
                 };
             });
         };
-        anime-games-launcher.enable = !cfg.graphics.legacyGpu; # multi launcher
     };
 
     home-manager.users.${cfg.userName} = {
