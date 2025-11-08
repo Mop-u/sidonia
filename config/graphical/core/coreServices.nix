@@ -98,7 +98,6 @@ lib.mkIf (cfg.graphics.enable) {
             mate.engrampa # archive manager
             qimgv
             mpv # video player
-            floorp # browser
             dconf-editor # view gsettings stuff
             gsettings-desktop-schemas
             ungoogled-chromium
