@@ -401,6 +401,7 @@ in
                 (final: prev: {
                     nixfmt = inputs.nixfmt-git.packages.${final.system}.default;
                 })
+                inputs.nur.overlays.default
             ]
             ++ (lib.optional cfg.programs.vscodium.enable (
                 final: prev:

@@ -26,6 +26,10 @@
             url = "github:nix-community/home-manager/release-25.05";
             inputs.nixpkgs.follows = "nixpkgs";
         };
+        nur = {
+            url = "github:nix-community/NUR";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
         catppuccin.url = "github:catppuccin/nix/release-25.05";
 
         nonfree-fonts = {
@@ -106,11 +110,13 @@
                         (lib.nixosSystem {
                             specialArgs = {
                                 inherit otherHosts;
-                            } // specialArgs;
+                            }
+                            // specialArgs;
                             modules = [
                                 nixosModules.sidonia
                                 (lib.path.append dir hostName)
-                            ] ++ modules;
+                            ]
+                            ++ modules;
                         });
 
                     allConfigs = lib.mapAttrs (n: v: (mkConfig n)) hosts;
