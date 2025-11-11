@@ -51,6 +51,7 @@ lib.mkIf (cfg.graphics.enable) {
             surfer
             bambu-studio
             tageditor
+            affinity
         ];
 
         programs = {

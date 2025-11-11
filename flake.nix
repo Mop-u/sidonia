@@ -32,6 +32,11 @@
         };
         catppuccin.url = "github:catppuccin/nix/release-25.05";
 
+        affinity = {
+            url = "github:mrshmllow/affinity-nix";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
+
         nonfree-fonts = {
             url = "github:Mop-u/nonfree-fonts";
             inputs.nixpkgs.follows = "nixpkgs";
