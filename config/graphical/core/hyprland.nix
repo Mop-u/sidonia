@@ -280,6 +280,7 @@ in
                                     "SUPERSHIFT, C,         killactive,"
                                     "SUPERSHIFT, Q,         exec, uwsm stop"
                                     "SUPER,      V,         togglefloating,"
+                                    "SUPER,      F,         fullscreen,"
                                     "SUPER,      H,         movefocus, l"
                                     "SUPER,      J,         movefocus, d"
                                     "SUPER,      K,         movefocus, u"
