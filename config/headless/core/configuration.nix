@@ -134,6 +134,7 @@ in
         curl
         tmux
         samba
+        age
         ssh-to-age
         fastfetch
         nil
@@ -142,6 +143,7 @@ in
         foot.terminfo
         smartmontools
         usbutils
+        lm_sensors
         nixfmt
     ];
 

@@ -34,14 +34,15 @@
         ],
         "nixpkgs-wine": "nixpkgs-wine",
         "on-linux": "on-linux",
+        "plugin-loader": "plugin-loader",
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1762990708,
-        "narHash": "sha256-zK+Ptkdb6tdfmtMEi4tt1IFZCcWDWpDmSlsngAh9UMM=",
+        "lastModified": 1763152501,
+        "narHash": "sha256-5r98hp8tTCPJg/lE9H4L4583BTmYISuQHUwUo7qoUAk=",
         "owner": "mrshmllow",
         "repo": "affinity-nix",
-        "rev": "56c9eb3fe18858e7cfc1b3c088fffef54dd8027c",
+        "rev": "c9c8e298da8fe39c4eaa866af524d604bb4126cf",
         "type": "github"
       },
       "original": {
@@ -108,11 +109,11 @@
         "nixpkgs": "nixpkgs_4"
       },
       "locked": {
-        "lastModified": 1754766435,
-        "narHash": "sha256-DT8CQoqV2haX+Fo16WXAt9gKCSXOZH9ZfnV++Br+qcM=",
+        "lastModified": 1763111355,
+        "narHash": "sha256-iUTS8wV7tCo7A456Ro6ZOJ6Bbk0V5Is3zPd+BmJHJ/Q=",
         "owner": "catppuccin",
         "repo": "nix",
-        "rev": "e339d6d822fa81c39d1ab89694b4ee2cfc830c9a",
+        "rev": "5375a9d80c4b2a835c7203920f997f3ea4224423",
         "type": "github"
       },
       "original": {
@@ -845,11 +846,11 @@
     "libtsm": {
       "flake": false,
       "locked": {
-        "lastModified": 1762769478,
-        "narHash": "sha256-QdUCZo3EB/aoXPBsxXvkYDf7M0BhAfc7ccFz5LTdAYM=",
+        "lastModified": 1763110856,
+        "narHash": "sha256-xAMQOACyXfh3HhsX44mzGBsR6vqjv0uTRwc5ePfPPls=",
         "owner": "Aetf",
         "repo": "libtsm",
-        "rev": "f242c00f4e7efcc4032d57690f90df20331bc011",
+        "rev": "9d2817b727f61c09e19994b2431af716652f330b",
         "type": "github"
       },
       "original": {
@@ -899,11 +900,11 @@
         "nixpkgs": "nixpkgs_6"
       },
       "locked": {
-        "lastModified": 1762999120,
-        "narHash": "sha256-cT/Ynb323Zlh/bJ+ICGhXv38xsTjDyDisCNoL5jmTk4=",
+        "lastModified": 1763085479,
+        "narHash": "sha256-q+EuxNEnkvaMavGi2DDsOO1jEQb+veQB/4ApM3662lE=",
         "owner": "nix-community",
         "repo": "nix-vscode-extensions",
-        "rev": "acc40f7808fcaa0f96cded3d56285656b7684558",
+        "rev": "d493b0b522b4de069561a1e69f70288df3ec1a77",
         "type": "github"
       },
       "original": {
@@ -917,11 +918,11 @@
         "flake-utils": "flake-utils"
       },
       "locked": {
-        "lastModified": 1761684830,
-        "narHash": "sha256-LL6HODJkTx5U/U0Of1fLeM3bEJBcshh5as6I1nL2WgM=",
+        "lastModified": 1763085840,
+        "narHash": "sha256-uTTrZHG/24TfkvaYFMjQalhAmI1U6C3IrXP2ppjWeMU=",
         "owner": "NixOS",
         "repo": "nixfmt",
-        "rev": "f7d607441dc6a5a5e971fc7303eae8469c024c20",
+        "rev": "2153e60a5ceed7fe670c58371bb1258aaba82f79",
         "type": "github"
       },
       "original": {
@@ -999,8 +1000,8 @@
       },
       "original": {
         "owner": "nixos",
-        "ref": "6df24922a1400241dae323af55f30e4318a6ca65",
         "repo": "nixpkgs",
+        "rev": "6df24922a1400241dae323af55f30e4318a6ca65",
         "type": "github"
       }
     },
@@ -1086,11 +1087,11 @@
     },
     "nixpkgs_7": {
       "locked": {
-        "lastModified": 1762756533,
-        "narHash": "sha256-HiRDeUOD1VLklHeOmaKDzf+8Hb7vSWPVFcWwaTrpm+U=",
+        "lastModified": 1763049705,
+        "narHash": "sha256-A5LS0AJZ1yDPTa2fHxufZN++n8MCmtgrJDtxFxrH4S8=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "c2448301fb856e351aab33e64c33a3fc8bcf637d",
+        "rev": "3acb677ea67d4c6218f33de0db0955f116b7588c",
         "type": "github"
       },
       "original": {
@@ -1129,11 +1130,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1763066905,
-        "narHash": "sha256-8QK99Nkn3N6Heu7Fl9kPDVdzJjQmfIcCITrSJMbWLOQ=",
+        "lastModified": 1763153320,
+        "narHash": "sha256-2iEtBEzYRcJYYIvwCHyNU6KWhMJL0rW4rbSGi2bLR+8=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "8c0d7c52aaf0ff0b22ca6ccd431220df9d977bb7",
+        "rev": "93311e0106dddccc2937361015a1137c879291f0",
         "type": "github"
       },
       "original": {
@@ -1156,6 +1157,18 @@
         "owner": "seapear",
         "repo": "AffinityOnLinux",
         "type": "github"
+      }
+    },
+    "plugin-loader": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-CCqT6TQHG7HqvxsnP/EC9Mg6A3KfNg5i/vGXW0exTxU=",
+        "type": "file",
+        "url": "https://github.com/noahc3/AffinityPluginLoader/releases/latest/download/affinitypluginloader-plus-winefix.tar.xz"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://github.com/noahc3/AffinityPluginLoader/releases/latest/download/affinitypluginloader-plus-winefix.tar.xz"
       }
     },
     "pre-commit-hooks": {
@@ -1408,11 +1421,11 @@
     },
     "unstable": {
       "locked": {
-        "lastModified": 1762844143,
-        "narHash": "sha256-SlybxLZ1/e4T2lb1czEtWVzDCVSTvk9WLwGhmxFmBxI=",
+        "lastModified": 1762977756,
+        "narHash": "sha256-4PqRErxfe+2toFJFgcRKZ0UI9NSIOJa+7RXVtBhy4KE=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "9da7f1cf7f8a6e2a7cb3001b048546c92a8258b4",
+        "rev": "c5ae371f1a6a7fd27823bc500d9390b38c05fa55",
         "type": "github"
       },
       "original": {
