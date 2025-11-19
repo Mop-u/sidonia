@@ -17,7 +17,6 @@ lib.mkIf (cfg.graphics.enable) {
             extest.enable = true;
             extraCompatPackages = [
                 pkgs.proton-ge-bin
-                pkgs.proton-ge-rtsp-bin
                 pkgs.steam-play-none
             ];
             gamescopeSession = lib.mkMerge [
