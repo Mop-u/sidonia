@@ -386,6 +386,7 @@ in
             catppuccin.nixosModules.catppuccin
             home-manager.nixosModules.home-manager
             aagl.nixosModules.default
+            nixpkgs-xr.nixosModules.nixpkgs-xr
         ]);
 
     config = lib.mkMerge [
@@ -395,10 +396,6 @@ in
                 hyprshell.homeModules.hyprshell
             ];
             nixpkgs.overlays = [
-                (final: prev: {
-                    proton-ge-rtsp-bin = inputs.nixpkgs-xr.packages.${final.system}.proton-ge-rtsp-bin;
-                    wlx-overlay-s = inputs.nixpkgs-xr.packages.${final.system}.wlx-overlay-s;
-                })
                 (final: prev: {
                     hyprswitch = inputs.hyprswitch.packages.${final.system}.default;
                 })
