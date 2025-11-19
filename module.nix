@@ -386,6 +386,7 @@ in
             catppuccin.nixosModules.catppuccin
             home-manager.nixosModules.home-manager
             aagl.nixosModules.default
+            nixpkgs-xr.nixosModules.nixpkgs-xr
         ]);
 
     config = lib.mkMerge [

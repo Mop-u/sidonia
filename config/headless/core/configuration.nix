@@ -112,6 +112,10 @@ in
     };
     programs.zsh.enable = true;
     programs.direnv.enable = true;
+    programs.git = {
+        enable = true;
+        lfs.enable = true;
+    };
 
     # Enable experimental features
     nix.settings.experimental-features = [
@@ -125,7 +129,6 @@ in
     # $ nix search wget
     environment.systemPackages = with pkgs; [
         _7zz
-        git
         sops
         vim
         bash

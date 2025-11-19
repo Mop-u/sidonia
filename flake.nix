@@ -37,6 +37,11 @@
             inputs.nixpkgs.follows = "nixpkgs";
         };
 
+        nixpkgs-xr = {
+            url = "github:nix-community/nixpkgs-xr";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
+
         nonfree-fonts = {
             url = "github:Mop-u/nonfree-fonts";
             inputs.nixpkgs.follows = "nixpkgs";
