@@ -23,7 +23,7 @@ in
         ];
         home-manager.users.${cfg.userName} = {
             home.packages = [
-                pkgs.opencomposite
+                pkgs.xrizer
                 pkgs.wlx-overlay-s
             ];
             home.file.".local/share/monado/hand-tracking-models".source = pkgs.fetchgit {
@@ -40,7 +40,7 @@ in
                     external_drivers = null;
                     jsonid = "vrpathreg";
                     log = [ "${config.home-manager.users.${cfg.userName}.xdg.dataHome}/Steam/logs" ];
-                    runtime = [ "${pkgs.opencomposite}/lib/opencomposite" ];
+                    runtime = [ "${pkgs.xrizer}/lib/xrizer" ];
                     version = 1;
                 };
             };
