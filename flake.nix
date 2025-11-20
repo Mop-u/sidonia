@@ -42,6 +42,10 @@
             inputs.nixpkgs.follows = "nixpkgs";
         };
 
+        nix-std = {
+            url = "github:chessai/nix-std";
+        };
+
         nonfree-fonts = {
             url = "github:Mop-u/nonfree-fonts";
             inputs.nixpkgs.follows = "nixpkgs";
@@ -120,6 +124,7 @@
                         (lib.nixosSystem {
                             specialArgs = {
                                 inherit otherHosts;
+                                std = inputs.nix-std.lib;
                             }
                             // specialArgs;
                             modules = [
