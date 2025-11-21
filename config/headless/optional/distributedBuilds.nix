@@ -38,7 +38,7 @@ in
             maxJobs = mkOption {
                 description = "Maximum amount of jobs to accept from a single client";
                 type = types.int;
-                default = 1;
+                default = config.nix.settings.max-jobs;
             };
         };
         client = {
