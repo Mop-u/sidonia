@@ -35,6 +35,11 @@ in
                 description = "Hostnames or ip addresses of the build host";
                 type = types.listOf types.str;
             };
+            maxJobs = mkOption {
+                description = "Maximum amount of jobs to accept from a single client";
+                type = types.int;
+                default = 1;
+            };
         };
         client = {
             enable = mkEnableOption "Enable taking advantage of distributed builds";
@@ -95,7 +100,7 @@ in
                                         #publicHostKey = remoteHost.ssh.pubKey; # don't use this value as it wants base64, fall back to known_hosts instead
                                         system = "x86_64-linux";
                                         protocol = "ssh-ng";
-                                        maxJobs = 1;
+                                        maxJobs = remoteHost.maxJobs;
                                         speedFactor = 2;
                                         supportedFeatures = [
                                             "nixos-test"
