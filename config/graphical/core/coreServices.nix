@@ -38,10 +38,10 @@ lib.mkIf (cfg.graphics.enable) {
     };
 
     services = {
-        logind = {
-            lidSwitch = "suspend-then-hibernate";
-            lidSwitchExternalPower = "ignore";
-            lidSwitchDocked = "ignore";
+        logind.settings.Login = {
+            HandleLidSwitch = "suspend-then-hibernate";
+            HandleLidSwitchExternalPower = "ignore";
+            HandleLidSwitchDocked = "ignore";
         };
 
         gvfs.enable = true; # Mount, trash, and other functionalities
