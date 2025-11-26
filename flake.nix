@@ -4,12 +4,21 @@
     inputs = {
         unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
         nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
-        nixfmt-git.url = "github:NixOS/nixfmt";
-        nix-colors.url = "github:misterio77/nix-colors";
+
+        home-manager = {
+            url = "github:nix-community/home-manager"; # release-25.11
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
+
+        catppuccin.url = "github:catppuccin/nix"; # release-25.11
 
         aagl = {
             url = "github:ezKEa/aagl-gtk-on-nix"; # release-25.11
             inputs.nixpkgs.follows = "nixpkgs";
+        };
+
+        nix-std = {
+            url = "github:chessai/nix-std";
         };
 
         hyprswitch = {
@@ -22,15 +31,10 @@
             inputs.nixpkgs.follows = "nixpkgs";
         };
 
-        home-manager = {
-            url = "github:nix-community/home-manager"; # release-25.11
-            inputs.nixpkgs.follows = "nixpkgs";
-        };
         nur = {
             url = "github:nix-community/NUR";
             inputs.nixpkgs.follows = "nixpkgs";
         };
-        catppuccin.url = "github:catppuccin/nix"; # release-25.11
 
         affinity = {
             url = "github:mrshmllow/affinity-nix";
@@ -42,10 +46,6 @@
             inputs.nixpkgs.follows = "nixpkgs";
         };
 
-        nix-std = {
-            url = "github:chessai/nix-std";
-        };
-
         nonfree-fonts = {
             url = "github:Mop-u/nonfree-fonts";
             inputs.nixpkgs.follows = "nixpkgs";
@@ -53,6 +53,7 @@
         nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
 
         # sublime text packages
+        # TODO: make packagecontrol.io scraper (see https://packagecontrol.io/docs/channels_and_repositories)
         stextPackageControl = {
             url = "github:wbond/package_control";
             flake = false;

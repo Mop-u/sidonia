@@ -400,9 +400,6 @@ in
                     hyprswitch = inputs.hyprswitch.packages.${final.stdenv.hostPlatform.system}.default;
                 })
                 (final: prev: {
-                    nixfmt = inputs.nixfmt-git.packages.${final.stdenv.hostPlatform.system}.default;
-                })
-                (final: prev: {
                     affinity = inputs.affinity.packages.${final.stdenv.hostPlatform.system}.v3;
                 })
                 inputs.nur.overlays.default
