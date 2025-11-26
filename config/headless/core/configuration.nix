@@ -14,7 +14,6 @@ in
 {
     boot.initrd.systemd.enable = true;
 
-    nix.gc.automatic = true;
     nix.settings = {
         auto-optimise-store = true;
         trusted-users = [ cfg.userName ];
