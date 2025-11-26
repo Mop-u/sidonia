@@ -397,13 +397,13 @@ in
             ];
             nixpkgs.overlays = [
                 (final: prev: {
-                    hyprswitch = inputs.hyprswitch.packages.${final.system}.default;
+                    hyprswitch = inputs.hyprswitch.packages.${final.stdenv.hostPlatform.system}.default;
                 })
                 (final: prev: {
-                    nixfmt = inputs.nixfmt-git.packages.${final.system}.default;
+                    nixfmt = inputs.nixfmt-git.packages.${final.stdenv.hostPlatform.system}.default;
                 })
                 (final: prev: {
-                    affinity = inputs.affinity.packages.${final.system}.v3;
+                    affinity = inputs.affinity.packages.${final.stdenv.hostPlatform.system}.v3;
                 })
                 inputs.nur.overlays.default
             ]
@@ -411,7 +411,7 @@ in
                 final: prev:
                 let
                     version = lib.versions.pad 3 final.vscodium.version;
-                    flakeExts = inputs.nix-vscode-extensions.extensions.${final.system}.forVSCodeVersion version;
+                    flakeExts = inputs.nix-vscode-extensions.extensions.${final.stdenv.hostPlatform.system}.forVSCodeVersion version;
                 in
                 {
                     vscode-extensions =
