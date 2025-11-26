@@ -3,12 +3,12 @@
 
     inputs = {
         unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
-        nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
+        nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
         nixfmt-git.url = "github:NixOS/nixfmt";
         nix-colors.url = "github:misterio77/nix-colors";
 
         aagl = {
-            url = "github:ezKEa/aagl-gtk-on-nix/release-25.05";
+            url = "github:ezKEa/aagl-gtk-on-nix"; # release-25.11
             inputs.nixpkgs.follows = "nixpkgs";
         };
 
@@ -23,14 +23,14 @@
         };
 
         home-manager = {
-            url = "github:nix-community/home-manager/release-25.05";
+            url = "github:nix-community/home-manager"; # release-25.11
             inputs.nixpkgs.follows = "nixpkgs";
         };
         nur = {
             url = "github:nix-community/NUR";
             inputs.nixpkgs.follows = "nixpkgs";
         };
-        catppuccin.url = "github:catppuccin/nix/release-25.05";
+        catppuccin.url = "github:catppuccin/nix"; # release-25.11
 
         affinity = {
             url = "github:mrshmllow/affinity-nix";
