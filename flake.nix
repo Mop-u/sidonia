@@ -21,16 +21,6 @@
             url = "github:chessai/nix-std";
         };
 
-        hyprswitch = {
-            url = "github:h3rmt/hyprswitch/old-release-hyprswitch";
-            inputs.nixpkgs.follows = "nixpkgs";
-        };
-
-        hyprshell = {
-            url = "github:h3rmt/hyprswitch/hyprshell-release";
-            inputs.nixpkgs.follows = "nixpkgs";
-        };
-
         nur = {
             url = "github:nix-community/NUR";
             inputs.nixpkgs.follows = "nixpkgs";

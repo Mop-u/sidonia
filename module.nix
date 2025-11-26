@@ -393,12 +393,8 @@ in
         {
             home-manager.users.${cfg.userName}.imports = with inputs; [
                 catppuccin.homeModules.catppuccin
-                hyprshell.homeModules.hyprshell
             ];
             nixpkgs.overlays = [
-                (final: prev: {
-                    hyprswitch = inputs.hyprswitch.packages.${final.stdenv.hostPlatform.system}.default;
-                })
                 (final: prev: {
                     affinity = inputs.affinity.packages.${final.stdenv.hostPlatform.system}.v3;
                 })
