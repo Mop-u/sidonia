@@ -7,7 +7,7 @@
 let
     cfg = config.sidonia;
 in
-lib.mkIf (cfg.graphics.enable) {
+lib.mkIf (cfg.programs.hyprland.enable) {
     home-manager.users.${cfg.userName} = {
         catppuccin.dunst.enable = false; # using our own values as overriding background breaks opacity
         services.dunst = {

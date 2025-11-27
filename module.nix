@@ -378,10 +378,12 @@ in
             #prefixList = prefix: list: (builtins.map (x: lib.path.append prefix x) list);
             headless = (lsFiles ./config/headless/core) ++ (lsFiles ./config/headless/optional);
             graphical = (lsFiles ./config/graphical/core) ++ (lsFiles ./config/graphical/optional);
+            hyprland = (lsFiles ./config/graphical/core/hyprland);
 
         in
         headless
         ++ graphical
+        ++ hyprland
         ++ (with inputs; [
             catppuccin.nixosModules.catppuccin
             home-manager.nixosModules.home-manager
@@ -404,7 +406,9 @@ in
                 final: prev:
                 let
                     version = lib.versions.pad 3 final.vscodium.version;
-                    flakeExts = inputs.nix-vscode-extensions.extensions.${final.stdenv.hostPlatform.system}.forVSCodeVersion version;
+                    flakeExts =
+                        inputs.nix-vscode-extensions.extensions.${final.stdenv.hostPlatform.system}.forVSCodeVersion
+                            version;
                 in
                 {
                     vscode-extensions =

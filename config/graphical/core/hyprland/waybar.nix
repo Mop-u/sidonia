@@ -8,7 +8,7 @@ let
     cfg = config.sidonia;
     theme = cfg.style.catppuccin;
 in
-lib.mkIf (cfg.graphics.enable) {
+lib.mkIf (cfg.programs.hyprland.enable) {
     home-manager.users.${cfg.userName} = {
         catppuccin.waybar.enable = true;
         programs.waybar = {
