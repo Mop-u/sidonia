@@ -245,9 +245,7 @@ in
                                 #"maxsize 1 1,class:^(xwaylandvideobridge)$"
                                 #"noblur,class:^(xwaylandvideobridge)$"
                             ];
-                            gestures = {
-                                workspace_swipe = true;
-                            };
+                            gesture = [ "3, horizontal, workspace" ];
                             binds = {
                                 scroll_event_delay = 100;
                             };
@@ -259,15 +257,14 @@ in
                                 ", XF86MonBrightnessUp,   exec, brightnessctl s 10%+"
                                 ", XF86MonBrightnessDown, exec, brightnessctl s 10%-"
                             ];
-                            bindl =
-                                [
-                                    ", XF86AudioNext,  exec, playerctl next"
-                                    ", XF86AudioPause, exec, playerctl play-pause"
-                                    ", XF86AudioPlay,  exec, playerctl play-pause"
-                                    ", XF86AudioPrev,  exec, playerctl previous"
-                                ]
-                                ++ (lib.optional cfg.isLaptop ", switch:on:Lid Switch, exec, hyprctl keyword monitor \"${(builtins.head monitors).disable}\"")
-                                ++ (lib.optional cfg.isLaptop ", switch:off:Lid Switch, exec, hyprctl keyword monitor \"${(builtins.head monitors).enable}\"");
+                            bindl = [
+                                ", XF86AudioNext,  exec, playerctl next"
+                                ", XF86AudioPause, exec, playerctl play-pause"
+                                ", XF86AudioPlay,  exec, playerctl play-pause"
+                                ", XF86AudioPrev,  exec, playerctl previous"
+                            ]
+                            ++ (lib.optional cfg.isLaptop ", switch:on:Lid Switch, exec, hyprctl keyword monitor \"${(builtins.head monitors).disable}\"")
+                            ++ (lib.optional cfg.isLaptop ", switch:off:Lid Switch, exec, hyprctl keyword monitor \"${(builtins.head monitors).enable}\"");
                             binde = [
                                 "SUPERALT,   H,         resizeactive, -10    0" # resize left
                                 "SUPERALT,   J,         resizeactive,   0   10" # resize down
