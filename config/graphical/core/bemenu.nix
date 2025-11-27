@@ -25,23 +25,23 @@ let
             "--bdr '${accent}'"
             "--fn monospace"
         ];
+    runApp = cmd: if cfg.programs.hyprland.enable then "uwsm app -- ${cmd}" else cmd;
 in
-lib.mkIf (cfg.programs.hyprland.enable) {
+lib.mkIf (cfg.graphics.enable) {
     home-manager.users.${cfg.userName}.programs.bemenu.enable = true;
-    sidonia.desktop.keybinds =
-        [
-            {
-                mod = [ "super" ];
-                key = "p";
-                exec = "uwsm app -- $(bemenu-run --no-exec ${opts})";
-            }
-        ]
-        ++ (lib.optional config.hardware.nvidia.prime.offload.enableOffloadCmd {
-            mod = [
-                "super"
-                "shift"
-            ];
+    sidonia.desktop.keybinds = [
+        {
+            mod = [ "super" ];
             key = "p";
-            exec = "uwsm app -- nvidia-offload $(LIBVA_DRIVER_NAME=nvidia VDPAU_NAME=nvidia bemenu-run --no-exec ${opts})";
-        });
+            exec = runApp "$(bemenu-run --no-exec ${opts})";
+        }
+    ]
+    ++ (lib.optional config.hardware.nvidia.prime.offload.enableOffloadCmd {
+        mod = [
+            "super"
+            "shift"
+        ];
+        key = "p";
+        exec = runApp "nvidia-offload $(LIBVA_DRIVER_NAME=nvidia VDPAU_NAME=nvidia bemenu-run --no-exec ${opts})";
+    });
 }
