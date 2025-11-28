@@ -378,29 +378,29 @@ in
             #prefixList = prefix: list: (builtins.map (x: lib.path.append prefix x) list);
             headless = (lsFiles ./config/headless/core) ++ (lsFiles ./config/headless/optional);
             graphical = (lsFiles ./config/graphical/core) ++ (lsFiles ./config/graphical/optional);
-            hyprland = (lsFiles ./config/graphical/core/hyprland);
-
         in
         headless
         ++ graphical
-        ++ hyprland
         ++ (with inputs; [
             catppuccin.nixosModules.catppuccin
             home-manager.nixosModules.home-manager
             aagl.nixosModules.default
             nixpkgs-xr.nixosModules.nixpkgs-xr
+            ./config/graphical/windowManagers
         ]);
 
     config = lib.mkMerge [
         {
             home-manager.users.${cfg.userName}.imports = with inputs; [
                 catppuccin.homeModules.catppuccin
+                niri.homeModules.niri
             ];
             nixpkgs.overlays = [
                 (final: prev: {
                     affinity = inputs.affinity.packages.${final.stdenv.hostPlatform.system}.v3;
                 })
                 inputs.nur.overlays.default
+                inputs.niri.overlays.niri
             ]
             ++ (lib.optional cfg.programs.vscodium.enable (
                 final: prev:

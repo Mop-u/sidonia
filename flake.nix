@@ -26,6 +26,12 @@
             inputs.nixpkgs.follows = "nixpkgs";
         };
 
+        niri = {
+            url = "github:sodiboo/niri-flake";
+            inputs.nixpkgs.follows = "unstable";
+            inputs.nixpkgs-stable.follows = "nixpkgs";
+        };
+
         affinity = {
             url = "github:mrshmllow/affinity-nix";
             inputs.nixpkgs.follows = "nixpkgs";

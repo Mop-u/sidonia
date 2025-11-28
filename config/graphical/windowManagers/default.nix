@@ -1,0 +1,17 @@
+{
+    config,
+    pkgs,
+    lib,
+    ...
+}:
+{
+  imports = [
+    ./hyprland
+    ./niri
+    ./dunst.nix
+    ./idleLock.nix
+    ./waybar.nix
+    ./bemenu.nix
+    ./coreServices.nix
+  ];
+}

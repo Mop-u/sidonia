@@ -9,7 +9,7 @@ let
     lock_cmd = "uwsm app -- ${if cfg.graphics.legacyGpu then "swaylock" else "hyprlock"}";
 in
 {
-    config = lib.mkIf (cfg.programs.hyprland.enable) {
+    config = lib.mkIf (cfg.graphics.enable) {
 
         security.pam.services = (
             if cfg.graphics.legacyGpu then
