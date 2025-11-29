@@ -12,8 +12,9 @@ lib.mkIf (cfg.graphics.enable) {
     home-manager.users.${cfg.userName} = {
         catppuccin.waybar.enable = true;
         programs.waybar = {
-            enable = true;
+            enable = config.home-manager.users.${cfg.userName}.wayland.windowManager.hyprland.enable;
             systemd.enable = true;
+            systemd.target = cfg.lib.hyprlandTarget;
             settings.mainBar =
                 let
                     palette = builtins.mapAttrs (n: v: "#${v.hex}") theme.color;

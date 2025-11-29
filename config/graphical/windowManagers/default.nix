@@ -10,7 +10,6 @@
     ./niri
     ./dunst.nix
     ./idleLock.nix
-    ./waybar.nix
     ./bemenu.nix
     ./coreServices.nix
   ];

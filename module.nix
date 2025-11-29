@@ -42,6 +42,8 @@ in
                         in
                         concatStrings ([ (toUpper (builtins.head chars)) ] ++ (builtins.tail chars));
 
+                    hyprlandTarget = "wayland-session@Hyprland.target";
+
                     isInstalled =
                         package:
                         builtins.elem package.pname (
