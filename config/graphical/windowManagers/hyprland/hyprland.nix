@@ -110,7 +110,7 @@ in
 
                                 # Gaming specific #
                                 "__GL_MaxFramesAllowed,1" # Fix frame timings & input lag
-                                "PROTON_ENABLE_WAYLAND,1"
+                                #"PROTON_ENABLE_WAYLAND,1"
                                 "PROTON_USE_NTSYNC,1"
 
                                 # Misc #
