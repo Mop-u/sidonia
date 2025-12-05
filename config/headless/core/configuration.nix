@@ -147,6 +147,7 @@ in
         usbutils
         lm_sensors
         nixfmt
+        nix-auth
     ];
 
     fonts = {

@@ -401,6 +401,9 @@ in
                 (final: prev: {
                     affinity = inputs.affinity.packages.${final.stdenv.hostPlatform.system}.v3;
                 })
+                (final: prev: {
+                    nix-auth = inputs.nix-auth.packages.${final.stdenv.hostPlatform.system}.default;
+                })
                 inputs.nur.overlays.default
                 inputs.niri.overlays.niri
             ]

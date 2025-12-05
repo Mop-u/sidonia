@@ -21,6 +21,8 @@
             url = "github:chessai/nix-std";
         };
 
+        nix-auth.url = "github:numtide/nix-auth";
+
         nur = {
             url = "github:nix-community/NUR";
             inputs.nixpkgs.follows = "nixpkgs";
