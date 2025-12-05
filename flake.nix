@@ -10,7 +10,7 @@
             inputs.nixpkgs.follows = "nixpkgs";
         };
 
-        catppuccin.url = "github:catppuccin/nix";#/release-25.11";
+        catppuccin.url = "github:catppuccin/nix"; # /release-25.11";
 
         aagl = {
             url = "github:ezKEa/aagl-gtk-on-nix/release-25.11";
@@ -21,7 +21,10 @@
             url = "github:chessai/nix-std";
         };
 
-        nix-auth.url = "github:numtide/nix-auth";
+        nix-auth = {
+            url = "github:numtide/nix-auth";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
 
         nur = {
             url = "github:nix-community/NUR";
