@@ -112,6 +112,7 @@ in
                                 "__GL_MaxFramesAllowed,1" # Fix frame timings & input lag
                                 #"PROTON_ENABLE_WAYLAND,1"
                                 "PROTON_USE_NTSYNC,1"
+                                "PROTON_FSR4_UPGRADE,1"
 
                                 # Misc #
                                 "NIXOS_OZONE_WL,1"
