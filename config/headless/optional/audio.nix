@@ -15,40 +15,61 @@ in
                 type = types.bool;
                 default = cfg.graphics.enable;
             };
-        lowLatency.enable = lib.mkEnableOption "enable low latency audio tweaks for gaming";
+        lowLatency = {
+            enable = lib.mkEnableOption "Enable low latency audio tweaks";
+            rate = lib.mkOption {
+                type = lib.types.int;
+                default = 48000;
+            };
+            quantum = lib.mkOption {
+                type = lib.types.int;
+                default = 64;
+            };
+        };
     };
     config = lib.mkIf cfg.tweaks.audio.enable (
         lib.mkMerge [
-            (lib.mkIf cfg.tweaks.audio.lowLatency.enable {
-                services.pipewire.extraConfig = {
-                    pipewire."92-low-latency" = {
-                        "context.properties" = {
-                            "default.clock.rate" = 48000;
-                            "default.clock.quantum" = 32;
-                            "default.clock.min-quantum" = 32;
-                            "default.clock.max-quantum" = 32;
+            (
+                let
+                    inherit (cfg.tweaks.audio.lowLatency) quantum rate;
+                    quantRate = lib.concatStringsSep "/" (
+                        builtins.map builtins.toString [
+                            quantum
+                            rate
+                        ]
+                    );
+                in
+                lib.mkIf cfg.tweaks.audio.lowLatency.enable {
+                    services.pipewire.extraConfig = {
+                        pipewire."92-low-latency" = {
+                            "context.properties" = {
+                                "default.clock.rate" = rate;
+                                "default.clock.quantum" = quantum;
+                                "default.clock.min-quantum" = quantum;
+                                "default.clock.max-quantum" = quantum;
+                            };
+                        };
+                        pipewire-pulse."92-low-latency" = {
+                            context.modules = [
+                                {
+                                    name = "libpipewire-module-protocol-pulse";
+                                    args = {
+                                        pulse.min.req = quantRate;
+                                        pulse.default.req = quantRate;
+                                        pulse.max.req = quantRate;
+                                        pulse.min.quantum = quantRate;
+                                        pulse.max.quantum = quantRate;
+                                    };
+                                }
+                            ];
+                            stream.properties = {
+                                node.latency = quantRate;
+                                resample.quality = 1;
+                            };
                         };
                     };
-                    pipewire-pulse."92-low-latency" = {
-                        context.modules = [
-                            {
-                                name = "libpipewire-module-protocol-pulse";
-                                args = {
-                                    pulse.min.req = "32/48000";
-                                    pulse.default.req = "32/48000";
-                                    pulse.max.req = "32/48000";
-                                    pulse.min.quantum = "32/48000";
-                                    pulse.max.quantum = "32/48000";
-                                };
-                            }
-                        ];
-                        stream.properties = {
-                            node.latency = "32/48000";
-                            resample.quality = 1;
-                        };
-                    };
-                };
-            })
+                }
+            )
             (lib.mkIf (!cfg.tweaks.audio.lowLatency.enable) {
                 # increase output headroom.  this may make latency worse (not sure how
                 # noticeably) -- so if you game you may want to first try doing
