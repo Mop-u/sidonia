@@ -38,7 +38,47 @@ in
 
         home-manager.users.${cfg.userName} =
             let
-                inherit (cfg.desktop) monitors;
+                monitors =
+                    builtins.map
+                        (
+                            monitor:
+                            let
+                                args = lib.concatStringsSep ", " (
+                                    [
+                                        (lib.concatStringsSep "@" (
+                                            [ monitor.resolution ]
+                                            ++ (lib.optional (monitor.refresh != null) (lib.strings.floatToString monitor.refresh))
+                                        ))
+                                        monitor.position
+                                        (if (monitor.scale == null) then "auto" else lib.strings.floatToString monitor.scale)
+                                    ]
+                                    ++ (lib.optional (monitor.bitdepth != null) "bitdepth,${builtins.toString monitor.bitdepth}")
+                                    ++ (lib.optional monitor.hdr "cm,hdr")
+                                    ++ (lib.optional (monitor.extraArgs != null) monitor.extraArgs)
+                                );
+                            in
+                            rec {
+                                inherit (monitor) name;
+                                enable = "${name},${args}";
+                                disable = "${name},disable";
+                            }
+                        )
+                        (
+                            cfg.desktop.monitors
+                            ++ [
+                                {
+                                    # Make sure to automatically find any unconfigured monitors
+                                    name = "";
+                                    resolution = "highres";
+                                    position = "auto";
+                                    scale = null;
+                                    refresh = null;
+                                    bitdepth = null;
+                                    hdr = false;
+                                    extraArgs = null;
+                                }
+                            ]
+                        );
             in
             {
                 home.packages = [
