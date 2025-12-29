@@ -15,6 +15,7 @@ in
                 type = types.bool;
                 default = cfg.graphics.enable;
             };
+        behringerFix.enable = lib.mkEnableOption "Fix stutter for Behringer audio interfaces such as the UV1 and some UMC devices.";
         lowLatency = {
             enable = lib.mkEnableOption "Enable low latency audio tweaks";
             rate = lib.mkOption {
@@ -29,6 +30,17 @@ in
     };
     config = lib.mkIf cfg.tweaks.audio.enable (
         lib.mkMerge [
+            (lib.mkIf cfg.tweaks.audio.behringerFix.enable {
+                # Fix Behringer UV1 stutter https://github.com/arterro/notes/blob/main/behringer_uv1_linux_stutter.org
+                boot = {
+                    extraModprobeConfig = ''
+                        options snd_usb_audio implicit_fb=1
+                    '';
+                    kernelModules = [
+                        "snd_usb_audio"
+                    ];
+                };
+            })
             (
                 let
                     inherit (cfg.tweaks.audio.lowLatency) quantum rate;

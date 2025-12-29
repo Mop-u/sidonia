@@ -104,9 +104,6 @@ in
                 ];
                 default = "x86_64-linux";
             };
-            tweaks = {
-                withBehringerAudioInterface = mkEnableOption "Apply tweaks for some Behringer audio interfaces such as the UV1 and some UMC devices.";
-            };
             geolocation.enable = mkEnableOption "Turn on geolocation related services such as automatic timezone changing and geoclue";
             isLaptop = mkEnableOption "Apply laptop-specific tweaks";
             graphics = {
@@ -396,16 +393,5 @@ in
                 }
             ));
         }
-        (lib.mkIf cfg.tweaks.withBehringerAudioInterface {
-            # Fix Behringer UV1 stutter https://github.com/arterro/notes/blob/main/behringer_uv1_linux_stutter.org
-            boot = {
-                extraModprobeConfig = ''
-                    options snd_usb_audio implicit_fb=1
-                '';
-                kernelModules = [
-                    "snd_usb_audio"
-                ];
-            };
-        })
     ];
 }
