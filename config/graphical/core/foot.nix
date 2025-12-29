@@ -19,7 +19,7 @@ lib.mkIf (cfg.graphics.enable) {
             enable = true;
             settings = {
                 # https://codeberg.org/dnkl/foot/src/branch/master/foot.ini
-                main.dpi-aware = "yes";
+                main.dpi-aware = "no";
                 main.font = "monospace:size=7";
                 colors.alpha = builtins.toString cfg.window.opacity.dec;
             };
