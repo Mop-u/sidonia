@@ -187,10 +187,12 @@ in
                             };
 
                             cursor = {
-                                no_hardware_cursors = true;
-                                no_break_fs_vrr = false;
+                                no_hardware_cursors = 0;
                                 enable_hyprcursor = true;
                             };
+
+                            experimental.xx_color_management_v4 = true;
+                            #quirks.prefer_hdr = 1;
 
                             render = {
                                 direct_scanout = 2; # Try turning this off if fullscreen windows/games crash instantly
