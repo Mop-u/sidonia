@@ -217,7 +217,6 @@ in
                 };
             };
             text = {
-                smallTermFont = mkEnableOption "Shrink the terminal font slightly";
                 comicCode = mkOption {
                     default = { };
                     type = types.submodule {
