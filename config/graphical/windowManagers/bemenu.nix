@@ -32,7 +32,7 @@ lib.mkIf (cfg.graphics.enable) {
     sidonia.desktop.keybinds = [
         {
             mod = [ "super" ];
-            key = "p";
+            key = "o";
             exec = runApp "$(bemenu-run --no-exec ${opts})";
         }
     ]
