@@ -27,5 +27,5 @@ lib.mkIf (cfg.graphics.enable) {
             };
         };
     };
-    #environment.systemPackages = [ pkgs.gamescope-wsi ]; # for gamescope hdr support
+    environment.systemPackages = [ pkgs.gamescope-wsi ]; # for gamescope hdr support
 }

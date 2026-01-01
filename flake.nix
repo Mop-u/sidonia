@@ -97,6 +97,11 @@
             flake = false;
         };
 
+        hyprshell = {
+            url = "github:H3rmt/hyprshell/hyprshell-release";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
+
     };
 
     outputs =

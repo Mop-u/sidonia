@@ -31,7 +31,7 @@ lib.mkIf (cfg.graphics.enable) {
                         follow = "mouse";
                         origin = "bottom-center";
                         enable_recursive_icon_lookup = true;
-                        dmenu = "bemenu -p dunst";
+                        dmenu = "${pkgs.bemenu}/bin/bemenu -p dunst";
                         layer = "overlay";
                         frame_width = borderSize;
                         corner_radius = rounding;

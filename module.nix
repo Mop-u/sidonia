@@ -28,6 +28,7 @@ in
                         stextNix
                         stextSystemVerilog
                         stextHooks
+                        hyprshell
                         ;
                 };
             };
@@ -361,6 +362,7 @@ in
             home-manager.users.${cfg.userName}.imports = with inputs; [
                 catppuccin.homeModules.catppuccin
                 niri.homeModules.niri
+                hyprshell.homeModules.hyprshell
             ];
             nixpkgs.overlays = [
                 (final: prev: {

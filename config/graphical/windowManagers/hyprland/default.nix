@@ -12,5 +12,6 @@ in
     imports = [
         ./hyprland.nix
         ./waybar.nix
+        ./hyprshell.nix
     ];
 }

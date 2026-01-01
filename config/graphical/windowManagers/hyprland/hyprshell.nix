@@ -1,0 +1,39 @@
+{
+    config,
+    pkgs,
+    lib,
+    ...
+}:
+let
+    cfg = config.sidonia;
+in
+{
+    config = lib.mkIf cfg.programs.hyprland.enable {
+        home-manager.users.${cfg.userName} = {
+            # https://github.com/H3rmt/hyprshell/blob/hyprshell-release/nix/module.nix
+            programs.hyprshell = {
+                enable = true;
+                package = cfg.src.hyprshell.packages.${pkgs.stdenv.hostPlatform.system}.hyprshell-nixpkgs;
+                systemd = {
+                    args = "-v";
+                    target = cfg.lib.hyprlandTarget;
+                };
+                settings = {
+                    windows = {
+                        enable = true;
+                        overview = {
+                            enable = true;
+                            key = "p";
+                            modifier = "super";
+                            launcher = {
+                                default_terminal = "foot";
+                                max_items = 6;
+                            };
+                        };
+                        switch.enable = true;
+                    };
+                };
+            };
+        };
+    };
+}
