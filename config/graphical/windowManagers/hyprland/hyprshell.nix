@@ -28,9 +28,16 @@ in
                             launcher = {
                                 default_terminal = "foot";
                                 max_items = 6;
+                                plugins = {
+                                    shell.enable = true;
+                                    terminal.enable = false;
+                                };
                             };
                         };
-                        switch.enable = true;
+                        switch = {
+                            enable = false;
+                            modifier = "super";
+                        };
                     };
                 };
             };
