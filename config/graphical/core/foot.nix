@@ -8,11 +8,16 @@ let
     cfg = config.sidonia;
 in
 lib.mkIf (cfg.graphics.enable) {
-    sidonia.desktop.keybinds = [{
-        mod = ["super" "shift"];
-        key = "return";
-        exec = "uwsm app -- foot";
-    }];
+    sidonia.desktop.keybinds = [
+        {
+            mod = [
+                "super"
+                "shift"
+            ];
+            key = "return";
+            exec = "foot";
+        }
+    ];
     home-manager.users.${config.sidonia.userName} = {
         catppuccin.foot.enable = true;
         programs.foot = {

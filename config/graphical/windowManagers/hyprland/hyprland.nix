@@ -318,7 +318,7 @@ in
                                 "SUPERALT,   L,         resizeactive,  10    0" # resize right
                             ];
                             bind =
-                                (builtins.map (x: "${lib.concatStrings x.mod}, ${x.key}, exec, ${x.exec}") cfg.desktop.keybinds)
+                                (builtins.map (x: "${lib.concatStrings x.mod}, ${x.key}, exec, uwsm app -- ${x.exec}") cfg.desktop.keybinds)
                                 ++ [
                                     "SUPERSHIFT, C,         killactive,"
                                     "SUPERSHIFT, Q,         exec, uwsm stop"

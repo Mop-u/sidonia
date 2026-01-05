@@ -6,7 +6,7 @@
 }:
 let
     cfg = config.sidonia;
-    lock_cmd = "uwsm app -- ${if cfg.graphics.legacyGpu then "swaylock" else "hyprlock"}";
+    lock_cmd = if cfg.graphics.legacyGpu then "swaylock" else "hyprlock";
 in
 {
     config = lib.mkIf (cfg.graphics.enable) {
@@ -18,11 +18,13 @@ in
                 { hyprlock.enableGnomeKeyring = true; }
         );
 
-        sidonia.desktop.keybinds = [{
-            mod = ["super"];
-            key = "x";
-            exec = lock_cmd;
-        }];
+        sidonia.desktop.keybinds = [
+            {
+                mod = [ "super" ];
+                key = "x";
+                exec = lock_cmd;
+            }
+        ];
 
         home-manager.users.${cfg.userName} = {
 

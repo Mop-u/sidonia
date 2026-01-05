@@ -25,7 +25,6 @@ let
             "--bdr '${accent}'"
             "--fn monospace"
         ];
-    runApp = cmd: if cfg.programs.hyprland.enable then "uwsm app -- ${cmd}" else cmd;
 in
 lib.mkIf (cfg.graphics.enable) {
     home-manager.users.${cfg.userName}.programs.bemenu.enable = true;
@@ -33,7 +32,7 @@ lib.mkIf (cfg.graphics.enable) {
         {
             mod = [ "super" ];
             key = "o";
-            exec = runApp "$(bemenu-run --no-exec ${opts})";
+            exec = "$(bemenu-run --no-exec ${opts})";
         }
     ]
     ++ (lib.optional config.hardware.nvidia.prime.offload.enableOffloadCmd {
@@ -42,6 +41,6 @@ lib.mkIf (cfg.graphics.enable) {
             "shift"
         ];
         key = "p";
-        exec = runApp "nvidia-offload $(LIBVA_DRIVER_NAME=nvidia VDPAU_NAME=nvidia bemenu-run --no-exec ${opts})";
+        exec = "nvidia-offload $(LIBVA_DRIVER_NAME=nvidia VDPAU_NAME=nvidia bemenu-run --no-exec ${opts})";
     });
 }

@@ -16,7 +16,7 @@ lib.mkIf cfg.programs.hyprland.enable {
                 "shift"
             ];
             key = "escape";
-            exec = "uwsm app -- ${pkgs.mission-center}/bin/missioncenter";
+            exec = "missioncenter";
         }
     ];
 }
