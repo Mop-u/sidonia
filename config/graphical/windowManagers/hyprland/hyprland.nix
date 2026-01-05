@@ -262,7 +262,6 @@ in
                             };
                             windowrule = [
                                 "suppressevent maximize, class:.*"
-                                "center, xwayland:1"
                                 "bordercolor ${rgb.overlay2},xwayland:1,focus:0"
                                 "bordercolor ${rgb.yellow},  xwayland:1,focus:1"
 
