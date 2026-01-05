@@ -13,5 +13,6 @@ in
         ./hyprland.nix
         ./waybar.nix
         ./hyprshell.nix
+        ./missioncenter.nix
     ];
 }

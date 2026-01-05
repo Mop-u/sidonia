@@ -23,7 +23,6 @@ lib.mkIf (cfg.graphics.enable) {
             bambu-studio
             tageditor
             affinity
-            mission-center # task manager
         ];
 
         programs = {

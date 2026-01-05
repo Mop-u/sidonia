@@ -273,6 +273,8 @@ in
 
                                 "float, class:(nemo)"
 
+                                "float, class:(io.missioncenter.MissionCenter)"
+
                                 "float,                       class:.*, title:(Open File)"
                                 "size ${cfg.window.float.wh}, class:.*, title:(Open File)"
 
