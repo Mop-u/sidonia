@@ -44,7 +44,7 @@ in
                 ++ (lib.optional cfg.programs.sublime-merge.enable sublime-merge);
 
             wayland.windowManager.hyprland.settings = lib.mkIf cfg.programs.sublime-merge.enable {
-                windowrulev2 = [
+                windowrule = [
                     "float, class:(ssh-askpass-sublime)"
                 ];
             };

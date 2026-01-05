@@ -260,7 +260,7 @@ in
                                     scroll_factor = 0.2;
                                 };
                             };
-                            windowrulev2 = [
+                            windowrule = [
                                 "suppressevent maximize, class:.*"
                                 "center, xwayland:1"
                                 "bordercolor ${rgb.overlay2},xwayland:1,focus:0"

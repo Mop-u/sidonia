@@ -22,7 +22,7 @@ in
             home.packages = [
                 pkgs.goxlr-utility
             ];
-            #wayland.windowManager.hyprland.settings.windowrulev2 = [
+            #wayland.windowManager.hyprland.settings.windowrule = [
             #    "float, class:(goxlr-utility-ui), title:(GoXLR Utility)"
             #];
         };

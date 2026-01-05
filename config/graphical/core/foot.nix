@@ -30,7 +30,7 @@ lib.mkIf (cfg.graphics.enable) {
             };
         };
         wayland.windowManager.hyprland.settings = {
-            windowrulev2 = [
+            windowrule = [
                 "float,                        class:(foot), title:(foot)"
                 "size ${cfg.window.float.wh},  class:(foot), title:(foot)"
                 "${cfg.window.float.onCursor}, class:(foot), title:(foot)"
