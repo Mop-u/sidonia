@@ -262,6 +262,7 @@ in
                             };
                             windowrulev2 = [
                                 "suppressevent maximize, class:.*"
+                                "center, xwayland:1"
                                 "bordercolor ${rgb.overlay2},xwayland:1,focus:0"
                                 "bordercolor ${rgb.yellow},  xwayland:1,focus:1"
 
@@ -283,13 +284,6 @@ in
 
                                 "float,                       class:.*, title:(Select Folder)"
                                 "size ${cfg.window.float.wh}, class:.*, title:(Select Folder)"
-
-                                ## xwaylandvideobridge specific ##
-                                #"opacity 0.0 override,class:^(xwaylandvideobridge)$"
-                                #"noanim,class:^(xwaylandvideobridge)$"
-                                #"noinitialfocus,class:^(xwaylandvideobridge)$"
-                                #"maxsize 1 1,class:^(xwaylandvideobridge)$"
-                                #"noblur,class:^(xwaylandvideobridge)$"
                             ];
                             gesture = [ "3, horizontal, workspace" ];
                             binds = {
@@ -318,7 +312,9 @@ in
                                 "SUPERALT,   L,         resizeactive,  10    0" # resize right
                             ];
                             bind =
-                                (builtins.map (x: "${lib.concatStrings x.mod}, ${x.key}, exec, uwsm app -- ${x.exec}") cfg.desktop.keybinds)
+                                (builtins.map (
+                                    x: "${lib.concatStrings x.mod}, ${x.key}, exec, uwsm app -- ${x.exec}"
+                                ) cfg.desktop.keybinds)
                                 ++ [
                                     "SUPERSHIFT, C,         killactive,"
                                     "SUPERSHIFT, Q,         exec, uwsm stop"
