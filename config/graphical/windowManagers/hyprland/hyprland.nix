@@ -131,11 +131,15 @@ in
                                 "XCURSOR_SIZE,${builtins.toString cfg.style.cursorSize}"
 
                                 # Toolkit backend vars #
-                                "GSK_RENDERER,gl" # Temporary fix for Gdk-Message: Error 71 (Protocol error) dispatching to Wayland display
+                                #"GSK_RENDERER,gl" # Temporary fix for Gdk-Message: Error 71 (Protocol error) dispatching to Wayland display
                                 "GDK_BACKEND,wayland,x11,*"
-                                "SDL_VIDEODRIVER,wayland,x11,windows"
+                                "SDL_VIDEODRIVER,wayland"
+                                "SDL_VIDEO_DRIVER,wayland"
                                 "CLUTTER_BACKEND,wayland"
                                 "WLR_RENDERER_ALLOW_SOFTWARE,1" # software rendering backend
+                                "NIXOS_OZONE_WL,1"
+                                "ELECTRON_ENABLE_WAYLAND,1"
+                                "ELECTRON_OZONE_PLATFORM_HINT,wayland"
 
                                 # QT specific #
                                 "QT_AUTO_SCREEN_SCALE_FACTOR,1"
@@ -154,12 +158,6 @@ in
                                 "PROTON_USE_NTSYNC,1"
                                 "PROTON_FSR4_UPGRADE,1"
                                 "PROTON_DLSS_UPGRADE,1"
-
-                                # Misc #
-                                "NIXOS_OZONE_WL,1"
-                                "ELECTRON_ENABLE_WAYLAND,1"
-                                #"GDK_SCALE,1"
-                                #"GDK_DPI_SCALE,1"
                             ];
                             # Gradients:
                             general."col.active_border" = rgb.accent; # border color for the active window
