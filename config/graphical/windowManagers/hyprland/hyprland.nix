@@ -157,6 +157,7 @@ in
 
                                 # Misc #
                                 "NIXOS_OZONE_WL,1"
+                                "ELECTRON_ENABLE_WAYLAND,1"
                                 #"GDK_SCALE,1"
                                 #"GDK_DPI_SCALE,1"
                             ];
