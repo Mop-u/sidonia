@@ -66,15 +66,11 @@ lib.mkIf (cfg.graphics.enable) {
             flavor = theme.flavor;
         };
 
-        home.file.nmAppletDropin = {
-            enable = true;
-            target = "/home/${cfg.userName}/.config/systemd/user/nm-applet.service.d/dropin.conf";
-            text = ''
-                [Service]
-                Restart=on-failure
-                RestartSec=3
-            '';
-        };
+        xdg.configFile."systemd/user/nm-applet.service.d/dropin.conf".text = ''
+            [Service]
+            Restart=on-failure
+            RestartSec=3
+        '';
 
         qt = {
             enable = true;

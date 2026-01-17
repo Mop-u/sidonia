@@ -118,7 +118,7 @@ in
             home.packages = with pkgs; [
                 surfer
             ];
-            home.file.".config/surfer/themes/catppuccin.toml".text = surferTheme + "\n";
+            xdg.configFile."surfer/themes/catppuccin.toml".text = surferTheme;
         };
     };
 }

@@ -87,16 +87,12 @@ in
                     pkgs.nwg-look
                     pkgs.hyprshot
                 ];
-                home.file.xdphCfg = {
-                    enable = true;
-                    target = "/home/${cfg.userName}/.config/hypr/xdph.conf";
-                    text = ''
-                        screencopy {
-                            max_fps = 60
-                            allow_token_by_default = true
-                        }
-                    '';
-                };
+                xdg.configFile."hypr/xdph.conf".text = ''
+                    screencopy {
+                        max_fps = 60
+                        allow_token_by_default = true
+                    }
+                '';
 
                 catppuccin.hyprland.enable = false;
                 wayland.windowManager.hyprland = {

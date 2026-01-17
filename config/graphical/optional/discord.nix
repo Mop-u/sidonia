@@ -33,15 +33,14 @@ in
                     })
                 ];
 
-                home.file.vencord = {
+                xdg.configFile."Vencord/settings/quickCss.css" = {
                     enable = withVencord;
-                    executable = false;
-                    target = "/home/${cfg.userName}/.config/Vencord/settings/quickCss.css";
                     text = ''
                         @import url("https://catppuccin.github.io/discord/dist/catppuccin-${cfg.style.catppuccin.flavor}.theme.css");
                         @import url("https://catppuccin.github.io/discord/dist/catppuccin-${cfg.style.catppuccin.flavor}-${cfg.style.catppuccin.accent}.theme.css");
                     '';
                 };
+
             };
         };
 }

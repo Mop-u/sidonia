@@ -124,13 +124,9 @@ lib.mkIf (cfg.graphics.enable) {
                 }
             '';
         };
-        home.file.waybarDropin = {
-            enable = true;
-            target = "/home/${cfg.userName}/.config/systemd/user/waybar.service.d/dropin.conf";
-            text = ''
-                [Service]
-                RestartSec=3
-            '';
-        };
+        xdg.configFile."systemd/user/waybar.service.d/dropin.conf".text = ''
+            [Service]
+            RestartSec=3
+        '';
     };
 }

@@ -21,15 +21,10 @@ in
                 pkgs.vesktop
             ];
 
-            home.file.vesktop = {
-                enable = true;
-                executable = false;
-                target = "/home/${cfg.userName}/.config/vesktop/settings/quickCss.css";
-                text = ''
-                    @import url("https://catppuccin.github.io/discord/dist/catppuccin-${cfg.style.catppuccin.flavor}.theme.css");
-                    @import url("https://catppuccin.github.io/discord/dist/catppuccin-${cfg.style.catppuccin.flavor}-${cfg.style.catppuccin.accent}.theme.css");
-                '';
-            };
+            xdg.configFile."vesktop/settings/quickCss.css".text = ''
+                @import url("https://catppuccin.github.io/discord/dist/catppuccin-${cfg.style.catppuccin.flavor}.theme.css");
+                @import url("https://catppuccin.github.io/discord/dist/catppuccin-${cfg.style.catppuccin.flavor}-${cfg.style.catppuccin.accent}.theme.css");
+            '';
         };
     };
 }
