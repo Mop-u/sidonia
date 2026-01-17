@@ -133,8 +133,8 @@ in
                                 # Toolkit backend vars #
                                 #"GSK_RENDERER,gl" # Temporary fix for Gdk-Message: Error 71 (Protocol error) dispatching to Wayland display
                                 "GDK_BACKEND,wayland,x11,*"
-                                "SDL_VIDEODRIVER,wayland"
-                                "SDL_VIDEO_DRIVER,wayland"
+                                #"SDL_VIDEODRIVER,wayland"
+                                #"SDL_VIDEO_DRIVER,wayland"
                                 "CLUTTER_BACKEND,wayland"
                                 "WLR_RENDERER_ALLOW_SOFTWARE,1" # software rendering backend
                                 "NIXOS_OZONE_WL,1"
