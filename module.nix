@@ -292,10 +292,12 @@ in
                                 };
                                 bitdepth = mkOption {
                                     description = "Monitor bit depth";
-                                    type = types.nullOr (types.enum [
-                                        8
-                                        10
-                                    ]);
+                                    type = types.nullOr (
+                                        types.enum [
+                                            8
+                                            10
+                                        ]
+                                    );
                                     default = null;
                                 };
                                 hdr = mkEnableOption "Enable HDR for this monitor";
@@ -353,6 +355,12 @@ in
             catppuccin.nixosModules.catppuccin
             home-manager.nixosModules.home-manager
             aagl.nixosModules.default
+            {
+                # Ensure wayvr exists in pkgs before nixpkgs-xr overlay is applied
+                nixpkgs.overlays = [
+                    (final: prev: { wayvr = unstable.legacyPackages.${final.stdenv.hostPlatform.system}.wayvr; })
+                ];
+            }
             nixpkgs-xr.nixosModules.nixpkgs-xr
             ./config/graphical/windowManagers
         ]);
