@@ -14,10 +14,7 @@ in
             programs.hyprshell = {
                 enable = true;
                 package = cfg.src.hyprshell.packages.${pkgs.stdenv.hostPlatform.system}.hyprshell-nixpkgs;
-                systemd = {
-                    args = "-v";
-                    target = cfg.lib.hyprlandTarget;
-                };
+                systemd.args = "-v";
                 settings = {
                     windows = {
                         enable = true;
