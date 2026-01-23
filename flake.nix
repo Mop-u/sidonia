@@ -16,7 +16,7 @@
         };
 
         hyprshell = {
-            url = "github:H3rmt/hyprshell/hyprshell-release";
+            url = "github:H3rmt/hyprshell/v4.8.3"; # Support hyprland ver < 0.53.0
             inputs.nixpkgs.follows = "nixpkgs";
         };
 
@@ -59,7 +59,10 @@
             url = "github:Mop-u/nonfree-fonts";
             inputs.nixpkgs.follows = "nixpkgs";
         };
-        nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
+        nix-vscode-extensions = {
+            url = "github:nix-community/nix-vscode-extensions";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
 
         # sublime text packages
         # TODO: make packagecontrol.io scraper (see https://packagecontrol.io/docs/channels_and_repositories)

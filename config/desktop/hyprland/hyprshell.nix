@@ -10,7 +10,7 @@ in
 {
     config = lib.mkIf cfg.programs.hyprland.enable {
         home-manager.users.${cfg.userName} = {
-            # https://github.com/H3rmt/hyprshell/blob/hyprshell-release/nix/module.nix
+            # https://github.com/H3rmt/hyprshell/blob/v4.8.3/nix/module.nix
             systemd.user.services.hyprshell.Service.Environment = lib.mapAttrsToList (
                 n: v: "${n}=${v}"
             ) cfg.desktop.environment.hyprland;
