@@ -9,6 +9,7 @@
         ./btop.nix
         ./discord.nix
         ./floorp.nix
+        ./foot.nix
         ./gtkwave.nix
         ./misc.nix
         ./neovim.nix
