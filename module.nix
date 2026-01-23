@@ -10,6 +10,7 @@
 }:
 let
     cfg = config.sidonia;
+    getSystem = overlayPkgs: overlayPkgs.stdenv.hostPlatform.system;
 in
 {
     options = with lib; {
@@ -325,13 +326,6 @@ in
         catppuccin.nixosModules.catppuccin
         home-manager.nixosModules.home-manager
         aagl.nixosModules.default
-        {
-            # Ensure wayvr exists in pkgs before nixpkgs-xr overlay is applied
-            nixpkgs.overlays = [
-                (final: prev: { wayvr = unstable.legacyPackages.${final.stdenv.hostPlatform.system}.wayvr; })
-            ];
-        }
-        nixpkgs-xr.nixosModules.nixpkgs-xr
         ./config
     ];
 
@@ -360,10 +354,10 @@ in
             };
             nixpkgs.overlays = [
                 (final: prev: {
-                    affinity = inputs.affinity.packages.${final.stdenv.hostPlatform.system}.v3;
-                })
-                (final: prev: {
-                    nix-auth = inputs.nix-auth.packages.${final.stdenv.hostPlatform.system}.default;
+                    affinity = inputs.affinity.packages.${getSystem final}.v3;
+                    nix-auth = inputs.nix-auth.packages.${getSystem final}.default;
+                    inherit (inputs.unstable.legacyPackages.${getSystem final}) wayvr;
+                    #inherit (inputs.nixpkgs-xr.packages.${getSystem final}) proton-ge-rtsp-bin;
                 })
                 inputs.nur.overlays.default
                 inputs.niri.overlays.niri

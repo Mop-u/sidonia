@@ -16,7 +16,7 @@ in
             PRESSURE_VESSEL_IMPORT_OPENXR_1_RUNTIMES = 1;
         };
         programs.steam.extraCompatPackages = [
-            pkgs.proton-ge-rtsp-bin
+            #pkgs.proton-ge-rtsp-bin
         ];
         services.monado = {
             enable = true;
