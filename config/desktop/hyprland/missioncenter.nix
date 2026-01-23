@@ -20,6 +20,7 @@ lib.mkIf cfg.programs.hyprland.enable {
     };
     sidonia.desktop.keybinds = [
         {
+            name = "Task Manager";
             mod = [
                 "super"
                 "shift"

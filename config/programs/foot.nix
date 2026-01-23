@@ -10,6 +10,7 @@ in
 lib.mkIf (cfg.graphics.enable) {
     sidonia.desktop.keybinds = [
         {
+            name = "Terminal";
             mod = [
                 "super"
                 "shift"

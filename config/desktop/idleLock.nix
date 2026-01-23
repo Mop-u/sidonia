@@ -20,6 +20,7 @@ in
 
         sidonia.desktop.keybinds = [
             {
+                name = "Lock Screen";
                 mod = [ "super" ];
                 key = "x";
                 exec = lock_cmd;

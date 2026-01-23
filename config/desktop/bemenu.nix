@@ -30,6 +30,7 @@ lib.mkIf (cfg.graphics.enable) {
     home-manager.users.${cfg.userName}.programs.bemenu.enable = true;
     sidonia.desktop.keybinds = [
         {
+            name = "Bemenu";
             mod = [ "super" ];
             key = "o";
             exec = "$(bemenu-run --no-exec ${opts})";

@@ -14,5 +14,6 @@
         ./environment.nix
         ./gtk.nix
         ./idleLock.nix
+        ./keybinds.nix
     ];
 }

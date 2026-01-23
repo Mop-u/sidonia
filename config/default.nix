@@ -10,6 +10,6 @@
         ./programs
         ./services
         ./tweaks
-        ./windowManagers
+        ./desktop
     ];
 }

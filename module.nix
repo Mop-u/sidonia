@@ -261,6 +261,14 @@ in
                 };
             };
             desktop = {
+                compositor = mkOption {
+                    description = "Which compositor to use";
+                    type = types.enum [
+                        "hyprland"
+                        "niri"
+                    ];
+                    default = "hyprland";
+                };
                 monitors = mkOption {
                     description = "List of monitor configurations ( see https://wiki.hyprland.org/Configuring/Monitors/ )";
                     type =
@@ -310,31 +318,6 @@ in
                             };
                         });
                     default = [ ];
-                };
-                keybinds = mkOption {
-                    description = "List of keybinds to add to the desktop environment";
-                    type =
-                        with types;
-                        listOf (submodule {
-                            options = {
-                                mod = mkOption {
-                                    description = "Modifier keys";
-                                    type = listOf (enum [
-                                        "super"
-                                        "shift"
-                                        "alt"
-                                    ]);
-                                };
-                                key = mkOption {
-                                    description = "Key";
-                                    type = str;
-                                };
-                                exec = mkOption {
-                                    description = "Command to execute";
-                                    type = str;
-                                };
-                            };
-                        });
                 };
             };
         };
