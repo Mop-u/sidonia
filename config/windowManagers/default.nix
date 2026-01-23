@@ -11,6 +11,7 @@
         ./bemenu.nix
         ./coreServices.nix
         ./displayManager.nix
+        ./environment.nix
         ./gtk.nix
         ./idleLock.nix
     ];

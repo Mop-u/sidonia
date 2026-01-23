@@ -12,19 +12,12 @@ in
     options.sidonia.services.vr.enable = lib.mkEnableOption "Enable VR services";
     config = lib.mkIf (cfg.services.vr.enable) {
         hardware.steam-hardware.enable = true;
-        programs.steam = {
-            package = pkgs.steam.override {
-                extraProfile = ''
-                    # Fixes timezones on VRChat
-                    unset TZ
-                    # Allows Monado to be used
-                    export PRESSURE_VESSEL_IMPORT_OPENXR_1_RUNTIMES=1
-                '';
-            };
-            extraCompatPackages = [
-                pkgs.proton-ge-rtsp-bin
-            ];
+        sidonia.desktop.environment.steam = {
+            PRESSURE_VESSEL_IMPORT_OPENXR_1_RUNTIMES = 1;
         };
+        programs.steam.extraCompatPackages = [
+            pkgs.proton-ge-rtsp-bin
+        ];
         services.monado = {
             enable = true;
             defaultRuntime = true;

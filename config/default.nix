@@ -7,7 +7,7 @@
 {
     imports = [
         ./configuration.nix
-        ./applications
+        ./programs
         ./services
         ./tweaks
         ./windowManagers
