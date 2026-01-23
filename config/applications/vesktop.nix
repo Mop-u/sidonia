@@ -15,11 +15,5 @@ in
             type = types.bool;
             default = cfg.graphics.enable;
         };
-    config = lib.mkIf (cfg.programs.vesktop.enable) {
-        home-manager.users.${cfg.userName} = {
-            home.packages = [
-                pkgs.vesktop
-            ];
-        };
-    };
+    config.home-manager.users.${cfg.userName}.programs.vesktop.enable = lib.mkDefault cfg.graphics.enable;
 }
