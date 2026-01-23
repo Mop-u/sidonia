@@ -10,7 +10,15 @@
             inputs.nixpkgs.follows = "nixpkgs";
         };
 
-        catppuccin.url = "github:catppuccin/nix"; # /release-25.11";
+        catppuccin = {
+            url = "github:catppuccin/nix/release-25.11";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
+
+        hyprshell = {
+            url = "github:H3rmt/hyprshell/hyprshell-release";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
 
         aagl = {
             url = "github:ezKEa/aagl-gtk-on-nix/release-25.11";
@@ -85,11 +93,6 @@
             url = "github:Fausto-Korpsvart/Catppuccin-GTK-Theme";
             #url = "github:Mop-u/Catppuccin-GTK-Theme/fix-theme-variants-index";
             flake = false;
-        };
-
-        hyprshell = {
-            url = "github:H3rmt/hyprshell/hyprshell-release";
-            inputs.nixpkgs.follows = "nixpkgs";
         };
 
     };
