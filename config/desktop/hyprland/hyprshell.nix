@@ -11,6 +11,9 @@ in
     config = lib.mkIf cfg.programs.hyprland.enable {
         home-manager.users.${cfg.userName} = {
             # https://github.com/H3rmt/hyprshell/blob/hyprshell-release/nix/module.nix
+            systemd.user.services.hyprshell.Service.Environment = lib.mapAttrsToList (
+                n: v: "${n}=${v}"
+            ) cfg.desktop.environment.hyprland;
             programs.hyprshell = {
                 enable = true;
                 package = cfg.src.hyprshell.packages.${pkgs.stdenv.hostPlatform.system}.hyprshell-nixpkgs;
