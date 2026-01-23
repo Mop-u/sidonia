@@ -7,7 +7,7 @@
 let
     cfg = config.sidonia;
 in
-lib.mkIf (cfg.graphics.enable) {
+lib.mkIf (cfg.desktop.enable) {
     programs = {
         steam = {
             enable = lib.mkDefault true;

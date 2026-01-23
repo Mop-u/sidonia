@@ -8,7 +8,7 @@ let
     cfg = config.sidonia;
     theme = cfg.style.catppuccin;
 in
-lib.mkIf (cfg.graphics.enable) {
+lib.mkIf (cfg.desktop.enable) {
 
     security = {
         pam.services = {
@@ -19,12 +19,6 @@ lib.mkIf (cfg.graphics.enable) {
     };
 
     xdg = {
-        terminal-exec = {
-            enable = true;
-            settings.default = [
-                "foot.desktop"
-            ];
-        };
         autostart.enable = true;
         portal = {
             extraPortals = [

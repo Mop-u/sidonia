@@ -7,7 +7,7 @@
 let
     cfg = config.sidonia;
 in
-lib.mkIf (cfg.graphics.enable) {
+lib.mkIf (cfg.desktop.enable) {
     home-manager.users.${cfg.userName} = {
         home.packages = with pkgs; [
             # GUI apps

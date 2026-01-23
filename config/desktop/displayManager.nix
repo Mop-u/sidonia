@@ -10,7 +10,7 @@ let
 in
 {
     config = lib.mkMerge [
-        (lib.mkIf (cfg.graphics.enable) {
+        (lib.mkIf (cfg.desktop.enable) {
             services.displayManager = {
                 autoLogin.enable = lib.mkDefault false;
                 autoLogin.user = cfg.userName;

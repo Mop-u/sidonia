@@ -8,7 +8,7 @@ let
     cfg = config.sidonia;
     theme = cfg.style.catppuccin;
 in
-lib.mkIf (cfg.graphics.enable) {
+lib.mkIf (cfg.desktop.enable) {
 
     home-manager.users.${cfg.userName} = {
 

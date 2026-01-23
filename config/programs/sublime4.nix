@@ -21,13 +21,13 @@ in
         sublime-text = {
             enable = mkOption {
                 type = types.bool;
-                default = cfg.graphics.enable;
+                default = cfg.desktop.enable;
             };
         };
         sublime-merge = {
             enable = mkOption {
                 type = types.bool;
-                default = cfg.graphics.enable;
+                default = cfg.desktop.enable;
             };
         };
     };

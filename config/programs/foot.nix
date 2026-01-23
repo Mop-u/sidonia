@@ -7,7 +7,7 @@
 let
     cfg = config.sidonia;
 in
-lib.mkIf (cfg.graphics.enable) {
+lib.mkIf (cfg.desktop.enable) {
     sidonia.desktop.keybinds = [
         {
             name = "Terminal";
@@ -19,6 +19,10 @@ lib.mkIf (cfg.graphics.enable) {
             exec = "foot";
         }
     ];
+    xdg.terminal-exec = {
+        enable = true;
+        settings.default = [ "foot.desktop" ];
+    };
     home-manager.users.${config.sidonia.userName} = {
         catppuccin.foot.enable = true;
         programs.foot = {

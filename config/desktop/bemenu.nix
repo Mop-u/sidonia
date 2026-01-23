@@ -26,7 +26,7 @@ let
             "--fn monospace"
         ];
 in
-lib.mkIf (cfg.graphics.enable) {
+lib.mkIf (cfg.desktop.enable) {
     home-manager.users.${cfg.userName}.programs.bemenu.enable = true;
     sidonia.desktop.keybinds = [
         {

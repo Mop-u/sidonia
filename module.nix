@@ -108,10 +108,7 @@ in
             };
             geolocation.enable = mkEnableOption "Turn on geolocation related services such as automatic timezone changing and geoclue";
             isLaptop = mkEnableOption "Apply laptop-specific tweaks";
-            graphics = {
-                enable = mkEnableOption "Enable gui / desktop environment components";
-                legacyGpu = mkEnableOption "Apply tweaks for OpenGL ES 2 device support";
-            };
+            graphics.legacyGpu = mkEnableOption "Apply tweaks for OpenGL ES 2 device support";
             style = {
                 # use `apply` attribute in mkOption to convert input options & avoid hacking nixpkgs lib
                 catppuccin = mkOption {
@@ -261,6 +258,7 @@ in
                 };
             };
             desktop = {
+                enable = mkEnableOption "Enable desktop environment";
                 compositor = mkOption {
                     description = "Which compositor to use";
                     type = types.enum [

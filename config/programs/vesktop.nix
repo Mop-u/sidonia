@@ -13,7 +13,7 @@ in
         mkOption {
             description = "Enable Vesktop, A custom Discord App aiming to give you better performance and improve linux support";
             type = types.bool;
-            default = cfg.graphics.enable;
+            default = cfg.desktop.enable;
         };
-    config.home-manager.users.${cfg.userName}.programs.vesktop.enable = lib.mkDefault cfg.graphics.enable;
+    config.home-manager.users.${cfg.userName}.programs.vesktop.enable = lib.mkDefault cfg.desktop.enable;
 }

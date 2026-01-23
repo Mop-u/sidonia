@@ -13,7 +13,7 @@ in
         with lib;
         mkOption {
             type = types.bool;
-            default = cfg.graphics.enable;
+            default = cfg.desktop.enable;
         };
     config = lib.mkIf (cfg.programs.vscodium.enable) {
         nixpkgs.overlays = [

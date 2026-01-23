@@ -11,7 +11,7 @@ in
     options.sidonia.programs.discord = with lib; {
         enable = mkOption {
             type = types.bool;
-            default = cfg.graphics.enable;
+            default = cfg.desktop.enable;
         };
         withVencord = mkOption {
             description = "Use Vencord (This allows catppuccin theming)";

@@ -13,7 +13,7 @@ in
             with lib;
             mkOption {
                 type = types.bool;
-                default = cfg.graphics.enable;
+                default = cfg.desktop.enable;
             };
         behringerFix.enable = lib.mkEnableOption "Fix stutter for Behringer audio interfaces such as the UV1 and some UMC devices.";
         lowLatency = {
