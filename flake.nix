@@ -80,16 +80,6 @@
             flake = false;
         };
 
-        # get up-to-date kmscon version
-        kmscon = {
-            url = "github:Aetf/kmscon/main";
-            flake = false;
-        };
-        libtsm = {
-            url = "github:Aetf/libtsm/main";
-            flake = false;
-        };
-
         # get up-to-date magnetic-catppuccin-gtk
         magnetic-catppuccin-gtk = {
             url = "github:Fausto-Korpsvart/Catppuccin-GTK-Theme";

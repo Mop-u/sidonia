@@ -1,0 +1,22 @@
+{
+    config,
+    pkgs,
+    lib,
+    ...
+}:
+{
+    imports = [
+        ./btop.nix
+        ./discord.nix
+        ./floorp.nix
+        ./gtkwave.nix
+        ./misc.nix
+        ./neovim.nix
+        ./steam.nix
+        ./sublime4.nix
+        ./surfer.nix
+        ./vesktop.nix
+        ./vscodium.nix
+        ./zsh.nix
+    ];
+}

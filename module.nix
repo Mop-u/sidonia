@@ -22,6 +22,7 @@ in
                         kmscon
                         libtsm
                         magnetic-catppuccin-gtk
+                        nix-vscode-extensions
                         stextCatppuccin
                         stextPackageControl
                         stextLSP
@@ -339,39 +340,43 @@ in
         };
     };
 
-    imports =
-        let
-            ls =
-                with lib;
-                dir: filter: mapAttrsToList (n: v: (path.append dir n)) (filterAttrs filter (builtins.readDir dir));
-            lsFiles = dir: ls dir (n: v: v == "regular");
-            #prefixList = prefix: list: (builtins.map (x: lib.path.append prefix x) list);
-            headless = (lsFiles ./config/headless/core) ++ (lsFiles ./config/headless/optional);
-            graphical = (lsFiles ./config/graphical/core) ++ (lsFiles ./config/graphical/optional);
-        in
-        headless
-        ++ graphical
-        ++ (with inputs; [
-            catppuccin.nixosModules.catppuccin
-            home-manager.nixosModules.home-manager
-            aagl.nixosModules.default
-            {
-                # Ensure wayvr exists in pkgs before nixpkgs-xr overlay is applied
-                nixpkgs.overlays = [
-                    (final: prev: { wayvr = unstable.legacyPackages.${final.stdenv.hostPlatform.system}.wayvr; })
-                ];
-            }
-            nixpkgs-xr.nixosModules.nixpkgs-xr
-            ./config/graphical/windowManagers
-        ]);
+    imports = with inputs; [
+        catppuccin.nixosModules.catppuccin
+        home-manager.nixosModules.home-manager
+        aagl.nixosModules.default
+        {
+            # Ensure wayvr exists in pkgs before nixpkgs-xr overlay is applied
+            nixpkgs.overlays = [
+                (final: prev: { wayvr = unstable.legacyPackages.${final.stdenv.hostPlatform.system}.wayvr; })
+            ];
+        }
+        nixpkgs-xr.nixosModules.nixpkgs-xr
+        ./config
+    ];
 
     config = lib.mkMerge [
         {
-            home-manager.users.${cfg.userName}.imports = with inputs; [
-                catppuccin.homeModules.catppuccin
-                niri.homeModules.niri
-                hyprshell.homeModules.hyprshell
-            ];
+            home-manager = {
+                useGlobalPkgs = true;
+                backupFileExtension = "backup";
+                users.${cfg.userName} = {
+                    imports = with inputs; [
+                        catppuccin.homeModules.catppuccin
+                        niri.homeModules.niri
+                        hyprshell.homeModules.hyprshell
+                    ];
+                    home = {
+                        username = config.sidonia.userName;
+                        homeDirectory = "/home/${config.sidonia.userName}";
+                        stateVersion = config.sidonia.stateVer;
+                    };
+                    catppuccin = {
+                        enable = true;
+                        accent = config.sidonia.style.catppuccin.accent;
+                        flavor = config.sidonia.style.catppuccin.flavor;
+                    };
+                };
+            };
             nixpkgs.overlays = [
                 (final: prev: {
                     affinity = inputs.affinity.packages.${final.stdenv.hostPlatform.system}.v3;
@@ -381,27 +386,7 @@ in
                 })
                 inputs.nur.overlays.default
                 inputs.niri.overlays.niri
-            ]
-            ++ (lib.optional cfg.programs.vscodium.enable (
-                final: prev:
-                let
-                    version = lib.versions.pad 3 final.vscodium.version;
-                    flakeExts =
-                        inputs.nix-vscode-extensions.extensions.${final.stdenv.hostPlatform.system}.forVSCodeVersion
-                            version;
-                in
-                {
-                    vscode-extensions =
-                        with flakeExts;
-                        lib.zipAttrsWith (name: values: (lib.mergeAttrsList values)) [
-                            prev.vscode-extensions
-                            open-vsx
-                            open-vsx-release
-                            vscode-marketplace
-                            vscode-marketplace-release
-                        ];
-                }
-            ));
+            ];
         }
     ];
 }

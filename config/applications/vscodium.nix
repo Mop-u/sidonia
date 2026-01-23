@@ -16,6 +16,28 @@ in
             default = cfg.graphics.enable;
         };
     config = lib.mkIf (cfg.programs.vscodium.enable) {
+        nixpkgs.overlays = [
+            (
+                final: prev:
+                let
+                    version = lib.versions.pad 3 final.vscodium.version;
+                    flakeExts =
+                        cfg.src.nix-vscode-extensions.extensions.${final.stdenv.hostPlatform.system}.forVSCodeVersion
+                            version;
+                in
+                {
+                    vscode-extensions =
+                        with flakeExts;
+                        lib.zipAttrsWith (name: values: (lib.mergeAttrsList values)) [
+                            prev.vscode-extensions
+                            open-vsx
+                            open-vsx-release
+                            vscode-marketplace
+                            vscode-marketplace-release
+                        ];
+                }
+            )
+        ];
         home-manager.users.${cfg.userName} = {
             catppuccin.vscode.profiles.default = {
                 enable = true;

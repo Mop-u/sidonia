@@ -20,11 +20,6 @@ in
             home.packages = [
                 pkgs.vesktop
             ];
-
-            xdg.configFile."vesktop/settings/quickCss.css".text = ''
-                @import url("https://catppuccin.github.io/discord/dist/catppuccin-${cfg.style.catppuccin.flavor}.theme.css");
-                @import url("https://catppuccin.github.io/discord/dist/catppuccin-${cfg.style.catppuccin.flavor}-${cfg.style.catppuccin.accent}.theme.css");
-            '';
         };
     };
 }

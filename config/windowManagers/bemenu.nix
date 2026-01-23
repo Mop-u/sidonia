@@ -40,7 +40,7 @@ lib.mkIf (cfg.graphics.enable) {
             "super"
             "shift"
         ];
-        key = "p";
+        key = "o";
         exec = "nvidia-offload $(LIBVA_DRIVER_NAME=nvidia VDPAU_NAME=nvidia bemenu-run --no-exec ${opts})";
     });
 }

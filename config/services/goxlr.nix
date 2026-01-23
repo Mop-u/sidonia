@@ -16,8 +16,8 @@ in
             default = false;
         };
     config = lib.mkIf (cfg.services.goxlr.enable) {
-        services.goxlr-utility.enable = true;
-        services.goxlr-utility.autoStart.xdg = false; # respect goxlr-utility's autostart toggle
+        services.goxlr-utility.enable = lib.mkDefault true;
+        services.goxlr-utility.autoStart.xdg = lib.mkDefault false; # respect goxlr-utility's autostart toggle
         home-manager.users.${config.sidonia.userName} = {
             home.packages = [
                 pkgs.goxlr-utility

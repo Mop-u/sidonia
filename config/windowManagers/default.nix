@@ -8,9 +8,10 @@
     imports = [
         ./hyprland
         ./niri
-        ./dunst.nix
-        ./idleLock.nix
-        ./coreServices.nix
         ./bemenu.nix
+        ./coreServices.nix
+        ./displayManager.nix
+        ./gtk.nix
+        ./idleLock.nix
     ];
 }
