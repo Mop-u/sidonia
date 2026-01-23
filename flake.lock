@@ -818,22 +818,6 @@
         "type": "github"
       }
     },
-    "magnetic-catppuccin-gtk": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1761253545,
-        "narHash": "sha256-W+NGyPnOEKoicJPwnftq26iP7jya1ZKq38lMjx/k9ss=",
-        "owner": "Fausto-Korpsvart",
-        "repo": "Catppuccin-GTK-Theme",
-        "rev": "f25d8cf688d8f224f0ce396689ffcf5767eb647e",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Fausto-Korpsvart",
-        "repo": "Catppuccin-GTK-Theme",
-        "type": "github"
-      }
-    },
     "niri": {
       "inputs": {
         "niri-stable": "niri-stable",
@@ -1263,7 +1247,6 @@
         "catppuccin": "catppuccin",
         "home-manager": "home-manager",
         "hyprshell": "hyprshell",
-        "magnetic-catppuccin-gtk": "magnetic-catppuccin-gtk",
         "niri": "niri",
         "nix-auth": "nix-auth",
         "nix-std": "nix-std",

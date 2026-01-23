@@ -88,13 +88,6 @@
             flake = false;
         };
 
-        # get up-to-date magnetic-catppuccin-gtk
-        magnetic-catppuccin-gtk = {
-            url = "github:Fausto-Korpsvart/Catppuccin-GTK-Theme";
-            #url = "github:Mop-u/Catppuccin-GTK-Theme/fix-theme-variants-index";
-            flake = false;
-        };
-
     };
 
     outputs =

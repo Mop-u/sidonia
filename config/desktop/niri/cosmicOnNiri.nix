@@ -81,9 +81,11 @@
                     }/bin/start-cosmic-ext-niri
                 '';
             }).overrideAttrs
-            (old: {
-                passthru.providedSessions = [ "COSMIC-on-niri" ];
-            })
+            (
+                final: prev: {
+                    passthru.providedSessions = [ "COSMIC-on-niri" ];
+                }
+            )
         )
     ];
 }

@@ -39,7 +39,6 @@ lib.mkIf (cfg.desktop.enable) {
             };
             theme =
                 let
-                    baseName = "Catppuccin";
                     shade = if theme.flavor == "latte" then "light" else "dark";
                     doTweak = builtins.elem theme.flavor [
                         "frappe"
@@ -47,36 +46,14 @@ lib.mkIf (cfg.desktop.enable) {
                     ];
                 in
                 {
-                    package = pkgs.magnetic-catppuccin-gtk.overrideAttrs (
-                        let
-                            size = "standard";
-                            tweaks = lib.optional doTweak theme.flavor;
-                            accent = [ theme.accent ];
-                        in
-                        {
-                            src = cfg.src.magnetic-catppuccin-gtk;
-
-                            installPhase = ''
-                                runHook preInstall
-
-                                mkdir -p $out/share/themes
-                                ./themes/install.sh \
-                                  --name ${baseName} \
-                                  ${toString (map (x: "--theme " + x) accent)} \
-                                  ${lib.optionalString (shade != null) ("--color " + shade)} \
-                                  ${lib.optionalString (size != null) ("--size " + size)} \
-                                  ${toString (map (x: "--tweaks " + x) tweaks)} \
-                                  --dest $out/share/themes
-
-                                jdupes --quiet --link-soft --recurse $out/share
-
-                                runHook postInstall
-                            '';
-                        }
-                    );
+                    package = pkgs.magnetic-catppuccin-gtk.override {
+                        inherit shade;
+                        tweaks = lib.optional doTweak theme.flavor;
+                        accent = [ theme.accent ];
+                    };
                     name = lib.strings.concatStringsSep "-" (
                         [
-                            baseName
+                            "Catppuccin-GTK"
                             (cfg.lib.capitalize theme.accent)
                             (cfg.lib.capitalize shade)
                         ]

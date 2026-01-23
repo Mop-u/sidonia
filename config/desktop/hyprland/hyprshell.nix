@@ -16,7 +16,7 @@ in
             ) cfg.desktop.environment.hyprland;
             programs.hyprshell = {
                 enable = true;
-                package = cfg.src.hyprshell.packages.${pkgs.stdenv.hostPlatform.system}.hyprshell-nixpkgs;
+                package = pkgs.hyprshell-nixpkgs;
                 systemd.args = "-v";
                 settings = {
                     windows = {

@@ -20,9 +20,6 @@ in
                 type = types.attrs;
                 default = {
                     inherit (inputs)
-                        kmscon
-                        libtsm
-                        magnetic-catppuccin-gtk
                         nix-vscode-extensions
                         stextCatppuccin
                         stextPackageControl
@@ -30,7 +27,6 @@ in
                         stextNix
                         stextSystemVerilog
                         stextHooks
-                        hyprshell
                         ;
                 };
             };
@@ -356,6 +352,8 @@ in
                 (final: prev: {
                     affinity = inputs.affinity.packages.${getSystem final}.v3;
                     nix-auth = inputs.nix-auth.packages.${getSystem final}.default;
+                    inherit (inputs.hyprshell.packages.${getSystem final}) hyprshell-nixpkgs;
+                    inherit (inputs.unstable.legacyPackages.${getSystem final}) magnetic-catppuccin-gtk;
                     inherit (inputs.unstable.legacyPackages.${getSystem final}) wayvr;
                     #inherit (inputs.nixpkgs-xr.packages.${getSystem final}) proton-ge-rtsp-bin;
                 })
