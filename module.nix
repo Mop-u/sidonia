@@ -11,6 +11,8 @@
 let
     cfg = config.sidonia;
     getSystem = overlayPkgs: overlayPkgs.stdenv.hostPlatform.system;
+    dropExistingAttrs =
+        existingAttrs: inputAttrs: lib.filterAttrs (n: v: !(builtins.hasAttr n existingAttrs)) inputAttrs;
 in
 {
     options = with lib; {
@@ -349,14 +351,26 @@ in
                 };
             };
             nixpkgs.overlays = [
-                (final: prev: {
-                    affinity = inputs.affinity.packages.${getSystem final}.v3;
-                    nix-auth = inputs.nix-auth.packages.${getSystem final}.default;
-                    inherit (inputs.hyprshell.packages.${getSystem final}) hyprshell-nixpkgs;
-                    inherit (inputs.unstable.legacyPackages.${getSystem final}) magnetic-catppuccin-gtk;
-                    inherit (inputs.unstable.legacyPackages.${getSystem final}) wayvr;
-                    #inherit (inputs.nixpkgs-xr.packages.${getSystem final}) proton-ge-rtsp-bin;
-                })
+                (
+                    final: prev:
+                    let
+                        system = getSystem prev;
+                    in
+                    (
+                        {
+                            affinity = inputs.affinity.packages.${system}.v3;
+                            nix-auth = inputs.nix-auth.packages.${system}.default;
+                            inherit (inputs.hyprshell.packages.${system}) hyprshell-nixpkgs;
+                            inherit (inputs.unstable.legacyPackages.${system}) magnetic-catppuccin-gtk;
+                        }
+                        // (
+                            if builtins.hasAttr system inputs.nixpkgs-xr.packages then
+                                dropExistingAttrs prev inputs.nixpkgs-xr.packages.${system}
+                            else
+                                { }
+                        )
+                    )
+                )
                 inputs.nur.overlays.default
                 inputs.niri.overlays.niri
             ];

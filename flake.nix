@@ -4,6 +4,7 @@
     inputs = {
         unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
         nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
+        nixpkgs-xr.url = "github:nix-community/nixpkgs-xr";
 
         home-manager = {
             url = "github:nix-community/home-manager/release-25.11";
@@ -47,11 +48,6 @@
 
         affinity = {
             url = "github:mrshmllow/affinity-nix";
-            inputs.nixpkgs.follows = "nixpkgs";
-        };
-
-        nixpkgs-xr = {
-            url = "github:nix-community/nixpkgs-xr";
             inputs.nixpkgs.follows = "nixpkgs";
         };
 
