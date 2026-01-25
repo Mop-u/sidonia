@@ -10,9 +10,6 @@
 }:
 let
     cfg = config.sidonia;
-    getSystem = overlayPkgs: overlayPkgs.stdenv.hostPlatform.system;
-    dropExistingAttrs =
-        existingAttrs: inputAttrs: lib.filterAttrs (n: v: !(builtins.hasAttr n existingAttrs)) inputAttrs;
 in
 {
     options = with lib; {
@@ -350,30 +347,28 @@ in
                     };
                 };
             };
-            nixpkgs.overlays = [
-                (
-                    final: prev:
-                    let
-                        system = getSystem prev;
-                    in
+            nixpkgs.overlays =
+                let
+                    getSystem = overlayPkgs: overlayPkgs.stdenv.hostPlatform.system;
+                    dropExistingAttrs = attrs: lib.filterAttrs (n: v: !(builtins.hasAttr n attrs));
+                in
+                [
+                    (final: prev: ({
+                        affinity = inputs.affinity.packages.${getSystem prev}.v3;
+                        nix-auth = inputs.nix-auth.packages.${getSystem prev}.default;
+                        inherit (inputs.hyprshell.packages.${getSystem prev}) hyprshell-nixpkgs;
+                        inherit (inputs.unstable.legacyPackages.${getSystem prev}) magnetic-catppuccin-gtk;
+                    }))
                     (
-                        {
-                            affinity = inputs.affinity.packages.${system}.v3;
-                            nix-auth = inputs.nix-auth.packages.${system}.default;
-                            inherit (inputs.hyprshell.packages.${system}) hyprshell-nixpkgs;
-                            inherit (inputs.unstable.legacyPackages.${system}) magnetic-catppuccin-gtk;
-                        }
-                        // (
-                            if builtins.hasAttr system inputs.nixpkgs-xr.packages then
-                                dropExistingAttrs prev inputs.nixpkgs-xr.packages.${system}
-                            else
-                                { }
-                        )
+                        final: prev:
+                        if builtins.hasAttr (getSystem prev) inputs.nixpkgs-xr.packages then
+                            dropExistingAttrs prev inputs.nixpkgs-xr.packages.${getSystem prev}
+                        else
+                            { }
                     )
-                )
-                inputs.nur.overlays.default
-                inputs.niri.overlays.niri
-            ];
+                    inputs.nur.overlays.default
+                    inputs.niri.overlays.niri
+                ];
         }
     ];
 }
