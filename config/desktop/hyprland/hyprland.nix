@@ -231,6 +231,8 @@ in
 
                                 "float, class:(nemo)"
 
+                                "float, class:(.blueman-manager-wrapped)"
+
                                 "float,                       class:.*, title:(Open File)"
                                 "size ${cfg.window.float.wh}, class:.*, title:(Open File)"
 
