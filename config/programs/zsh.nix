@@ -34,7 +34,7 @@ in
 
         programs.oh-my-posh.settings =
             let
-                palette = lib.mapAttrs (n: v: "#${v.hex}") theme.color;
+                palette = lib.mapAttrs (n: v: "#${v}") theme.color;
             in
             with palette;
             {

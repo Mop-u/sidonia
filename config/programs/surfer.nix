@@ -9,7 +9,7 @@ let
     cfg = config.sidonia;
     theme = cfg.style.catppuccin;
     surferTheme =
-        with lib.mapAttrs (n: v: v.hex) theme.color;
+        with theme.color;
         std.serde.toTOML {
             foreground = text;
             alt_text_color = surface0; # negated foreground

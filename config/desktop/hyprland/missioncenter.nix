@@ -13,8 +13,8 @@ lib.mkIf cfg.programs.hyprland.enable {
         wayland.windowManager.hyprland.settings = {
             windowrule = [
                 "float,                        class:(io.missioncenter.MissionCenter)"
-                "size ${cfg.window.float.wh},  class:(io.missioncenter.MissionCenter)"
-                "${cfg.window.float.onCursor}, class:(io.missioncenter.MissionCenter)"
+                "size ${cfg.desktop.window.decoration.float.wh},  class:(io.missioncenter.MissionCenter)"
+                "${cfg.desktop.window.decoration.float.onCursor}, class:(io.missioncenter.MissionCenter)"
             ];
         };
     };

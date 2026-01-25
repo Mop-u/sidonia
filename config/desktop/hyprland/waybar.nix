@@ -19,7 +19,7 @@ lib.mkIf cfg.desktop.enable (
                     systemd.target = cfg.lib.hyprlandTarget;
                     settings.mainBar =
                         let
-                            palette = builtins.mapAttrs (n: v: "#${v.hex}") theme.color;
+                            palette = builtins.mapAttrs (n: v: "#${v}") theme.color;
                         in
                         with palette;
                         {

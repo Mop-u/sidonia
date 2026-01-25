@@ -31,14 +31,14 @@ lib.mkIf (cfg.desktop.enable) {
                 # https://codeberg.org/dnkl/foot/src/branch/master/foot.ini
                 main.dpi-aware = "no";
                 main.font = "monospace:size=10";
-                colors.alpha = builtins.toString cfg.window.opacity.dec;
+                colors.alpha = builtins.toString cfg.desktop.window.decoration.opacity.dec;
             };
         };
         wayland.windowManager.hyprland.settings = {
             windowrule = [
                 "float,                        class:(foot), title:(foot)"
-                "size ${cfg.window.float.wh},  class:(foot), title:(foot)"
-                "${cfg.window.float.onCursor}, class:(foot), title:(foot)"
+                "size ${cfg.desktop.window.decoration.float.wh},  class:(foot), title:(foot)"
+                "${cfg.desktop.window.decoration.float.onCursor}, class:(foot), title:(foot)"
             ];
         };
     };

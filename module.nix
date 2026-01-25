@@ -10,6 +10,7 @@
 }:
 let
     cfg = config.sidonia;
+    fromHexString = hex: (builtins.fromTOML "getInt = 0h${hex}").getInt;
 in
 {
     options = with lib; {
@@ -39,6 +40,15 @@ in
                             chars = stringToCharacters str;
                         in
                         concatStrings ([ (toUpper (builtins.head chars)) ] ++ (builtins.tail chars));
+                    fromHexToRgb =
+                        hex:
+                        concatStringsSep ", " (
+                            builtins.map (x: toString (fromHexString x)) [
+                                (builtins.substring 0 2 hex)
+                                (builtins.substring 2 2 hex)
+                                (builtins.substring 4 2 hex)
+                            ]
+                        );
 
                     hyprlandTarget = "wayland-session@Hyprland.target";
 
@@ -151,7 +161,6 @@ in
                         in
                         {
                             inherit (x) flavor accent;
-                            highlight = theme.${x.accent};
                             color = theme // {
                                 accent = theme.${x.accent};
                             };
@@ -163,51 +172,7 @@ in
                     default = 30;
                 };
             };
-            window = mkOption {
-                description = "Window configuration";
-                default = { };
-                type = types.submodule {
-                    options = {
-                        float.w = mkOption {
-                            description = "Default floating window width";
-                            type = types.int;
-                            default = 896;
-                        };
-                        float.h = mkOption {
-                            description = "Default floating window height";
-                            type = types.int;
-                            default = 504;
-                        };
-                        borderSize = mkOption {
-                            description = "Border width";
-                            type = types.int;
-                            default = 2;
-                        };
-                        rounding = mkOption {
-                            description = "Window rounding";
-                            type = types.int;
-                            default = 10;
-                        };
-                        opacity = mkOption {
-                            description = "Decimal opacity value for floating window transparency.";
-                            type = types.float;
-                            default = 0.8;
-                        };
-                    };
-                };
-                apply = x: {
-                    float = {
-                        inherit (x.float) w h;
-                        wh = (builtins.toString x.float.w) + " " + (builtins.toString x.float.h);
-                        onCursor = "move onscreen cursor -50% -50%";
-                    };
-                    inherit (x) borderSize rounding;
-                    opacity = {
-                        dec = x.opacity;
-                        hex = toHexString (builtins.floor (x.opacity * 255));
-                    };
-                };
-            };
+            
             text = {
                 comicCode = mkOption {
                     default = { };

@@ -104,10 +104,10 @@ in
                         let
                             shadow_opacity = "55";
                             color = theme.color // {
-                                shadow.hex = "000000";
+                                shadow = "000000";
                             };
-                            rgb = lib.mapAttrs (n: v: "rgb(${v.hex})") color;
-                            rgba = lib.mapAttrs (n: v: (alpha: "rgba(${v.hex}${alpha})")) color;
+                            rgb = lib.mapAttrs (n: v: "rgb(${v})") color;
+                            rgba = lib.mapAttrs (n: v: (alpha: "rgba(${v}${alpha})")) color;
                         in
                         {
                             monitor = builtins.concatMap (mon: [ mon.enable ]) monitors;
@@ -153,7 +153,7 @@ in
                             };
 
                             decoration = {
-                                rounding = cfg.window.rounding;
+                                rounding = cfg.desktop.window.decoration.rounding;
                                 active_opacity = 1.0;
                                 inactive_opacity = 1.0;
                                 shadow = {
@@ -173,7 +173,7 @@ in
                             general = {
                                 gaps_in = 5;
                                 gaps_out = 20;
-                                border_size = cfg.window.borderSize;
+                                border_size = cfg.desktop.window.decoration.borderWidth;
                                 resize_on_border = false;
                                 allow_tearing = true;
                                 layout = "dwindle";
@@ -234,13 +234,13 @@ in
                                 "float, class:(.blueman-manager-wrapped)"
 
                                 "float,                       class:.*, title:(Open File)"
-                                "size ${cfg.window.float.wh}, class:.*, title:(Open File)"
+                                "size ${cfg.desktop.window.decoration.float.wh}, class:.*, title:(Open File)"
 
                                 "float,                       class:.*, title:(Save File)"
-                                "size ${cfg.window.float.wh}, class:.*, title:(Save File)"
+                                "size ${cfg.desktop.window.decoration.float.wh}, class:.*, title:(Save File)"
 
                                 "float,                       class:.*, title:(Select Folder)"
-                                "size ${cfg.window.float.wh}, class:.*, title:(Select Folder)"
+                                "size ${cfg.desktop.window.decoration.float.wh}, class:.*, title:(Select Folder)"
                             ];
                             gesture = [ "3, horizontal, workspace" ];
                             binds = {

@@ -15,10 +15,10 @@ lib.mkIf (cfg.desktop.enable) {
             settings =
                 let
                     theme = cfg.style.catppuccin;
-                    rounding = builtins.toString cfg.window.rounding;
-                    borderSize = builtins.toString cfg.window.borderSize;
-                    opacity = cfg.window.opacity.hex;
-                    palette = builtins.mapAttrs (n: v: "#${v.hex}") theme.color;
+                    rounding = builtins.toString cfg.desktop.window.decoration.rounding;
+                    borderSize = builtins.toString cfg.desktop.window.decoration.borderWidth;
+                    opacity = cfg.desktop.window.decoration.opacity.hex;
+                    palette = builtins.mapAttrs (n: v: "#${v}") theme.color;
                 in with palette;
                 {
                     # https://dunst-project.org/documentation/

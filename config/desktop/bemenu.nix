@@ -6,17 +6,18 @@
 }:
 let
     cfg = config.sidonia;
-    inherit (cfg) window;
+    theme = cfg.style.catppuccin;
+    inherit (cfg.desktop.window) decoration;
     opts =
-        with builtins.mapAttrs (n: v: "##${v.hex}") cfg.style.catppuccin.color;
+        with builtins.mapAttrs (n: v: "##${v}") theme.color;
         lib.concatStringsSep " " [
             "-nciwl '16 down' --single-instance --width-factor 0.33"
-            "--border ${builtins.toString window.borderSize} --border-radius ${builtins.toString window.rounding}"
-            "--tb '${base}${window.opacity.hex}'"
-            "--fb '${base}${window.opacity.hex}'"
-            "--nb '${base}${window.opacity.hex}'"
-            "--ab '${base}${window.opacity.hex}'"
-            "--hb '${base}${window.opacity.hex}'"
+            "--border ${builtins.toString decoration.borderWidth} --border-radius ${builtins.toString decoration.rounding}"
+            "--tb '${base}${decoration.opacity.hex}'"
+            "--fb '${base}${decoration.opacity.hex}'"
+            "--nb '${base}${decoration.opacity.hex}'"
+            "--ab '${base}${decoration.opacity.hex}'"
+            "--hb '${base}${decoration.opacity.hex}'"
             "--tf '${accent}'"
             "--ff '${text}'"
             "--nf '${text}'"

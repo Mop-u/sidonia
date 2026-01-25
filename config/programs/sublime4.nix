@@ -189,7 +189,7 @@ in
                         target = smergeCfg + "/${catppuccinBaseName}.sublime-theme";
                         text =
                             let
-                                palette = lib.mapAttrs (n: v: "#${v.hex}") theme.color;
+                                palette = lib.mapAttrs (n: v: "#${v}") theme.color;
                             in
                             with palette;
                             builtins.toJSON {
