@@ -16,9 +16,15 @@
             inputs.nixpkgs.follows = "nixpkgs";
         };
 
-        hyprshell = {
-            url = "github:H3rmt/hyprshell/v4.8.3"; # Support hyprland ver < 0.53.0
+        hyprland = {
+            url = "github:hyprwm/Hyprland";
             inputs.nixpkgs.follows = "nixpkgs";
+        };
+
+        hyprshell = {
+            url = "github:H3rmt/hyprshell/hyprshell-release";
+            inputs.nixpkgs.follows = "nixpkgs";
+            inputs.hyprland.follows = "hyprland";
         };
 
         aagl = {

@@ -172,7 +172,7 @@ in
                     default = 30;
                 };
             };
-            
+
             text = {
                 comicCode = mkOption {
                     default = { };
@@ -321,7 +321,8 @@ in
                     (final: prev: ({
                         affinity = inputs.affinity.packages.${getSystem prev}.v3;
                         nix-auth = inputs.nix-auth.packages.${getSystem prev}.default;
-                        inherit (inputs.hyprshell.packages.${getSystem prev}) hyprshell-nixpkgs;
+                        inherit (inputs.hyprland.packages.${getSystem prev}) hyprland xdg-desktop-portal-hyprland;
+                        inherit (inputs.hyprshell.packages.${getSystem prev}) hyprshell-nixpkgs hyprshell;
                         inherit (inputs.unstable.legacyPackages.${getSystem prev}) magnetic-catppuccin-gtk;
                     }))
                     (

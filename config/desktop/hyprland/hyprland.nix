@@ -189,11 +189,11 @@ in
                                 enable_hyprcursor = true;
                             };
 
-                            experimental.xx_color_management_v4 = true;
-                            #quirks.prefer_hdr = 1;
+                            quirks.prefer_hdr = 1;
 
                             render = {
                                 direct_scanout = 2; # Try turning this off if fullscreen windows/games crash instantly
+                                cm_sdr_eotf = 3;
                             };
 
                             misc = {
@@ -219,28 +219,25 @@ in
                                 };
                             };
                             windowrule = [
-                                "suppressevent maximize, class:.*"
-                                "bordercolor ${rgb.overlay2},xwayland:1,focus:0"
-                                "bordercolor ${rgb.yellow},  xwayland:1,focus:1"
+                                "match:class .*, suppress_event maximize"
+                                "match:xwayland 1, match:focus 0, border_color ${rgb.overlay2}"
+                                "match:xwayland 1, match:focus 1, border_color ${rgb.yellow}"
 
-                                "float, class:(com.saivert.pwvucontrol), title:(Pipewire Volume Control)"
+                                "match:class com.saivert.pwvucontrol, match:title Pipewire Volume Control, float on"
 
-                                "float, class:(gtkwave),title:(gtkwave)"
+                                "match:class gtkwave, match:title gtkwave, float on"
 
-                                "float, class:(zenity)"
+                                "match:class zenity, float on"
 
-                                "float, class:(nemo)"
+                                "match:class nemo, float on"
 
-                                "float, class:(.blueman-manager-wrapped)"
+                                "match:class .blueman-manager-wrapped, float on"
 
-                                "float,                       class:.*, title:(Open File)"
-                                "size ${cfg.desktop.window.decoration.float.wh}, class:.*, title:(Open File)"
+                                "match:title Open File, size ${cfg.desktop.window.decoration.float.wh}, float on"
 
-                                "float,                       class:.*, title:(Save File)"
-                                "size ${cfg.desktop.window.decoration.float.wh}, class:.*, title:(Save File)"
+                                "match:title Save File, size ${cfg.desktop.window.decoration.float.wh}, float on"
 
-                                "float,                       class:.*, title:(Select Folder)"
-                                "size ${cfg.desktop.window.decoration.float.wh}, class:.*, title:(Select Folder)"
+                                "match:title Select Folder, size ${cfg.desktop.window.decoration.float.wh}, float on"
                             ];
                             gesture = [ "3, horizontal, workspace" ];
                             binds = {

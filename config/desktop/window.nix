@@ -49,7 +49,7 @@ in
                 apply = x: {
                     inherit (x) w h;
                     wh = (builtins.toString x.w) + " " + (builtins.toString x.h);
-                    onCursor = "move onscreen cursor -50% -50%";
+                    onCursor = "move (cursor_x-(window_w*0.5)) (cursor_y-(window_h*0.5))";
                 };
             };
         };

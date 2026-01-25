@@ -36,9 +36,7 @@ lib.mkIf (cfg.desktop.enable) {
         };
         wayland.windowManager.hyprland.settings = {
             windowrule = [
-                "float,                        class:(foot), title:(foot)"
-                "size ${cfg.desktop.window.decoration.float.wh},  class:(foot), title:(foot)"
-                "${cfg.desktop.window.decoration.float.onCursor}, class:(foot), title:(foot)"
+                "match:class foot, match:title foot, float on, size ${cfg.desktop.window.decoration.float.wh}, ${cfg.desktop.window.decoration.float.onCursor}"
             ];
         };
     };
