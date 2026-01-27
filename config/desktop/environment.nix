@@ -57,7 +57,6 @@ in
                 // {
                     XDG_SESSION_DESKTOP = "Hyprland";
                     XDG_CURRENT_DESKTOP = "Hyprland";
-                    WLR_EGL_NO_MODIFIERS = 0; # May help with multiple monitors
                     HYPRCURSOR_SIZE = cfg.style.cursorSize;
                     WLR_RENDERER_ALLOW_SOFTWARE = 1;
                     QT_WAYLAND_DISABLE_WINDOWDECORATION = 1;
