@@ -315,23 +315,27 @@ in
             nixpkgs.overlays =
                 let
                     getSystem = overlayPkgs: overlayPkgs.stdenv.hostPlatform.system;
-                    dropExistingAttrs = attrs: lib.filterAttrs (n: v: !(builtins.hasAttr n attrs));
+                    overlayMissingFromFlake =
+                        flake:
+                        (
+                            final: prev:
+                            if builtins.hasAttr (getSystem prev) flake.packages then
+                                lib.filterAttrs (n: v: !(builtins.hasAttr n prev)) flake.packages.${getSystem prev}
+                            else
+                                { }
+                        );
                 in
                 [
-                    (final: prev: ({
+                    (final: prev: {
+                        inherit (inputs.unstable.legacyPackages.${getSystem prev}) magnetic-catppuccin-gtk surfer;
+                    })
+                    (final: prev: {
                         affinity = inputs.affinity.packages.${getSystem prev}.v3;
                         nix-auth = inputs.nix-auth.packages.${getSystem prev}.default;
                         inherit (inputs.hyprland.packages.${getSystem prev}) hyprland xdg-desktop-portal-hyprland;
                         inherit (inputs.hyprshell.packages.${getSystem prev}) hyprshell-nixpkgs hyprshell;
-                        inherit (inputs.unstable.legacyPackages.${getSystem prev}) magnetic-catppuccin-gtk;
-                    }))
-                    (
-                        final: prev:
-                        if builtins.hasAttr (getSystem prev) inputs.nixpkgs-xr.packages then
-                            dropExistingAttrs prev inputs.nixpkgs-xr.packages.${getSystem prev}
-                        else
-                            { }
-                    )
+                    })
+                    (overlayMissingFromFlake inputs.nixpkgs-xr) # use nixpkgs stable where possible
                     inputs.nur.overlays.default
                     inputs.niri.overlays.niri
                 ];
