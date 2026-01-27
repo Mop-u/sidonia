@@ -41,7 +41,7 @@ in
                 SDL_VIDEODRIVER = "\"wayland,x11\"";
                 SDL_VIDEO_DRIVER = "wayland";
                 CLUTTER_BACKEND = "wayland";
-                ELM_DISPLAY="wl";
+                ELM_DISPLAY = "wl";
                 NIXOS_OZONE_WL = 1;
                 ELECTRON_ENABLE_WAYLAND = 1;
                 ELECTRON_OZONE_PLATFORM_HINT = "wayland";
@@ -56,6 +56,7 @@ in
                 cfg.desktop.environment.wayland
                 // {
                     XDG_SESSION_DESKTOP = "Hyprland";
+                    XDG_CURRENT_DESKTOP = "Hyprland";
                     WLR_EGL_NO_MODIFIERS = 0; # May help with multiple monitors
                     HYPRCURSOR_SIZE = cfg.style.cursorSize;
                     WLR_RENDERER_ALLOW_SOFTWARE = 1;

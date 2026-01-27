@@ -50,8 +50,6 @@ in
                             ]
                         );
 
-                    hyprlandTarget = "wayland-session@Hyprland.target";
-
                     isInstalled =
                         package:
                         builtins.elem package.pname (

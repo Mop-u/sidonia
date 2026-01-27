@@ -16,7 +16,6 @@ lib.mkIf cfg.desktop.enable (
                 programs.waybar = {
                     enable = true;
                     systemd.enable = true;
-                    systemd.target = cfg.lib.hyprlandTarget;
                     settings.mainBar =
                         let
                             palette = builtins.mapAttrs (n: v: "#${v}") theme.color;
