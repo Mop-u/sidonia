@@ -8,6 +8,10 @@
 let
     cfg = config.sidonia;
     theme = cfg.style.catppuccin;
+    # https://gitlab.com/surfer-project/surfer/-/blob/main/default_config.toml
+    surferConfig = std.serde.toTOML {
+        theme = "catppuccin";
+    };
     surferTheme =
         with theme.color;
         std.serde.toTOML {
@@ -115,10 +119,9 @@ in
     options.sidonia.programs.surfer.enable = lib.mkEnableOption "Enable surfer waveform viewer";
     config = lib.mkIf cfg.programs.surfer.enable {
         home-manager.users.${cfg.userName} = {
-            home.packages = with pkgs; [
-                surfer
-            ];
+            home.packages = [ pkgs.surfer ];
             xdg.configFile."surfer/themes/catppuccin.toml".text = surferTheme;
+            xdg.configFile."surfer/config.toml".text = surferConfig;
         };
     };
 }
