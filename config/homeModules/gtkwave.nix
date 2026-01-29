@@ -4,23 +4,24 @@
     lib,
     ...
 }:
-let
-    cfg = config.sidonia;
-in
 {
-    options.sidonia.programs = with lib; {
-        gtkwave = {
-            enable = mkEnableOption "Enable gtkwave";
+    options = {
+        programs.gtkwave = {
+            enable = lib.mkEnableOption "Enable gtkwave";
+        };
+        catppuccin.gtkwave.enable = lib.mkOption {
+            type = lib.types.bool;
+            default = config.catppuccin.enable;
         };
     };
-    config = lib.mkIf cfg.programs.gtkwave.enable {
-        home-manager.users.${cfg.userName}.home = {
-            packages = with pkgs; [ gtkwave ];
+    config = lib.mkIf config.programs.gtkwave.enable {
+        home = {
+            packages = [ pkgs.gtkwave ];
             file.gtkwaverc = {
-                enable = true;
-                target = "/home/${cfg.userName}/.gtkwaverc";
+                enable = config.catppuccin.gtkwave.enable;
+                target = "${config.home.homeDirectory}/.gtkwaverc";
                 text =
-                    with cfg.style.catppuccin.color;
+                    with config.catppuccin.lib.color;
                     let
                         traceRegular = green;
                         traceVector = green;

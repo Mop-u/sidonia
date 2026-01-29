@@ -6,14 +6,12 @@
     ...
 }:
 let
-    cfg = config.sidonia;
-    theme = cfg.style.catppuccin;
     # https://gitlab.com/surfer-project/surfer/-/blob/main/default_config.toml
     surferConfig = std.serde.toTOML {
         theme = "catppuccin";
     };
     surferTheme =
-        with theme.color;
+        with config.catppuccin.lib.color;
         std.serde.toTOML {
             foreground = text;
             alt_text_color = surface0; # negated foreground
@@ -116,12 +114,22 @@ let
         };
 in
 {
-    options.sidonia.programs.surfer.enable = lib.mkEnableOption "Enable surfer waveform viewer";
-    config = lib.mkIf cfg.programs.surfer.enable {
-        home-manager.users.${cfg.userName} = {
-            home.packages = [ pkgs.surfer ];
-            xdg.configFile."surfer/themes/catppuccin.toml".text = surferTheme;
-            xdg.configFile."surfer/config.toml".text = surferConfig;
+    options = {
+        programs.surfer.enable = lib.mkEnableOption "Enable surfer waveform viewer";
+        catppuccin.surfer.enable = lib.mkOption {
+            type = lib.types.bool;
+            default = config.catppuccin.enable;
+        };
+    };
+    config = lib.mkIf config.programs.surfer.enable {
+        home.packages = [ pkgs.surfer ];
+        xdg.configFile."surfer/themes/catppuccin.toml" = {
+            enable = config.catppuccin.surfer.enable;
+            text = surferTheme;
+        };
+        xdg.configFile."surfer/config.toml" = {
+            enable = config.catppuccin.surfer.enable;
+            text = surferConfig;
         };
     };
 }

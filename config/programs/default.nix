@@ -4,19 +4,16 @@
     lib,
     ...
 }:
+let
+    cfg = config.sidonia;
+in
 {
     imports = [
-        ./btop.nix
-        ./discord.nix
+        ./defaultApps.nix
         ./floorp.nix
         ./foot.nix
-        ./gtkwave.nix
-        ./misc.nix
-        ./neovim.nix
         ./steam.nix
         ./sublime4.nix
-        ./surfer.nix
-        ./vesktop.nix
         ./vscodium.nix
         ./zsh.nix
     ];

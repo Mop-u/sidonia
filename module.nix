@@ -5,6 +5,7 @@
     config,
     lib,
     pkgs,
+    std,
     otherHosts,
     ...
 }:
@@ -48,16 +49,6 @@ in
                                 (builtins.substring 2 2 hex)
                                 (builtins.substring 4 2 hex)
                             ]
-                        );
-
-                    isInstalled =
-                        package:
-                        builtins.elem package.pname (
-                            builtins.catAttrs "pname" (
-                                config.environment.systemPackages
-                                ++ config.users.users.${cfg.userName}.packages
-                                ++ config.home-manager.users.${cfg.userName}.home.packages
-                            )
                         );
 
                     home = {
@@ -155,7 +146,7 @@ in
                     apply =
                         x:
                         let
-                            theme = (import ./lib/catppuccin.nix).catppuccin.${x.flavor};
+                            theme = (import ./lib/catppuccin.nix).${x.flavor};
                         in
                         {
                             inherit (x) flavor accent;
@@ -290,6 +281,7 @@ in
     config = lib.mkMerge [
         {
             home-manager = {
+                extraSpecialArgs = { inherit std; };
                 useGlobalPkgs = true;
                 backupFileExtension = "backup";
                 users.${cfg.userName} = {
@@ -297,6 +289,13 @@ in
                         catppuccin.homeModules.catppuccin
                         niri.homeModules.niri
                         hyprshell.homeModules.hyprshell
+                        {
+                            options.catppuccin.lib.color = lib.mkOption {
+                                readOnly = true;
+                                type = lib.types.attrsOf lib.types.str;
+                                default = cfg.style.catppuccin.color;
+                            };
+                        }
                     ];
                     home = {
                         username = config.sidonia.userName;

@@ -110,39 +110,6 @@ in
                             "sv.tooltip" = true;
                         };
                     };
-                    stextLSPCfg = {
-                        enable = true;
-                        target = stextCfg + "/LSP.sublime-settings";
-                        text = builtins.toJSON {
-                            clients = {
-                                verible = {
-                                    enabled = cfg.lib.isInstalled pkgs.verible;
-                                    command = [
-                                        "verible-verilog-ls"
-                                        "--rules_config_search"
-                                    ];
-                                    selector = "source.systemverilog";
-                                };
-                                nil = {
-                                    enabled = cfg.lib.isInstalled pkgs.nil;
-                                    command = [ "nil" ];
-                                    selector = "source.nix";
-                                    # https://github.com/oxalica/nil/blob/main/docs/configuration.md
-                                    settings = {
-                                        nil.nix.flake = {
-                                            autoArchive = true;
-                                            autoEvalInputs = true;
-                                        };
-                                    };
-                                };
-                                svls = {
-                                    enabled = cfg.lib.isInstalled pkgs.svls;
-                                    command = [ "svls" ];
-                                    selector = "source.systemverilog";
-                                };
-                            };
-                        };
-                    };
                 })
                 (lib.mkIf cfg.programs.sublime-merge.enable {
                     smergeCfg = {
@@ -156,7 +123,7 @@ in
                                 hardware_acceleration = if cfg.graphics.legacyGpu then "none" else "opengl";
                                 update_check = false;
                                 editor_path =
-                                    if cfg.lib.isInstalled pkgs.sublime4 then "${pkgs.sublime4}/bin/sublime_text" else null;
+                                    if cfg.programs.sublime-text.enable then "${pkgs.sublime4}/bin/sublime_text" else null;
                             }
                             // (if (theme.flavor != "latte") then { theme = "${catppuccinBaseName}.sublime-theme"; } else { })
                         );
