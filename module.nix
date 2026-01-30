@@ -16,15 +16,6 @@ in
 {
     options = with lib; {
         sidonia = {
-            src = mkOption {
-                readOnly = true;
-                type = types.attrs;
-                default = {
-                    inherit (inputs)
-                        nix-vscode-extensions
-                        ;
-                };
-            };
             lib = mkOption {
                 readOnly = true;
                 type = types.attrs;
@@ -272,71 +263,46 @@ in
         ./config
     ];
 
-    config = lib.mkMerge [
-        {
-            home-manager = {
-                extraSpecialArgs = { inherit std; };
-                useGlobalPkgs = true;
-                backupFileExtension = "backup";
-                sharedModules = [
-                    inputs.catppuccin.homeModules.catppuccin
-                    inputs.niri.homeModules.niri
-                    inputs.hyprshell.homeModules.hyprshell
-                    {
-                        options.catppuccin.lib.color = lib.mkOption {
-                            readOnly = true;
-                            type = lib.types.attrsOf lib.types.str;
-                            default = cfg.style.catppuccin.color;
+    config =
+        let
+            overlays = (import ./overlays.nix) { inherit inputs lib; };
+        in
+        lib.mkMerge [
+            {
+                home-manager = {
+                    extraSpecialArgs = { inherit std; };
+                    backupFileExtension = "backup";
+                    sharedModules = [
+                        inputs.catppuccin.homeModules.catppuccin
+                        inputs.niri.homeModules.niri
+                        inputs.hyprshell.homeModules.hyprshell
+                        {
+                            config.nixpkgs = {
+                                inherit overlays;
+                                config.allowUnfree = true;
+                            };
+                            options.catppuccin.lib.color = lib.mkOption {
+                                readOnly = true;
+                                type = lib.types.attrsOf lib.types.str;
+                                default = cfg.style.catppuccin.color;
+                            };
+                        }
+                        ./homeModules
+                    ];
+                    users.${cfg.userName} = {
+                        home = {
+                            username = config.sidonia.userName;
+                            homeDirectory = "/home/${config.sidonia.userName}";
+                            stateVersion = config.sidonia.stateVer;
                         };
-                    }
-                    ./homeModules
-                ];
-                users.${cfg.userName} = {
-                    home = {
-                        username = config.sidonia.userName;
-                        homeDirectory = "/home/${config.sidonia.userName}";
-                        stateVersion = config.sidonia.stateVer;
-                    };
-                    catppuccin = {
-                        enable = true;
-                        accent = config.sidonia.style.catppuccin.accent;
-                        flavor = config.sidonia.style.catppuccin.flavor;
+                        catppuccin = {
+                            enable = true;
+                            accent = config.sidonia.style.catppuccin.accent;
+                            flavor = config.sidonia.style.catppuccin.flavor;
+                        };
                     };
                 };
-            };
-            nixpkgs.overlays =
-                let
-                    getSystem = overlayPkgs: overlayPkgs.stdenv.hostPlatform.system;
-                    overlayMissingFromFlake =
-                        flake:
-                        (
-                            final: prev:
-                            if builtins.hasAttr (getSystem prev) flake.packages then
-                                lib.filterAttrs (n: v: !(builtins.hasAttr n prev)) flake.packages.${getSystem prev}
-                            else
-                                { }
-                        );
-                in
-                [
-                    (final: prev: {
-                        inherit (inputs.unstable.legacyPackages.${getSystem prev}) magnetic-catppuccin-gtk surfer;
-                    })
-                    (final: prev: {
-                        affinity = inputs.affinity.packages.${getSystem prev}.v3;
-                        nix-auth = inputs.nix-auth.packages.${getSystem prev}.default;
-                        inherit (inputs.hyprland.packages.${getSystem prev}) hyprland xdg-desktop-portal-hyprland;
-                        inherit (inputs.hyprshell.packages.${getSystem prev}) hyprshell-nixpkgs hyprshell;
-                    })
-                    (final: prev: {
-                        sublimePackages = {
-                            "Catppuccin color schemes" = inputs.stextCatppuccin;
-                            "Package Control" = inputs.stextPackageControl;
-                        };
-                    })
-                    (overlayMissingFromFlake inputs.nixpkgs-xr) # use nixpkgs stable where possible
-                    inputs.nur.overlays.default
-                    inputs.niri.overlays.niri
-                ];
-        }
-    ];
+                nixpkgs = { inherit overlays; };
+            }
+        ];
 }

@@ -13,8 +13,10 @@ in
         ./floorp.nix
         ./foot.nix
         ./steam.nix
-        ./sublime4.nix
         ./vscodium.nix
         ./zsh.nix
+    ];
+    home-manager.users.${cfg.userName}.imports = [
+        ./sublime4.nix
     ];
 }

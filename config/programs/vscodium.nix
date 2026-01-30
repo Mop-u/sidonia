@@ -6,29 +6,6 @@
 }:
 let
     cfg = config.sidonia;
-    theme = cfg.style.catppuccin;
-    vsxOverlay =
-        final: prev:
-        let
-            getVsxVersion = pkg: lib.versions.pad 3 pkg.version;
-            getFlakeExts =
-                version:
-                cfg.src.nix-vscode-extensions.extensions.${final.stdenv.hostPlatform.system}.forVSCodeVersion
-                    version;
-            overlayExtensions =
-                pkg:
-                with getFlakeExts (getVsxVersion pkg);
-                lib.zipAttrsWith (name: values: (lib.mergeAttrsList values)) [
-                    final.vscode-extensions
-                    open-vsx
-                    open-vsx-release
-                    vscode-marketplace
-                    vscode-marketplace-release
-                ];
-        in
-        {
-            vsxExtensionsFor = overlayExtensions;
-        };
 in
 {
     options.sidonia.programs.vscodium.enable =
@@ -38,9 +15,7 @@ in
             default = cfg.desktop.enable;
         };
     config = lib.mkIf (cfg.programs.vscodium.enable) {
-        nixpkgs.overlays = [ vsxOverlay ];
         home-manager.users.${cfg.userName} = {
-            nixpkgs.overlays = [ vsxOverlay ];
             programs.vscode = {
                 enable = true;
                 package = pkgs.vscodium;

@@ -11,6 +11,11 @@ lib.mkIf (cfg.desktop.enable) {
     programs = {
         steam = {
             enable = lib.mkDefault true;
+            package = pkgs.steam.override {
+                extraProfile = builtins.concatStringsSep "\n" (
+                    (lib.mapAttrsToList (n: v: "export ${n}=${v}") cfg.desktop.environment.steam) ++ [ "unset TZ" ]
+                );
+            };
             protontricks.enable = lib.mkDefault true;
             localNetworkGameTransfers.openFirewall = lib.mkDefault true;
             extest.enable = lib.mkDefault true;
@@ -34,15 +39,6 @@ lib.mkIf (cfg.desktop.enable) {
             PROTON_USE_NTSYNC = 1;
             PROTON_FSR4_UPGRADE = 1;
             PROTON_DLSS_UPGRADE = 1;
-        })
-    ];
-    nixpkgs.overlays = [
-        (final: prev: {
-            steam = prev.steam.override {
-                extraProfile = builtins.concatStringsSep "\n" (
-                    (lib.mapAttrsToList (n: v: "export ${n}=${v}") cfg.desktop.environment.steam) ++ [ "unset TZ" ]
-                );
-            };
         })
     ];
 }
