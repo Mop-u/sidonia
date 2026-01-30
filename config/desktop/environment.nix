@@ -38,7 +38,7 @@ in
             wayland = builtins.mapAttrs (n: v: lib.mkDefault v) {
                 XDG_SESSION_TYPE = "wayland";
                 XCURSOR_SIZE = (builtins.toString cfg.style.cursorSize);
-                SDL_VIDEODRIVER = "\"wayland,x11\"";
+                SDL_VIDEODRIVER = "wayland,x11";
                 SDL_VIDEO_DRIVER = "wayland";
                 CLUTTER_BACKEND = "wayland";
                 ELM_DISPLAY = "wl";
@@ -47,7 +47,7 @@ in
                 ELECTRON_OZONE_PLATFORM_HINT = "wayland";
                 QT_AUTO_SCREEN_SCALE_FACTOR = 1;
                 QT_ENABLE_HIGHDPI_SCALING = 1;
-                QT_QPA_PLATFORM = "\"wayland;xcb\"";
+                QT_QPA_PLATFORM = "wayland;xcb";
                 MOZ_ENABLE_WAYLAND = 1;
                 MOZ_DISABLE_RDD_SANDBOX = 1;
                 MOZ_DBUS_REMOTE = 1;
