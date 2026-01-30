@@ -7,6 +7,28 @@
 let
     cfg = config.sidonia;
     theme = cfg.style.catppuccin;
+    vsxOverlay =
+        final: prev:
+        let
+            getVsxVersion = pkg: lib.versions.pad 3 pkg.version;
+            getFlakeExts =
+                version:
+                cfg.src.nix-vscode-extensions.extensions.${final.stdenv.hostPlatform.system}.forVSCodeVersion
+                    version;
+            overlayExtensions =
+                pkg:
+                with getFlakeExts (getVsxVersion pkg);
+                lib.zipAttrsWith (name: values: (lib.mergeAttrsList values)) [
+                    final.vscode-extensions
+                    open-vsx
+                    open-vsx-release
+                    vscode-marketplace
+                    vscode-marketplace-release
+                ];
+        in
+        {
+            vsxExtensionsFor = overlayExtensions;
+        };
 in
 {
     options.sidonia.programs.vscodium.enable =
@@ -16,47 +38,19 @@ in
             default = cfg.desktop.enable;
         };
     config = lib.mkIf (cfg.programs.vscodium.enable) {
-        nixpkgs.overlays = [
-            (
-                final: prev:
-                let
-                    version = lib.versions.pad 3 final.vscodium.version;
-                    flakeExts =
-                        cfg.src.nix-vscode-extensions.extensions.${final.stdenv.hostPlatform.system}.forVSCodeVersion
-                            version;
-                in
-                {
-                    vscode-extensions =
-                        with flakeExts;
-                        lib.zipAttrsWith (name: values: (lib.mergeAttrsList values)) [
-                            prev.vscode-extensions
-                            open-vsx
-                            open-vsx-release
-                            vscode-marketplace
-                            vscode-marketplace-release
-                        ];
-                }
-            )
-        ];
+        nixpkgs.overlays = [ vsxOverlay ];
         home-manager.users.${cfg.userName} = {
-            catppuccin.vscode.profiles.default = {
-                enable = true;
-                inherit (theme) accent flavor;
-            };
+            nixpkgs.overlays = [ vsxOverlay ];
             programs.vscode = {
                 enable = true;
                 package = pkgs.vscodium;
                 profiles.default = {
                     enableExtensionUpdateCheck = false;
                     enableUpdateCheck = false;
-                    extensions = with pkgs.vscode-extensions; [
+                    extensions = with pkgs.vsxExtensionsFor pkgs.vscodium; [
                         haskell.haskell
                         jnoortheen.nix-ide
-                        llvm-vs-code-extensions.vscode-clangd
                         mkhl.direnv
-                        gruntfuggly.triggertaskonsave
-                        christian-kohler.path-intellisense
-                        mshr-h.veriloghdl
                     ];
                     userSettings =
                         let

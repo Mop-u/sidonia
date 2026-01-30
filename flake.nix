@@ -67,29 +67,12 @@
         };
 
         # sublime text packages
-        # TODO: make packagecontrol.io scraper (see https://packagecontrol.io/docs/channels_and_repositories)
         stextPackageControl = {
             url = "github:wbond/package_control";
             flake = false;
         };
-        stextLSP = {
-            url = "github:sublimelsp/LSP";
-            flake = false;
-        };
-        stextNix = {
-            url = "github:wmertens/sublime-nix";
-            flake = false;
-        };
         stextCatppuccin = {
             url = "github:catppuccin/sublime-text";
-            flake = false;
-        };
-        stextSystemVerilog = {
-            url = "github:TheClams/SystemVerilog";
-            flake = false;
-        };
-        stextHooks = {
-            url = "github:twolfson/sublime-hooks";
             flake = false;
         };
 

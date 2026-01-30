@@ -12,8 +12,6 @@ let
             chars = lib.stringToCharacters str;
         in
         lib.concatStrings ([ (lib.toUpper (builtins.head chars)) ] ++ (builtins.tail chars));
-    catppuccinBaseName = "Catppuccin ${capitalize config.catppuccin.flavor}";
-    catppuccinColorScheme = "${catppuccinBaseName}.sublime-color-scheme";
 
     remapAttrs = f: attrset: builtins.listToAttrs (builtins.map (f) (lib.attrsToList attrset));
 
@@ -95,7 +93,7 @@ in
             })
             (lib.mkIf config.catppuccin.sublime4.enable {
                 settings = {
-                    color_scheme = catppuccinColorScheme;
+                    color_scheme = "Catppuccin ${capitalize config.catppuccin.flavor}.sublime-color-scheme";
                     theme = "Adaptive.sublime-theme";
                 };
                 packages = {

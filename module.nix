@@ -278,19 +278,20 @@ in
                 extraSpecialArgs = { inherit std; };
                 useGlobalPkgs = true;
                 backupFileExtension = "backup";
+                sharedModules = [
+                    inputs.catppuccin.homeModules.catppuccin
+                    inputs.niri.homeModules.niri
+                    inputs.hyprshell.homeModules.hyprshell
+                    {
+                        options.catppuccin.lib.color = lib.mkOption {
+                            readOnly = true;
+                            type = lib.types.attrsOf lib.types.str;
+                            default = cfg.style.catppuccin.color;
+                        };
+                    }
+                    ./homeModules
+                ];
                 users.${cfg.userName} = {
-                    imports = with inputs; [
-                        catppuccin.homeModules.catppuccin
-                        niri.homeModules.niri
-                        hyprshell.homeModules.hyprshell
-                        {
-                            options.catppuccin.lib.color = lib.mkOption {
-                                readOnly = true;
-                                type = lib.types.attrsOf lib.types.str;
-                                default = cfg.style.catppuccin.color;
-                            };
-                        }
-                    ];
                     home = {
                         username = config.sidonia.userName;
                         homeDirectory = "/home/${config.sidonia.userName}";
@@ -330,10 +331,6 @@ in
                         sublimePackages = {
                             "Catppuccin color schemes" = inputs.stextCatppuccin;
                             "Package Control" = inputs.stextPackageControl;
-                            LSP = inputs.stextLSP;
-                            Nix = inputs.stextNix;
-                            SystemVerilog = inputs.stextSystemVerilog;
-                            hooks = inputs.stextHooks;
                         };
                     })
                     (overlayMissingFromFlake inputs.nixpkgs-xr) # use nixpkgs stable where possible

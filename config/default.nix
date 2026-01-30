@@ -12,5 +12,4 @@
         ./tweaks
         ./desktop
     ];
-    home-manager.sharedModules = [ ./homeModules ];
 }
