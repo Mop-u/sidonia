@@ -20,24 +20,23 @@ lib.mkIf cfg.desktop.enable {
                 translate_tabs_to_spaces = true;
                 index_files = true;
                 hardware_acceleration = if cfg.graphics.legacyGpu then "none" else "opengl";
-                theme = "Adaptive.sublime-theme";
                 update_check = false;
                 sublime_merge_path = lib.getExe pkgs.sublime-merge;
+            };
+            packageControl = {
+                enable = true;
+                packages = [
+                    "LSP"
+                    "Nix"
+                    "SystemVerilog"
+                    "hooks"
+                ];
             };
             userFile = {
                 "SystemVerilog.sublime-settings".text = builtins.toJSON {
                     "sv.disable_autocomplete" = true;
                     "sv.tooltip" = true;
                 };
-            };
-            packages = {
-                inherit (pkgs.sublimePackages)
-                    "Package Control"
-                    LSP
-                    Nix
-                    SystemVerilog
-                    hooks
-                    ;
             };
         };
         programs.sublime-merge = {

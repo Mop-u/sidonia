@@ -5,7 +5,7 @@
     ...
 }:
 let
-    cfg = config.sidonia;
+    cfg = config.programs.sublime-merge;
     capitalize =
         str:
         let
@@ -54,19 +54,19 @@ in
             default = config.catppuccin.enable;
         };
     };
-    config = lib.mkIf config.programs.sublime-merge.enable {
+    config = lib.mkIf cfg.enable {
         wayland.windowManager.hyprland.settings.windowrule = [
             "match:class ssh-askpass-sublime, float on"
         ];
         home.packages = [ pkgs.sublime-merge ];
         xdg.configFile =
             let
-                smergePackages = mapDirs "sublime-merge/Packages" config.programs.sublime-merge.packages;
+                smergePackages = mapDirs "sublime-merge/Packages" cfg.packages;
                 smergeSettings = mapFiles "sublime-merge/Packages/User" (
-                    config.programs.sublime-merge.userFile
+                    cfg.userFile
                     // (
-                        if config.programs.sublime-merge.settings != null then
-                            { "Preferences.sublime-settings".text = builtins.toJSON config.programs.sublime-merge.settings; }
+                        if cfg.settings != null then
+                            { "Preferences.sublime-settings".text = builtins.toJSON cfg.settings; }
                         else
                             { }
                     )

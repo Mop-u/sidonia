@@ -5,7 +5,7 @@
     ...
 }:
 let
-    cfg = config.sidonia;
+    cfg = config.programs.sublime4;
     capitalize =
         str:
         let
@@ -42,6 +42,17 @@ in
                 type = lib.types.attrs;
                 default = { };
             };
+            packageControl = {
+                enable = lib.mkEnableOption "Enable declarative package control configuration";
+                packages = lib.mkOption {
+                    type = lib.types.nullOr (lib.types.listOf lib.types.str);
+                    default = null;
+                };
+                extraSettings = lib.mkOption {
+                    type = lib.types.nullOr lib.types.attrs;
+                    default = null;
+                };
+            };
             packages = lib.mkOption {
                 type = lib.types.attrsOf lib.types.path;
                 default = { };
@@ -53,29 +64,44 @@ in
             default = config.catppuccin.enable;
         };
     };
-    config = lib.mkIf config.programs.sublime4.enable {
+    config = lib.mkIf cfg.enable {
         home.packages = [ pkgs.sublime4 ];
         xdg.configFile =
             let
-                stextPackages = mapDirs "sublime-text/Packages" config.programs.sublime4.packages;
+                stextPackages = mapDirs "sublime-text/Packages" cfg.packages;
                 stextSettings = mapFiles "sublime-text/Packages/User" (
-                    config.programs.sublime4.userFile
+                    cfg.userFile
                     // (
-                        if config.programs.sublime4.settings != null then
-                            { "Preferences.sublime-settings".text = builtins.toJSON config.programs.sublime4.settings; }
+                        if cfg.settings != null then
+                            { "Preferences.sublime-settings".text = builtins.toJSON cfg.settings; }
+                        else
+                            { }
+                    )
+                    // (
+                        if (cfg.packageControl.enable) && (cfg.packageControl.extraSettings != null) then
+                            { "Package Control.sublime-settings".text = builtins.toJSON cfg.packageControl.extraSettings; }
                         else
                             { }
                     )
                 );
             in
             (stextPackages // stextSettings);
-        programs.sublime4 = lib.mkIf config.catppuccin.sublime4.enable {
-            settings = {
-                color_scheme = catppuccinColorScheme;
-            };
-            packages = {
-                inherit (pkgs.sublimePackages) "Catppuccin color schemes";
-            };
-        };
+        programs.sublime4 = lib.mkMerge [
+            (lib.mkIf cfg.packageControl.enable {
+                packages = { inherit (pkgs.sublimePackages) "Package Control"; };
+            })
+            (lib.mkIf (cfg.packageControl.enable && (cfg.packageControl.packages != null)) {
+                packageControl.extraSettings.installed_packages = cfg.packageControl.packages;
+            })
+            (lib.mkIf config.catppuccin.sublime4.enable {
+                settings = {
+                    color_scheme = catppuccinColorScheme;
+                    theme = "Adaptive.sublime-theme";
+                };
+                packages = {
+                    inherit (pkgs.sublimePackages) "Catppuccin color schemes";
+                };
+            })
+        ];
     };
 }
