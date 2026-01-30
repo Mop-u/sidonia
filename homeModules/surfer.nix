@@ -6,10 +6,6 @@
     ...
 }:
 let
-    # https://gitlab.com/surfer-project/surfer/-/blob/main/default_config.toml
-    surferConfig = std.serde.toTOML {
-        theme = "catppuccin";
-    };
     surferTheme =
         with config.catppuccin.lib.color;
         std.serde.toTOML {
@@ -115,7 +111,14 @@ let
 in
 {
     options = {
-        programs.surfer.enable = lib.mkEnableOption "Enable surfer waveform viewer";
+        programs.surfer = {
+            enable = lib.mkEnableOption "Enable surfer waveform viewer";
+            # https://gitlab.com/surfer-project/surfer/-/blob/main/default_config.toml
+            settings = lib.mkOption {
+                type = lib.types.nullOr lib.types.attrs;
+                default = null;
+            };
+        };
         catppuccin.surfer.enable = lib.mkOption {
             type = lib.types.bool;
             default = config.catppuccin.enable;
@@ -123,13 +126,16 @@ in
     };
     config = lib.mkIf config.programs.surfer.enable {
         home.packages = [ pkgs.surfer ];
+        xdg.configFile."surfer/config.toml" = {
+            enable = config.programs.surfer.settings != null;
+            text = std.serde.toTOML config.programs.surfer.settings;
+        };
+        programs.surfer.settings = lib.mkIf config.catppuccin.surfer.enable {
+            theme = "catppuccin";
+        };
         xdg.configFile."surfer/themes/catppuccin.toml" = {
             enable = config.catppuccin.surfer.enable;
             text = surferTheme;
-        };
-        xdg.configFile."surfer/config.toml" = {
-            enable = config.catppuccin.surfer.enable;
-            text = surferConfig;
         };
     };
 }

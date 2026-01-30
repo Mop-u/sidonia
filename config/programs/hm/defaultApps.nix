@@ -30,7 +30,6 @@ lib.mkMerge [
             prismlauncher
             #xivlauncher
             plexamp
-            surfer
             bambu-studio
             tageditor
             affinity
