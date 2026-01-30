@@ -1,15 +1,16 @@
 {
+    osConfig,
     config,
     pkgs,
     lib,
     ...
 }:
 let
-    cfg = config.sidonia;
+    cfg = osConfig.sidonia;
 in
 lib.mkIf (cfg.desktop.enable) {
-    home-manager.users.${cfg.userName}.programs.floorp = {
-        enable = true;
+    programs.floorp = {
+        enable = lib.mkDefault true;
         #profiles.default.packages = [];
     };
 }

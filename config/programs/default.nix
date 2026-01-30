@@ -9,14 +9,10 @@ let
 in
 {
     imports = [
-        ./defaultApps.nix
-        ./floorp.nix
         ./foot.nix
-        ./steam.nix
-        ./vscodium.nix
-        ./zsh.nix
+        ./system
     ];
     home-manager.users.${cfg.userName}.imports = [
-        ./sublime4.nix
+        ./hm
     ];
 }

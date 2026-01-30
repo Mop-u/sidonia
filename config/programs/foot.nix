@@ -19,11 +19,11 @@ lib.mkIf (cfg.desktop.enable) {
             exec = "foot";
         }
     ];
-    xdg.terminal-exec = {
-        enable = true;
-        settings.default = [ "foot.desktop" ];
-    };
     home-manager.users.${config.sidonia.userName} = {
+        xdg.terminal-exec = {
+            enable = true;
+            settings.default = [ "foot.desktop" ];
+        };
         catppuccin.foot.enable = true;
         programs.foot = {
             enable = true;
