@@ -14,16 +14,6 @@ in
         programs.zoxide.enable = true;
         programs.oh-my-posh.enable = true;
 
-        catppuccin.bat.enable = true;
-        programs.bat = {
-            enable = true;
-            config = {
-                style = "plain";
-                paging = "never";
-            };
-        };
-
-        catppuccin.zsh-syntax-highlighting.enable = true;
         programs.zsh.syntaxHighlighting = {
             enable = true;
             highlighters = [

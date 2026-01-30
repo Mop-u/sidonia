@@ -22,12 +22,6 @@ in
                 default = {
                     inherit (inputs)
                         nix-vscode-extensions
-                        stextCatppuccin
-                        stextPackageControl
-                        stextLSP
-                        stextNix
-                        stextSystemVerilog
-                        stextHooks
                         ;
                 };
             };
@@ -331,6 +325,16 @@ in
                         nix-auth = inputs.nix-auth.packages.${getSystem prev}.default;
                         inherit (inputs.hyprland.packages.${getSystem prev}) hyprland xdg-desktop-portal-hyprland;
                         inherit (inputs.hyprshell.packages.${getSystem prev}) hyprshell-nixpkgs hyprshell;
+                    })
+                    (final: prev: {
+                        sublimePackages = {
+                            "Catppuccin color schemes" = inputs.stextCatppuccin;
+                            "Package Control" = inputs.stextPackageControl;
+                            LSP = inputs.stextLSP;
+                            Nix = inputs.stextNix;
+                            SystemVerilog = inputs.stextSystemVerilog;
+                            hooks = inputs.stextHooks;
+                        };
                     })
                     (overlayMissingFromFlake inputs.nixpkgs-xr) # use nixpkgs stable where possible
                     inputs.nur.overlays.default

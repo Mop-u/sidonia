@@ -46,6 +46,13 @@ lib.mkMerge [
                     enable = lib.mkDefault true;
                     defaultEditor = lib.mkDefault true;
                 };
+                bat = {
+                    enable = lib.mkDefault true;
+                    config = {
+                        style = "plain";
+                        paging = "never";
+                    };
+                };
             };
         };
     }
