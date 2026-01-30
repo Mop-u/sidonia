@@ -12,5 +12,5 @@
         ./tweaks
         ./desktop
     ];
-    home-manager.users.${config.sidonia.userName}.imports = [ ./homeModules ];
+    home-manager.sharedModules = [ ./homeModules ];
 }
