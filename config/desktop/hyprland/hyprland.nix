@@ -194,6 +194,7 @@ in
                                 vrr = 1;
                                 mouse_move_enables_dpms = true;
                                 key_press_enables_dpms = true;
+                                render_unfocused_fps = 60;
                             };
 
                             input = {

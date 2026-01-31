@@ -41,4 +41,9 @@ lib.mkIf (cfg.desktop.enable) {
             PROTON_DLSS_UPGRADE = 1;
         })
     ];
+    home-manager.users.${cfg.userName}.wayland.windowManager.hyprland.settings.windowrule = [
+        "match:initial_class ^steam_app_\\d+$, content game, tag +game"
+        "match:xdg_tag proton-game, content game, tag +game"
+        "match:tag game, float on, idle_inhibit always, render_unfocused on"
+    ];
 }
