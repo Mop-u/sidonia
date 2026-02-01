@@ -69,6 +69,5 @@ in
         };
     })
     (overlayMissingFromFlake inputs.nixpkgs-xr) # use nixpkgs stable where possible
-    inputs.nur.overlays.default
     inputs.niri.overlays.niri
 ]
