@@ -49,7 +49,6 @@ in
         }
     )
     (final: prev: {
-        affinity = inputs.affinity.packages.${getSystem prev}.v3;
         inherit (inputs.unstable.legacyPackages.${getSystem prev})
             magnetic-catppuccin-gtk
             surfer

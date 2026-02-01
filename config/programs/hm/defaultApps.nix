@@ -32,7 +32,6 @@ lib.mkMerge [
             plexamp
             bambu-studio
             tageditor
-            affinity
         ];
     })
     {
