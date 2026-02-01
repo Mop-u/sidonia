@@ -36,11 +36,6 @@
             url = "github:chessai/nix-std";
         };
 
-        nix-auth = {
-            url = "github:numtide/nix-auth";
-            inputs.nixpkgs.follows = "nixpkgs";
-        };
-
         niri = {
             url = "github:sodiboo/niri-flake";
             inputs.nixpkgs.follows = "unstable";

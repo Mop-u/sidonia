@@ -50,7 +50,6 @@ in
     )
     (final: prev: {
         affinity = inputs.affinity.packages.${getSystem prev}.v3;
-        nix-auth = inputs.nix-auth.packages.${getSystem prev}.default;
         inherit (inputs.unstable.legacyPackages.${getSystem prev})
             magnetic-catppuccin-gtk
             surfer
