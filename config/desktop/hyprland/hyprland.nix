@@ -73,10 +73,10 @@ in
                         );
             in
             {
+                services.hyprpolkitagent.enable = true;
                 home.packages = [
                     pkgs.hypridle
                     pkgs.hyprcursor
-                    pkgs.nwg-look
                     pkgs.hyprshot
                 ];
                 xdg.configFile."hypr/xdph.conf".text = ''

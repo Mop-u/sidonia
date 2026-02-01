@@ -11,6 +11,7 @@ in
 lib.mkIf (cfg.desktop.enable) {
 
     home-manager.users.${cfg.userName} = {
+        home.packages = [ pkgs.nwg-look ];
 
         dconf.settings = with lib.gvariant; {
             "org/gnome/desktop/interface" = {
