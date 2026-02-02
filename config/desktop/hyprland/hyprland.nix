@@ -134,7 +134,8 @@ in
                             rgba = lib.mapAttrs (n: v: (alpha: "rgba(${v}${alpha})")) color;
                         in
                         {
-                            monitor = builtins.concatMap (mon: [ mon.v1 ]) monitors;
+                            #monitor = builtins.map (mon: mon.v1) monitors;
+                            monitorv2 = builtins.map (mon: mon.v2) monitors;
 
                             xwayland = {
                                 force_zero_scaling = true;
