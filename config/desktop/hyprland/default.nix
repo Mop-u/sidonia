@@ -9,10 +9,6 @@ let
     theme = cfg.style.catppuccin;
 in
 {
-    imports = [
-        ./hyprland.nix
-        ./waybar.nix
-        ./hyprshell.nix
-        ./missioncenter.nix
-    ];
+    imports = [ ./system ];
+    home-manager.users.${cfg.userName}.imports = [ ./hm ];
 }

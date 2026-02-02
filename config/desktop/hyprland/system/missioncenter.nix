@@ -7,7 +7,7 @@
 let
     cfg = config.sidonia;
 in
-lib.mkIf cfg.programs.hyprland.enable {
+lib.mkIf  (cfg.desktop.enable && (cfg.desktop.compositor == "hyprland")) {
     home-manager.users.${cfg.userName} = {
         home.packages = [ pkgs.mission-center ];
         wayland.windowManager.hyprland.settings = {
