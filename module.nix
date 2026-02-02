@@ -5,7 +5,6 @@
     config,
     lib,
     pkgs,
-    std,
     otherHosts,
     ...
 }:
@@ -15,6 +14,9 @@ let
 in
 {
     options = with lib; {
+        # environment.sidonia.excludePackages
+        # environment.sidonia.sessionVariables.{hyprland/niri}
+        # services.desktopManager.sidonia.enable
         sidonia = {
             lib = mkOption {
                 readOnly = true;
@@ -220,7 +222,6 @@ in
         lib.mkMerge [
             {
                 home-manager = {
-                    extraSpecialArgs = { inherit std; };
                     backupFileExtension = "backup";
                     sharedModules = [
                         inputs.catppuccin.homeModules.catppuccin

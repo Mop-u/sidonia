@@ -5,7 +5,6 @@
         unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
         nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
         nixpkgs-xr.url = "github:nix-community/nixpkgs-xr";
-        nix-std.url = "github:chessai/nix-std";
 
         home-manager = {
             url = "github:nix-community/home-manager/release-25.11";
@@ -87,7 +86,6 @@
                         (lib.nixosSystem {
                             specialArgs = {
                                 inherit otherHosts;
-                                std = inputs.nix-std.lib;
                             }
                             // specialArgs;
                             modules = [
