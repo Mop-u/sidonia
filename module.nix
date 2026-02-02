@@ -202,56 +202,6 @@ in
                     ];
                     default = "hyprland";
                 };
-                monitors = mkOption {
-                    description = "List of monitor configurations ( see https://wiki.hyprland.org/Configuring/Monitors/ )";
-                    type =
-                        with types;
-                        listOf (submodule {
-                            options = {
-                                name = mkOption {
-                                    description = "Name of monitor";
-                                    type = types.str;
-                                };
-                                resolution = mkOption {
-                                    description = "Resolution in the format WIDTHxHEIGHT. Default is highest available resolution.";
-                                    type = types.str;
-                                    default = "highres";
-                                };
-                                position = mkOption {
-                                    description = "Monitor position in scaled pixels WIDTHxHEIGHT";
-                                    type = types.str;
-                                    default = "auto";
-                                };
-                                refresh = mkOption {
-                                    description = "Monitor refresh rate";
-                                    type = types.nullOr types.float;
-                                    default = null;
-                                };
-                                scale = mkOption {
-                                    description = "Monitor scale factor";
-                                    type = types.nullOr types.float;
-                                    default = null;
-                                };
-                                bitdepth = mkOption {
-                                    description = "Monitor bit depth";
-                                    type = types.nullOr (
-                                        types.enum [
-                                            8
-                                            10
-                                        ]
-                                    );
-                                    default = null;
-                                };
-                                hdr = mkEnableOption "Enable HDR for this monitor";
-                                extraArgs = mkOption {
-                                    description = "Extra comma-separated monitor properties";
-                                    type = types.nullOr types.str;
-                                    default = null;
-                                };
-                            };
-                        });
-                    default = [ ];
-                };
             };
         };
     };

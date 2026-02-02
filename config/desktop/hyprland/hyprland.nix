@@ -33,26 +33,59 @@ in
                 monitors =
                     builtins.map
                         (
-                            monitor:
+                            {
+                                name ? "",
+                                resolution ? "highres",
+                                position ? "auto",
+                                scale ? null,
+                                bitdepth ? null,
+                                hdr ? false,
+                                extraArgs ? null,
+                                ...
+                            }:
                             let
-                                args = lib.concatStringsSep ", " (
-                                    [
+                                mode =
+                                    if builtins.isString resolution then
+                                        resolution
+                                    else
+                                        with resolution;
                                         (lib.concatStringsSep "@" (
-                                            [ monitor.resolution ]
-                                            ++ (lib.optional (monitor.refresh != null) (lib.strings.floatToString monitor.refresh))
-                                        ))
-                                        monitor.position
-                                        (if (monitor.scale == null) then "auto" else lib.strings.floatToString monitor.scale)
+                                            [
+                                                (lib.concatStringsSep "x" (
+                                                    builtins.map (builtins.toString) [
+                                                        x
+                                                        y
+                                                    ]
+                                                ))
+                                            ]
+                                            ++ (lib.optional (hz != null) hz)
+                                        ));
+                                v1Args = lib.concatStringsSep ", " (
+                                    [
+                                        mode
+                                        position
+                                        (if (scale == null) then "auto" else lib.strings.floatToString scale)
                                     ]
-                                    ++ (lib.optional (monitor.bitdepth != null) "bitdepth,${builtins.toString monitor.bitdepth}")
-                                    ++ (lib.optional monitor.hdr "cm,hdr")
-                                    ++ (lib.optional (monitor.extraArgs != null) monitor.extraArgs)
+                                    ++ (lib.optional (bitdepth != null) "bitdepth,${builtins.toString bitdepth}")
+                                    ++ (lib.optional hdr "cm,hdr")
+                                    ++ (lib.optional (extraArgs != null) (
+                                        lib.concatStringsSep "," (lib.mapAttrsToList (n: v: "${n},${v}") extraArgs)
+                                    ))
                                 );
                             in
-                            rec {
-                                inherit (monitor) name;
-                                enable = "${name},${args}";
+                            {
+                                inherit name;
                                 disable = "${name},disable";
+                                v1 = "${name},${v1Args}";
+                                v2 = {
+                                    output = name;
+                                    inherit mode;
+                                }
+                                // (lib.optionalAttrs (scale != null) { inherit scale; })
+                                // (lib.optionalAttrs (position != null) { inherit position; })
+                                // (lib.optionalAttrs (bitdepth != null) { bitdepth = builtins.toString bitdepth; })
+                                // (lib.optionalAttrs hdr { cm = "hdr"; })
+                                // (lib.optionalAttrs (extraArgs != null) extraArgs);
                             }
                         )
                         (
@@ -64,7 +97,6 @@ in
                                     resolution = "highres";
                                     position = "auto";
                                     scale = null;
-                                    refresh = null;
                                     bitdepth = null;
                                     hdr = false;
                                     extraArgs = null;
@@ -102,7 +134,7 @@ in
                             rgba = lib.mapAttrs (n: v: (alpha: "rgba(${v}${alpha})")) color;
                         in
                         {
-                            monitor = builtins.concatMap (mon: [ mon.enable ]) monitors;
+                            monitor = builtins.concatMap (mon: [ mon.v1 ]) monitors;
 
                             xwayland = {
                                 force_zero_scaling = true;
@@ -251,7 +283,7 @@ in
                                 ", XF86AudioPrev,  exec, playerctl previous"
                             ]
                             ++ (lib.optional cfg.isLaptop ", switch:on:Lid Switch, exec, hyprctl keyword monitor \"${(builtins.head monitors).disable}\"")
-                            ++ (lib.optional cfg.isLaptop ", switch:off:Lid Switch, exec, hyprctl keyword monitor \"${(builtins.head monitors).enable}\"");
+                            ++ (lib.optional cfg.isLaptop ", switch:off:Lid Switch, exec, hyprctl keyword monitor \"${(builtins.head monitors).v1}\"");
                             binde = [
                                 "SUPERALT,   H,         resizeactive, -10    0" # resize left
                                 "SUPERALT,   J,         resizeactive,   0   10" # resize down

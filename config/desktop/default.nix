@@ -16,5 +16,6 @@
         ./idleLock.nix
         ./keybinds.nix
         ./window.nix
+        ./monitors.nix
     ];
 }
