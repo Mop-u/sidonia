@@ -6,16 +6,11 @@
 }:
 {
     imports = [
+        ./common
         ./hyprland
         ./niri
-        ./bemenu.nix
-        ./coreServices.nix
-        ./displayManager.nix
         ./environment.nix
-        ./gtk.nix
-        ./idleLock.nix
-        ./keybinds.nix
-        ./window.nix
         ./monitors.nix
+        ./window.nix
     ];
 }

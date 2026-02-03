@@ -6,6 +6,7 @@
 }:
 {
     imports = [
+        ./sidonia
         ./discord.nix
         ./gtkwave.nix
         ./sublimeMerge.nix

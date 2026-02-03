@@ -7,6 +7,7 @@
 }:
 {
     imports = [
+        ./hypridle.nix
         ./hyprland.nix
         ./hyprshell.nix
         ./waybar.nix

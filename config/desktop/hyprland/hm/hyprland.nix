@@ -281,7 +281,7 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.compositor == "hyprland")) {
                 bind =
                     (builtins.map (
                         x: "${lib.concatStrings x.mod}, ${x.key}, exec, uwsm app -- ${x.exec}"
-                    ) cfg.desktop.keybinds)
+                    ) config.wayland.desktopManager.sidonia.keybinds)
                     ++ [
                         "SUPERSHIFT, C,         killactive,"
                         "SUPERSHIFT, Q,         exec, uwsm stop"

@@ -9,7 +9,9 @@
     imports = [
         ./defaultApps.nix
         ./floorp.nix
+        ./foot.nix
         ./gtkwave.nix
+        ./missioncenter.nix
         ./sublime.nix
         ./vscodium.nix
         ./zsh.nix

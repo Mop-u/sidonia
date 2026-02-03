@@ -1,14 +1,15 @@
 {
+    osConfig,
     config,
     lib,
     pkgs,
     ...
 }:
 let
-    cfg = config.sidonia;
+    cfg = osConfig.sidonia;
 in
 {
-    options.sidonia.desktop.keybinds = lib.mkOption {
+    options.wayland.desktopManager.sidonia.keybinds = lib.mkOption {
         description = "List of keybinds to add to the desktop environment";
         type = lib.types.listOf (
             lib.types.submodule {

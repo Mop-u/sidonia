@@ -6,9 +6,8 @@
 }:
 let
     cfg = config.sidonia;
-    theme = cfg.style.catppuccin;
 in
 {
-    imports = [ ./system ];
+    imports = [ ./os ];
     home-manager.users.${cfg.userName}.imports = [ ./hm ];
 }

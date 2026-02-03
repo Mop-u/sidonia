@@ -7,6 +7,6 @@
 {
     imports = [
         ./hyprland.nix
-        ./missioncenter.nix
+        ./pam.nix
     ];
 }

@@ -9,6 +9,7 @@ let
 in
 {
     imports = [
-        ./niri.nix
+        ./coreServices.nix
+        ./displayManager.nix
     ];
 }
