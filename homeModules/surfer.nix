@@ -127,14 +127,14 @@ in
         home.packages = [ pkgs.surfer ];
         xdg.configFile."surfer/config.toml" = {
             enable = config.programs.surfer.settings != null;
-            text = tomlFormat.generate config.programs.surfer.settings;
+            source = tomlFormat.generate "config.toml" config.programs.surfer.settings;
         };
         programs.surfer.settings = lib.mkIf config.catppuccin.surfer.enable {
             theme = "catppuccin";
         };
         xdg.configFile."surfer/themes/catppuccin.toml" = {
             enable = config.catppuccin.surfer.enable;
-            text = tomlFormat.generate surferTheme;
+            source = tomlFormat.generate "catppuccin.toml" surferTheme;
         };
     };
 }
