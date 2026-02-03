@@ -12,21 +12,6 @@ let
         );
 in
 [
-    (final: prev: {
-        openssl_1_1 = prev.openssl_1_1.overrideAttrs (
-            finalAttrs: prevAttrs: {
-                patches = [
-                    (builtins.head prevAttrs.patches)
-                    (
-                        if final.stdenv.hostPlatform.isDarwin then
-                            ./patches/use-etc-ssl-certs-darwin.patch
-                        else
-                            ./patches/use-etc-ssl-certs.patch
-                    )
-                ];
-            }
-        );
-    })
     (
         final: prev:
         let
