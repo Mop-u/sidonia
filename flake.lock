@@ -180,24 +180,6 @@
         "type": "github"
       }
     },
-    "flake-utils_2": {
-      "inputs": {
-        "systems": "systems_3"
-      },
-      "locked": {
-        "lastModified": 1731533236,
-        "narHash": "sha256-l0KFg5HjrsfsO/JpG+r7fRrqm12kzFHyUHqHCVpMMbI=",
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "rev": "11707dc2f618dd54ca8739b309ec4fc024de578b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "type": "github"
-      }
-    },
     "gitignore": {
       "inputs": {
         "nixpkgs": [
@@ -610,6 +592,21 @@
         "type": "github"
       }
     },
+    "moppkgs": {
+      "locked": {
+        "lastModified": 1770146744,
+        "narHash": "sha256-MIjOM2GIpPvO0TqPPZrWU2DnL5jmZZnDh6VDGJduGq4=",
+        "owner": "Mop-u",
+        "repo": "moppkgs",
+        "rev": "c7180be36cb5f9e186bd8bc9874abde06df064a8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Mop-u",
+        "repo": "moppkgs",
+        "type": "github"
+      }
+    },
     "niri": {
       "inputs": {
         "niri-stable": "niri-stable",
@@ -761,27 +758,6 @@
         "type": "github"
       }
     },
-    "nonfree-fonts": {
-      "inputs": {
-        "flake-utils": "flake-utils_2",
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1752661633,
-        "narHash": "sha256-zOyFlI9/Nax28KZCwEEqWgZFmFDIRCrYuRQmoAvZMCo=",
-        "owner": "Mop-u",
-        "repo": "nonfree-fonts",
-        "rev": "a10295a8dddc3ca31a2ee8aad33be6db5244abd1",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Mop-u",
-        "repo": "nonfree-fonts",
-        "type": "github"
-      }
-    },
     "nvfetcher": {
       "inputs": {
         "flake-compat": [
@@ -842,11 +818,11 @@
         "home-manager": "home-manager",
         "hyprland": "hyprland",
         "hyprshell": "hyprshell",
+        "moppkgs": "moppkgs",
         "niri": "niri",
         "nix-vscode-extensions": "nix-vscode-extensions",
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-xr": "nixpkgs-xr",
-        "nonfree-fonts": "nonfree-fonts",
         "stextCatppuccin": "stextCatppuccin",
         "stextPackageControl": "stextPackageControl",
         "unstable": "unstable"
@@ -889,11 +865,11 @@
     "stextPackageControl": {
       "flake": false,
       "locked": {
-        "lastModified": 1770138647,
+        "lastModified": 1770140956,
         "narHash": "sha256-sk4L0T0fUIX1maJ1sTEp0+Lm0BbxyD28D25qcV6fEMU=",
         "owner": "wbond",
         "repo": "package_control",
-        "rev": "5ad4c60960e5e0ad80025cc3c899539259fe2d9a",
+        "rev": "306f7ae55df39383afdd8e7f06cc4ae81c25814d",
         "type": "github"
       },
       "original": {
@@ -929,21 +905,6 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default-linux",
-        "type": "github"
-      }
-    },
-    "systems_3": {
-      "locked": {
-        "lastModified": 1681028828,
-        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
-        "owner": "nix-systems",
-        "repo": "default",
-        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-systems",
-        "repo": "default",
         "type": "github"
       }
     },

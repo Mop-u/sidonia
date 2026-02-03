@@ -165,10 +165,7 @@ in
                     apply = x: {
                         inherit (x) enable;
                         package =
-                            let
-                                comicCode = inputs.nonfree-fonts.packages.${cfg.system}.comic-code;
-                            in
-                            if (x.source == null) then comicCode else (comicCode.overrideAttrs { src = x.source; });
+                            if (builtins.isNull x.source) then pkgs.comic-code else (pkgs.comic-code.overrideAttrs { src = x.source; });
                         name = if x.enable then "Comic Code" else "ComicShannsMono Nerd Font";
                     };
                 };

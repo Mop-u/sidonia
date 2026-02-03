@@ -5,6 +5,7 @@
         unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
         nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
         nixpkgs-xr.url = "github:nix-community/nixpkgs-xr";
+        moppkgs.url = "github:Mop-u/moppkgs";
 
         home-manager = {
             url = "github:nix-community/home-manager/release-25.11";
@@ -38,10 +39,6 @@
             inputs.nixpkgs-stable.follows = "nixpkgs";
         };
 
-        nonfree-fonts = {
-            url = "github:Mop-u/nonfree-fonts";
-            inputs.nixpkgs.follows = "nixpkgs";
-        };
         nix-vscode-extensions = {
             url = "github:nix-community/nix-vscode-extensions";
             inputs.nixpkgs.follows = "nixpkgs";
