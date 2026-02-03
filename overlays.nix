@@ -53,5 +53,5 @@ in
     })
     (overlayMissingFromFlake inputs.nixpkgs-xr) # use nixpkgs stable where possible
     inputs.niri.overlays.niri
-    inputs.moppkgs.overlays
+    inputs.moppkgs.overlays.default
 ]
