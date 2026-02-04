@@ -12,7 +12,7 @@ lib.mkIf (cfg.desktop.enable) {
     programs.bemenu = {
         enable = true;
         settings =
-            with builtins.mapAttrs (n: v: "##${v}") config.catppuccin.lib.color;
+            with builtins.mapAttrs (n: v: "#${v}") config.catppuccin.lib.color;
             let
                 inherit (cfg.desktop.window) decoration;
                 background = base + decoration.opacity.hex;
@@ -21,7 +21,7 @@ lib.mkIf (cfg.desktop.enable) {
                 no-exec = true;
                 prompt = "open";
                 ignorecase = true;
-                list = true;
+                list = "16 down";
                 wrap = true;
                 center = true;
                 no-overlap = true;
@@ -48,7 +48,7 @@ lib.mkIf (cfg.desktop.enable) {
             name = "Bemenu";
             mod = [ "super" ];
             key = "o";
-            exec = "$(bemenu-run '16 down')";
+            exec = "$(bemenu-run)";
         }
     ]
     ++ (lib.optional osConfig.hardware.nvidia.prime.offload.enableOffloadCmd {
@@ -57,6 +57,6 @@ lib.mkIf (cfg.desktop.enable) {
             "shift"
         ];
         key = "o";
-        exec = "nvidia-offload $(LIBVA_DRIVER_NAME=nvidia VDPAU_NAME=nvidia bemenu-run '16 down')";
+        exec = "nvidia-offload $(LIBVA_DRIVER_NAME=nvidia VDPAU_NAME=nvidia bemenu-run)";
     });
 }
