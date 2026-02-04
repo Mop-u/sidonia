@@ -122,7 +122,7 @@ in
                                     # Alias for pink
                                     magenta = pink;
                                     dark_red = "color(${red} s(25%) l(35%))";
-                                    dark_blue = "color(${blue}) s(25%) l(35%))";
+                                    dark_blue = "color(${blue} s(25%) l(35%))";
 
                                     # Labels
                                     label_color = "var(text-heading)";
@@ -256,7 +256,7 @@ in
 
                                     unmerged_icon_fg = text;
                                     unmerged_header_bg = blue;
-                                    unmerged_header_bg-hover = "color(${blue}) l(+ 3%))";
+                                    unmerged_header_bg-hover = "color(${blue} l(+ 3%))";
 
                                     recent_icon_fg = yellow;
                                     recent_icon_bg = "transparent";
@@ -308,7 +308,7 @@ in
 
                                     # Progress bar
                                     progress_bg = "var(header_button_bg)";
-                                    progress_fg = "color(${accent}))";
+                                    progress_fg = "color(${accent})";
 
                                     # Quick panel
                                     quick_panel_bg = base;
@@ -522,8 +522,8 @@ in
                                         }
                                         {
                                             class = "diff_text_control";
-                                            "line_selection_color" = "color(${accent}) alpha(0.05))";
-                                            "line_selection_border_color" = "color(${accent}) alpha(0.5))";
+                                            "line_selection_color" = "color(${accent} alpha(0.05))";
+                                            "line_selection_border_color" = "color(${accent} alpha(0.5))";
                                             "line_selection_border_width" = 2.0;
                                             "line_selection_border_radius" = 2.0;
                                         }
