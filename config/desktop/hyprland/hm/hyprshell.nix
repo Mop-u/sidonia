@@ -22,6 +22,7 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.compositor == "hyprland")) {
                     enable = true;
                     key = "p";
                     modifier = "super";
+                    # exec = "${hyprshell}/bin/.hyprshell-wrapped socat '\"OpenOverview\"'"
                     launcher = {
                         default_terminal = "foot";
                         max_items = 6;
