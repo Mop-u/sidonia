@@ -46,6 +46,7 @@ in
             hyprshell-nixpkgs
             hyprshell
             ;
+        scopebuddy = inputs.scopebuddy.packages.${getSystem prev}.default;
         sublimePackages = {
             "Catppuccin color schemes" = inputs.stextCatppuccin;
             "Package Control" = inputs.stextPackageControl;

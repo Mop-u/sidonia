@@ -12,13 +12,28 @@ lib.mkIf (cfg.desktop.enable) {
         steam = {
             enable = lib.mkDefault true;
             package = pkgs.steam.override {
-                extraProfile = builtins.concatStringsSep "\n" (
-                    (lib.mapAttrsToList (n: v: "export ${n}=${v}") cfg.desktop.environment.steam) ++ [ "unset TZ" ]
-                );
+                #extraProfile = "unset TZ";
+                extraEnv = cfg.desktop.environment.steam;
             };
             protontricks.enable = lib.mkDefault true;
             localNetworkGameTransfers.openFirewall = lib.mkDefault true;
             extest.enable = lib.mkDefault true;
+
+            # https://github.com/NixOS/nixpkgs/issues/162562#issuecomment-1523177264
+            extraPackages = with pkgs; [
+                xorg.libXcursor
+                xorg.libXi
+                xorg.libXinerama
+                xorg.libXScrnSaver
+                libpng
+                libpulseaudio
+                libvorbis
+                stdenv.cc.cc.lib
+                libkrb5
+                keyutils
+                gamescope
+                scopebuddy
+            ];
             extraCompatPackages = [
                 pkgs.proton-ge-bin
                 pkgs.steam-play-none
