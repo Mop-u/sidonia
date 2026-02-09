@@ -7,6 +7,7 @@
 }:
 {
     imports = [
+        ./bemenu.nix
         ./defaultApps.nix
         ./floorp.nix
         ./foot.nix

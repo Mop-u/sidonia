@@ -18,22 +18,6 @@ lib.mkIf (cfg.desktop.enable) {
             protontricks.enable = lib.mkDefault true;
             localNetworkGameTransfers.openFirewall = lib.mkDefault true;
             extest.enable = lib.mkDefault true;
-
-            # https://github.com/NixOS/nixpkgs/issues/162562#issuecomment-1523177264
-            extraPackages = with pkgs; [
-                xorg.libXcursor
-                xorg.libXi
-                xorg.libXinerama
-                xorg.libXScrnSaver
-                libpng
-                libpulseaudio
-                libvorbis
-                stdenv.cc.cc.lib
-                libkrb5
-                keyutils
-                gamescope
-                scopebuddy
-            ];
             extraCompatPackages = [
                 pkgs.proton-ge-bin
                 pkgs.steam-play-none

@@ -4,12 +4,14 @@
     lib,
     ...
 }:
+let
+    cfg = config.sidonia;
+in
 {
     imports = [
-        ./configuration.nix
-        ./programs
-        ./services
-        ./tweaks
-        ./desktop
+        ./os
+    ];
+    home-manager.users.${cfg.userName}.imports = [
+        ./hm
     ];
 }

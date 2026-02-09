@@ -7,7 +7,9 @@
 }:
 {
     imports = [
-        ./bemenu.nix
+        ./hyprland
+        ./programs
+        ./services
         ./gtk.nix
     ];
 }

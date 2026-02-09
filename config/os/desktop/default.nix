@@ -6,9 +6,6 @@
 }:
 {
     imports = [
-        ./common
-        ./hyprland
-        ./niri
         ./environment.nix
         ./monitors.nix
         ./window.nix
