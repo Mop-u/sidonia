@@ -42,7 +42,7 @@ lib.mkIf (cfg.desktop.enable) {
     ];
     home-manager.users.${cfg.userName}.wayland.windowManager.hyprland.settings.windowrule = [
         "match:initial_class ^steam_app_\\d+$, content game, tag +game"
-        "match:xdg_tag proton-game, content game, tag +game"
-        "match:tag game, fullscreen on, workspace special:magic, idle_inhibit always, render_unfocused on, immediate on, no_vrr on"
+        "match:xdg_tag proton-game, content game, tag +game, no_vrr on"
+        "match:tag game, fullscreen on, workspace special:magic, idle_inhibit always, render_unfocused on, immediate on"
     ];
 }
