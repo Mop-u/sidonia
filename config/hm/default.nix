@@ -8,6 +8,7 @@
 {
     imports = [
         ./hyprland
+        ./niri
         ./programs
         ./services
         ./gtk.nix

@@ -11,7 +11,6 @@ in
     imports = [
         ./desktop
         ./hyprland
-        ./niri
         ./programs
         ./services
         ./tweaks
