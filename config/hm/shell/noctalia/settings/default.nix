@@ -1,0 +1,33 @@
+{
+    osConfig,
+    config,
+    pkgs,
+    lib,
+    ...
+}:
+{
+    imports = [
+        ./appLauncher.nix
+        ./audio.nix
+        ./bar.nix
+        ./brightness.nix
+        ./calendar.nix
+        ./colorSchemes.nix
+        ./controlCenter.nix
+        ./desktopWidgets.nix
+        ./dock.nix
+        ./general.nix
+        ./hooks.nix
+        ./location.nix
+        ./network.nix
+        ./nightLight.nix
+        ./notifications.nix
+        ./osd.nix
+        ./plugins.nix
+        ./sessionMenu.nix
+        ./systemMonitor.nix
+        ./templates.nix
+        ./ui.nix
+        ./wallpaper.nix
+    ];
+}

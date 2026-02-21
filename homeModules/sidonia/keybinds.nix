@@ -28,8 +28,10 @@ in
                                     "shift"
                                     "ctrl"
                                     "alt"
+                                    ""
                                 ])
                             );
+                        default = [ "" ];
                     };
                     key = lib.mkOption {
                         description = "Key";

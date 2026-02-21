@@ -7,6 +7,10 @@
 }:
 {
     imports = [
+        ./settings
         ./hyprland.nix
+        ./keybinds.nix
+        ./niri.nix
+        ./noctalia.nix
     ];
 }

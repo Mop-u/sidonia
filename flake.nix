@@ -12,6 +12,11 @@
             inputs.nixpkgs.follows = "nixpkgs";
         };
 
+        noctalia = {
+            url = "github:noctalia-dev/noctalia-shell";
+            inputs.nixpkgs.follows = "unstable";
+        };
+
         catppuccin = {
             url = "github:catppuccin/nix/release-25.11";
             inputs.nixpkgs.follows = "nixpkgs";
@@ -27,7 +32,7 @@
             inputs.nixpkgs.follows = "nixpkgs";
             inputs.hyprland.follows = "hyprland";
         };
-        
+
         scopebuddy = {
             url = "github:OpenGamingCollective/ScopeBuddy";
             inputs.nixpkgs.follows = "nixpkgs";

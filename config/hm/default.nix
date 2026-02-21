@@ -10,7 +10,8 @@
         ./hyprland
         ./niri
         ./programs
-        ./services
+        ./shell
         ./gtk.nix
+        ./services.nix
     ];
 }
