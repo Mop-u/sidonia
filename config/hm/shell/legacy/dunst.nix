@@ -8,7 +8,7 @@
 let
     cfg = osConfig.sidonia;
 in
-lib.mkIf (cfg.desktop.enable) {
+lib.mkIf (cfg.desktop.enable && (cfg.desktop.shell == "legacy")) {
     catppuccin.dunst.enable = false; # using our own values as overriding background breaks opacity
     services.dunst = {
         enable = true;

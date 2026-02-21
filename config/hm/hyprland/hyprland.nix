@@ -165,26 +165,11 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.compositor == "hyprland")) {
                 };
 
                 decoration = {
-                    rounding = cfg.desktop.window.decoration.rounding;
                     active_opacity = 1.0;
                     inactive_opacity = 1.0;
-                    shadow = {
-                        enabled = true;
-                        range = 12;
-                        render_power = 3;
-                        color = rgba.shadow shadow_opacity; # shadow's color. Alpha dictates shadow's opacity.
-                    };
-                    blur = {
-                        enabled = true;
-                        size = 3;
-                        passes = 1;
-                        vibrancy = 0.1696;
-                    };
                 };
 
                 general = {
-                    gaps_in = 5;
-                    gaps_out = 20;
                     border_size = cfg.desktop.window.decoration.borderWidth;
                     resize_on_border = false;
                     allow_tearing = true;
@@ -256,21 +241,7 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.compositor == "hyprland")) {
                 binds = {
                     scroll_event_delay = 100;
                 };
-                bindel = [
-                    ", XF86AudioRaiseVolume,  exec, wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@   5%+"
-                    ", XF86AudioLowerVolume,  exec, wpctl set-volume      @DEFAULT_AUDIO_SINK@   5%-"
-                    ", XF86AudioMute,         exec, wpctl set-mute        @DEFAULT_AUDIO_SINK@   toggle"
-                    ", XF86AudioMicMute,      exec, wpctl set-mute        @DEFAULT_AUDIO_SOURCE@ toggle"
-                    ", XF86MonBrightnessUp,   exec, brightnessctl s 10%+"
-                    ", XF86MonBrightnessDown, exec, brightnessctl s 10%-"
-                ];
-                bindl = [
-                    ", XF86AudioNext,  exec, playerctl next"
-                    ", XF86AudioPause, exec, playerctl play-pause"
-                    ", XF86AudioPlay,  exec, playerctl play-pause"
-                    ", XF86AudioPrev,  exec, playerctl previous"
-                ]
-                ++ (lib.optional cfg.isLaptop ", switch:on:Lid Switch, exec, hyprctl keyword monitor \"${(builtins.head monitors).disable}\"")
+                bindl = (lib.optional cfg.isLaptop ", switch:on:Lid Switch, exec, hyprctl keyword monitor \"${(builtins.head monitors).disable}\"")
                 ++ (lib.optional cfg.isLaptop ", switch:off:Lid Switch, exec, hyprctl keyword monitor \"${(builtins.head monitors).v1}\"");
                 binde = [
                     "SUPERALT,   H,         resizeactive, -10    0" # resize left

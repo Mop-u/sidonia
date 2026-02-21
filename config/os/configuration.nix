@@ -72,6 +72,9 @@ in
     hardware.bluetooth.enable = true;
     hardware.bluetooth.powerOnBoot = true;
 
+    services.upower.enable = true;
+    services.tuned.enable = true;
+
     # Set your time zone.
     time.timeZone = lib.mkDefault "Europe/Dublin";
     #services.automatic-timezoned.enable = true;

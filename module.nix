@@ -165,7 +165,10 @@ in
                     apply = x: {
                         inherit (x) enable;
                         package =
-                            if (builtins.isNull x.source) then pkgs.comic-code else (pkgs.comic-code.overrideAttrs { src = x.source; });
+                            if (builtins.isNull x.source) then
+                                pkgs.comic-code
+                            else
+                                (pkgs.comic-code.overrideAttrs { src = x.source; });
                         name = if x.enable then "Comic Code" else "ComicShannsMono Nerd Font";
                     };
                 };
@@ -201,6 +204,14 @@ in
                     ];
                     default = "hyprland";
                 };
+                shell = mkOption {
+                    description = "What desktop shell to use";
+                    type = types.enum [
+                        "legacy"
+                        "noctalia"
+                    ];
+                    default = "legacy";
+                };
             };
         };
     };
@@ -224,6 +235,7 @@ in
                         inputs.catppuccin.homeModules.catppuccin
                         inputs.niri.homeModules.niri
                         inputs.hyprshell.homeModules.hyprshell
+                        inputs.noctalia.homeModules.default
                         {
                             config.nixpkgs = {
                                 inherit overlays;
