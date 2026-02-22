@@ -9,7 +9,7 @@ let
     cfg = osConfig.sidonia;
 in
 lib.mkIf (cfg.desktop.enable && (cfg.desktop.shell == "noctalia")) {
-    programs.noctalia-shell.settings.osd = {
+    programs.noctalia-shell.settings.osd = builtins.mapAttrs (n: v: lib.mkDefault v) {
         enabled = true;
         location = "top_right";
         autoHideMs = 2000;

@@ -9,7 +9,7 @@ let
     cfg = osConfig.sidonia;
 in
 lib.mkIf (cfg.desktop.enable && (cfg.desktop.shell == "noctalia")) {
-    programs.noctalia-shell.settings.colorSchemes = {
+    programs.noctalia-shell.settings.colorSchemes = builtins.mapAttrs (n: v: lib.mkDefault v) {
         useWallpaperColors = false;
         predefinedScheme = "Catppuccin";
         darkMode = true;

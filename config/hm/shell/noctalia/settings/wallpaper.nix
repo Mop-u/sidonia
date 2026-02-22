@@ -9,10 +9,10 @@ let
     cfg = osConfig.sidonia;
 in
 lib.mkIf (cfg.desktop.enable && (cfg.desktop.shell == "noctalia")) {
-    programs.noctalia-shell.settings.wallpaper = {
+    programs.noctalia-shell.settings.wallpaper = builtins.mapAttrs (n: v: lib.mkDefault v) {
         enabled = true;
         overviewEnabled = false;
-        directory = "";
+        directory = "${config.home.homeDirectory}/Pictures/Wallpapers";
         monitorDirectories = [ ];
         enableMultiMonitorDirectories = false;
         showHiddenFiles = false;
@@ -26,7 +26,7 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.shell == "noctalia")) {
         wallpaperChangeMode = "random";
         randomIntervalSec = 300;
         transitionDuration = 1500;
-        transitionType = "random";
+        transitionType = "fade";
         skipStartupTransition = false;
         transitionEdgeSmoothness = 0.05;
         panelPosition = "follow_bar";

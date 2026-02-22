@@ -9,7 +9,7 @@ let
     cfg = osConfig.sidonia;
 in
 lib.mkIf (cfg.desktop.enable && (cfg.desktop.shell == "noctalia")) {
-    programs.noctalia-shell.settings.systemMonitor = {
+    programs.noctalia-shell.settings.systemMonitor = builtins.mapAttrs (n: v: lib.mkDefault v) {
         cpuWarningThreshold = 80;
         cpuCriticalThreshold = 90;
         tempWarningThreshold = 80;
@@ -26,7 +26,7 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.shell == "noctalia")) {
         diskAvailCriticalThreshold = 10;
         batteryWarningThreshold = 20;
         batteryCriticalThreshold = 5;
-        enableDgpuMonitoring = false;
+        enableDgpuMonitoring = !cfg.isLaptop;
         useCustomColors = false;
         warningColor = "";
         criticalColor = "";

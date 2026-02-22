@@ -241,8 +241,9 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.compositor == "hyprland")) {
                 binds = {
                     scroll_event_delay = 100;
                 };
-                bindl = (lib.optional cfg.isLaptop ", switch:on:Lid Switch, exec, hyprctl keyword monitor \"${(builtins.head monitors).disable}\"")
-                ++ (lib.optional cfg.isLaptop ", switch:off:Lid Switch, exec, hyprctl keyword monitor \"${(builtins.head monitors).v1}\"");
+                bindl =
+                    (lib.optional cfg.isLaptop ", switch:on:Lid Switch, exec, hyprctl keyword monitor \"${(builtins.head monitors).disable}\"")
+                    ++ (lib.optional cfg.isLaptop ", switch:off:Lid Switch, exec, hyprctl keyword monitor \"${(builtins.head monitors).v1}\"");
                 binde = [
                     "SUPERALT,   H,         resizeactive, -10    0" # resize left
                     "SUPERALT,   J,         resizeactive,   0   10" # resize down

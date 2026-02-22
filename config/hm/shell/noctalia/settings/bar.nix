@@ -9,7 +9,7 @@ let
     cfg = osConfig.sidonia;
 in
 lib.mkIf (cfg.desktop.enable && (cfg.desktop.shell == "noctalia")) {
-    programs.noctalia-shell.settings.bar = {
+    programs.noctalia-shell.settings.bar = builtins.mapAttrs (n: v: lib.mkDefault v) {
         autoHideDelay = 500;
         autoShowDelay = 150;
         backgroundOpacity = 0.93;
@@ -107,7 +107,7 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.shell == "noctalia")) {
                     }
                     {
                         blacklist = [ ];
-                        chevroncolor = "none";
+                        chevronColor = "none";
                         colorizeIcons = false;
                         drawerEnabled = false;
                         hidePassive = false;

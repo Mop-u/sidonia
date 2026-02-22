@@ -9,7 +9,7 @@ let
     cfg = osConfig.sidonia;
 in
 lib.mkIf (cfg.desktop.enable && (cfg.desktop.shell == "noctalia")) {
-    programs.noctalia-shell.settings.controlCenter = {
+    programs.noctalia-shell.settings.controlCenter = builtins.mapAttrs (n: v: lib.mkDefault v) {
         position = "close_to_bar_button";
         diskPath = "/";
         shortcuts = {

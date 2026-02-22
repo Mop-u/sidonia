@@ -9,7 +9,7 @@ let
     cfg = osConfig.sidonia;
 in
 lib.mkIf (cfg.desktop.enable && (cfg.desktop.shell == "noctalia")) {
-    programs.noctalia-shell.settings.notifications = {
+    programs.noctalia-shell.settings.notifications = builtins.mapAttrs (n: v: lib.mkDefault v) {
         enabled = true;
         enableMarkdown = false;
         density = "default";

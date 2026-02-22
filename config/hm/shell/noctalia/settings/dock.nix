@@ -9,7 +9,7 @@ let
     cfg = osConfig.sidonia;
 in
 lib.mkIf (cfg.desktop.enable && (cfg.desktop.shell == "noctalia")) {
-    programs.noctalia-shell.settings.dock = {
+    programs.noctalia-shell.settings.dock = builtins.mapAttrs (n: v: lib.mkDefault v) {
         enabled = true;
         position = "bottom";
         displayMode = "auto_hide";
@@ -22,6 +22,7 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.shell == "noctalia")) {
         pinnedApps = [ ];
         colorizeIcons = false;
         showLauncherIcon = false;
+        launcherIconColor = "none";
         launcherPosition = "start";
         pinnedStatic = false;
         inactiveIndicators = false;
