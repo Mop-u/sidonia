@@ -7,11 +7,11 @@
 }:
 {
     imports = [
-        ./hyprland
-        ./niri
         ./programs
         ./shell
         ./gtk.nix
+        ./hyprland.nix
+        ./niri.nix
         ./services.nix
     ];
 }
