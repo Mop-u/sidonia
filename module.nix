@@ -142,11 +142,6 @@ in
                             };
                         };
                 };
-                cursorSize = mkOption {
-                    description = "Cursor size";
-                    type = types.int;
-                    default = 30;
-                };
             };
 
             text = {

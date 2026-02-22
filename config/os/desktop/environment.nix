@@ -37,7 +37,6 @@ in
         sidonia.desktop.environment = {
             wayland = builtins.mapAttrs (n: v: lib.mkDefault v) {
                 XDG_SESSION_TYPE = "wayland";
-                XCURSOR_SIZE = (builtins.toString cfg.style.cursorSize);
                 SDL_VIDEODRIVER = "wayland,x11";
                 SDL_VIDEO_DRIVER = "wayland";
                 CLUTTER_BACKEND = "wayland";
@@ -58,7 +57,6 @@ in
                 // {
                     XDG_SESSION_DESKTOP = "Hyprland";
                     XDG_CURRENT_DESKTOP = "Hyprland";
-                    HYPRCURSOR_SIZE = cfg.style.cursorSize;
                     WLR_RENDERER_ALLOW_SOFTWARE = 1;
                     QT_WAYLAND_DISABLE_WINDOWDECORATION = 1;
                     __GL_MaxFramesAllowed = 1; # Fix frame timings & input lag

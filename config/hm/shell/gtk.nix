@@ -14,9 +14,6 @@ lib.mkIf (cfg.desktop.enable) {
 
     dconf.settings = with lib.gvariant; {
         "org/gnome/desktop/interface" = {
-            cursor-size = mkInt32 cfg.style.cursorSize;
-        };
-        "org/gnome/desktop/interface" = {
             color-scheme = if config.catppuccin.flavor == "latte" then "prefer-light" else "prefer-dark";
         };
     };

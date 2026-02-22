@@ -10,21 +10,6 @@ let
     theme = cfg.style.catppuccin;
 in
 lib.mkIf (cfg.desktop.enable) {
-    catppuccin.cursors = {
-        enable = true;
-        accent = theme.accent;
-        flavor = theme.flavor;
-    };
-
-    qt = {
-        enable = true;
-        style.name = "kvantum";
-        platformTheme.name = "kvantum";
-    };
-    catppuccin.kvantum = {
-        enable = true;
-        apply = true;
-    };
 
     services = {
         gnome-keyring.enable = true;

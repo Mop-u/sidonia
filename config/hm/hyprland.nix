@@ -93,7 +93,6 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.compositor == "hyprland")) {
 
     home.packages = [
         pkgs.hypridle
-        pkgs.hyprcursor
         pkgs.hyprshot
     ];
 
@@ -150,7 +149,6 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.compositor == "hyprland")) {
 
             cursor = {
                 no_hardware_cursors = 0;
-                enable_hyprcursor = true;
             };
 
             quirks.prefer_hdr = 1;

@@ -9,5 +9,8 @@
     imports = [
         ./legacy
         ./noctalia
+        ./cursor.nix
+        ./gtk.nix
+        ./qt.nix
     ];
 }
