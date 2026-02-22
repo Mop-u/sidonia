@@ -57,6 +57,7 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.shell == "noctalia")) {
                     id = "Bluetooth";
                     textColor = "none";
                 }
+                { id = "plugin:keybind-cheatsheet"; }
                 {
                     characterCount = 2;
                     colorizeIcons = false;

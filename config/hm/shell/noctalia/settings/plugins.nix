@@ -7,6 +7,7 @@
 }:
 let
     cfg = osConfig.sidonia;
+    sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
 in
 lib.mkIf (cfg.desktop.enable && (cfg.desktop.shell == "noctalia")) {
     programs.noctalia-shell = {
@@ -15,13 +16,21 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.shell == "noctalia")) {
                 {
                     enabled = true;
                     name = "Official Noctalia Plugins";
-                    url = "https://github.com/noctalia-dev/noctalia-plugins";
+                    url = sourceUrl;
                 }
             ];
             states = {
                 polkit-agent = {
                     enabled = lib.mkDefault true;
-                    sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
+                    inherit sourceUrl;
+                };
+                kaomoji-provider = {
+                    enabled = lib.mkDefault true;
+                    inherit sourceUrl;
+                };
+                keybind-cheatsheet = {
+                    enabled = lib.mkDefault true;
+                    inherit sourceUrl;
                 };
             };
             version = lib.mkDefault 2;
