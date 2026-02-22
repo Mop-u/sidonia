@@ -12,6 +12,9 @@ let
         );
 in
 [
+    inputs.moppkgs.overlays.default
+    inputs.noctalia.overlays.default
+    inputs.niri.overlays.niri
     (
         final: prev:
         let
@@ -51,8 +54,7 @@ in
             "Catppuccin color schemes" = inputs.stextCatppuccin;
             "Package Control" = inputs.stextPackageControl;
         };
+        quickshell-git = inputs.quickshell.packages.${getSystem prev}.default;
     })
     (overlayMissingFromFlake inputs.nixpkgs-xr) # use nixpkgs stable where possible
-    inputs.niri.overlays.niri
-    inputs.moppkgs.overlays.default
 ]

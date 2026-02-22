@@ -89,8 +89,6 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.compositor == "hyprland")) {
         }
     ];
 
-    services.hyprpolkitagent.enable = true;
-
     home.packages = [
         pkgs.hypridle
         pkgs.hyprshot

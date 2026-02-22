@@ -13,5 +13,8 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.shell == "noctalia")) {
         enable = true;
         systemd.enable = true;
         settings.settingsVersion = 53;
+        package = pkgs.noctalia-shell.override {
+            quickshell = pkgs.quickshell-git.unwrapped;
+        };
     };
 }

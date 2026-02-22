@@ -10,6 +10,7 @@
         ./hypridle.nix
         ./hyprland.nix
         ./hyprlock.nix
+        ./hyprpolkit.nix
         ./hyprshell.nix
         ./keybinds.nix
         ./waybar.nix
