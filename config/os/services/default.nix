@@ -9,7 +9,6 @@
         ./coreServices.nix
         ./displayManager.nix
         ./distributedBuilds.nix
-        ./goxlr.nix
         ./vr.nix
     ];
 }
