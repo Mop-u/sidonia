@@ -7,7 +7,6 @@
 }:
 let
     cfg = osConfig.sidonia;
-    theme = cfg.style.catppuccin;
 in
 lib.mkIf (cfg.desktop.enable) {
 
@@ -25,7 +24,31 @@ lib.mkIf (cfg.desktop.enable) {
     ];
 
     xdg = {
-        systemDirs.config = [ "${config.home.homeDirectory}/.config" ]; # this is missing by default, needed for ~/.config/autostart
+        autostart.enable = true;
+        portal = {
+            enable = true;
+            xdgOpenUsePortal = true;
+            extraPortals = [
+                pkgs.xdg-desktop-portal
+                pkgs.xdg-desktop-portal-gtk
+                pkgs.xdg-desktop-portal-gnome
+            ];
+            config = {
+                common = {
+                    default = [ "gtk" ];
+                    "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
+                };
+                hyprland = {
+                    default = [
+                        "hyprland"
+                        "gtk"
+                    ];
+                    "org.freedesktop.impl.portal.FileChooser" = [ "gtk" ];
+                    "org.freedesktop.impl.portal.OpenURI" = [ "gtk" ];
+                };
+            };
+        };
+
         mimeApps =
             let
                 browser = "floorp.desktop";

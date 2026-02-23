@@ -20,12 +20,6 @@ in
         fallback = lib.mkDefault true;
     };
 
-    catppuccin = {
-        enable = true;
-        accent = cfg.style.catppuccin.accent;
-        flavor = cfg.style.catppuccin.flavor;
-    };
-
     # Enable Graphics
     hardware.graphics = {
         enable = true;

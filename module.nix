@@ -91,59 +91,6 @@ in
             geolocation.enable = mkEnableOption "Turn on geolocation related services such as automatic timezone changing and geoclue";
             isLaptop = mkEnableOption "Apply laptop-specific tweaks";
             graphics.legacyGpu = mkEnableOption "Apply tweaks for OpenGL ES 2 device support";
-            style = {
-                # use `apply` attribute in mkOption to convert input options & avoid hacking nixpkgs lib
-                catppuccin = mkOption {
-                    description = "Catppuccin configuration";
-                    default = { };
-                    type = types.submodule {
-                        options = {
-                            flavor = mkOption {
-                                description = "Catppuccin theme flavor";
-                                type = types.enum [
-                                    "latte"
-                                    "frappe"
-                                    "macchiato"
-                                    "mocha"
-                                ];
-                                default = "frappe";
-                            };
-                            accent = mkOption {
-                                description = "Catppuccin theme accent";
-                                type = types.enum [
-                                    "rosewater"
-                                    "flamingo"
-                                    "pink"
-                                    "mauve"
-                                    "red"
-                                    "maroon"
-                                    "peach"
-                                    "yellow"
-                                    "green"
-                                    "teal"
-                                    "sky"
-                                    "sapphire"
-                                    "blue"
-                                    "lavender"
-                                ];
-                                default = "mauve";
-                            };
-                        };
-                    };
-                    apply =
-                        x:
-                        let
-                            theme = (import ./lib/catppuccin.nix).${x.flavor};
-                        in
-                        {
-                            inherit (x) flavor accent;
-                            color = theme // {
-                                accent = theme.${x.accent};
-                            };
-                        };
-                };
-            };
-
             text = {
                 comicCode = mkOption {
                     default = { };
@@ -238,7 +185,14 @@ in
                             options.catppuccin.lib.color = lib.mkOption {
                                 readOnly = true;
                                 type = lib.types.attrsOf lib.types.str;
-                                default = cfg.style.catppuccin.color;
+                                default =
+                                    let
+                                        theme = (import ./lib/catppuccin.nix).${config.catppuccin.flavor};
+                                    in
+                                    theme
+                                    // {
+                                        accent = theme.${config.catppuccin.accent};
+                                    };
                             };
                         }
                         ./homeModules
@@ -250,9 +204,7 @@ in
                             stateVersion = config.sidonia.stateVer;
                         };
                         catppuccin = {
-                            enable = true;
-                            accent = config.sidonia.style.catppuccin.accent;
-                            flavor = config.sidonia.style.catppuccin.flavor;
+                            inherit (config.catppuccin) enable accent flavor;
                         };
                     };
                 };

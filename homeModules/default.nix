@@ -7,6 +7,7 @@
 {
     imports = [
         ./sidonia
+        ./bemenu.nix
         ./discord.nix
         ./gtkwave.nix
         ./hyprland.nix

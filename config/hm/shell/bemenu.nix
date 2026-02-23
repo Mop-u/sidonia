@@ -11,37 +11,19 @@ in
 lib.mkIf (cfg.desktop.enable) {
     programs.bemenu = {
         enable = true;
-        settings =
-            with builtins.mapAttrs (n: v: "#${v}") config.catppuccin.lib.color;
-            let
-                inherit (cfg.desktop.window) decoration;
-                background = base + decoration.opacity.hex;
-            in
-            {
-                no-exec = true;
-                prompt = "open";
-                ignorecase = true;
-                list = "16 down";
-                wrap = true;
-                center = true;
-                no-overlap = true;
-                single-instance = true;
-                width-factor = 0.33;
-                border = decoration.borderWidth;
-                border-radius = decoration.rounding;
-                tb = background;
-                fb = background;
-                nb = background;
-                ab = background;
-                hb = background;
-                tf = accent;
-                ff = text;
-                nf = text;
-                af = text;
-                hf = accent;
-                bdr = accent;
-                fn = "monospace";
-            };
+        settings = with cfg.desktop.window.decoration; {
+            no-exec = true;
+            prompt = "open";
+            ignorecase = true;
+            list = "16 down";
+            wrap = true;
+            center = true;
+            no-overlap = true;
+            single-instance = true;
+            width-factor = 0.33;
+            border = borderWidth;
+            border-radius = rounding;
+        };
     };
     wayland.desktopManager.sidonia.keybinds = [
         {

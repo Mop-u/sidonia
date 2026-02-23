@@ -17,30 +17,11 @@ lib.mkIf (cfg.desktop.enable) {
         polkit.enable = true;
     };
 
-    xdg = {
-        autostart.enable = true;
-        portal = {
-            extraPortals = [
-                pkgs.xdg-desktop-portal
-                pkgs.xdg-desktop-portal-gtk
-                pkgs.xdg-desktop-portal-gnome
-            ];
-            config = {
-                common = {
-                    default = [ "gtk" ];
-                    "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
-                };
-                hyprland = {
-                    default = [
-                        "hyprland"
-                        "gtk"
-                    ];
-                    "org.freedesktop.impl.portal.FileChooser" = [ "gtk" ];
-                    "org.freedesktop.impl.portal.OpenURI" = [ "gtk" ];
-                };
-            };
-        };
-    };
+    # https://nix-community.github.io/home-manager/options.xhtml#opt-xdg.portal.enable
+    environment.pathsToLink = [
+        "/share/xdg-desktop-portal"
+        "/share/applications"
+    ];
 
     services = {
         logind.settings.Login = {

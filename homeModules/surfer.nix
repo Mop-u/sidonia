@@ -125,16 +125,14 @@ in
     };
     config = lib.mkIf config.programs.surfer.enable {
         home.packages = [ pkgs.surfer ];
-        xdg.configFile."surfer/config.toml" = {
-            enable = config.programs.surfer.settings != null;
-            source = tomlFormat.generate "config.toml" config.programs.surfer.settings;
-        };
+        xdg.configFile."surfer/config.toml".source = lib.mkIf (config.programs.surfer.settings != null) (
+            tomlFormat.generate "config.toml" config.programs.surfer.settings
+        );
         programs.surfer.settings = lib.mkIf config.catppuccin.surfer.enable {
-            theme = "catppuccin";
+            theme = lib.mkDefault "catppuccin";
         };
-        xdg.configFile."surfer/themes/catppuccin.toml" = {
-            enable = config.catppuccin.surfer.enable;
-            source = tomlFormat.generate "catppuccin.toml" surferTheme;
-        };
+        xdg.configFile."surfer/themes/catppuccin.toml".source = lib.mkIf config.catppuccin.surfer.enable (
+            tomlFormat.generate "catppuccin.toml" surferTheme
+        );
     };
 }

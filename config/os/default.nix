@@ -10,10 +10,10 @@ in
 {
     imports = [
         ./desktop
-        ./hyprland
         ./programs
         ./services
         ./tweaks
         ./configuration.nix
+        ./hyprland.nix
     ];
 }

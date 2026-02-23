@@ -7,13 +7,12 @@
 }:
 let
     cfg = osConfig.sidonia;
-    theme = cfg.style.catppuccin;
 in
 
 lib.mkIf (cfg.desktop.enable) (
     lib.mkMerge [
         {
-            catppuccin.cursors.enable = true;
+            catppuccin.cursors.enable = lib.mkDefault config.catppuccin.enable;
             home.pointerCursor = {
                 enable = true;
                 size = lib.mkDefault 30;

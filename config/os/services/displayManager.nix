@@ -6,7 +6,6 @@
 }:
 let
     cfg = config.sidonia;
-    theme = cfg.style.catppuccin;
 in
 {
     config = lib.mkIf cfg.desktop.enable (

@@ -17,7 +17,6 @@ lib.mkIf (cfg.desktop.enable) {
             color-scheme = if config.catppuccin.flavor == "latte" then "prefer-light" else "prefer-dark";
         };
     };
-    catppuccin.gtk.icon.enable = true;
     gtk = {
         enable = true;
         theme =
