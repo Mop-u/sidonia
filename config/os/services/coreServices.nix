@@ -42,10 +42,6 @@ lib.mkIf (cfg.desktop.enable) {
         };
     };
 
-    environment.sessionVariables = {
-        XDG_CONFIG_DIRS = [ "$HOME/.config" ]; # this is missing by default, needed for ~/.config/autostart
-    };
-
     services = {
         logind.settings.Login = {
             HandleLidSwitch = "suspend-then-hibernate";
