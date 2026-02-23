@@ -7,9 +7,7 @@
 }:
 {
     imports = [
-        ./compositor
-        ./programs
-        ./shell
-        ./services.nix
+        ./hyprland.nix
+        ./niri.nix
     ];
 }

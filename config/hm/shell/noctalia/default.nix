@@ -8,9 +8,8 @@
 {
     imports = [
         ./settings
-        ./hyprland.nix
+        ./compositorOverrides.nix
         ./keybinds.nix
-        ./niri.nix
         ./noctalia.nix
     ];
 }
