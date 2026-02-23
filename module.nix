@@ -202,10 +202,9 @@ in
                 shell = mkOption {
                     description = "What desktop shell to use";
                     type = types.enum [
-                        "legacy"
                         "noctalia"
                     ];
-                    default = "legacy";
+                    default = "noctalia";
                 };
             };
         };

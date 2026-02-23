@@ -7,8 +7,8 @@
 }:
 {
     imports = [
-        ./legacy
         ./noctalia
+        ./bemenu.nix
         ./cursor.nix
         ./gtk.nix
         ./qt.nix
