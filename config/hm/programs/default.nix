@@ -12,6 +12,7 @@
         ./foot.nix
         ./gtkwave.nix
         ./missioncenter.nix
+        ./nemo.nix
         ./sublime.nix
         ./vscodium.nix
         ./zsh.nix

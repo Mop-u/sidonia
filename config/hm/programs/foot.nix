@@ -13,14 +13,14 @@ lib.mkIf (cfg.desktop.enable) {
         enable = true;
         settings.default = [ "foot.desktop" ];
     };
-    dconf.settings = with lib.gvariant; {
+    dconf.settings = {
         "org/cinnamon/desktop/default-applications/terminal" = {
-            exec = mkValue "foot";
-            exec-arg = mkValue "-e";
+            exec = lib.gvariant.mkValue (lib.getExe pkgs.foot);
+            exec-arg = lib.gvariant.mkValue "-e";
         };
         "org/gnome/desktop/applications/terminal" = {
-            exec = mkValue "foot";
-            exec-arg = mkValue "-e";
+            exec = lib.gvariant.mkValue (lib.getExe pkgs.foot);
+            exec-arg = lib.gvariant.mkValue "-e";
         };
     };
     programs.foot = {
