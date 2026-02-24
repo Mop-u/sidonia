@@ -46,18 +46,35 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.shell == "noctalia")) {
                     useDistroLogo = true;
                 }
                 {
-                    displayMode = "onhover";
-                    iconColor = "none";
-                    id = "Network";
-                    textColor = "none";
+                    clockColor = "none";
+                    customFont = "";
+                    formatHorizontal = "HH:mm";
+                    formatVertical = "HH mm";
+                    id = "Clock";
+                    tooltipFormat = "HH:mm ddd; MMM dd";
+                    useCustomFont = false;
                 }
                 {
-                    displayMode = "onhover";
+                    compactMode = false;
+                    diskPath = "/";
                     iconColor = "none";
-                    id = "Bluetooth";
+                    id = "SystemMonitor";
+                    showCpuFreq = false;
+                    showCpuTemp = true;
+                    showCpuUsage = false;
+                    showDiskAvailable = false;
+                    showDiskUsage = false;
+                    showDiskUsageAsPercent = false;
+                    showGpuTemp = true;
+                    showLoadAverage = false;
+                    showMemoryAsPercent = true;
+                    showMemoryUsage = false;
+                    showNetworkStats = true;
+                    showSwapUsage = false;
                     textColor = "none";
+                    useMonospaceFont = true;
+                    usePadding = true;
                 }
-                { id = "plugin:keybind-cheatsheet"; }
                 {
                     characterCount = 2;
                     colorizeIcons = false;
@@ -101,13 +118,16 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.shell == "noctalia")) {
                 })
                 ++ [
                     {
-                        clockColor = "none";
-                        customFont = "";
-                        formatHorizontal = "HH:mm";
-                        formatVertical = "HH mm";
-                        id = "Clock";
-                        tooltipFormat = "HH:mm ddd, MMM dd";
-                        useCustomFont = false;
+                        displayMode = "onhover";
+                        iconColor = "none";
+                        id = "Network";
+                        textColor = "none";
+                    }
+                    {
+                        displayMode = "onhover";
+                        iconColor = "none";
+                        id = "Bluetooth";
+                        textColor = "none";
                     }
                     {
                         blacklist = [ ];
@@ -126,6 +146,7 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.shell == "noctalia")) {
                         showUnreadBadge = true;
                         unreadBadgeColor = "primary";
                     }
+                    { id = "plugin:keybind-cheatsheet"; }
                 ];
         };
     };
