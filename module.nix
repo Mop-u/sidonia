@@ -71,23 +71,6 @@ in
                 description = "Username of main user";
                 type = types.str;
             };
-            stateVer = mkOption {
-                description = "NixOS state version";
-                type = types.str;
-            };
-            system = mkOption {
-                description = "System architecture";
-                type = types.enum [
-                    "x86_64-linux"
-                    "x86_64-darwin"
-                    "i686-linux"
-                    "aarch64-linux"
-                    "aarch64-darwin"
-                    "armv6l-linux"
-                    "armv7l-linux"
-                ];
-                default = "x86_64-linux";
-            };
             geolocation.enable = mkEnableOption "Turn on geolocation related services such as automatic timezone changing and geoclue";
             isLaptop = mkEnableOption "Apply laptop-specific tweaks";
             graphics.legacyGpu = mkEnableOption "Apply tweaks for OpenGL ES 2 device support";
@@ -201,7 +184,7 @@ in
                         home = {
                             username = config.sidonia.userName;
                             homeDirectory = "/home/${config.sidonia.userName}";
-                            stateVersion = config.sidonia.stateVer;
+                            stateVersion = lib.mkDefault config.system.stateVersion;
                         };
                         catppuccin = {
                             inherit (config.catppuccin) enable accent flavor;
