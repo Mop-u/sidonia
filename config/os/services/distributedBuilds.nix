@@ -68,6 +68,7 @@ in
                         remote:
                         let
                             remoteHost = remote.config.sidonia.services.distributedBuilds.host;
+                            remoteFeatures = remote.config.nix.settings.system-features;
                             builderName = "${remoteHost.user}_at_${remote.config.networking.hostName}";
                         in
                         lib.mkIf remoteHost.enable {
@@ -102,12 +103,7 @@ in
                                         protocol = "ssh-ng";
                                         maxJobs = remoteHost.maxJobs;
                                         speedFactor = 2;
-                                        supportedFeatures = [
-                                            "nixos-test"
-                                            "benchmark"
-                                            "big-parallel"
-                                            "kvm"
-                                        ];
+                                        supportedFeatures = remoteFeatures;
                                     }
                                 ];
                             };
