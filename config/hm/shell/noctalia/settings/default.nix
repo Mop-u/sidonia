@@ -23,7 +23,7 @@
         ./nightLight.nix
         ./notifications.nix
         ./osd.nix
-        ./plugins.nix
+        ./plugins
         ./sessionMenu.nix
         ./systemMonitor.nix
         ./templates.nix

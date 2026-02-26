@@ -113,7 +113,7 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.shell == "noctalia")) {
                     alwaysShowPercentage = false;
                     warningThreshold = 30;
                 })
-                ++ (lib.optional (osConfig.programs.kdeconnect.enable || config.services.kdeconnect.enable) {
+                ++ (lib.optional (config.programs.noctalia-shell.plugins.states.kde-connect.enabled) {
                     id = "plugin:kde-connect";
                 })
                 ++ [

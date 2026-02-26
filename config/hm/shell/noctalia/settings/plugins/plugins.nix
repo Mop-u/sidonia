@@ -10,12 +10,6 @@ let
     sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
 in
 lib.mkIf (cfg.desktop.enable && (cfg.desktop.shell == "noctalia")) {
-    home.packages = (
-        lib.optional (
-            osConfig.programs.kdeconnect.enable || config.services.kdeconnect.enable
-        ) pkgs.kdePackages.qttools
-    );
-    services.kdeconnect.enable = lib.mkDefault osConfig.programs.kdeconnect.enable;
     programs.noctalia-shell = {
         plugins = {
             sources = [
@@ -36,10 +30,6 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.shell == "noctalia")) {
                 };
                 keybind-cheatsheet = {
                     enabled = lib.mkDefault true;
-                    inherit sourceUrl;
-                };
-                kde-connect = {
-                    enabled = lib.mkDefault (osConfig.programs.kdeconnect.enable || config.services.kdeconnect.enable);
                     inherit sourceUrl;
                 };
             };
