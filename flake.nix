@@ -6,18 +6,13 @@
         nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
         nixpkgs-xr.url = "github:nix-community/nixpkgs-xr";
         moppkgs.url = "github:Mop-u/moppkgs";
+        noctalia.url = "github:noctalia-dev/noctalia-shell";
 
         home-manager = {
             url = "github:nix-community/home-manager/release-25.11";
             inputs.nixpkgs.follows = "nixpkgs";
         };
 
-        noctalia = {
-            url = "github:noctalia-dev/noctalia-shell";
-            inputs.nixpkgs.follows = "unstable";
-        };
-
-        quickshell.url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
 
         catppuccin = {
             url = "github:catppuccin/nix/release-25.11";
