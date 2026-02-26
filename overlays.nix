@@ -59,10 +59,6 @@ in
             hyprland
             xdg-desktop-portal-hyprland
             ;
-        inherit (inputs.hyprshell.packages.${getSystem prev})
-            hyprshell-nixpkgs
-            hyprshell
-            ;
         scopebuddy = inputs.scopebuddy.packages.${getSystem prev}.default;
         sublimePackages = {
             "Catppuccin color schemes" = inputs.stextCatppuccin;

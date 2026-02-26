@@ -158,7 +158,6 @@ in
                     sharedModules = [
                         inputs.catppuccin.homeModules.catppuccin
                         inputs.niri.homeModules.niri
-                        inputs.hyprshell.homeModules.hyprshell
                         inputs.noctalia.homeModules.default
                         {
                             config.nixpkgs = {
