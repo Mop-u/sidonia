@@ -46,7 +46,25 @@ lib.mkIf (cfg.desktop.enable && cfg.desktop.shell == "noctalia") (
         })
         (lib.mkIf (cfg.desktop.compositor == "niri") {
             # https://docs.noctalia.dev/getting-started/compositor-settings/niri/
+            programs.niri.settings = {
+                window-rules = [
+                    {
+                        geometry-corner-radius = 20;
+                        clip-to-geometry = true;
+                    }
+                ];
+                debug = {
+                    honor-xdg-activation-with-invalid-serial = [ ];
+                };
 
+                # for blurred overview wallpaper
+                layer-rules = [
+                    {
+                        matches = [ { namespace = "^noctalia-overview"; } ];
+                        place-within-backdrop = true;
+                    }
+                ];
+            };
         })
     ]
 )
