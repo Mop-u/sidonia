@@ -11,7 +11,6 @@ in
 lib.mkIf (cfg.desktop.enable && (cfg.desktop.shell == "noctalia")) {
     programs.noctalia-shell = {
         enable = true;
-        systemd.enable = true;
         settings.settingsVersion = 53;
     };
 }

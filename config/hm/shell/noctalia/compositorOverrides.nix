@@ -13,6 +13,7 @@ lib.mkIf (cfg.desktop.enable && cfg.desktop.shell == "noctalia") (
         (lib.mkIf (cfg.desktop.compositor == "hyprland") {
             # https://docs.noctalia.dev/getting-started/compositor-settings/hyprland/
             wayland.windowManager.hyprland.settings = {
+                exec-once = [ "noctalia-shell" ];
                 general = {
                     gaps_in = 5;
                     gaps_out = 10;
@@ -47,6 +48,7 @@ lib.mkIf (cfg.desktop.enable && cfg.desktop.shell == "noctalia") (
         (lib.mkIf (cfg.desktop.compositor == "niri") {
             # https://docs.noctalia.dev/getting-started/compositor-settings/niri/
             programs.niri.settings = {
+                spawn-at-startup = [ { command = [ "noctalia-shell" ]; } ];
                 window-rules = [
                     {
                         geometry-corner-radius = 20;
