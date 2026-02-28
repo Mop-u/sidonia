@@ -7,6 +7,7 @@
         nixpkgs-xr.url = "github:nix-community/nixpkgs-xr";
         moppkgs.url = "github:Mop-u/moppkgs";
         noctalia.url = "github:noctalia-dev/noctalia-shell";
+        dw-proton.url = "github:imaviso/dwproton-flake";
 
         home-manager = {
             url = "github:nix-community/home-manager/release-25.11";

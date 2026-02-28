@@ -19,6 +19,7 @@ lib.mkIf (cfg.desktop.enable) {
             localNetworkGameTransfers.openFirewall = lib.mkDefault true;
             extest.enable = lib.mkDefault true;
             extraCompatPackages = [
+                pkgs.dwproton
                 pkgs.proton-ge-bin
                 pkgs.steam-play-none
             ];

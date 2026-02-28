@@ -64,7 +64,7 @@ in
             "Catppuccin color schemes" = inputs.stextCatppuccin;
             "Package Control" = inputs.stextPackageControl;
         };
-        quickshell-git = inputs.quickshell.packages.${getSystem prev}.default;
+        dwproton = inputs.dw-proton.packages.${getSystem prev}.default;
     })
     (overlayMissingFromFlake inputs.nixpkgs-xr) # use nixpkgs stable where possible
 ]
