@@ -7,6 +7,12 @@
 }:
 let
     cfg = osConfig.sidonia;
+    capitalize =
+        x:
+        let
+            chars = lib.stringToCharacters (lib.toLower x);
+        in
+        lib.concatStrings ([ (lib.toUpper (builtins.head chars)) ] ++ (builtins.tail chars));
 in
 {
     options.wayland.desktopManager.sidonia.keybinds = lib.mkOption {
@@ -22,16 +28,17 @@ in
                         description = "Modifier keys";
                         type =
                             with lib.types;
-                            listOf (
-                                coercedTo str (lib.toLower) (enum [
-                                    "super"
-                                    "shift"
-                                    "ctrl"
-                                    "alt"
-                                    ""
-                                ])
+                            coercedTo str (x: [ x ]) (
+                                listOf (
+                                    coercedTo str (capitalize) (enum [
+                                        "Super"
+                                        "Shift"
+                                        "Ctrl"
+                                        "Alt"
+                                    ])
+                                )
                             );
-                        default = [ "" ];
+                        default = [ ];
                     };
                     key = lib.mkOption {
                         description = "Key";

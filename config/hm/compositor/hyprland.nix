@@ -218,20 +218,26 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.compositor == "hyprland")) {
                 ++ [
                     "SUPERSHIFT, C,         killactive, #\"Close Active Window\""
                     "SUPERSHIFT, Q,         exec, uwsm stop #\"Exit Hyprland Session\""
+
                     "SUPER,      V,         togglefloating, #\"Toggle Window Floating\""
                     "SUPER,      F,         fullscreen, #\"Toggle Fullscreen\""
+
                     "SUPER,      H,         movefocus, l #\"Move Focus Left\""
                     "SUPER,      J,         movefocus, d #\"Move Focus Down\""
                     "SUPER,      K,         movefocus, u #\"Move Focus Up\""
                     "SUPER,      L,         movefocus, r #\"Move Focus Right\""
+
                     "SUPERSHIFT, H,         swapwindow, l #\"Swap Window Left\""
                     "SUPERSHIFT, J,         swapwindow, d #\"Swap Window Down\""
                     "SUPERSHIFT, K,         swapwindow, u #\"Swap Window Up\""
                     "SUPERSHIFT, L,         swapwindow, r #\"Swap Window Right\""
+
                     "SUPER,      mouse_down,workspace, e+1 #\"Focus Next Workspace\""
                     "SUPER,      mouse_up,  workspace, e-1 #\"Focus Previous Workspace\""
+
                     "SUPER,      S,         togglespecialworkspace, magic #\"Toggle Special Workspace\""
                     "SUPERSHIFT, S,         movetoworkspace,        special:magic #\"Move Window To Special Workspace\""
+
                     ",           PRINT,     exec, hyprshot -m output -m active --clipboard-only #\"Screenshot Active Monitor\""
                     "SUPER,      PRINT,     exec, hyprshot -m window -m active --clipboard-only #\"Screenshot Active Window\""
                     "SUPERSHIFT, PRINT,     exec, hyprshot -m region --clipboard-only #\"Screenshot Region\""
@@ -240,11 +246,8 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.compositor == "hyprland")) {
                     builtins.genList (
                         x:
                         let
-                            ws =
-                                let
-                                    c = (x + 1) / 10;
-                                in
-                                builtins.toString (x + 1 - (c * 10));
+                            c = (x + 1) / 10;
+                            ws = builtins.toString (x + 1 - (c * 10));
                         in
                         [
                             "SUPER,          ${ws},workspace,             ${builtins.toString (x + 1)} #\"Focus Workspace ${ws}\""
