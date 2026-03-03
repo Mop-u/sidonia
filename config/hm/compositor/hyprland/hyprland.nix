@@ -7,79 +7,6 @@
 }:
 let
     cfg = osConfig.sidonia;
-    monitors =
-        builtins.map
-            (
-                {
-                    name ? "",
-                    resolution ? "highres",
-                    position ? "auto",
-                    scale ? null,
-                    bitdepth ? null,
-                    hdr ? false,
-                    extraArgs ? null,
-                    ...
-                }:
-                let
-                    mode =
-                        if builtins.isString resolution then
-                            resolution
-                        else
-                            with resolution;
-                            (lib.concatStringsSep "@" (
-                                [
-                                    (lib.concatStringsSep "x" (
-                                        builtins.map (builtins.toString) [
-                                            x
-                                            y
-                                        ]
-                                    ))
-                                ]
-                                ++ (lib.optional (hz != null) hz)
-                            ));
-                    v1Args = lib.concatStringsSep ", " (
-                        [
-                            mode
-                            position
-                            (if (scale == null) then "auto" else lib.strings.floatToString scale)
-                        ]
-                        ++ (lib.optional (bitdepth != null) "bitdepth,${builtins.toString bitdepth}")
-                        ++ (lib.optional hdr "cm,hdr")
-                        ++ (lib.optional (extraArgs != null) (
-                            lib.concatStringsSep "," (lib.mapAttrsToList (n: v: "${n},${v}") extraArgs)
-                        ))
-                    );
-                in
-                {
-                    inherit name;
-                    disable = "${name},disable";
-                    v1 = "${name},${v1Args}";
-                    v2 = {
-                        output = name;
-                        inherit mode;
-                    }
-                    // (lib.optionalAttrs (scale != null) { inherit scale; })
-                    // (lib.optionalAttrs (position != null) { inherit position; })
-                    // (lib.optionalAttrs (bitdepth != null) { bitdepth = builtins.toString bitdepth; })
-                    // (lib.optionalAttrs hdr { cm = "hdr"; })
-                    // (lib.optionalAttrs (extraArgs != null) extraArgs);
-                }
-            )
-            (
-                cfg.desktop.monitors
-                ++ [
-                    {
-                        # Make sure to automatically find any unconfigured monitors
-                        name = "";
-                        resolution = "highres";
-                        position = "auto";
-                        scale = null;
-                        bitdepth = null;
-                        hdr = false;
-                        extraArgs = null;
-                    }
-                ]
-            );
 in
 lib.mkIf (cfg.desktop.enable && (cfg.desktop.compositor == "hyprland")) {
     assertions = [
@@ -107,7 +34,14 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.compositor == "hyprland")) {
         systemd.enableXdgAutostart = false;
         xwayland.enable = true;
         settings = {
-            monitorv2 = builtins.map (mon: mon.v2) monitors;
+            monitorv2 = [
+                {
+                    output = "";
+                    mode = "highres";
+                    position = "auto";
+                    scale = "auto";
+                }
+            ];
 
             xwayland = {
                 force_zero_scaling = true;

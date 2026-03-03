@@ -7,7 +7,6 @@
 {
     imports = [
         ./environment.nix
-        ./monitors.nix
         ./window.nix
     ];
 }
