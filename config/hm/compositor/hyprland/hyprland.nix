@@ -198,9 +198,6 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.compositor == "hyprland")) {
 
                 "match:title Select Folder, size ${cfg.desktop.window.decoration.float.wh}, float on"
             ];
-            bindl =
-                (lib.optional cfg.isLaptop ", switch:on:Lid Switch, exec, hyprctl keyword monitor \"${(builtins.head monitors).disable}\"")
-                ++ (lib.optional cfg.isLaptop ", switch:off:Lid Switch, exec, hyprctl keyword monitor \"${(builtins.head monitors).v1}\"");
         };
     };
 }
