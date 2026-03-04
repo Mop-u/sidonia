@@ -59,11 +59,15 @@ in
             hyprland
             xdg-desktop-portal-hyprland
             ;
+        inherit (inputs.split-monitor-workspaces.packages.${getSystem prev}) split-monitor-workspaces;
+
         scopebuddy = inputs.scopebuddy.packages.${getSystem prev}.default;
+
         sublimePackages = {
             "Catppuccin color schemes" = inputs.stextCatppuccin;
             "Package Control" = inputs.stextPackageControl;
         };
+
         dwproton = inputs.dw-proton.packages.${getSystem prev}.default;
     })
     (overlayMissingFromFlake inputs.nixpkgs-xr) # use nixpkgs stable where possible

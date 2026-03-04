@@ -6,7 +6,7 @@
     ...
 }:
 let
-    cfg = osConfig.sidonia;
+    cfg = config.wayland.desktopManager.sidonia;
     capitalize =
         x:
         let
@@ -47,9 +47,35 @@ in
                     exec = lib.mkOption {
                         description = "Command to execute";
                         type = lib.types.str;
+                        default = null;
                     };
                 };
             }
         );
     };
+    config =
+        let
+            execs = builtins.filter (x: x.exec != null) cfg.keybinds;
+        in
+        lib.mkIf osConfig.sidonia.desktop.enable (
+            lib.mkMerge [
+                (lib.mkIf (osConfig.sidonia.desktop.compositor == "hyprland") {
+                    wayland.windowManager.hyprland.settings.bind = (
+                        builtins.map (
+                            x: "${lib.concatStrings x.mod}, ${x.key}, exec, uwsm app -- ${x.exec} #\"${x.name}\""
+                        ) execs
+                    );
+                })
+                (lib.mkIf (osConfig.sidonia.desktop.compositor == "niri") {
+                    programs.niri.settings.binds = lib.mkMerge (
+                        builtins.map (x: {
+                            "${lib.concatStringsSep "+" (x.mod ++ [ x.key ])}" = {
+                                hotkey-overlay.title = x.name;
+                                action.spawn = "${pkgs.writeScript x.name x.exec}";
+                            };
+                        }) execs
+                    );
+                })
+            ]
+        );
 }

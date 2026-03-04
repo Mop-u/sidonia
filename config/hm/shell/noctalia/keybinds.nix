@@ -16,19 +16,19 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.shell == "noctalia")) {
         [
             {
                 name = "Toggle Launcher";
-                mod = [ "super" ];
+                mod = "super";
                 key = "p";
                 exec = noctalia "launcher toggle";
             }
             {
                 name = "Toggle Session Menu";
-                mod = [ "super" ];
-                key = "m";
+                mod = "super";
+                key = "q";
                 exec = noctalia "sessionMenu toggle";
             }
             {
                 name = "Lock Screen";
-                mod = [ "super" ];
+                mod = "super";
                 key = "x";
                 exec = noctalia "lockScreen lock";
             }

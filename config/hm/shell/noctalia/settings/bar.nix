@@ -76,10 +76,10 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.shell == "noctalia")) {
                     usePadding = true;
                 }
                 {
-                    characterCount = 2;
+                    characterCount = 1;
                     colorizeIcons = false;
                     emptyColor = "secondary";
-                    enableScrollWheel = true;
+                    enableScrollWheel = false;
                     focusedColor = "primary";
                     followFocusedScreen = false;
                     groupedBorderOpacity = 1;

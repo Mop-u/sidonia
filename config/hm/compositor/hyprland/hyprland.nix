@@ -33,6 +33,7 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.compositor == "hyprland")) {
         systemd.enable = false;
         systemd.enableXdgAutostart = false;
         xwayland.enable = true;
+        plugins = [ pkgs.split-monitor-workspaces ];
         settings = {
             monitorv2 = [
                 {
@@ -58,7 +59,7 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.compositor == "hyprland")) {
                     "border, 1, 10, default"
                     "borderangle, 1, 8, default"
                     "fade, 1, 7, default"
-                    "workspaces, 1, 6, default"
+                    "workspaces, 1, 6, default, slidevert"
                 ];
             };
 
@@ -71,12 +72,32 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.compositor == "hyprland")) {
                 border_size = cfg.desktop.window.decoration.borderWidth;
                 resize_on_border = false;
                 allow_tearing = true;
-                layout = "dwindle";
+                layout = "scrolling";
             };
 
             dwindle = {
                 pseudotile = true;
                 smart_split = true;
+            };
+
+            layout.single_window_aspect_ratio = "4 3";
+
+            scrolling = {
+                fullscreen_on_one_column = true;
+                column_width = 0.5;
+                focus_fit_method = 1; # 0 = center, 1 = fit
+                follow_focus = true;
+                follow_min_visible = 0.4;
+                explicit_column_widths = "0.333, 0.5, 0.667, 1.0"; # for colresize +conf/-conf
+                direction = "right";
+            };
+
+            plugin.split-monitor-workspaces = {
+                # https://github.com/zjeffer/split-monitor-workspaces
+                count = 10;
+                enable_wrapping = 1;
+                enable_persistent_workspaces = 0;
+                keep_focused = 1;
             };
 
             cursor = {

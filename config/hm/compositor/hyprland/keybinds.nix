@@ -7,69 +7,87 @@
 }:
 let
     cfg = osConfig.sidonia;
+    mouse = builtins.mapAttrs (n: v: "mouse:${builtins.toString v}") {
+        left = 272;
+        right = 273;
+        middle = 274;
+        side = 275;
+        extra = 276;
+    };
 in
 lib.mkIf (cfg.desktop.enable && (cfg.desktop.compositor == "hyprland")) {
     wayland.windowManager.hyprland.settings = {
-        gesture = [ "3, horizontal, workspace" ];
-        binds = {
-            scroll_event_delay = 100;
-        };
-        binde = [
-            "SUPERALT, H, resizeactive, -10    0" # resize left
-            "SUPERALT, J, resizeactive,   0   10" # resize down
-            "SUPERALT, K, resizeactive,   0  -10" # resize up
-            "SUPERALT, L, resizeactive,  10    0" # resize right
+        gesture = [
+            "3, up, dispatcher, split-cycleworkspaces, next"
+            "3, down, dispatcher, split-cycleworkspaces, prev"
+            "3, right, dispatcher, layoutmsg, move +col"
+            "3, left, dispatcher, layoutmsg, move -col"
         ];
-        bind =
-            (builtins.map (
-                x: "${lib.concatStrings x.mod}, ${x.key}, exec, uwsm app -- ${x.exec} #\"${x.name}\""
-            ) config.wayland.desktopManager.sidonia.keybinds)
-            ++ [
-                "SUPERSHIFT, C,         killactive, #\"Close Active Window\""
-                "SUPERSHIFT, Q,         exec, uwsm stop #\"Exit Hyprland Session\""
+        binds.scroll_event_delay = 10;
+        binde = [
+            "Super Alt, J, resizeactive,   0   10" # resize down
+            "Super Alt, K, resizeactive,   0  -10" # resize up
+        ];
+        bind = [
+            "Super Shift, C,         killactive, #\"Close Active Window\""
+            "Super, ${mouse.middle}, killactive, #\"Close Active Window\""
+            "Super Shift, Q,         exec, uwsm stop #\"Exit Hyprland Session\""
 
-                "SUPER,      V,         togglefloating, #\"Toggle Window Floating\""
-                "SUPER,      F,         fullscreen, #\"Toggle Fullscreen\""
+            "Super,       V,         togglefloating, #\"Toggle Window Floating\""
+            "Super,       F,         fullscreen, #\"Toggle Fullscreen\""
+            "Super,       M,         layoutmsg, fit visible #\"Fit Visible Windokey to Monitor\""
 
-                "SUPER,      H,         movefocus, l #\"Move Focus Left\""
-                "SUPER,      J,         movefocus, d #\"Move Focus Down\""
-                "SUPER,      K,         movefocus, u #\"Move Focus Up\""
-                "SUPER,      L,         movefocus, r #\"Move Focus Right\""
+            "Super,       H,         layoutmsg, focus l #\"Move Focus Left\""
+            "Super,       L,         layoutmsg, focus r #\"Move Focus Right\""
+            "Super Shift, H,         layoutmsg, swapcol l #\"Swap Column Left\""
+            "Super Shift, L,         layoutmsg, swapcol r #\"Swap Column Right\""
+            "Super Alt,   H,         layoutmsg, colresize -conf #\"Decrease Column Width\""
+            "Super Alt,   L,         layoutmsg, colresize +conf #\"Increase Column Width\""
 
-                "SUPERSHIFT, H,         swapwindow, l #\"Swap Window Left\""
-                "SUPERSHIFT, J,         swapwindow, d #\"Swap Window Down\""
-                "SUPERSHIFT, K,         swapwindow, u #\"Swap Window Up\""
-                "SUPERSHIFT, L,         swapwindow, r #\"Swap Window Right\""
+            "Super,       J,         layoutmsg, focus d #\"Move Focus Down\""
+            "Super,       K,         layoutmsg, focus u #\"Move Focus Up\""
+            "Super Shift, J,         swapwindow, d #\"Swap Window Down\""
+            "Super Shift, K,         swapwindow, u #\"Swap Window Up\""
 
-                "SUPER,      mouse_down,workspace, e+1 #\"Focus Next Workspace\""
-                "SUPER,      mouse_up,  workspace, e-1 #\"Focus Previous Workspace\""
+            "Super, mouse_down,      layoutmsg, move -col #\"Scroll Layout Right\""
+            "Super, mouse_up,        layoutmsg, move +col #\"Scroll Layout Left\""
 
-                "SUPER,      S,         togglespecialworkspace, magic #\"Toggle Special Workspace\""
-                "SUPERSHIFT, S,         movetoworkspace,        special:magic #\"Move Window To Special Workspace\""
+            "Super Shift, mouse_down, split-cycleworkspaces, prev #\"Cycle to Next Workspace\""
+            "Super Shift, mouse_up,   split-cycleworkspaces, next #\"Cycle to Prev Workspace\""
 
-                ",           PRINT,     exec, hyprshot -m output -m active --clipboard-only #\"Screenshot Active Monitor\""
-                "SUPER,      PRINT,     exec, hyprshot -m window -m active --clipboard-only #\"Screenshot Active Window\""
-                "SUPERSHIFT, PRINT,     exec, hyprshot -m region --clipboard-only #\"Screenshot Region\""
-            ]
-            ++ (builtins.concatLists (
-                builtins.genList (
-                    x:
-                    let
-                        c = (x + 1) / 10;
-                        ws = builtins.toString (x + 1 - (c * 10));
-                    in
-                    [
-                        "SUPER,          ${ws},workspace,             ${builtins.toString (x + 1)} #\"Focus Workspace ${ws}\""
-                        "SUPERSHIFT,     ${ws},movetoworkspace,       ${builtins.toString (x + 1)} #\"Move Window To Workspace ${ws} And Focus\""
-                        "SUPERCONTROL,   ${ws},movetoworkspacesilent, ${builtins.toString (x + 1)} #\"Move Window To Workspace ${ws}\""
-                        "SUPERCONTROLALT,${ws},moveworkspacetomonitor,${builtins.toString (x + 1)} current #\"Move Workspace To Focused Monitor\""
-                        "SUPERCONTROLALT,${ws},workspace,             ${builtins.toString (x + 1)}"
-                    ]
-                ) 10
-            ));
+            "Super, G, split-grabroguewindows #\"Grab Orphaned Windows (e.g. From Disconnected Monitor)\""
+
+            "Super,       S,         togglespecialworkspace, magic #\"Toggle Special Workspace\""
+            "Super Shift, S,         movetoworkspace,        special:magic #\"Move Window To Special Workspace\""
+
+            ",            PRINT, exec, hyprshot -m output -m active --clipboard-only #\"Screenshot Active Monitor\""
+            "Super,       PRINT, exec, hyprshot -m window -m active --clipboard-only #\"Screenshot Active Window\""
+            "Super Shift, PRINT, exec, hyprshot -m region --clipboard-only #\"Screenshot Region\""
+        ]
+        ++ (builtins.concatLists (
+            let
+                count = 10;
+            in
+            builtins.genList (
+                x:
+                let
+                    index = x + 1;
+                    key = builtins.toString (lib.mod index count);
+                    name = builtins.toString index;
+                in
+                [
+                    "Super,         ${key},split-workspace,             ${name} #\"Focus Workspace ${name}\""
+                    "Super Shift,   ${key},split-movetoworkspace,       ${name} #\"Move Window To Workspace ${name} And Focus\""
+                    "Super Control, ${key},split-movetoworkspacesilent, ${name} #\"Move Window To Workspace ${name}\""
+                ]
+            ) count
+        ));
         bindm = [
-            "SUPER, mouse:272, movewindow #\"Move Window\""
-            "SUPER, mouse:273, resizewindow #\"Resize Window\""
+            "Super, ${mouse.left}, movewindow #\"Move Window\""
+            "Super, ${mouse.right}, resizewindow #\"Resize Window\""
+        ];
+        bindc = [
+            "Super, ${mouse.left}, layoutmsg, promote #\"Promote Window to Its Own Column"
         ];
     };
 }

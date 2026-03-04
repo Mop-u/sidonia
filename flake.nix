@@ -8,6 +8,7 @@
         moppkgs.url = "github:Mop-u/moppkgs";
         noctalia.url = "github:noctalia-dev/noctalia-shell";
         dw-proton.url = "github:imaviso/dwproton-flake";
+        hyprland.url = "github:hyprwm/Hyprland";
 
         home-manager = {
             url = "github:nix-community/home-manager/release-25.11";
@@ -19,9 +20,9 @@
             inputs.nixpkgs.follows = "nixpkgs";
         };
 
-        hyprland = {
-            url = "github:hyprwm/Hyprland";
-            inputs.nixpkgs.follows = "unstable";
+        split-monitor-workspaces = {
+            url = "github:zjeffer/split-monitor-workspaces";
+            inputs.hyprland.follows = "hyprland"; # <- make sure this line is present for the plugin to work as intended
         };
 
         scopebuddy = {

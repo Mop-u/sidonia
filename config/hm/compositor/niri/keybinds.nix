@@ -10,13 +10,7 @@ let
 in
 lib.mkIf (cfg.desktop.enable && (cfg.desktop.compositor == "niri")) {
     programs.niri.settings.binds = lib.mkMerge (
-        (builtins.map (x: {
-            "${lib.concatstringsSep "+" (x.mod ++ [ x.key ])}" = {
-                hotkey-overlay.title = x.name;
-                action.spawn = pkgs.writeScript x.name x.exec;
-            };
-        }) config.wayland.desktopManager.sidonia.keybinds)
-        ++ [
+        [
             {
                 "Super+Shift+C" = {
                     hotkey-overlay.title = "Close Active Window";
@@ -49,23 +43,27 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.compositor == "niri")) {
             }
         ]
         ++ (builtins.concatLists (
+            let
+                count = 10;
+            in
             builtins.genList (
                 x:
                 let
-                    c = (x + 1) / 10;
-                    ws = builtins.toString (x + 1 - (c * 10));
+                    index = x + 1;
+                    key = builtins.toString (lib.mod index count);
+                    name = builtins.toString index;
                 in
                 {
-                    "Super+${ws}" = {
-                        hotkey-overlay.title = "Focus Workspace ${ws}";
-                        action.focus-workspace = ws;
+                    "Super+${key}" = {
+                        hotkey-overlay.title = "Focus Workspace ${name}";
+                        action.focus-workspace = index;
                     };
-                    "Super+Shift+${ws}" = {
-                        hotkey-overlay.title = "Move Window To Workspace ${ws}";
-                        action.move-window-to-workspace = ws;
+                    "Super+Shift+${key}" = {
+                        hotkey-overlay.title = "Move Window To Workspace ${name}";
+                        action.move-window-to-workspace = index;
                     };
                 }
-            ) 10
+            ) count
         ))
     );
 }
