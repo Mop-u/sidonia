@@ -10,7 +10,7 @@ let
 in
 lib.mkIf (cfg.desktop.enable && (cfg.desktop.shell == "noctalia")) {
     programs.noctalia-shell.settings.dock = builtins.mapAttrs (n: v: lib.mkDefault v) {
-        enabled = true;
+        enabled = false;
         position = "bottom";
         displayMode = "auto_hide";
         dockType = "static";

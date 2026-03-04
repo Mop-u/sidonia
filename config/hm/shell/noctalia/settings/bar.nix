@@ -13,7 +13,7 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.shell == "noctalia")) {
         autoHideDelay = 500;
         autoShowDelay = 150;
         backgroundOpacity = 0.93;
-        barType = "framed";
+        barType = "floating";
         capsuleColorKey = "none";
         capsuleOpacity = 1;
         density = "comfortable";
