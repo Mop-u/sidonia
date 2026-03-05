@@ -102,6 +102,7 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.compositor == "hyprland")) {
 
             cursor = {
                 no_hardware_cursors = 0;
+                no_warps = true;
             };
 
             quirks.prefer_hdr = 1;
