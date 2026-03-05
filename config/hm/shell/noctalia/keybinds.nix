@@ -11,7 +11,7 @@ in
 lib.mkIf (cfg.desktop.enable && (cfg.desktop.shell == "noctalia")) {
     wayland.desktopManager.sidonia.keybinds =
         let
-            noctalia = args: "noctalia-shell ipc --any-display call ${args}";
+            noctalia = args: "noctalia-shell ipc call ${args}";
         in
         [
             {
