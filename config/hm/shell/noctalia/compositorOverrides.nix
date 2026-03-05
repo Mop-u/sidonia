@@ -16,23 +16,23 @@ lib.mkIf (cfg.desktop.enable && cfg.desktop.shell == "noctalia") (
                 exec-once = [ "noctalia-shell" ];
                 execr = [ "pkill quickshell && noctalia-shell" ];
                 general = {
-                    gaps_in = 5;
-                    gaps_out = 10;
+                    gaps_in = lib.mkDefault 5;
+                    gaps_out = lib.mkDefault 10;
                 };
                 decoration = {
-                    rounding = 20;
-                    rounding_power = 2;
+                    rounding = lib.mkDefault 20;
+                    rounding_power = lib.mkDefault 2;
                     shadow = {
-                        enabled = true;
-                        range = 4;
-                        render_power = 3;
-                        color = "rgba(1a1a1aee)";
+                        enabled = lib.mkDefault true;
+                        range = lib.mkDefault 4;
+                        render_power = lib.mkDefault 3;
+                        color = lib.mkDefault "rgba(1a1a1aee)";
                     };
                     blur = {
-                        enabled = true;
-                        size = 3;
-                        passes = 2;
-                        vibrancy = 0.1696;
+                        enabled = lib.mkDefault true;
+                        size = lib.mkDefault 3;
+                        passes = lib.mkDefault 2;
+                        vibrancy = lib.mkDefault 0.1696;
                     };
                 };
                 layerrule = [

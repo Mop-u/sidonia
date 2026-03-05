@@ -23,7 +23,6 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.compositor == "hyprland")) {
             "3, right, dispatcher, layoutmsg, move +col"
             "3, left, dispatcher, layoutmsg, move -col"
         ];
-        binds.scroll_event_delay = 10;
         binde = [
             "Super Alt, J, resizeactive,   0   10" # resize down
             "Super Alt, K, resizeactive,   0  -10" # resize up

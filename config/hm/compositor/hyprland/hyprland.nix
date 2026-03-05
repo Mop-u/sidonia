@@ -100,11 +100,6 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.compositor == "hyprland")) {
                 keep_focused = 1;
             };
 
-            cursor = {
-                no_hardware_cursors = 0;
-                no_warps = true;
-            };
-
             quirks.prefer_hdr = 1;
 
             render = {
@@ -128,6 +123,7 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.compositor == "hyprland")) {
                 # kb_options =
                 # kb_rules =
                 follow_mouse = 1;
+                follow_mouse_threshold = 10; # distance in logical pixels
                 sensitivity = cfg.input.sensitivity;
                 accel_profile = cfg.input.accelProfile;
                 touchpad = {
@@ -135,6 +131,17 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.compositor == "hyprland")) {
                     scroll_factor = 0.2;
                 };
             };
+
+            cursor = {
+                no_hardware_cursors = 0;
+                no_warps = true;
+            };
+
+            binds = {
+                scroll_event_delay = 10;
+                drag_threshold = 10;
+            };
+
             windowrule = [
                 "match:class .*, suppress_event maximize"
 
