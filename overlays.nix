@@ -69,6 +69,8 @@ in
         };
 
         dwproton = inputs.dw-proton.packages.${getSystem prev}.default;
+
+        noctalia-shell = inputs.noctalia.packages.${getSystem prev}.default;
     })
     (overlayMissingFromFlake inputs.nixpkgs-xr) # use nixpkgs stable where possible
 ]
