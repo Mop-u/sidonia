@@ -16,7 +16,10 @@ in
                     autoLogin.user = lib.mkDefault cfg.userName;
                     sddm = {
                         enable = lib.mkDefault true;
-                        wayland.enable = lib.mkDefault true;
+                        wayland = {
+                            enable = lib.mkDefault true;
+                            compositor = lib.mkDefault "kwin";
+                        };
                     };
                 };
             }
