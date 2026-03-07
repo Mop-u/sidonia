@@ -103,8 +103,7 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.compositor == "hyprland")) {
             quirks.prefer_hdr = 1;
 
             render = {
-                direct_scanout = 2; # Try turning this off if fullscreen windows/games crash instantly
-                cm_sdr_eotf = 3;
+                direct_scanout = 2;
             };
 
             misc = {
