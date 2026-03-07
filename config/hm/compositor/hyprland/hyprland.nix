@@ -35,16 +35,14 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.compositor == "hyprland")) {
         xwayland.enable = true;
         plugins = [ pkgs.split-monitor-workspaces ];
         settings = {
-            monitorv2 = [
-                {
-                    output = "";
-                    mode = "highres";
-                    position = "auto";
-                    scale = "auto";
-                }
-            ];
+            monitorv2 = lib.optional (!config.services.shikane.enable) {
+                output = "";
+                mode = "highres";
+                position = "auto";
+                scale = "auto";
+            };
 
-            #execr = lib.optional config.services.shikane.enable "${config.services.shikane.package}/bin/shikane --oneshot";
+            execr = lib.optional config.services.shikane.enable "${config.services.shikane.package}/bin/shikane --oneshot";
 
             xwayland = {
                 force_zero_scaling = true;
