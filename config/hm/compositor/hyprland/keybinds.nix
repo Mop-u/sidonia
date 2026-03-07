@@ -20,8 +20,8 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.compositor == "hyprland")) {
         gesture = [
             "3, up, dispatcher, split-cycleworkspaces, next"
             "3, down, dispatcher, split-cycleworkspaces, prev"
-            "3, right, dispatcher, layoutmsg, move +col"
-            "3, left, dispatcher, layoutmsg, move -col"
+            "3, right, dispatcher, layoutmsg, move -col"
+            "3, left, dispatcher, layoutmsg, move +col"
         ];
         binde = [
             "Super Alt, J, resizeactive,   0   10" # resize down
