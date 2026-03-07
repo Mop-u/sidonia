@@ -44,6 +44,8 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.compositor == "hyprland")) {
                 }
             ];
 
+            #execr = lib.optional config.services.shikane.enable "${config.services.shikane.package}/bin/shikane --oneshot";
+
             xwayland = {
                 force_zero_scaling = true;
             };

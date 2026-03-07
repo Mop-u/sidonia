@@ -20,19 +20,22 @@ lib.mkMerge [
                 ];
             };
         };
-        home.packages = with pkgs; [
-            # GUI apps
-            pinta # Paint.NET-like image editor
-            #plex-desktop # doesn't launch
-            heroic
-            protonvpn-gui
-            slack
-            prismlauncher
-            #xivlauncher
-            plexamp
-            bambu-studio
-            tageditor
-        ];
+        home.packages =
+            with pkgs;
+            [
+                # GUI apps
+                pinta # Paint.NET-like image editor
+                #plex-desktop # doesn't launch
+                heroic
+                protonvpn-gui
+                slack
+                prismlauncher
+                #xivlauncher
+                plexamp
+                bambu-studio
+                tageditor
+            ]
+            ++ (lib.optional config.services.shikane.enable config.services.shikane.package);
     })
     {
         programs = {
