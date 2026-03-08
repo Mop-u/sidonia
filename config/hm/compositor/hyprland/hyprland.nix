@@ -144,21 +144,7 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.compositor == "hyprland")) {
             windowrule = [
                 "match:class .*, suppress_event maximize"
 
-                "match:class com.saivert.pwvucontrol, match:title Pipewire Volume Control, float on"
-
                 "match:class gtkwave, match:title gtkwave, float on"
-
-                "match:class zenity, float on"
-
-                "match:class nemo, float on"
-
-                "match:class .blueman-manager-wrapped, float on"
-
-                "match:title Open File, size ${cfg.desktop.window.decoration.float.wh}, float on"
-
-                "match:title Save File, size ${cfg.desktop.window.decoration.float.wh}, float on"
-
-                "match:title Select Folder, size ${cfg.desktop.window.decoration.float.wh}, float on"
             ];
         };
     };

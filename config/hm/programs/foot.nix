@@ -32,11 +32,6 @@ lib.mkIf (cfg.desktop.enable) {
             colors.alpha = builtins.toString cfg.desktop.window.decoration.opacity.dec;
         };
     };
-    wayland.windowManager.hyprland.settings = {
-        windowrule = [
-            "match:class foot, match:title foot, float on, size ${cfg.desktop.window.decoration.float.wh}, ${cfg.desktop.window.decoration.float.onCursor}"
-        ];
-    };
     wayland.desktopManager.sidonia.keybinds = [
         {
             name = "Terminal";
