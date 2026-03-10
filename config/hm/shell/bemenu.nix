@@ -34,6 +34,7 @@ lib.mkIf (cfg.desktop.enable) {
         }
     ]
     ++ (lib.optional osConfig.hardware.nvidia.prime.offload.enableOffloadCmd {
+        name = "Bemenu (Discrete GPU)";
         mod = [
             "super"
             "shift"
