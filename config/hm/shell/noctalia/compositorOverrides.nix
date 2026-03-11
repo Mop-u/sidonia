@@ -53,7 +53,16 @@ lib.mkIf (cfg.desktop.enable && cfg.desktop.shell == "noctalia") (
                 spawn-at-startup = [ { command = [ "${pkgs.writeScript "Restart Noctalia" restartNoctalia}" ]; } ];
                 window-rules = [
                     {
-                        geometry-corner-radius = 20;
+                        geometry-corner-radius =
+                            let
+                                radius = 20.000;
+                            in
+                            {
+                                bottom-left = radius;
+                                bottom-right = radius;
+                                top-left = radius;
+                                top-right = radius;
+                            };
                         clip-to-geometry = true;
                     }
                 ];

@@ -18,7 +18,7 @@ in
                         enable = lib.mkDefault true;
                         wayland = {
                             enable = lib.mkDefault true;
-                            compositor = lib.mkDefault "kwin";
+                            #compositor = lib.mkDefault "kwin";
                         };
                     };
                 };
@@ -47,6 +47,9 @@ in
                     defaultSession = lib.mkDefault "hyprland-uwsm-fixed";
                 };
             })
+            #(lib.mkIf (cfg.desktop.compositor == "niri") {
+            #    services.displayManager.defaultSession = lib.mkDefault "niri-session";
+            #})
         ]
     );
 }
