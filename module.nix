@@ -141,6 +141,7 @@ in
     };
 
     imports = with inputs; [
+        ./nixSettings.nix
         catppuccin.nixosModules.catppuccin
         home-manager.nixosModules.home-manager
         aagl.nixosModules.default
@@ -156,6 +157,7 @@ in
                 home-manager = {
                     backupFileExtension = "backup";
                     sharedModules = [
+                        ./nixSettings.nix
                         inputs.catppuccin.homeModules.catppuccin
                         inputs.niri.homeModules.niri
                         inputs.noctalia.homeModules.default

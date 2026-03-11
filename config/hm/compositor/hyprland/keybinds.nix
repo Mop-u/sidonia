@@ -82,11 +82,11 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.compositor == "hyprland")) {
             ) count
         ));
         bindm = [
-            "Super, ${mouse.left}, movewindow #\"Move Window\""
-            "Super, ${mouse.right}, resizewindow #\"Resize Window\""
+            "Super, ${mouse.left}, movewindow #\"(Hold) Move Window\""
+            "Super, ${mouse.right}, resizewindow #\"(Hold) Resize Window\""
         ];
         bindc = [
-            "Super, ${mouse.left}, layoutmsg, promote #\"Promote Window to Its Own Column"
+            "Super, ${mouse.left}, layoutmsg, promote #\"(Click) Promote Window to Its Own Column\""
         ];
     };
 }

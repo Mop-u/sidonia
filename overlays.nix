@@ -50,27 +50,35 @@ in
             vsxExtensionsFor = overlayExtensions;
         }
     )
-    (final: prev: {
-        inherit (inputs.unstable.legacyPackages.${getSystem prev})
-            magnetic-catppuccin-gtk
-            surfer
-            ;
-        inherit (inputs.hyprland.packages.${getSystem prev})
-            hyprland
-            xdg-desktop-portal-hyprland
-            ;
-        inherit (inputs.split-monitor-workspaces.packages.${getSystem prev}) split-monitor-workspaces;
+    (
+        final: prev:
+        let
+            hyprland-nixpkgs = inputs.hyprland.inputs.nixpkgs.legacyPackages.${getSystem prev};
+        in
+        {
+            inherit (inputs.unstable.legacyPackages.${getSystem prev})
+                magnetic-catppuccin-gtk
+                surfer
+                ;
+            inherit (inputs.hyprland.packages.${getSystem prev})
+                hyprland
+                xdg-desktop-portal-hyprland
+                ;
+            hyprland-mesa = hyprland-nixpkgs.mesa;
+            hyprland-mesa32 = hyprland-nixpkgs.pkgsi686Linux.mesa;
+            inherit (inputs.split-monitor-workspaces.packages.${getSystem prev}) split-monitor-workspaces;
 
-        scopebuddy = inputs.scopebuddy.packages.${getSystem prev}.default;
+            scopebuddy = inputs.scopebuddy.packages.${getSystem prev}.default;
 
-        sublimePackages = {
-            "Catppuccin color schemes" = inputs.stextCatppuccin;
-            "Package Control" = inputs.stextPackageControl;
-        };
+            sublimePackages = {
+                "Catppuccin color schemes" = inputs.stextCatppuccin;
+                "Package Control" = inputs.stextPackageControl;
+            };
 
-        dwproton = inputs.dw-proton.packages.${getSystem prev}.default;
+            dwproton = inputs.dw-proton.packages.${getSystem prev}.default;
 
-        noctalia-shell = inputs.noctalia.packages.${getSystem prev}.default;
-    })
+            noctalia-shell = inputs.noctalia.packages.${getSystem prev}.default;
+        }
+    )
     (overlayMissingFromFlake inputs.nixpkgs-xr) # use nixpkgs stable where possible
 ]

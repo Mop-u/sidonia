@@ -80,16 +80,17 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.compositor == "hyprland")) {
                 smart_split = true;
             };
 
-            layout.single_window_aspect_ratio = "4 3";
+            #layout.single_window_aspect_ratio = "4 3";
 
             scrolling = {
-                fullscreen_on_one_column = true;
+                fullscreen_on_one_column = false;
                 column_width = 0.5;
-                focus_fit_method = 1; # 0 = center, 1 = fit
-                follow_focus = true;
-                follow_min_visible = 0.4;
                 explicit_column_widths = "0.333, 0.5, 0.667, 1.0"; # for colresize +conf/-conf
                 direction = "right";
+
+                follow_focus = false;
+                focus_fit_method = 1; # 0 = center, 1 = fit
+                follow_min_visible = 0.4;
             };
 
             plugin.split-monitor-workspaces = {
@@ -109,6 +110,7 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.compositor == "hyprland")) {
             misc = {
                 force_default_wallpaper = 0;
                 disable_hyprland_logo = true;
+                disable_splash_rendering = true;
                 vrr = 1;
                 mouse_move_enables_dpms = true;
                 key_press_enables_dpms = true;
