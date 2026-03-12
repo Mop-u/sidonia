@@ -47,9 +47,12 @@ in
                     defaultSession = lib.mkDefault "hyprland-uwsm-fixed";
                 };
             })
-            #(lib.mkIf (cfg.desktop.compositor == "niri") {
-            #    services.displayManager.defaultSession = lib.mkDefault "niri-session";
-            #})
+            (lib.mkIf (cfg.desktop.compositor == "niri") {
+                services.displayManager = {
+                    sessionPackages = [ config.programs.niri.package ];
+                    defaultSession = lib.mkDefault "niri";
+                };
+            })
         ]
     );
 }
