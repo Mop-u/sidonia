@@ -9,6 +9,7 @@ let
     cfg = osConfig.sidonia;
 in
 lib.mkIf (cfg.desktop.enable && (cfg.desktop.compositor == "niri")) {
+    home.packages = [ pkgs.xwayland-satellite-unstable ];
     programs.niri = {
         enable = true;
         inherit (osConfig.programs.niri) package;
@@ -17,7 +18,15 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.compositor == "niri")) {
             # see: https://github.com/sodiboo/niri-flake/blob/main/docs.md
             # see: https://github.com/niri-wm/niri/blob/main/resources/default-config.kdl
             environment = cfg.desktop.environment.niri;
-            xwayland-satellite.enable = true;
+            xwayland-satellite = {
+                enable = true;
+                path = lib.getExe pkgs.xwayland-satellite-unstable;
+            };
+            window-rules = [
+                {
+                    open-fullscreen = false;
+                }
+            ];
         };
     };
 }

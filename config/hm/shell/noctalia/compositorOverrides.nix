@@ -57,13 +57,13 @@ lib.mkIf (cfg.desktop.enable && cfg.desktop.shell == "noctalia") (
                             let
                                 radius = 20.000;
                             in
-                            {
+                            builtins.mapAttrs (n: v: lib.mkDefault v) {
                                 bottom-left = radius;
                                 bottom-right = radius;
                                 top-left = radius;
                                 top-right = radius;
                             };
-                        clip-to-geometry = true;
+                        clip-to-geometry = lib.mkDefault true;
                     }
                 ];
                 debug = {
