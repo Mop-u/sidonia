@@ -17,6 +17,8 @@ lib.mkIf (cfg.desktop.enable) {
         polkit.enable = true;
     };
 
+    programs.dconf.enable = true;
+
     # https://nix-community.github.io/home-manager/options.xhtml#opt-xdg.portal.enable
     environment.pathsToLink = [
         "/share/xdg-desktop-portal"
