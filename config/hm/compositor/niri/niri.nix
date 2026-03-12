@@ -34,6 +34,9 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.compositor == "niri")) {
                     opacity = 0.95;
                 }
             ];
+            layout = {
+                always-center-single-column = true;
+            };
         };
     };
 }

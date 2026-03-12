@@ -7,6 +7,7 @@
 }:
 let
     cfg = osConfig.sidonia;
+    transparent = "rgba(0,0,0,0)";
 in
 lib.mkIf (cfg.desktop.enable && (cfg.desktop.compositor == "hyprland")) {
     assertions = [
@@ -88,7 +89,7 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.compositor == "hyprland")) {
                 explicit_column_widths = "0.333, 0.5, 0.667, 1.0"; # for colresize +conf/-conf
                 direction = "right";
 
-                follow_focus = false;
+                follow_focus = true;
                 focus_fit_method = 1; # 0 = center, 1 = fit
                 follow_min_visible = 0.4;
             };
@@ -123,7 +124,7 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.compositor == "hyprland")) {
                 # kb_model =
                 # kb_options =
                 # kb_rules =
-                follow_mouse = 1;
+                follow_mouse = 2;
                 follow_mouse_threshold = 10; # distance in logical pixels
                 sensitivity = cfg.input.sensitivity;
                 accel_profile = cfg.input.accelProfile;
@@ -145,9 +146,13 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.compositor == "hyprland")) {
 
             windowrule = [
                 "match:class .*, suppress_event maximize"
-
                 "match:class gtkwave, match:title gtkwave, float on"
             ];
+
+            general."col.inactive_border" = transparent;
+            group."col.border_inactive" = transparent;
+            group."col.border_locked_inactive" = transparent;
+
         };
     };
 }
