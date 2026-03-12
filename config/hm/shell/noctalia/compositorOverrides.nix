@@ -66,9 +66,8 @@ lib.mkIf (cfg.desktop.enable && cfg.desktop.shell == "noctalia") (
                         clip-to-geometry = lib.mkDefault true;
                     }
                 ];
-                debug = {
-                    honor-xdg-activation-with-invalid-serial = [ ];
-                };
+
+                debug.honor-xdg-activation-with-invalid-serial = [ ];
 
                 # for blurred overview wallpaper
                 layer-rules = [

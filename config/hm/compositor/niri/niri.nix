@@ -22,9 +22,16 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.compositor == "niri")) {
                 enable = true;
                 path = lib.getExe pkgs.xwayland-satellite-unstable;
             };
+            prefer-no-csd = true;
             window-rules = [
                 {
                     open-fullscreen = false;
+                    draw-border-with-background = false;
+                    opacity = 1.0;
+                }
+                {
+                    matches = [ { is-focused = false; } ];
+                    opacity = 0.95;
                 }
             ];
         };
