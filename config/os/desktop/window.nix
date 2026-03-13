@@ -18,7 +18,7 @@ in
             borderWidth = lib.mkOption {
                 description = "Border width";
                 type = lib.types.int;
-                default = 2;
+                default = 4;
             };
             opacity = lib.mkOption {
                 description = "Decimal opacity value for floating window transparency.";

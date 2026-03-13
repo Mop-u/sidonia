@@ -36,6 +36,14 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.compositor == "niri")) {
             ];
             layout = {
                 always-center-single-column = true;
+                focus-ring = {
+                    enable = true;
+                    width = cfg.desktop.window.decoration.borderWidth;
+                };
+                border = {
+                    enable = false;
+                    width = cfg.desktop.window.decoration.borderWidth;
+                };
             };
         };
     };

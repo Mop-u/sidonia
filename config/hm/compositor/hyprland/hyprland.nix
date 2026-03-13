@@ -7,7 +7,7 @@
 }:
 let
     cfg = osConfig.sidonia;
-    transparent = "rgba(0,0,0,0)";
+    transparent = "rgba(255,255,255,0)";
 in
 lib.mkIf (cfg.desktop.enable && (cfg.desktop.compositor == "hyprland")) {
     assertions = [
@@ -45,14 +45,13 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.compositor == "hyprland")) {
 
             execr = lib.optional config.services.shikane.enable "${config.services.shikane.package}/bin/shikane --oneshot";
 
-            xwayland = {
-                force_zero_scaling = true;
-            };
+            xwayland.force_zero_scaling = lib.mkDefault true;
 
             env = lib.mapAttrsToList (n: v: "${n},${v}") cfg.desktop.environment.hyprland;
 
             animations = {
                 enabled = true;
+                workspace_wraparound = true;
                 bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
                 animation = [
                     "windows, 1, 7, myBezier"
@@ -65,25 +64,25 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.compositor == "hyprland")) {
             };
 
             decoration = {
-                active_opacity = 1.0;
-                inactive_opacity = 0.95;
+                active_opacity = lib.mkDefault 1.0;
+                inactive_opacity = lib.mkDefault 0.95;
             };
 
             general = {
-                border_size = cfg.desktop.window.decoration.borderWidth;
-                resize_on_border = false;
-                allow_tearing = true;
-                layout = "scrolling";
+                border_size = lib.mkDefault cfg.desktop.window.decoration.borderWidth;
+                resize_on_border = lib.mkDefault false;
+                allow_tearing = lib.mkDefault true;
+                layout = lib.mkDefault "scrolling";
             };
 
-            dwindle = {
+            dwindle = builtins.mapAttrs (n: v: lib.mkDefault v) {
                 pseudotile = true;
                 smart_split = true;
             };
 
             #layout.single_window_aspect_ratio = "4 3";
 
-            scrolling = {
+            scrolling = builtins.mapAttrs (n: v: lib.mkDefault v) {
                 fullscreen_on_one_column = false;
                 column_width = 0.5;
                 explicit_column_widths = "0.333, 0.5, 0.667, 1.0"; # for colresize +conf/-conf
@@ -94,7 +93,7 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.compositor == "hyprland")) {
                 follow_min_visible = 0.4;
             };
 
-            plugin.split-monitor-workspaces = {
+            plugin.split-monitor-workspaces = builtins.mapAttrs (n: v: lib.mkDefault v) {
                 # https://github.com/zjeffer/split-monitor-workspaces
                 count = 10;
                 enable_wrapping = 1;
@@ -102,13 +101,13 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.compositor == "hyprland")) {
                 keep_focused = 1;
             };
 
-            quirks.prefer_hdr = 1;
-
-            render = {
+            render = builtins.mapAttrs (n: v: lib.mkDefault v) {
                 direct_scanout = 2;
+                cm_fs_passthrough = 0;
+                cm_auto_hdr = 0;
             };
 
-            misc = {
+            misc = builtins.mapAttrs (n: v: lib.mkDefault v) {
                 force_default_wallpaper = 0;
                 disable_hyprland_logo = true;
                 disable_splash_rendering = true;
@@ -118,7 +117,7 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.compositor == "hyprland")) {
                 render_unfocused_fps = 60;
             };
 
-            input = {
+            input = builtins.mapAttrs (n: v: lib.mkDefault v) {
                 kb_layout = cfg.input.keyLayout;
                 # kb_variant =
                 # kb_model =
@@ -134,12 +133,12 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.compositor == "hyprland")) {
                 };
             };
 
-            cursor = {
+            cursor = builtins.mapAttrs (n: v: lib.mkDefault v) {
                 no_hardware_cursors = 0;
                 no_warps = true;
             };
 
-            binds = {
+            binds = builtins.mapAttrs (n: v: lib.mkDefault v) {
                 scroll_event_delay = 10;
                 drag_threshold = 10;
             };
@@ -149,6 +148,8 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.compositor == "hyprland")) {
                 "match:class gtkwave, match:title gtkwave, float on"
             ];
 
+            # Borderless unfocused window setup
+            decoration.border_part_of_window = false;
             general."col.inactive_border" = transparent;
             group."col.border_inactive" = transparent;
             group."col.border_locked_inactive" = transparent;
