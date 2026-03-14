@@ -45,6 +45,8 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.compositor == "niri")) {
                     width = cfg.desktop.window.decoration.borderWidth;
                 };
             };
+            hotkey-overlay.skip-at-startup = true;
+            gestures.hot-corners.enable = false;
         };
     };
 }

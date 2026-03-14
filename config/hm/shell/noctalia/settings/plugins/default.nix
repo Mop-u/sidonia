@@ -9,5 +9,6 @@
     imports = [
         ./kde-connect.nix
         ./plugins.nix
+        ./workspaceOverview.nix
     ];
 }
