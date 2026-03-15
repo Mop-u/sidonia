@@ -46,8 +46,20 @@ in
                     };
                     exec = lib.mkOption {
                         description = "Command to execute";
-                        type = lib.types.str;
+                        type = lib.types.nullOr lib.types.str;
                         default = null;
+                    };
+                    perCompositor = {
+                        niri = lib.mkOption {
+                            description = "Niri specific keybind config";
+                            type = lib.types.nullOr lib.types.attrs;
+                            default = null;
+                        };
+                        hyprland = lib.mkOption {
+                            description = "Hyprland specific keybind config";
+                            type = lib.types.nullOr lib.types.str;
+                            default = null;
+                        };
                     };
                 };
             }
@@ -56,24 +68,34 @@ in
     config =
         let
             execs = builtins.filter (x: x.exec != null) cfg.keybinds;
+            niriBinds = builtins.filter (x: x.perCompositor.niri != null) cfg.keybinds;
+            hyprBinds = builtins.filter (x: x.perCompositor.hyprland != null) cfg.keybinds;
         in
         lib.mkIf osConfig.sidonia.desktop.enable (
             lib.mkMerge [
                 (lib.mkIf (osConfig.sidonia.desktop.compositor == "hyprland") {
-                    wayland.windowManager.hyprland.settings.bind = (
-                        builtins.map (
+                    wayland.windowManager.hyprland.settings.bind =
+                        (builtins.map (
                             x: "${lib.concatStrings x.mod}, ${x.key}, exec, uwsm app -- ${x.exec} #\"${x.name}\""
-                        ) execs
-                    );
+                        ) execs)
+                        ++ (builtins.map (
+                            x: "${lib.concatStrings x.mod}, ${x.key}, ${x.perCompositor.hyprland} #\"${x.name}\""
+                        ) hyprBinds);
                 })
                 (lib.mkIf (osConfig.sidonia.desktop.compositor == "niri") {
                     programs.niri.settings.binds = lib.mkMerge (
-                        builtins.map (x: {
+                        (builtins.map (x: {
                             "${lib.concatStringsSep "+" (x.mod ++ [ x.key ])}" = {
                                 hotkey-overlay.title = x.name;
                                 action.spawn = "${pkgs.writeScript x.name x.exec}";
                             };
-                        }) execs
+                        }) execs)
+                        ++ (builtins.map (x: {
+                            "${lib.concatStringsSep "+" (x.mod ++ [ x.key ])}" = {
+                                hotkey-overlay.title = x.name;
+                            }
+                            // x.perCompositor.niri;
+                        }) niriBinds)
                     );
                 })
             ]

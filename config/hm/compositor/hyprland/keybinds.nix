@@ -28,25 +28,9 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.compositor == "hyprland")) {
             "Super Alt, K, resizeactive,   0  -10" # resize up
         ];
         bind = [
-            "Super Shift, C,          killactive, #\"Close Active Window\""
             "Super, ${mouse.middle},  killactive, #\"Close Active Window\""
-            "Super Shift, Q,          exec, uwsm stop #\"Exit Hyprland Session\""
 
-            "Super,       V,          togglefloating, #\"Toggle Window Floating\""
-            "Super Shift, F,          fullscreen, #\"Toggle Fullscreen\""
             "Super,       M,          layoutmsg, fit visible #\"Fit Visible Windows to Monitor\""
-
-            "Super,       H,          layoutmsg, focus l #\"Move Focus Left\""
-            "Super,       L,          layoutmsg, focus r #\"Move Focus Right\""
-            "Super Shift, H,          layoutmsg, swapcol l #\"Move Column Left\""
-            "Super Shift, L,          layoutmsg, swapcol r #\"Move Column Right\""
-            "Super Alt,   H,          layoutmsg, colresize -conf #\"Decrease Column Width\""
-            "Super Alt,   L,          layoutmsg, colresize +conf #\"Increase Column Width\""
-
-            "Super,       J,          layoutmsg, focus d #\"Move Focus Down\""
-            "Super,       K,          layoutmsg, focus u #\"Move Focus Up\""
-            "Super Shift, J,          swapwindow, d #\"Move Window Down\""
-            "Super Shift, K,          swapwindow, u #\"Move Window Up\""
 
             "Super, mouse_down, split-cycleworkspaces, prev #\"Scroll to Next Workspace\""
             "Super, mouse_up,   split-cycleworkspaces, next #\"Scroll to Prev Workspace\""
@@ -58,29 +42,7 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.compositor == "hyprland")) {
 
             "Super,       S,         togglespecialworkspace, magic #\"Toggle Special Workspace\""
             "Super Shift, S,         movetoworkspace,        special:magic #\"Move Window To Special Workspace\""
-
-            ",            PRINT, exec, hyprshot -m output -m active --clipboard-only #\"Screenshot Active Monitor\""
-            "Super,       PRINT, exec, hyprshot -m window -m active --clipboard-only #\"Screenshot Active Window\""
-            "Super Shift, PRINT, exec, hyprshot -m region --clipboard-only #\"Screenshot Region\""
-        ]
-        ++ (builtins.concatLists (
-            let
-                count = 10;
-            in
-            builtins.genList (
-                x:
-                let
-                    index = x + 1;
-                    key = builtins.toString (lib.mod index count);
-                    name = builtins.toString index;
-                in
-                [
-                    "Super,         ${key},split-workspace,             ${name} #\"Focus Workspace ${name}\""
-                    "Super Shift,   ${key},split-movetoworkspace,       ${name} #\"Move Window To Workspace ${name} and Focus\""
-                    "Super Control, ${key},split-movetoworkspacesilent, ${name} #\"Move Window To Workspace ${name}\""
-                ]
-            ) count
-        ));
+        ];
         bindm = [
             "Super, ${mouse.left}, movewindow #\"(Hold) Move Window\""
             "Super, ${mouse.right}, resizewindow #\"(Hold) Resize Window\""
