@@ -27,7 +27,7 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.compositor == "niri")) {
                 {
                     open-fullscreen = false;
                     draw-border-with-background = false;
-                    opacity = 1.0;
+                    opacity = 1.;
                 }
                 {
                     matches = [ { is-focused = false; } ];
@@ -44,6 +44,12 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.compositor == "niri")) {
                     enable = false;
                     width = cfg.desktop.window.decoration.borderWidth;
                 };
+                preset-column-widths = [
+                    { proportion = 1. / 3.; }
+                    { proportion = 1. / 2.; }
+                    { proportion = 2. / 3.; }
+                    { proportion = 1.; }
+                ];
             };
             hotkey-overlay.skip-at-startup = true;
             gestures.hot-corners.enable = false;
