@@ -148,8 +148,15 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.compositor == "niri")) {
                         action.focus-workspace = index;
                     };
                     "Super+Shift+${key}" = {
-                        hotkey-overlay.title = "Move Window To Workspace ${name}";
+                        hotkey-overlay.title = "Move Window To Workspace ${name} and Focus";
                         action.move-window-to-workspace = index;
+                    };
+                    "Super+Control+${key}" = {
+                        hotkey-overlay.title = "Move Window To Workspace ${name}";
+                        action.move-window-to-workspace = [
+                            { focus = false; }
+                            index
+                        ];
                     };
                 }
             ) count

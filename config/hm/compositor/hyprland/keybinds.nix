@@ -76,7 +76,7 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.compositor == "hyprland")) {
                 in
                 [
                     "Super,         ${key},split-workspace,             ${name} #\"Focus Workspace ${name}\""
-                    "Super Shift,   ${key},split-movetoworkspace,       ${name} #\"Move Window To Workspace ${name} And Focus\""
+                    "Super Shift,   ${key},split-movetoworkspace,       ${name} #\"Move Window To Workspace ${name} and Focus\""
                     "Super Control, ${key},split-movetoworkspacesilent, ${name} #\"Move Window To Workspace ${name}\""
                 ]
             ) count
