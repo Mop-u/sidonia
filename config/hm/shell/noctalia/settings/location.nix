@@ -12,7 +12,7 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.shell == "noctalia")) {
     programs.noctalia-shell.settings.location = builtins.mapAttrs (n: v: lib.mkDefault v) {
         name = "Dublin";
         weatherEnabled = true;
-        weatherShowEffects = true;
+        weatherShowEffects = false;
         useFahrenheit = false;
         use12hourFormat = false;
         showWeekNumberInCalendar = false;

@@ -50,7 +50,7 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.shell == "noctalia")) {
             }
             {
                 action = "rebootToUefi";
-                enabled = true;
+                enabled = false;
                 keybind = "7";
             }
         ];
