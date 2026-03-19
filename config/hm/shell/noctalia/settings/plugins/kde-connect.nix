@@ -8,16 +8,13 @@
 let
     cfg = osConfig.sidonia;
     sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
+    inherit (osConfig.programs.kdeconnect) enable;
 in
-lib.mkIf (cfg.desktop.enable && (cfg.desktop.shell == "noctalia")) (
-    lib.mkMerge [
-        { services.kdeconnect.enable = lib.mkDefault osConfig.programs.kdeconnect.enable; }
-        (lib.mkIf osConfig.programs.kdeconnect.enable {
-            home.packages = [ pkgs.kdePackages.qttools ];
-            programs.noctalia-shell.plugins.states.kde-connect = {
-                enabled = lib.mkDefault true;
-                inherit sourceUrl;
-            };
-        })
-    ]
-)
+lib.mkIf (cfg.desktop.enable && (cfg.desktop.shell == "noctalia")) {
+    services.kdeconnect.enable = lib.mkDefault enable;
+    programs.noctalia-shell.plugins.states.kde-connect = {
+        enabled = lib.mkDefault enable;
+        inherit sourceUrl;
+    };
+    home.packages = lib.optional enable pkgs.kdePackages.qttools;
+}

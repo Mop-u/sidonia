@@ -113,7 +113,7 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.shell == "noctalia")) {
                     alwaysShowPercentage = false;
                     warningThreshold = 30;
                 })
-                ++ (lib.optional (osConfig.programs.kdeconnect.enable) {
+                ++ (lib.optional (config.programs.noctalia-shell.plugins.states.kde-connect.enabled) {
                     id = "plugin:kde-connect";
                 })
                 ++ [
@@ -147,7 +147,10 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.shell == "noctalia")) {
                         unreadBadgeColor = "primary";
                     }
                     { id = "plugin:keybind-cheatsheet"; }
-                ];
+                ]
+                ++ (lib.optional (config.programs.noctalia-shell.plugins.states.screen-recorder.enabled) {
+                    id = "plugin:screen-recorder";
+                });
         };
     };
 }
