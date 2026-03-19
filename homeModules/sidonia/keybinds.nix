@@ -70,28 +70,44 @@ in
             execs = builtins.filter (x: x.exec != null) cfg.keybinds;
             niriBinds = builtins.filter (x: x.perCompositor.niri != null) cfg.keybinds;
             hyprBinds = builtins.filter (x: x.perCompositor.hyprland != null) cfg.keybinds;
+            hyprToNiri = {
+                "mouse:272" = "MouseLeft";
+                "mouse:273" = "MouseRight";
+                "mouse:274" = "MouseMiddle";
+                "mouse:275" = "MouseForward";
+                "mouse:276" = "MouseExtra";
+                "mouse_down" = "WheelScrollDown";
+                "mouse_up" = "WheelScrollUp";
+            };
+            niriToHypr = builtins.listToAttrs (
+                builtins.map (x: {
+                    name = x.value;
+                    value = x.name;
+                }) (lib.attrsToList hyprToNiri)
+            );
+            translate = table: key: table.${key} or key;
         in
         lib.mkIf osConfig.sidonia.desktop.enable (
             lib.mkMerge [
                 (lib.mkIf (osConfig.sidonia.desktop.compositor == "hyprland") {
                     wayland.windowManager.hyprland.settings.bind =
                         (builtins.map (
-                            x: "${lib.concatStrings x.mod}, ${x.key}, exec, uwsm app -- ${x.exec} #\"${x.name}\""
+                            x: "${lib.concatStrings x.mod}, ${translate niriToHypr x.key}, exec, uwsm app -- ${x.exec} #\"${x.name}\""
                         ) execs)
                         ++ (builtins.map (
-                            x: "${lib.concatStrings x.mod}, ${x.key}, ${x.perCompositor.hyprland} #\"${x.name}\""
+                            x: "${lib.concatStrings x.mod}, ${translate niriToHypr x.key}, ${x.perCompositor.hyprland} #\"${x.name}\""
                         ) hyprBinds);
                 })
                 (lib.mkIf (osConfig.sidonia.desktop.compositor == "niri") {
                     programs.niri.settings.binds = lib.mkMerge (
                         (builtins.map (x: {
-                            "${lib.concatStringsSep "+" (x.mod ++ [ x.key ])}" = {
+                            "${lib.concatStringsSep "+" (x.mod ++ [ (translate hyprToNiri x.key) ])}" = {
                                 hotkey-overlay.title = x.name;
                                 action.spawn = "${pkgs.writeScript x.name x.exec}";
                             };
                         }) execs)
                         ++ (builtins.map (x: {
-                            "${lib.concatStringsSep "+" (x.mod ++ [ x.key ])}" = {
+                            "${lib.concatStringsSep "+" (x.mod ++ [ (translate hyprToNiri x.key) ])}" = {
                                 hotkey-overlay.title = x.name;
                             }
                             // x.perCompositor.niri;

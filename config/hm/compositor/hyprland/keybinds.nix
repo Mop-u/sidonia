@@ -28,8 +28,6 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.compositor == "hyprland")) {
             "Super Alt, K, resizeactive,   0  -10" # resize up
         ];
         bind = [
-            "Super, ${mouse.middle},  killactive, #\"Close Active Window\""
-
             "Super,       M,          layoutmsg, fit visible #\"Fit Visible Windows to Monitor\""
 
             "Super, mouse_down, split-cycleworkspaces, prev #\"Scroll to Next Workspace\""

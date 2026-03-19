@@ -26,6 +26,18 @@ lib.mkIf cfg.desktop.enable {
             };
         }
         {
+            name = "Close Active Window";
+            mod = "Super";
+            key = "MouseMiddle";
+            perCompositor = {
+                niri = {
+                    repeat = false;
+                    action.close-window = [ ];
+                };
+                hyprland = "killactive";
+            };
+        }
+        {
             name = "Exit Session";
             mod = [
                 "Super"
@@ -44,6 +56,36 @@ lib.mkIf cfg.desktop.enable {
             perCompositor = {
                 niri.action.toggle-window-floating = [ ];
                 hyprland = "togglefloating";
+            };
+        }
+        {
+            name = "Switch Focus Between Floating and Tiling";
+            mod = [
+                "Super"
+                "Shift"
+            ];
+            key = "V";
+            perCompositor = {
+                niri.action.switch-focus-between-floating-and-tiling = [ ];
+            };
+        }
+        {
+            name = "Maximize Column";
+            mod = "Super";
+            key = "F";
+            perCompositor = {
+                niri.action.maximize-column = [ ];
+            };
+        }
+        {
+            name = "Expand Column to Available Width";
+            mod = [
+                "Super"
+                "Ctrl"
+            ];
+            key = "F";
+            perCompositor = {
+                niri.action.expand-column-to-available-width = [ ];
             };
         }
         {
@@ -113,12 +155,36 @@ lib.mkIf cfg.desktop.enable {
             };
         }
         {
+            name = "Decrease Column Width";
+            mod = [
+                "Super"
+                "Alt"
+            ];
+            key = "WheelScrollDown";
+            perCompositor = {
+                niri.action.switch-preset-column-width-back = [ ];
+                hyprland = "layoutmsg, colresize -conf";
+            };
+        }
+        {
             name = "Increase Column Width";
             mod = [
                 "Super"
                 "Alt"
             ];
             key = "L";
+            perCompositor = {
+                niri.action.switch-preset-column-width = [ ];
+                hyprland = "layoutmsg, colresize +conf";
+            };
+        }
+        {
+            name = "Increase Column Width";
+            mod = [
+                "Super"
+                "Alt"
+            ];
+            key = "WheelScrollUp";
             perCompositor = {
                 niri.action.switch-preset-column-width = [ ];
                 hyprland = "layoutmsg, colresize +conf";
