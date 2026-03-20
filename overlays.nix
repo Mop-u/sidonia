@@ -12,20 +12,6 @@ let
         );
 in
 [
-    #(final: prev: {
-    #    python313Packages = prev.python313Packages.overrideScope (
-    #        pfinal: pprev: {
-    #            pytest-xdist = pprev.pytest-xdist.overridePythonAttrs (oldAttrs: {
-    #                disabledTests = (oldAttrs.disabledTests or [ ]) ++ [ "test_workqueue_ordered_by_input" ];
-    #            });
-    #        }
-    #    );
-    #})
-    #(final: prev: {
-    #    nix = prev.nix.overrideAttrs (oldAttrs: {
-    #        doCheck = false;
-    #    });
-    #})
     inputs.moppkgs.overlays.default
     inputs.noctalia.overlays.default
     inputs.niri.overlays.niri
