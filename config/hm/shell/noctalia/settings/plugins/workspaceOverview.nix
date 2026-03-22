@@ -7,21 +7,13 @@
 }:
 let
     cfg = osConfig.sidonia;
-    sourceUrl = "https://github.com/anthonyhab/noctalia-plugins";
+    sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
 in
 lib.mkIf
     (cfg.desktop.enable && (cfg.desktop.shell == "noctalia") && (cfg.desktop.compositor == "hyprland"))
     {
-        # https://github.com/anthonyhab/noctalia-plugins/blob/main/workspace-overview/README.md
         programs.noctalia-shell = {
             plugins = {
-                sources = [
-                    {
-                        enabled = true;
-                        name = "AnthonyHab Noctalia Plugins";
-                        url = sourceUrl;
-                    }
-                ];
                 states = {
                     workspace-overview = {
                         enabled = lib.mkDefault true;
