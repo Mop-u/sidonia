@@ -50,7 +50,7 @@ lib.mkIf (cfg.desktop.enable && cfg.desktop.shell == "noctalia") (
         (lib.mkIf (cfg.desktop.compositor == "niri") {
             # https://docs.noctalia.dev/getting-started/compositor-settings/niri/
             programs.niri.settings = {
-                spawn-at-startup = [ { argv = [ "${pkgs.writeScript "Restart Noctalia" restartNoctalia}" ]; } ];
+                spawn-at-startup = [ { sh = restartNoctalia; } ];
                 window-rules = [
                     {
                         geometry-corner-radius =
