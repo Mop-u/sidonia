@@ -9,6 +9,7 @@
         noctalia.url = "github:noctalia-dev/noctalia-shell";
         dw-proton.url = "github:imaviso/dwproton-flake";
         hyprland.url = "github:hyprwm/Hyprland";
+        cachyos.url = "github:xddxdd/nix-cachyos-kernel";
 
         home-manager = {
             url = "github:nix-community/home-manager/release-25.11";
