@@ -46,16 +46,14 @@ in
             }
             (lib.mkIf (osConfig.sidonia.desktop.compositor == "hyprland") {
                 wayland.windowManager.hyprland.settings.env = lib.mapAttrsToList (n: v: "${n},${v}") (
-                    builtins.mapAttrs (n: v: lib.mkDefault v) (
-                        cfg.environment
-                        // {
-                            XDG_SESSION_DESKTOP = "Hyprland";
-                            XDG_CURRENT_DESKTOP = "Hyprland";
-                            WLR_RENDERER_ALLOW_SOFTWARE = 1;
-                            QT_WAYLAND_DISABLE_WINDOWDECORATION = 1;
-                            __GL_MaxFramesAllowed = 1; # Fix frame timings & input lag
-                        }
-                    )
+                    cfg.environment
+                    // {
+                        XDG_SESSION_DESKTOP = "Hyprland";
+                        XDG_CURRENT_DESKTOP = "Hyprland";
+                        WLR_RENDERER_ALLOW_SOFTWARE = "1";
+                        QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
+                        __GL_MaxFramesAllowed = "1"; # Fix frame timings & input lag
+                    }
                 );
             })
             (lib.mkIf (osConfig.sidonia.desktop.compositor == "niri") {
