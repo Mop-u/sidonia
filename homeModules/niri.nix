@@ -25,7 +25,7 @@
                 focus-ring = colors;
                 border = colors;
                 tab-indicator = colors;
-                insert-hint.display.color = lib.mkDefault rgb.accent;
+                insert-hint.display.color = lib.mkDefault "${rgb.accent}80";
                 #shadow = lib.mapAttrs (n: v: lib.mkDefault v) {
                 #    color = "";
                 #    inactive-color = "";

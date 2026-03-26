@@ -7,7 +7,6 @@
 }:
 let
     cfg = osConfig.sidonia;
-    restartNoctalia = "pkill quickshell; noctalia-shell";
 in
 lib.mkIf (cfg.desktop.enable && cfg.desktop.shell == "noctalia") (
     lib.mkMerge [
@@ -16,7 +15,7 @@ lib.mkIf (cfg.desktop.enable && cfg.desktop.shell == "noctalia") (
             # https://docs.noctalia.dev/getting-started/compositor-settings/hyprland/
             wayland.windowManager.hyprland.settings = {
                 exec-once = [ "noctalia-shell" ];
-                execr = [ restartNoctalia ];
+                execr = [ "pkill quickshell; noctalia-shell" ];
                 general = {
                     gaps_in = lib.mkDefault 5;
                     gaps_out = lib.mkDefault 10;
@@ -50,7 +49,7 @@ lib.mkIf (cfg.desktop.enable && cfg.desktop.shell == "noctalia") (
         (lib.mkIf (cfg.desktop.compositor == "niri") {
             # https://docs.noctalia.dev/getting-started/compositor-settings/niri/
             programs.niri.settings = {
-                spawn-at-startup = [ { sh = restartNoctalia; } ];
+                spawn-at-startup = [ { command = [ "noctalia-shell" ]; } ];
                 window-rules = [ { clip-to-geometry = true; } ];
 
                 debug.honor-xdg-activation-with-invalid-serial = [ ];
@@ -63,6 +62,12 @@ lib.mkIf (cfg.desktop.enable && cfg.desktop.shell == "noctalia") (
                     }
                 ];
             };
+            #home.activation = {
+            #    restartNoctalia = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+            #        run ${pkgs.procps}/bin/pkill quickshell
+            #        run ${config.programs.niri.package}/bin/niri msg action spawn -- noctalia-shell
+            #    '';
+            #};
         })
     ]
 )
