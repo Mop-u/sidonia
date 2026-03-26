@@ -9,7 +9,6 @@ let
 in
 {
     imports = [
-        ./desktop
         ./programs
         ./services
         ./tweaks

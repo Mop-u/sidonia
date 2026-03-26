@@ -51,8 +51,6 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.compositor == "hyprland")) {
 
             xwayland.force_zero_scaling = lib.mkDefault true;
 
-            env = lib.mapAttrsToList (n: v: "${n},${v}") cfg.desktop.environment.hyprland;
-
             animations = {
                 enabled = true;
                 workspace_wraparound = true;
