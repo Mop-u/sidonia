@@ -11,7 +11,7 @@ in
 lib.mkIf (cfg.desktop.enable) {
     programs.bemenu = {
         enable = true;
-        settings = with cfg.desktop.window.decoration; {
+        settings = with config.wayland.desktopManager.sidonia.window.decoration; {
             no-exec = true;
             prompt = "open";
             ignorecase = true;

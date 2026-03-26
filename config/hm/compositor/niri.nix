@@ -7,6 +7,7 @@
 }:
 let
     cfg = osConfig.sidonia;
+    inherit (config.wayland.desktopManager.sidonia) window;
 in
 lib.mkIf (cfg.desktop.enable && (cfg.desktop.compositor == "niri")) {
     home.packages = [ pkgs.xwayland-satellite-unstable ];
@@ -28,6 +29,16 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.compositor == "niri")) {
                     open-fullscreen = false;
                     draw-border-with-background = false;
                     opacity = 1.;
+                    geometry-corner-radius =
+                        let
+                            radius = window.decoration.rounding + .0;
+                        in
+                        {
+                            bottom-left = radius;
+                            bottom-right = radius;
+                            top-left = radius;
+                            top-right = radius;
+                        };
                 }
                 {
                     matches = [ { is-focused = false; } ];
@@ -38,11 +49,11 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.compositor == "niri")) {
                 always-center-single-column = true;
                 focus-ring = {
                     enable = true;
-                    width = cfg.desktop.window.decoration.borderWidth;
+                    width = window.decoration.borderWidth;
                 };
                 border = {
                     enable = false;
-                    width = cfg.desktop.window.decoration.borderWidth;
+                    width = window.decoration.borderWidth;
                 };
                 preset-column-widths = [
                     { proportion = 1. / 3.; }

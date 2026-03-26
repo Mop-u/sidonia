@@ -6,5 +6,8 @@
     ...
 }:
 {
-    imports = [ ./keybinds.nix ];
+    imports = [
+        ./keybinds.nix
+        ./window.nix
+    ];
 }

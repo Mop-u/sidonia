@@ -8,8 +8,11 @@
 {
     imports = [
         ./compositor
+        ./noctalia
         ./programs
-        ./shell
+        ./gtk.nix
+        ./pointerCursor.nix
+        ./qt.nix
         ./services.nix
     ];
 }

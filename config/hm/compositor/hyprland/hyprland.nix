@@ -8,6 +8,7 @@
 let
     cfg = osConfig.sidonia;
     transparent = "rgba(255,255,255,0)";
+    inherit (config.wayland.desktopManager.sidonia) window;
 in
 lib.mkIf (cfg.desktop.enable && (cfg.desktop.compositor == "hyprland")) {
     assertions = [
@@ -69,10 +70,11 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.compositor == "hyprland")) {
             decoration = {
                 active_opacity = lib.mkDefault 1.0;
                 inactive_opacity = lib.mkDefault 0.95;
+                rounding = lib.mkDefault window.decoration.rounding;
             };
 
             general = {
-                border_size = lib.mkDefault cfg.desktop.window.decoration.borderWidth;
+                border_size = lib.mkDefault window.decoration.borderWidth;
                 resize_on_border = lib.mkDefault false;
                 allow_tearing = lib.mkDefault true;
                 layout = lib.mkDefault "scrolling";

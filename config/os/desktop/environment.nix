@@ -31,7 +31,6 @@ in
                 "wayland"
                 "niri"
                 "hyprland"
-                "steam"
             ];
     config = {
         sidonia.desktop.environment = {

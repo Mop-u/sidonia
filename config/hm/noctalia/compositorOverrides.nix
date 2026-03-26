@@ -11,6 +11,7 @@ let
 in
 lib.mkIf (cfg.desktop.enable && cfg.desktop.shell == "noctalia") (
     lib.mkMerge [
+        { wayland.desktopManager.sidonia.window.decoration.rounding = 20; }
         (lib.mkIf (cfg.desktop.compositor == "hyprland") {
             # https://docs.noctalia.dev/getting-started/compositor-settings/hyprland/
             wayland.windowManager.hyprland.settings = {
@@ -21,7 +22,6 @@ lib.mkIf (cfg.desktop.enable && cfg.desktop.shell == "noctalia") (
                     gaps_out = lib.mkDefault 10;
                 };
                 decoration = {
-                    rounding = lib.mkDefault 20;
                     rounding_power = lib.mkDefault 2;
                     shadow = {
                         enabled = lib.mkDefault true;
@@ -51,21 +51,7 @@ lib.mkIf (cfg.desktop.enable && cfg.desktop.shell == "noctalia") (
             # https://docs.noctalia.dev/getting-started/compositor-settings/niri/
             programs.niri.settings = {
                 spawn-at-startup = [ { sh = restartNoctalia; } ];
-                window-rules = [
-                    {
-                        geometry-corner-radius =
-                            let
-                                radius = 20.000;
-                            in
-                            builtins.mapAttrs (n: v: lib.mkDefault v) {
-                                bottom-left = radius;
-                                bottom-right = radius;
-                                top-left = radius;
-                                top-right = radius;
-                            };
-                        clip-to-geometry = lib.mkDefault true;
-                    }
-                ];
+                window-rules = [ { clip-to-geometry = true; } ];
 
                 debug.honor-xdg-activation-with-invalid-serial = [ ];
 
