@@ -8,7 +8,7 @@
 {
     imports = [
         ./hyprland
-        ./niri
+        ./niri.nix
         ./keybinds.nix
     ];
 }

@@ -75,9 +75,9 @@ in
                 "mouse:273" = "MouseRight";
                 "mouse:274" = "MouseMiddle";
                 "mouse:275" = "MouseForward";
-                "mouse:276" = "MouseExtra";
-                "mouse_down" = "WheelScrollDown";
-                "mouse_up" = "WheelScrollUp";
+                "mouse:276" = "MouseBack";
+                "mouse_up" = "WheelScrollDown";
+                "mouse_down" = "WheelScrollUp";
             };
             niriToHypr = builtins.listToAttrs (
                 builtins.map (x: {

@@ -75,6 +75,7 @@ lib.mkIf cfg.desktop.enable {
             key = "F";
             perCompositor = {
                 niri.action.maximize-column = [ ];
+                hyprland = "layoutmsg, fit active";
             };
         }
         {
@@ -86,6 +87,7 @@ lib.mkIf cfg.desktop.enable {
             key = "F";
             perCompositor = {
                 niri.action.expand-column-to-available-width = [ ];
+                hyprland = "layoutmsg, fit visible";
             };
         }
         {
@@ -131,12 +133,30 @@ lib.mkIf cfg.desktop.enable {
             };
         }
         {
+            name = "Move Column Left";
+            mod = "Super";
+            key = "MouseForward";
+            perCompositor = {
+                niri.action.move-column-left = [ ];
+                hyprland = "layoutmsg, swapcol l";
+            };
+        }
+        {
             name = "Move Column Right";
             mod = [
                 "Super"
                 "Shift"
             ];
             key = "L";
+            perCompositor = {
+                niri.action.move-column-right = [ ];
+                hyprland = "layoutmsg, swapcol r";
+            };
+        }
+        {
+            name = "Move Column Right";
+            mod = "Super";
+            key = "MouseBack";
             perCompositor = {
                 niri.action.move-column-right = [ ];
                 hyprland = "layoutmsg, swapcol r";
@@ -259,6 +279,71 @@ lib.mkIf cfg.desktop.enable {
             perCompositor = {
                 niri.action.screenshot = [ ];
                 hyprland = "exec, hyprshot -m region --clipboard-only";
+            };
+        }
+        {
+            name = "Scroll to Next Workspace";
+            mod = "Super";
+            key = "WheelScrollDown";
+            perCompositor = {
+                niri = {
+                    cooldown-ms = 150;
+                    action.focus-workspace-down = [ ];
+                };
+                hyprland = "split-cycleworkspaces, prev";
+            };
+        }
+        {
+            name = "Scroll to Prev Workspace";
+            mod = "Super";
+            key = "WheelScrollUp";
+            perCompositor = {
+                niri = {
+                    cooldown-ms = 150;
+                    action.focus-workspace-up = [ ];
+                };
+                hyprland = "split-cycleworkspaces, next";
+            };
+        }
+        {
+            name = "Scroll Layout Right";
+            mod = [
+                "Super"
+                "Shift"
+            ];
+            key = "WheelScrollDown";
+            perCompositor = {
+                niri = {
+                    cooldown-ms = 150;
+                    action.focus-column-right = [ ];
+                };
+                hyprland = "layoutmsg, move -col";
+            };
+        }
+        {
+            name = "Scroll Layout Left";
+            mod = [
+                "Super"
+                "Shift"
+            ];
+            key = "WheelScrollUp";
+            perCompositor = {
+                niri = {
+                    cooldown-ms = 150;
+                    action.focus-column-left = [ ];
+                };
+                hyprland = "layoutmsg, move +col";
+            };
+        }
+        {
+            name = "Toggle Overview";
+            mod = "Super";
+            key = "Space";
+            perCompositor = {
+                niri = {
+                    repeat = false;
+                    action.toggle-overview = [ ];
+                };
             };
         }
     ]
