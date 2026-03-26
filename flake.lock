@@ -427,6 +427,36 @@
         "type": "github"
       }
     },
+    "hyprland-plugins": {
+      "inputs": {
+        "hyprland": [
+          "hyprland"
+        ],
+        "nixpkgs": [
+          "hyprland-plugins",
+          "hyprland",
+          "nixpkgs"
+        ],
+        "systems": [
+          "hyprland-plugins",
+          "hyprland",
+          "systems"
+        ]
+      },
+      "locked": {
+        "lastModified": 1771865848,
+        "narHash": "sha256-xwNa+1D8WPsDnJtUofDrtyDCZKZotbUymzV/R5s+M0I=",
+        "owner": "hyprwm",
+        "repo": "hyprland-plugins",
+        "rev": "b85a56b9531013c79f2f3846fd6ee2ff014b8960",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hyprwm",
+        "repo": "hyprland-plugins",
+        "type": "github"
+      }
+    },
     "hyprland-protocols": {
       "inputs": {
         "nixpkgs": [
@@ -878,11 +908,11 @@
         "noctalia-qs": "noctalia-qs"
       },
       "locked": {
-        "lastModified": 1774524148,
-        "narHash": "sha256-zCcplHueYs4tCFW4WTdHigzTP4lXc/2v4AfDeXVbECU=",
+        "lastModified": 1774535406,
+        "narHash": "sha256-Ud8b9/HyphWSKoAjxy3ze6H6sxKbhJlysmJq6cg32Lc=",
         "owner": "noctalia-dev",
         "repo": "noctalia-shell",
-        "rev": "70082a6491d0ccc56688a7093b5727ed7bcf04d2",
+        "rev": "537ec29f5ec7dc47e3f0da7256b7ff5abadd8e26",
         "type": "github"
       },
       "original": {
@@ -975,6 +1005,7 @@
         "dw-proton": "dw-proton",
         "home-manager": "home-manager",
         "hyprland": "hyprland",
+        "hyprland-plugins": "hyprland-plugins",
         "moppkgs": "moppkgs",
         "niri": "niri",
         "nix-vscode-extensions": "nix-vscode-extensions",

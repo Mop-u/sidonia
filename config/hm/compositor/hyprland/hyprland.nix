@@ -34,7 +34,10 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.compositor == "hyprland")) {
         systemd.enable = false;
         systemd.enableXdgAutostart = false;
         xwayland.enable = true;
-        plugins = [ pkgs.split-monitor-workspaces ];
+        plugins = with pkgs.hyprPlugins; [
+            split-monitor-workspaces
+            hyprexpo
+        ];
         settings = {
             monitorv2 = lib.optional (!config.services.shikane.enable) {
                 output = "";
@@ -99,6 +102,16 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.compositor == "hyprland")) {
                 enable_wrapping = 1;
                 enable_persistent_workspaces = 0;
                 keep_focused = 1;
+            };
+
+            plugin.hyprexpo = builtins.mapAttrs (n: v: lib.mkDefault v) {
+                # https://github.com/hyprwm/hyprland-plugins/tree/main/hyprexpo
+                columns = 1;
+                gap_size = 5;
+                bg_col = config.wayland.windowManager.hyprland.settings.misc.background_color or "rgb(111111)";
+                workspace_method = "center current";
+                skip_empty = false;
+                gesture_distance = 300;
             };
 
             render = builtins.mapAttrs (n: v: lib.mkDefault v) {

@@ -53,7 +53,10 @@ in
                 ;
             hyprland-mesa = hyprland-nixpkgs.mesa;
             hyprland-mesa32 = hyprland-nixpkgs.pkgsi686Linux.mesa;
-            inherit (inputs.split-monitor-workspaces.packages.${getSystem prev}) split-monitor-workspaces;
+            hyprPlugins = {
+                inherit (inputs.split-monitor-workspaces.packages.${getSystem prev}) split-monitor-workspaces;
+            }
+            // inputs.hyprland-plugins.packages.${getSystem prev};
 
             scopebuddy = inputs.scopebuddy.packages.${getSystem prev}.default;
 

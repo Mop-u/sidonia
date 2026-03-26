@@ -51,11 +51,5 @@ lib.mkIf
                 key = "Tab";
                 exec = "noctalia-shell ipc call plugin:workspace-overview toggle";
             }
-            {
-                name = "Toggle Workspace Overview";
-                mod = "Super";
-                key = "Space";
-                exec = "noctalia-shell ipc call plugin:workspace-overview toggle";
-            }
         ];
     }

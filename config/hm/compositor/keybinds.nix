@@ -344,6 +344,7 @@ lib.mkIf cfg.desktop.enable {
                     repeat = false;
                     action.toggle-overview = [ ];
                 };
+                hyprland = "hyprexpo:expo, toggle";
             };
         }
     ]
