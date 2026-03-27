@@ -21,22 +21,6 @@ lib.mkIf
                     };
                 };
             };
-            pluginSettings = {
-                workspace-overview = builtins.mapAttrs (n: v: lib.mkDefault v) {
-                    gridRows = 2;
-                    gridColumns = 5;
-                    gridScale = 0.16;
-                    hideEmptyRows = true;
-                    showScratchpadWorkspace = false;
-                    gridSpacing = 0;
-                    overviewPosition = "center";
-                    barmargin = 0;
-                    useSlideAnimation = true;
-                    containerBorderWidth = -1;
-                    selectionBorderWidth = -1;
-                    accentColorType = "secondary";
-                };
-            };
         };
         wayland.desktopManager.sidonia.keybinds = [
             {
