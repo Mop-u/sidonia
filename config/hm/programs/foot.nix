@@ -14,7 +14,7 @@ lib.mkIf (cfg.desktop.enable) {
         settings.default = [ "foot.desktop" ];
     };
     dconf.settings = {
-        "org/cinnamon/desktop/default-applications/terminal" = {
+        "org/cinnamon/desktop/applications/terminal" = {
             exec = lib.gvariant.mkValue (lib.getExe pkgs.foot);
             exec-arg = lib.gvariant.mkValue "-e";
         };
