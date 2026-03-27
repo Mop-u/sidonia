@@ -290,7 +290,7 @@ lib.mkIf cfg.desktop.enable {
                     cooldown-ms = 150;
                     action.focus-workspace-down = [ ];
                 };
-                hyprland = "split-cycleworkspaces, prev";
+                hyprland = "split-cycleworkspaces, next";
             };
         }
         {
@@ -302,7 +302,7 @@ lib.mkIf cfg.desktop.enable {
                     cooldown-ms = 150;
                     action.focus-workspace-up = [ ];
                 };
-                hyprland = "split-cycleworkspaces, next";
+                hyprland = "split-cycleworkspaces, prev";
             };
         }
         {
@@ -317,7 +317,7 @@ lib.mkIf cfg.desktop.enable {
                     cooldown-ms = 150;
                     action.focus-column-right = [ ];
                 };
-                hyprland = "layoutmsg, move -col";
+                hyprland = "layoutmsg, move +col";
             };
         }
         {
@@ -332,7 +332,7 @@ lib.mkIf cfg.desktop.enable {
                     cooldown-ms = 150;
                     action.focus-column-left = [ ];
                 };
-                hyprland = "layoutmsg, move +col";
+                hyprland = "layoutmsg, move -col";
             };
         }
         {
