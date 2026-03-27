@@ -55,6 +55,7 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.compositor == "niri")) {
                     enable = false;
                     width = window.decoration.borderWidth;
                 };
+                default-column-width.proportion = 0.5;
                 preset-column-widths = [
                     { proportion = 1. / 3.; }
                     { proportion = 1. / 2.; }
