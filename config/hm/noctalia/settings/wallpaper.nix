@@ -11,7 +11,7 @@ in
 lib.mkIf (cfg.desktop.enable && (cfg.desktop.shell == "noctalia")) {
     programs.noctalia-shell.settings.wallpaper = builtins.mapAttrs (n: v: lib.mkDefault v) {
         enabled = true;
-        overviewEnabled = false;
+        overviewEnabled = true;
         directory = "${config.home.homeDirectory}/Pictures/Wallpapers";
         monitorDirectories = [ ];
         enableMultiMonitorDirectories = false;
