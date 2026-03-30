@@ -14,7 +14,7 @@ in
                 services.displayManager = {
                     autoLogin.enable = lib.mkDefault false;
                     autoLogin.user = lib.mkDefault cfg.userName;
-                    lemurs.enable = lib.mkDefault true;
+                    cosmic-greeter.enable = lib.mkDefault true;
                 };
             }
             (lib.mkIf (cfg.desktop.compositor == "hyprland") {
