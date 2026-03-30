@@ -14,13 +14,7 @@ in
                 services.displayManager = {
                     autoLogin.enable = lib.mkDefault false;
                     autoLogin.user = lib.mkDefault cfg.userName;
-                    sddm = {
-                        enable = lib.mkDefault true;
-                        wayland = {
-                            enable = lib.mkDefault true;
-                            #compositor = lib.mkDefault "kwin";
-                        };
-                    };
+                    lemurs.enable = lib.mkDefault true;
                 };
             }
             (lib.mkIf (cfg.desktop.compositor == "hyprland") {
