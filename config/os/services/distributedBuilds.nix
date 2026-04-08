@@ -37,7 +37,7 @@ in
             };
             maxJobs = mkOption {
                 description = "Maximum amount of jobs to accept from a single client";
-                type = types.int;
+                type = types.either types.int (types.enum [ "auto" ]);
                 default = config.nix.settings.max-jobs;
             };
         };
@@ -94,17 +94,19 @@ in
                                     substituters = [ "ssh-ng://${builderName}" ];
                                 };
                                 buildMachines = [
-                                    {
-                                        hostName = builtins.head remoteHost.hostNames;
-                                        sshUser = remoteHost.user;
-                                        sshKey = client.ssh.privKeyPath;
-                                        #publicHostKey = remoteHost.ssh.pubKey; # don't use this value as it wants base64, fall back to known_hosts instead
-                                        system = "x86_64-linux";
-                                        protocol = "ssh-ng";
-                                        maxJobs = remoteHost.maxJobs;
-                                        speedFactor = 2;
-                                        supportedFeatures = remoteFeatures;
-                                    }
+                                    (
+                                        {
+                                            hostName = builtins.head remoteHost.hostNames;
+                                            sshUser = remoteHost.user;
+                                            sshKey = client.ssh.privKeyPath;
+                                            #publicHostKey = remoteHost.ssh.pubKey; # don't use this value as it wants base64, fall back to known_hosts instead
+                                            system = "x86_64-linux";
+                                            protocol = "ssh-ng";
+                                            speedFactor = 2;
+                                            supportedFeatures = remoteFeatures;
+                                        }
+                                        // (if remoteHost.maxJobs != "auto" then { inherit (remoteHost) maxJobs; } else { })
+                                    )
                                 ];
                             };
                         }
