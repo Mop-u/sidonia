@@ -26,7 +26,7 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.shell == "noctalia")) {
         wallpaperChangeMode = "random";
         randomIntervalSec = 300;
         transitionDuration = 1500;
-        transitionType = "fade";
+        transitionType = [ "fade" ];
         skipStartupTransition = false;
         transitionEdgeSmoothness = 0.05;
         panelPosition = "follow_bar";
@@ -46,5 +46,7 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.shell == "noctalia")) {
         wallhavenResolutionHeight = "";
         sortOrder = "name";
         favorites = [ ];
+        linkLightAndDarkWallpapers = true;
+        useOriginalImages = false;
     };
 }

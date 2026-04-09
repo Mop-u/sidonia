@@ -18,7 +18,6 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.shell == "noctalia")) {
         clipboardWatchImageCommand = "wl-paste --type image --watch cliphist store";
         position = "center";
         pinnedApps = [ ];
-        useApp2Unit = false;
         sortByMostUsed = true;
         terminalCommand = "foot -e";
         customLaunchPrefixEnabled = false;
@@ -30,6 +29,8 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.shell == "noctalia")) {
         enableSettingsSearch = true;
         enableWindowsSearch = true;
         enableSessionSearch = true;
+        enableClipboardChips = true;
+        enableClipboardSmartIcons = true;
         ignoreMouseInput = false;
         screenshotAnnotationTool = "";
         overviewLayer = false;

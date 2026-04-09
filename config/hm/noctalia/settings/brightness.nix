@@ -10,6 +10,7 @@ let
 in
 lib.mkIf (cfg.desktop.enable && (cfg.desktop.shell == "noctalia")) {
     programs.noctalia-shell.settings.brightness = builtins.mapAttrs (n: v: lib.mkDefault v) {
+        backlightDeviceMappings = [ ];
         brightnessStep = 5;
         enforceMinimum = true;
         enableDdcSupport = true;

@@ -10,8 +10,8 @@ let
 in
 lib.mkIf (cfg.desktop.enable && (cfg.desktop.shell == "noctalia")) {
     programs.noctalia-shell.settings.network = builtins.mapAttrs (n: v: lib.mkDefault v) {
-        wifiEnabled = true;
-        airplaneModeEnabled = false;
+        networkPanelView = "wifi";
+        bluetoothAutoConnect = true;
         bluetoothRssiPollingEnabled = false;
         bluetoothRssiPollIntervalMs = 60000;
         wifiDetailsViewMode = "grid";

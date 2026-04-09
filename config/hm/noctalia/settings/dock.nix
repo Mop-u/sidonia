@@ -13,7 +13,7 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.shell == "noctalia")) {
         enabled = false;
         position = "bottom";
         displayMode = "auto_hide";
-        dockType = "static";
+        dockType = "attached";
         backgroundOpacity = 1;
         floatingRatio = 1;
         size = 2;
@@ -26,13 +26,18 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.shell == "noctalia")) {
         launcherPosition = "start";
         pinnedStatic = false;
         inactiveIndicators = false;
+        indicatorColor = "primary";
+        indicatorOpacity = 0.6;
+        indicatorThickness = 3;
         groupApps = true;
         groupContextMenuMode = "extended";
         groupClickAction = "cycle";
         groupIndicatorStyle = "dots";
+        launcherIcon = "";
+        launcherUseDistroLogo = true;
+        showDockIndicator = false;
         deadOpacity = 0.6;
         animationSpeed = 1;
         sitOnFrame = true;
-        showFrameIndicator = true;
     };
 }

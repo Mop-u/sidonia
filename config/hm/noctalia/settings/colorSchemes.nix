@@ -14,6 +14,7 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.shell == "noctalia")) {
         predefinedScheme = "Catppuccin";
         darkMode = true;
         schedulingMode = "off";
+        syncGsettings = true;
         manualSunrise = "06:30";
         manualSunset = "18:30";
         generationMethod = "tonal-spot";

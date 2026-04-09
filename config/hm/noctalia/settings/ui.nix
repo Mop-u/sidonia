@@ -18,10 +18,9 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.shell == "noctalia")) {
         panelBackgroundOpacity = 0.93;
         panelsAttachedToBar = true;
         settingsPanelMode = "attached";
-        wifiDetailsViewMode = "grid";
-        bluetoothDetailsViewMode = "grid";
-        networkPanelView = "wifi";
-        bluetoothHideUnnamedDevices = false;
         boxBorderEnabled = false;
+        scrollbarAlwaysVisible = true;
+        settingsPanelSideBarCardStyle = false;
+        translucentWidgets = false;
     };
 }

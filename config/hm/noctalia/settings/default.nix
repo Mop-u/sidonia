@@ -18,9 +18,11 @@
         ./dock.nix
         ./general.nix
         ./hooks.nix
+        ./idle.nix
         ./location.nix
         ./network.nix
         ./nightLight.nix
+        ./noctaliaPerformance.nix
         ./notifications.nix
         ./osd.nix
         ./plugins

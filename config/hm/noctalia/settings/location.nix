@@ -10,6 +10,8 @@ let
 in
 lib.mkIf (cfg.desktop.enable && (cfg.desktop.shell == "noctalia")) {
     programs.noctalia-shell.settings.location = builtins.mapAttrs (n: v: lib.mkDefault v) {
+        autoLocate = cfg.geolocation.enable;
+        weatherTaliaMascotAlways = false;
         name = "Dublin";
         weatherEnabled = true;
         weatherShowEffects = false;

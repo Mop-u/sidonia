@@ -14,6 +14,6 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.shell == "noctalia")) {
         package = pkgs.noctalia-shell.override {
             calendarSupport = osConfig.services.gnome.evolution-data-server.enable;
         };
-        settings.settingsVersion = 53;
+        settings.settingsVersion = 59;
     };
 }

@@ -16,9 +16,19 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.shell == "noctalia")) {
         barType = "floating";
         capsuleColorKey = "none";
         capsuleOpacity = 1;
+        contentPadding = 2;
+        enableExclusionZoneInset = true;
+        middleClickAction = "none";
+        middleClickCommand = "";
+        middleClickFollowMouse = false;
+        mouseWheelAction = "none";
+        mouseWheelWrap = true;
+        reverseScroll = false;
+        rightClickAction = "controlCenter";
+        rightClickCommand = "";
+        rightClickFollowMouse = true;
         density = "comfortable";
         displayMode = "always_visible";
-        floating = false;
         fontScale = 1;
         frameRadius = 12;
         frameThickness = 8;
@@ -39,6 +49,7 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.shell == "noctalia")) {
                 {
                     colorizeDistroLogo = false;
                     colorizeSystemIcon = "none";
+                    colorizeSystemText = "none";
                     customIconPath = "";
                     enableColorization = false;
                     icon = "noctalia";
@@ -59,6 +70,7 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.shell == "noctalia")) {
                     diskPath = "/";
                     iconColor = "none";
                     id = "SystemMonitor";
+                    showCpuCores = false;
                     showCpuFreq = false;
                     showCpuTemp = true;
                     showCpuUsage = false;
@@ -82,6 +94,7 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.shell == "noctalia")) {
                     enableScrollWheel = false;
                     focusedColor = "primary";
                     followFocusedScreen = false;
+                    fontWeight = "bold";
                     groupedBorderOpacity = 1;
                     hideUnoccupied = false;
                     iconScale = 0.8;
@@ -90,6 +103,7 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.shell == "noctalia")) {
                     occupiedColor = "secondary";
                     pillSize = 0.6;
                     showApplications = true;
+                    showApplicationsHover = false;
                     showBadge = true;
                     showLabelsOnlyWhenOccupied = true;
                     unfocusedIconsOpacity = 1;
@@ -103,6 +117,7 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.shell == "noctalia")) {
                     maxWidth = 600;
                     scrollingMode = "hover";
                     showIcon = true;
+                    showText = true;
                     textColor = "none";
                     useFixedWidth = false;
                 }
@@ -110,8 +125,11 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.shell == "noctalia")) {
             right =
                 (lib.optional cfg.isLaptop {
                     id = "Battery";
-                    alwaysShowPercentage = false;
-                    warningThreshold = 30;
+                    deviceNativePath = "__default__";
+                    displayMode = "graphic-clean";
+                    hideIfIdle = false;
+                    showNoctaliaPerformance = false;
+                    showPowerProfiles = false;
                 })
                 ++ (lib.optional (config.programs.noctalia-shell.plugins.states.kde-connect.enabled) {
                     id = "plugin:kde-connect";

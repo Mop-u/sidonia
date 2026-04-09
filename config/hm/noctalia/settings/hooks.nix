@@ -12,6 +12,7 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.shell == "noctalia")) {
     programs.noctalia-shell.settings.hooks = builtins.mapAttrs (n: v: lib.mkDefault v) {
         enabled = false;
         wallpaperChange = "";
+        colorGeneration = "";
         darkModeChange = "";
         screenLock = "";
         screenUnlock = "";

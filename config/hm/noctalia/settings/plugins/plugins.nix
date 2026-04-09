@@ -36,7 +36,8 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.shell == "noctalia")) {
             version = lib.mkDefault 2;
         };
         settings.plugins = builtins.mapAttrs (n: v: lib.mkDefault v) {
-            autoUpdate = true;
+            autoUpdate = false;
+            notifyUpdates = true;
         };
     };
 }

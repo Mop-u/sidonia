@@ -21,13 +21,15 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.shell == "noctalia")) {
         clockStyle = "custom";
         compactLockScreen = false;
         dimmerOpacity = 0.2;
+        enableBlurBehind = true;
         enableLockScreenCountdown = true;
+        enableLockScreenMediaControls = false;
         enableShadows = true;
         forceBlackScreenCorners = false;
         iRadiusRatio = 1;
         keybinds = {
             keyDown = [ "Down" ];
-            keyEnter = [ "Return" ];
+            keyEnter = [ "Enter" ];
             keyEscape = [ "Esc" ];
             keyLeft = [ "Left" ];
             keyRemove = [ "Del" ];
@@ -53,6 +55,7 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.shell == "noctalia")) {
         showHibernateOnLockScreen = false;
         showScreenCorners = false;
         showSessionButtonsOnLockScreen = true;
+        smoothScrollEnabled = true;
         telemetryEnabled = false;
     };
 }
