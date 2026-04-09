@@ -29,7 +29,10 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.shell == "noctalia")) {
         iRadiusRatio = 1;
         keybinds = {
             keyDown = [ "Down" ];
-            keyEnter = [ "Enter" ];
+            keyEnter = [
+                "Return"
+                "Enter"
+            ];
             keyEscape = [ "Esc" ];
             keyLeft = [ "Left" ];
             keyRemove = [ "Del" ];
