@@ -62,6 +62,7 @@ in
                     // {
                         QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
                         _JAVA_AWT_WM_NONREPARENTING = "1";
+                        XDG_CURRENT_DESKTOP = "niri:GNOME";
                     }
                 );
             })

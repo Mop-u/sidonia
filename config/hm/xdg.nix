@@ -9,20 +9,6 @@ let
     cfg = osConfig.sidonia;
 in
 lib.mkIf (cfg.desktop.enable) {
-
-    services = {
-        gnome-keyring.enable = true;
-    };
-
-    home.packages = with pkgs; [
-        # Hyprland / core apps
-        qimgv
-        mpv # video player
-        dconf-editor # view gsettings stuff
-        gsettings-desktop-schemas
-        ungoogled-chromium
-    ];
-
     xdg = {
         autostart.enable = true;
         portal = {
@@ -36,7 +22,6 @@ lib.mkIf (cfg.desktop.enable) {
             config = {
                 common = {
                     default = [ "gtk" ];
-                    "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
                 };
                 hyprland = {
                     default = [

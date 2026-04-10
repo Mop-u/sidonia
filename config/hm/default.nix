@@ -11,8 +11,10 @@
         ./noctalia
         ./programs
         ./gtk.nix
+        ./keyring.nix
+        ./packages.nix
         ./pointerCursor.nix
         ./qt.nix
-        ./services.nix
+        ./xdg.nix
     ];
 }
