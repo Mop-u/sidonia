@@ -46,6 +46,7 @@ in
             inherit (inputs.unstable.legacyPackages.${getSystem prev})
                 magnetic-catppuccin-gtk
                 surfer
+                foot
                 ;
             inherit (inputs.hyprland.packages.${getSystem prev})
                 hyprland
