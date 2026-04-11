@@ -29,7 +29,10 @@ lib.mkIf (cfg.desktop.enable) {
             # https://codeberg.org/dnkl/foot/src/branch/master/foot.ini
             main.dpi-aware = "no";
             main.font = "monospace:size=10";
-            colors.alpha = builtins.toString config.wayland.desktopManager.sidonia.window.decoration.opacity.dec;
+            colors = {
+                alpha = builtins.toString config.wayland.desktopManager.sidonia.window.decoration.opacity.dec;
+                blur = "yes";
+            };
         };
     };
     wayland.desktopManager.sidonia.keybinds = [
