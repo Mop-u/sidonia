@@ -34,10 +34,22 @@ in
         };
         environment.systemPackages = [ pkgs.gamescope-wsi ]; # for gamescope hdr support
 
-        home-manager.users.${cfg.userName}.wayland.windowManager.hyprland.settings.windowrule = [
-            "match:initial_class ^steam_app_\\d+$, content game, tag +game"
-            "match:xdg_tag proton-game, content game, tag +game, no_vrr on"
-            "match:tag game, fullscreen on, workspace special:magic, idle_inhibit always, render_unfocused on, immediate on"
-        ];
+        home-manager.users.${cfg.userName} = {
+            wayland.windowManager.hyprland.settings.windowrule = [
+                "match:initial_class ^steam_app_\\d+$, content game, tag +game"
+                "match:initial_class gamescope, content game, tag +game"
+                "match:xdg_tag proton-game, content game, tag +game, no_vrr on"
+                "match:tag game, fullscreen on, workspace special:magic, idle_inhibit always, render_unfocused on, immediate on"
+            ];
+            programs.niri.settings.window-rules = [
+                {
+                    matches = [
+                        { app-id = ''^steam_app_[0-9]+$''; }
+                        { app-id = ''^gamescope$''; }
+                    ];
+                    open-fullscreen = true;
+                }
+            ];
+        };
     };
 }
