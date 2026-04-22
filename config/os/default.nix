@@ -14,5 +14,6 @@ in
         ./tweaks
         ./configuration.nix
         ./hyprland.nix
+        ./niri.nix
     ];
 }

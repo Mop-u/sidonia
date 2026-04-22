@@ -42,10 +42,7 @@ in
                 };
             })
             (lib.mkIf (cfg.desktop.compositor == "niri") {
-                services.displayManager = {
-                    sessionPackages = [ config.programs.niri.package ];
-                    defaultSession = lib.mkDefault "niri";
-                };
+                services.displayManager.defaultSession = lib.mkDefault "niri";
             })
         ]
     );
