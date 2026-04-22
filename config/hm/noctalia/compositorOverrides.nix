@@ -54,11 +54,14 @@ lib.mkIf (cfg.desktop.enable && cfg.desktop.shell == "noctalia") (
 
                 debug.honor-xdg-activation-with-invalid-serial = [ ];
 
-                # for blurred overview wallpaper
                 layer-rules = [
                     {
                         matches = [ { namespace = "^noctalia-overview"; } ];
                         place-within-backdrop = true;
+                    }
+                    {
+                        matches = [ { namespace = "^noctalia-(background|launcher-overlay|dock)-.*$"; } ];
+                        background-effect.xray = false;
                     }
                 ];
             };
