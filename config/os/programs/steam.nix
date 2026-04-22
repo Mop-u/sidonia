@@ -44,8 +44,8 @@ in
             programs.niri.settings.window-rules = [
                 {
                     matches = [
-                        { app-id = ''^steam_app_[0-9]+$''; }
-                        { app-id = ''^gamescope$''; }
+                        { app-id = "^steam_app_[0-9]+$"; }
+                        { app-id = "^gamescope$"; }
                     ];
                     open-fullscreen = true;
                 }
