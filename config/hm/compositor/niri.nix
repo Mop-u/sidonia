@@ -29,6 +29,11 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.compositor == "niri")) {
                     open-fullscreen = false;
                     draw-border-with-background = false;
                     opacity = 1.;
+                    background-effect = {
+                        blur = true;
+                        xray = true;
+                    };
+                    popups.background-effect.xray = false;
                     geometry-corner-radius =
                         let
                             radius = window.decoration.rounding + .0;
@@ -42,7 +47,11 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.compositor == "niri")) {
                 }
                 {
                     matches = [ { is-focused = false; } ];
-                    opacity = 0.98;
+                    opacity = 0.97;
+                }
+                {
+                    matches = [ { is-floating = true; } ];
+                    background-effect.xray = false;
                 }
             ];
             layout = {
