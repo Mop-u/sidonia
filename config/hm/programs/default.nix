@@ -12,6 +12,7 @@
         ./floorp.nix
         ./foot.nix
         ./gtkwave.nix
+        ./helix.nix
         ./missioncenter.nix
         ./nemo.nix
         ./sublime.nix

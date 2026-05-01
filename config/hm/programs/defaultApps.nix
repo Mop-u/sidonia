@@ -40,9 +40,10 @@ lib.mkMerge [
     {
         programs = {
             btop.enable = lib.mkDefault true;
+            lazygit.enable = lib.mkDefault true;
             neovim = {
                 enable = lib.mkDefault true;
-                defaultEditor = lib.mkDefault true;
+                defaultEditor = lib.mkDefault false;
             };
             bat = {
                 enable = lib.mkDefault true;
