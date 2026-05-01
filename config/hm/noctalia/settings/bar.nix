@@ -96,10 +96,10 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.shell == "noctalia")) {
                     followFocusedScreen = false;
                     fontWeight = "bold";
                     groupedBorderOpacity = 1;
-                    hideUnoccupied = false;
+                    hideUnoccupied = true;
                     iconScale = 0.8;
                     id = "Workspace";
-                    labelMode = "index";
+                    labelMode = "none";
                     occupiedColor = "secondary";
                     pillSize = 0.6;
                     showApplications = true;
