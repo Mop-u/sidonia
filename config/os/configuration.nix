@@ -71,8 +71,8 @@ in
 
     # Set your time zone.
     time.timeZone = lib.mkDefault "Europe/Dublin";
-    #services.automatic-timezoned.enable = true;
-    services.localtimed.enable = cfg.geolocation.enable;
+    services.automatic-timezoned.enable = cfg.geolocation.enable;
+    #services.localtimed.enable = cfg.geolocation.enable;
     services.geoclue2 = {
         enable = cfg.geolocation.enable;
         geoProviderUrl = "https://beacondb.net/v1/geolocate";
