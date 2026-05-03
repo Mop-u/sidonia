@@ -21,7 +21,7 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.shell == "noctalia")) {
         clockStyle = "custom";
         compactLockScreen = false;
         dimmerOpacity = 0.2;
-        enableBlurBehind = true;
+        enableBlurBehind = !osConfig.sidonia.graphics.legacyGpu;
         enableLockScreenCountdown = true;
         enableLockScreenMediaControls = false;
         enableShadows = true;

@@ -29,7 +29,7 @@ lib.mkIf (cfg.desktop.enable && cfg.desktop.shell == "noctalia") (
                         color = lib.mkDefault "rgba(1a1a1aee)";
                     };
                     blur = {
-                        enabled = lib.mkDefault true;
+                        enabled = lib.mkDefault (!osConfig.sidonia.graphics.legacyGpu);
                         size = lib.mkDefault 3;
                         passes = lib.mkDefault 2;
                         vibrancy = lib.mkDefault 0.1696;
@@ -40,8 +40,8 @@ lib.mkIf (cfg.desktop.enable && cfg.desktop.shell == "noctalia") (
                         name = "noctalia";
                         "match:namespace" = "noctalia-background-.*$";
                         ignore_alpha = 0.5;
-                        blur = true;
-                        blur_popups = true;
+                        blur = !osConfig.sidonia.graphics.legacyGpu;
+                        blur_popups = !osConfig.sidonia.graphics.legacyGpu;
                     }
                 ];
             };
@@ -61,7 +61,7 @@ lib.mkIf (cfg.desktop.enable && cfg.desktop.shell == "noctalia") (
                     }
                     {
                         matches = [ { namespace = "^noctalia-(background|launcher-overlay|dock)-.*$"; } ];
-                        background-effect.xray = false;
+                        background-effect.xray = osConfig.sidonia.graphics.legacyGpu;
                     }
                 ];
             };

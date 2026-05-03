@@ -30,10 +30,10 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.compositor == "niri")) {
                     draw-border-with-background = false;
                     opacity = 1.;
                     background-effect = {
-                        blur = true;
+                        blur = !osConfig.sidonia.graphics.legacyGpu;
                         xray = true;
                     };
-                    popups.background-effect.xray = false;
+                    popups.background-effect.xray = osConfig.sidonia.graphics.legacyGpu;
                     geometry-corner-radius =
                         let
                             radius = window.decoration.rounding + .0;
@@ -51,7 +51,7 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.compositor == "niri")) {
                 }
                 {
                     matches = [ { is-floating = true; } ];
-                    background-effect.xray = false;
+                    background-effect.xray = osConfig.sidonia.graphics.legacyGpu;
                 }
             ];
             layout = {
