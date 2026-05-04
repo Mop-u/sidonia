@@ -24,7 +24,7 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.shell == "noctalia")) {
         enableBlurBehind = !osConfig.sidonia.graphics.legacyGpu;
         enableLockScreenCountdown = true;
         enableLockScreenMediaControls = false;
-        enableShadows = true;
+        enableShadows = !osConfig.sidonia.graphics.legacyGpu;
         forceBlackScreenCorners = false;
         iRadiusRatio = 1;
         keybinds = {

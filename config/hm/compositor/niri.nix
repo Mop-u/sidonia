@@ -24,16 +24,15 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.compositor == "niri")) {
                 path = lib.getExe pkgs.xwayland-satellite-unstable;
             };
             prefer-no-csd = true;
+            blur.enable = !cfg.graphics.legacyGpu;
             window-rules = [
                 {
                     open-fullscreen = false;
+                    shadow.enable = false;
                     draw-border-with-background = false;
                     opacity = 1.;
-                    background-effect = {
-                        blur = !osConfig.sidonia.graphics.legacyGpu;
-                        xray = true;
-                    };
-                    popups.background-effect.xray = osConfig.sidonia.graphics.legacyGpu;
+                    background-effect.blur = !cfg.graphics.legacyGpu;
+                    popups.background-effect.xray = cfg.graphics.legacyGpu;
                     geometry-corner-radius =
                         let
                             radius = window.decoration.rounding + .0;
@@ -51,11 +50,17 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.compositor == "niri")) {
                 })
                 (lib.mkIf (!cfg.graphics.legacyGpu) {
                     matches = [ { is-floating = true; } ];
-                    background-effect.xray = osConfig.sidonia.graphics.legacyGpu;
+                    background-effect.xray = false;
                 })
+            ];
+            layer-rules = [
+                {
+                    shadow.enable = false;
+                }
             ];
             layout = {
                 always-center-single-column = true;
+                shadow.enable = false;
                 focus-ring = {
                     enable = true;
                     width = window.decoration.borderWidth;
@@ -72,6 +77,7 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.compositor == "niri")) {
                     { proportion = 1.; }
                 ];
             };
+            overview.workspace-shadow.enable = !cfg.graphics.legacyGpu;
             hotkey-overlay.skip-at-startup = true;
             gestures.hot-corners.enable = false;
         };
