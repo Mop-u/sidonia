@@ -45,14 +45,14 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.compositor == "niri")) {
                             top-right = radius;
                         };
                 }
-                {
+                (lib.mkIf (!cfg.graphics.legacyGpu) {
                     matches = [ { is-focused = false; } ];
                     opacity = window.decoration.opacity.dec;
-                }
-                {
+                })
+                (lib.mkIf (!cfg.graphics.legacyGpu) {
                     matches = [ { is-floating = true; } ];
                     background-effect.xray = osConfig.sidonia.graphics.legacyGpu;
-                }
+                })
             ];
             layout = {
                 always-center-single-column = true;
