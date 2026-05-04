@@ -21,7 +21,7 @@
             opacity = lib.mkOption {
                 description = "Decimal opacity value for floating window transparency.";
                 type = lib.types.float;
-                default = 0.9;
+                default = if osConfig.sidonia.graphics.legacyGpu then 1. else 0.98;
                 apply = dec: {
                     inherit dec;
                     hex = lib.toHexString (builtins.floor (dec * 255));

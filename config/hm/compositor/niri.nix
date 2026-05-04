@@ -47,7 +47,7 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.compositor == "niri")) {
                 }
                 {
                     matches = [ { is-focused = false; } ];
-                    opacity = 0.97;
+                    opacity = window.decoration.opacity.dec;
                 }
                 {
                     matches = [ { is-floating = true; } ];

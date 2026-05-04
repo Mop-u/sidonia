@@ -7,12 +7,13 @@
 }:
 let
     cfg = osConfig.sidonia;
+    inherit (config.wayland.desktopManager.sidonia) window;
 in
 lib.mkIf (cfg.desktop.enable && (cfg.desktop.shell == "noctalia")) {
     programs.noctalia-shell.settings.bar = builtins.mapAttrs (n: v: lib.mkDefault v) {
         autoHideDelay = 500;
         autoShowDelay = 150;
-        backgroundOpacity = 0.93;
+        backgroundOpacity = window.decoration.opacity.dec;
         barType = "floating";
         capsuleColorKey = "none";
         capsuleOpacity = 1;

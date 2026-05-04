@@ -67,7 +67,7 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.compositor == "hyprland")) {
 
             decoration = {
                 active_opacity = lib.mkDefault 1.0;
-                inactive_opacity = lib.mkDefault 0.98;
+                inactive_opacity = lib.mkDefault window.decoration.opacity.dec;
                 rounding = lib.mkDefault window.decoration.rounding;
             };
 

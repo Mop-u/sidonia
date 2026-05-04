@@ -7,6 +7,7 @@
 }:
 let
     cfg = osConfig.sidonia;
+    inherit (config.wayland.desktopManager.sidonia) window;
 in
 lib.mkIf (cfg.desktop.enable && (cfg.desktop.shell == "noctalia")) {
     programs.noctalia-shell.settings.ui = builtins.mapAttrs (n: v: lib.mkDefault v) {
@@ -15,7 +16,7 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.shell == "noctalia")) {
         fontDefaultScale = 1;
         fontFixedScale = 1;
         tooltipsEnabled = true;
-        panelBackgroundOpacity = 0.93;
+        panelBackgroundOpacity = window.decoration.opacity.dec;
         panelsAttachedToBar = true;
         settingsPanelMode = "attached";
         boxBorderEnabled = false;
