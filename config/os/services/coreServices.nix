@@ -40,4 +40,24 @@ lib.mkIf (cfg.desktop.enable) {
         xfconf.enable = true;
     };
 
+    # https://gitlab.com/mission-center-devs/mission-center/-/wikis/Home/CPU
+    services.udev.extraRules = ''
+        SUBSYSTEM=="powercap", KERNEL=="intel-rapl*", \
+            RUN+="${pkgs.coreutils}/bin/chgrp -R wheel /sys/%p/'", \
+            RUN+="${pkgs.coreutils}/bin/chmod -R g+r /sys/%p/"
+    '';
+
+    security.wrappers.nethogs = {
+        enable = true;
+        owner = "root";
+        group = "root";
+        source = lib.getExe pkgs.nethogs;
+        capabilities = lib.concatStringsSep "," [
+            "cap_net_admin"
+            "cap_net_raw"
+            "cap_dac_read_search"
+            "cap_sys_ptrace+pe"
+        ];
+    };
+
 }
