@@ -24,13 +24,24 @@ lib.mkIf (cfg.desktop.enable) (
         (lib.mkIf (cfg.desktop.shell == "noctalia") {
             home.packages = [ pkgs.noctalia ];
             xdg.configFile."noctalia/config.toml".source = tomlFormat.generate "config.toml" {
+                weather = {
+                    enabled = cfg.geolocation.enable;
+                    auto_locate = cfg.geolocation.enable;
+                    unit = "celsius";
+                };
                 shell = {
                     offline_mode = false;
                     telemetry_enabled = false;
                     polkit_agent = true;
                     animation.enabled = (!cfg.graphics.legacyGpu);
                     panel.background_blur = (!cfg.graphics.legacyGpu);
+                    font_family = "monospace";
                 };
+                notification = {
+                    enable_daemon = true;
+                    background_opacity = opacity;
+                };
+                brightness.enable_ddcutil = true;
                 wallpaper = {
                     enabled = true;
                     fill_mode = "crop";
@@ -42,6 +53,7 @@ lib.mkIf (cfg.desktop.enable) (
                         interval_minutes = 5;
                     };
                 };
+                backdrop.enabled = !cfg.graphics.legacyGpu;
                 theme = {
                     mode = "auto";
                     source = "builtin";
@@ -56,11 +68,14 @@ lib.mkIf (cfg.desktop.enable) (
                         auto_hide = false;
                         reserve_space = true;
                         background_opacity = opacity;
+                        margin_h = 60;
+                        margin_v = 10;
+                        widget_spacing = 8;
+                        capsule = true;
                         start = [
                             "control-center"
                             "notifications"
                             "clock"
-                            "sysmon"
                             "taskbar"
                         ];
                         center = [
