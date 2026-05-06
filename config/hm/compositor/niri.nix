@@ -20,11 +20,11 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.compositor == "niri")) {
             # see: https://github.com/niri-wm/niri/blob/main/resources/default-config.kdl
 
             xwayland-satellite = {
-                enable = true;
-                path = lib.getExe pkgs.xwayland-satellite-unstable;
+                enable = lib.mkDefault true;
+                path = lib.mkDefault (lib.getExe pkgs.xwayland-satellite-unstable);
             };
-            prefer-no-csd = true;
-            blur.enable = !cfg.graphics.legacyGpu;
+            prefer-no-csd = lib.mkDefault true;
+            blur.enable = lib.mkDefault (!cfg.graphics.legacyGpu);
             window-rules = [
                 {
                     open-fullscreen = false;
@@ -59,17 +59,17 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.compositor == "niri")) {
                 }
             ];
             layout = {
-                always-center-single-column = true;
-                shadow.enable = false;
+                always-center-single-column = lib.mkDefault true;
+                shadow.enable = lib.mkDefault false;
                 focus-ring = {
-                    enable = true;
-                    width = window.decoration.borderWidth;
+                    enable = lib.mkDefault true;
+                    width = lib.mkDefault window.decoration.borderWidth;
                 };
                 border = {
-                    enable = false;
-                    width = window.decoration.borderWidth;
+                    enable = lib.mkDefault false;
+                    width = lib.mkDefault window.decoration.borderWidth;
                 };
-                default-column-width.proportion = 0.5;
+                default-column-width.proportion = lib.mkDefault 0.5;
                 preset-column-widths = [
                     { proportion = 1. / 3.; }
                     { proportion = 1. / 2.; }
@@ -77,9 +77,9 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.compositor == "niri")) {
                     { proportion = 1.; }
                 ];
             };
-            overview.workspace-shadow.enable = !cfg.graphics.legacyGpu;
-            hotkey-overlay.skip-at-startup = true;
-            gestures.hot-corners.enable = false;
+            overview.workspace-shadow.enable = lib.mkDefault (!cfg.graphics.legacyGpu);
+            hotkey-overlay.skip-at-startup = lib.mkDefault true;
+            gestures.hot-corners.enable = lib.mkDefault false;
         };
     };
 }
