@@ -15,7 +15,6 @@ in
 {
     options = with lib; {
         # environment.sidonia.excludePackages
-        # environment.sidonia.sessionVariables.{hyprland/niri}
         # services.desktopManager.sidonia.enable
         sidonia = {
             lib = mkOption {
@@ -124,10 +123,9 @@ in
                 compositor = mkOption {
                     description = "Which compositor to use";
                     type = types.enum [
-                        "hyprland"
                         "niri"
                     ];
-                    default = "hyprland";
+                    default = "niri";
                 };
                 shell = mkOption {
                     description = "What desktop shell to use";

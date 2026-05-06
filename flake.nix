@@ -20,16 +20,6 @@
             inputs.nixpkgs.follows = "nixpkgs";
         };
 
-        hyprland.url = "github:hyprwm/Hyprland/v0.54.2";
-        split-monitor-workspaces = {
-            url = "github:zjeffer/split-monitor-workspaces/34c266b732d8a063213098dc88369ac88b95dfa1";
-            inputs.hyprland.follows = "hyprland"; # <- make sure this line is present for the plugin to work as intended
-        };
-        hyprland-plugins = {
-            url = "github:hyprwm/hyprland-plugins";
-            inputs.hyprland.follows = "hyprland";
-        };
-
         scopebuddy = {
             url = "github:OpenGamingCollective/ScopeBuddy";
             inputs.nixpkgs.follows = "nixpkgs";

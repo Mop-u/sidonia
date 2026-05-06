@@ -151,7 +151,6 @@ in
         packages =
             with pkgs;
             [
-                # 25.05 / unstable
                 nerd-fonts.comic-shanns-mono
                 nerd-fonts.ubuntu
                 liberation_ttf

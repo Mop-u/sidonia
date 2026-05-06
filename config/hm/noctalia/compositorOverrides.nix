@@ -11,41 +11,6 @@ in
 lib.mkIf (cfg.desktop.enable && cfg.desktop.shell == "noctalia") (
     lib.mkMerge [
         { wayland.desktopManager.sidonia.window.decoration.rounding = 20; }
-        (lib.mkIf (cfg.desktop.compositor == "hyprland") {
-            # https://docs.noctalia.dev/getting-started/compositor-settings/hyprland/
-            wayland.windowManager.hyprland.settings = {
-                exec-once = [ "noctalia-shell" ];
-                execr = [ "pkill quickshell; noctalia-shell" ];
-                general = {
-                    gaps_in = lib.mkDefault 5;
-                    gaps_out = lib.mkDefault 10;
-                };
-                decoration = {
-                    rounding_power = lib.mkDefault 2;
-                    shadow = {
-                        enabled = lib.mkDefault true;
-                        range = lib.mkDefault 4;
-                        render_power = lib.mkDefault 3;
-                        color = lib.mkDefault "rgba(1a1a1aee)";
-                    };
-                    blur = {
-                        enabled = lib.mkDefault (!osConfig.sidonia.graphics.legacyGpu);
-                        size = lib.mkDefault 3;
-                        passes = lib.mkDefault 2;
-                        vibrancy = lib.mkDefault 0.1696;
-                    };
-                };
-                layerrule = [
-                    {
-                        name = "noctalia";
-                        "match:namespace" = "noctalia-background-.*$";
-                        ignore_alpha = 0.5;
-                        blur = !osConfig.sidonia.graphics.legacyGpu;
-                        blur_popups = !osConfig.sidonia.graphics.legacyGpu;
-                    }
-                ];
-            };
-        })
         (lib.mkIf (cfg.desktop.compositor == "niri") {
             # https://docs.noctalia.dev/getting-started/compositor-settings/niri/
             programs.niri.settings = {

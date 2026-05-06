@@ -13,7 +13,6 @@ in
         ./services
         ./tweaks
         ./configuration.nix
-        ./hyprland.nix
         ./niri.nix
     ];
 }

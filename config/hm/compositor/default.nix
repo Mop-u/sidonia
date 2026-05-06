@@ -7,7 +7,6 @@
 }:
 {
     imports = [
-        ./hyprland
         ./niri.nix
         ./keybinds.nix
     ];

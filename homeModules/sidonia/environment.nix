@@ -29,7 +29,7 @@ in
                 wayland.desktopManager.sidonia.environment = builtins.mapAttrs (n: v: lib.mkDefault v) {
                     XDG_SESSION_TYPE = "wayland";
                     SDL_VIDEODRIVER = "wayland,x11";
-                    SDL_VIDEO_DRIVER = "wayland";
+                    SDL_VIDEO_DRIVER = "wayland,x11";
                     CLUTTER_BACKEND = "wayland";
                     ELM_DISPLAY = "wl";
                     NIXOS_OZONE_WL = 1;
@@ -44,18 +44,6 @@ in
                     MOZ_DBUS_REMOTE = 1;
                 };
             }
-            (lib.mkIf (osConfig.sidonia.desktop.compositor == "hyprland") {
-                wayland.windowManager.hyprland.settings.env = lib.mapAttrsToList (n: v: "${n},${v}") (
-                    cfg.environment
-                    // {
-                        XDG_SESSION_DESKTOP = "Hyprland";
-                        XDG_CURRENT_DESKTOP = "Hyprland";
-                        WLR_RENDERER_ALLOW_SOFTWARE = "1";
-                        QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
-                        __GL_MaxFramesAllowed = "1"; # Fix frame timings & input lag
-                    }
-                );
-            })
             (lib.mkIf (osConfig.sidonia.desktop.compositor == "niri") {
                 programs.niri.settings.environment = builtins.mapAttrs (n: v: lib.mkDefault v) (
                     cfg.environment

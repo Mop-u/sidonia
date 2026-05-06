@@ -23,14 +23,6 @@ lib.mkIf (cfg.desktop.enable) {
                 common = {
                     default = [ "gtk" ];
                 };
-                hyprland = {
-                    default = [
-                        "hyprland"
-                        "gtk"
-                    ];
-                    "org.freedesktop.impl.portal.FileChooser" = [ "gtk" ];
-                    "org.freedesktop.impl.portal.OpenURI" = [ "gtk" ];
-                };
                 niri = {
                     default = [
                         "gtk"

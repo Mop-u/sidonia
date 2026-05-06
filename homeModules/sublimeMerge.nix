@@ -54,9 +54,6 @@ in
         };
     };
     config = lib.mkIf cfg.enable {
-        wayland.windowManager.hyprland.settings.windowrule = [
-            "match:class ssh-askpass-sublime, float on"
-        ];
         home.packages = [ pkgs.sublime-merge ];
         xdg.configFile =
             let

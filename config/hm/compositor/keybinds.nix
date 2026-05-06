@@ -22,7 +22,6 @@ lib.mkIf cfg.desktop.enable {
                     repeat = false;
                     action.close-window = [ ];
                 };
-                hyprland = "killactive";
             };
         }
         {
@@ -34,7 +33,6 @@ lib.mkIf cfg.desktop.enable {
                     repeat = false;
                     action.close-window = [ ];
                 };
-                hyprland = "killactive";
             };
         }
         {
@@ -46,7 +44,6 @@ lib.mkIf cfg.desktop.enable {
             key = "Q";
             perCompositor = {
                 niri.action.quit = [ ];
-                hyprland = "exec, uwsm stop";
             };
         }
         {
@@ -55,7 +52,6 @@ lib.mkIf cfg.desktop.enable {
             key = "V";
             perCompositor = {
                 niri.action.toggle-window-floating = [ ];
-                hyprland = "togglefloating";
             };
         }
         {
@@ -75,7 +71,6 @@ lib.mkIf cfg.desktop.enable {
             key = "F";
             perCompositor = {
                 niri.action.maximize-column = [ ];
-                hyprland = "layoutmsg, fit active";
             };
         }
         {
@@ -87,7 +82,6 @@ lib.mkIf cfg.desktop.enable {
             key = "F";
             perCompositor = {
                 niri.action.expand-column-to-available-width = [ ];
-                hyprland = "layoutmsg, fit visible";
             };
         }
         {
@@ -99,7 +93,6 @@ lib.mkIf cfg.desktop.enable {
             key = "F";
             perCompositor = {
                 niri.action.fullscreen-window = [ ];
-                hyprland = "fullscreen";
             };
         }
         {
@@ -108,7 +101,6 @@ lib.mkIf cfg.desktop.enable {
             key = "H";
             perCompositor = {
                 niri.action.focus-column-left = [ ];
-                hyprland = "layoutmsg, focus l";
             };
         }
         {
@@ -117,7 +109,6 @@ lib.mkIf cfg.desktop.enable {
             key = "L";
             perCompositor = {
                 niri.action.focus-column-right = [ ];
-                hyprland = "layoutmsg, focus r";
             };
         }
         {
@@ -129,7 +120,6 @@ lib.mkIf cfg.desktop.enable {
             key = "H";
             perCompositor = {
                 niri.action.move-column-left = [ ];
-                hyprland = "layoutmsg, swapcol l";
             };
         }
         {
@@ -138,7 +128,6 @@ lib.mkIf cfg.desktop.enable {
             key = "MouseForward";
             perCompositor = {
                 niri.action.move-column-left = [ ];
-                hyprland = "layoutmsg, swapcol l";
             };
         }
         {
@@ -150,7 +139,6 @@ lib.mkIf cfg.desktop.enable {
             key = "L";
             perCompositor = {
                 niri.action.move-column-right = [ ];
-                hyprland = "layoutmsg, swapcol r";
             };
         }
         {
@@ -159,7 +147,6 @@ lib.mkIf cfg.desktop.enable {
             key = "MouseBack";
             perCompositor = {
                 niri.action.move-column-right = [ ];
-                hyprland = "layoutmsg, swapcol r";
             };
         }
         {
@@ -171,7 +158,6 @@ lib.mkIf cfg.desktop.enable {
             key = "H";
             perCompositor = {
                 niri.action.switch-preset-column-width-back = [ ];
-                hyprland = "layoutmsg, colresize -conf";
             };
         }
         {
@@ -183,7 +169,6 @@ lib.mkIf cfg.desktop.enable {
             key = "WheelScrollDown";
             perCompositor = {
                 niri.action.switch-preset-column-width-back = [ ];
-                hyprland = "layoutmsg, colresize -conf";
             };
         }
         {
@@ -195,7 +180,6 @@ lib.mkIf cfg.desktop.enable {
             key = "L";
             perCompositor = {
                 niri.action.switch-preset-column-width = [ ];
-                hyprland = "layoutmsg, colresize +conf";
             };
         }
         {
@@ -207,7 +191,6 @@ lib.mkIf cfg.desktop.enable {
             key = "WheelScrollUp";
             perCompositor = {
                 niri.action.switch-preset-column-width = [ ];
-                hyprland = "layoutmsg, colresize +conf";
             };
         }
         {
@@ -216,7 +199,6 @@ lib.mkIf cfg.desktop.enable {
             key = "J";
             perCompositor = {
                 niri.action.focus-window-down = [ ];
-                hyprland = "layoutmsg, focus d";
             };
         }
         {
@@ -225,7 +207,6 @@ lib.mkIf cfg.desktop.enable {
             key = "K";
             perCompositor = {
                 niri.action.focus-window-up = [ ];
-                hyprland = "layoutmsg, focus u";
             };
         }
         {
@@ -237,7 +218,6 @@ lib.mkIf cfg.desktop.enable {
             key = "J";
             perCompositor = {
                 niri.action.move-window-down = [ ];
-                hyprland = "swapwindow, d";
             };
         }
         {
@@ -249,7 +229,6 @@ lib.mkIf cfg.desktop.enable {
             key = "K";
             perCompositor = {
                 niri.action.move-window-up = [ ];
-                hyprland = "swapwindow, u";
             };
         }
         {
@@ -257,7 +236,6 @@ lib.mkIf cfg.desktop.enable {
             key = "Print";
             perCompositor = {
                 niri.action.screenshot-screen = [ ];
-                hyprland = "exec, hyprshot -m output -m active --clipboard-only";
             };
         }
         {
@@ -266,7 +244,6 @@ lib.mkIf cfg.desktop.enable {
             key = "Print";
             perCompositor = {
                 niri.action.screenshot-window = [ ];
-                hyprland = "exec, hyprshot -m window -m active --clipboard-only";
             };
         }
         {
@@ -278,7 +255,6 @@ lib.mkIf cfg.desktop.enable {
             key = "Print";
             perCompositor = {
                 niri.action.screenshot = [ ];
-                hyprland = "exec, hyprshot -m region --clipboard-only";
             };
         }
         {
@@ -290,7 +266,6 @@ lib.mkIf cfg.desktop.enable {
                     cooldown-ms = 150;
                     action.focus-workspace-down = [ ];
                 };
-                hyprland = "split-cycleworkspaces, next";
             };
         }
         {
@@ -302,7 +277,6 @@ lib.mkIf cfg.desktop.enable {
                     cooldown-ms = 150;
                     action.focus-workspace-up = [ ];
                 };
-                hyprland = "split-cycleworkspaces, prev";
             };
         }
         {
@@ -317,7 +291,6 @@ lib.mkIf cfg.desktop.enable {
                     cooldown-ms = 150;
                     action.focus-column-right = [ ];
                 };
-                hyprland = "layoutmsg, move +col";
             };
         }
         {
@@ -332,7 +305,6 @@ lib.mkIf cfg.desktop.enable {
                     cooldown-ms = 150;
                     action.focus-column-left = [ ];
                 };
-                hyprland = "layoutmsg, move -col";
             };
         }
         {
@@ -344,7 +316,6 @@ lib.mkIf cfg.desktop.enable {
                     repeat = false;
                     action.toggle-overview = [ ];
                 };
-                hyprland = "hyprexpo:expo, toggle";
             };
         }
     ]
@@ -366,7 +337,6 @@ lib.mkIf cfg.desktop.enable {
                     inherit key;
                     perCompositor = {
                         niri.action.focus-workspace = index;
-                        hyprland = "split-workspace, ${name}";
                     };
                 }
                 {
@@ -378,7 +348,6 @@ lib.mkIf cfg.desktop.enable {
                     inherit key;
                     perCompositor = {
                         niri.action.move-window-to-workspace = index;
-                        hyprland = "split-movetoworkspace, ${name}";
                     };
                 }
                 {
@@ -393,7 +362,6 @@ lib.mkIf cfg.desktop.enable {
                             { focus = false; }
                             index
                         ];
-                        hyprland = "split-movetoworkspacesilent, ${name}";
                     };
                 }
             ]
