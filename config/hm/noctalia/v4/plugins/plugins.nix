@@ -9,7 +9,7 @@ let
     cfg = osConfig.sidonia;
     sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
 in
-lib.mkIf (cfg.desktop.enable && (cfg.desktop.shell == "noctalia")) {
+lib.mkIf (cfg.desktop.enable && (cfg.desktop.shell == "noctalia-legacy")) {
     programs.noctalia-shell = {
         plugins = {
             sources = [

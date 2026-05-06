@@ -25,7 +25,6 @@
         ./noctaliaPerformance.nix
         ./notifications.nix
         ./osd.nix
-        ./plugins
         ./sessionMenu.nix
         ./systemMonitor.nix
         ./templates.nix

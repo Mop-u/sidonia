@@ -10,7 +10,7 @@ let
     sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
     inherit (osConfig.programs.kdeconnect) enable;
 in
-lib.mkIf (cfg.desktop.enable && (cfg.desktop.shell == "noctalia")) {
+lib.mkIf (cfg.desktop.enable && (cfg.desktop.shell == "noctalia-legacy")) {
     services.kdeconnect.enable = lib.mkDefault enable;
     programs.noctalia-shell.plugins.states.kde-connect = {
         enabled = lib.mkDefault enable;

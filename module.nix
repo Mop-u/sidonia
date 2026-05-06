@@ -130,9 +130,10 @@ in
                 shell = mkOption {
                     description = "What desktop shell to use";
                     type = types.enum [
+                        "noctalia-legacy"
                         "noctalia"
                     ];
-                    default = "noctalia";
+                    default = "noctalia-legacy";
                 };
             };
         };
@@ -158,7 +159,7 @@ in
                         ./nixSettings.nix
                         inputs.catppuccin.homeModules.catppuccin
                         inputs.niri.homeModules.niri
-                        inputs.noctalia.homeModules.default
+                        inputs.noctalia-legacy.homeModules.default
                         {
                             config.nixpkgs = {
                                 inherit overlays;

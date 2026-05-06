@@ -8,7 +8,7 @@
 let
     cfg = osConfig.sidonia;
 in
-lib.mkIf (cfg.desktop.enable && (cfg.desktop.shell == "noctalia")) {
+lib.mkIf (cfg.desktop.enable && (cfg.desktop.shell == "noctalia-legacy")) {
     programs.noctalia-shell.settings.location = builtins.mapAttrs (n: v: lib.mkDefault v) {
         autoLocate = cfg.geolocation.enable;
         weatherTaliaMascotAlways = false;

@@ -8,7 +8,7 @@
 let
     cfg = osConfig.sidonia;
 in
-lib.mkIf (cfg.desktop.enable && cfg.desktop.shell == "noctalia") (
+lib.mkIf (cfg.desktop.enable && cfg.desktop.shell == "noctalia-legacy") (
     lib.mkMerge [
         { wayland.desktopManager.sidonia.window.decoration.rounding = 20; }
         (lib.mkIf (cfg.desktop.compositor == "niri") {

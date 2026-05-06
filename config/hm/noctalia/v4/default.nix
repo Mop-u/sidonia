@@ -7,8 +7,8 @@
 }:
 {
     imports = [
-        ./v4
-        ./compositorOverrides.nix
-        ./keybinds.nix
+        ./plugins
+        ./settings
+        ./noctalia.nix
     ];
 }

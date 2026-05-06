@@ -10,7 +10,7 @@ let
     sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
     inherit (osConfig.programs.gpu-screen-recorder) enable;
 in
-lib.mkIf (cfg.desktop.enable && (cfg.desktop.shell == "noctalia")) {
+lib.mkIf (cfg.desktop.enable && (cfg.desktop.shell == "noctalia-legacy")) {
     # https://github.com/noctalia-dev/noctalia-plugins/tree/main/screen-recorder
     programs.noctalia-shell = {
         plugins.states.screen-recorder = {

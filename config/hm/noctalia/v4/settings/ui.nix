@@ -9,7 +9,7 @@ let
     cfg = osConfig.sidonia;
     inherit (config.wayland.desktopManager.sidonia) window;
 in
-lib.mkIf (cfg.desktop.enable && (cfg.desktop.shell == "noctalia")) {
+lib.mkIf (cfg.desktop.enable && (cfg.desktop.shell == "noctalia-legacy")) {
     programs.noctalia-shell.settings.ui = builtins.mapAttrs (n: v: lib.mkDefault v) {
         fontDefault = "";
         fontFixed = "";
