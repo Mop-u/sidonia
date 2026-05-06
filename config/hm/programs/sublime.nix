@@ -11,7 +11,7 @@ in
 lib.mkIf cfg.desktop.enable {
     nixpkgs.config.permittedInsecurePackages = [ "openssl-1.1.1w" ];
     programs.sublime4 = {
-        enable = true;
+        enable = lib.mkDefault true;
         settings = {
             ignored_packages = [ "Vintage" ];
             font_size = 10;
@@ -38,14 +38,18 @@ lib.mkIf cfg.desktop.enable {
         };
     };
     programs.sublime-merge = {
-        enable = true;
-        settings = {
-            translate_tabs_to_spaces = true;
-            side_bar_layout = "tabs";
-            font_size = 10;
-            hardware_acceleration = if cfg.graphics.legacyGpu then "none" else "opengl";
-            update_check = false;
-            editor_path = "${pkgs.sublime4}/bin/sublime_text";
-        };
+        enable = lib.mkDefault true;
+        settings = lib.mkMerge [
+            {
+                translate_tabs_to_spaces = true;
+                side_bar_layout = "tabs";
+                font_size = 10;
+                hardware_acceleration = if cfg.graphics.legacyGpu then "none" else "opengl";
+                update_check = false;
+            }
+            (lib.mkIf config.programs.sublime4.enable {
+                editor_path = "${pkgs.sublime4}/bin/sublime_text";
+            })
+        ];
     };
 }
