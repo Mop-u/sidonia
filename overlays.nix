@@ -15,6 +15,7 @@ in
     inputs.moppkgs.overlays.default
     inputs.cachyos.overlays.pinned
     inputs.noctalia-legacy.overlays.default
+    inputs.noctalia.overlays.default
     inputs.niri.overlays.niri
     (
         final: prev:

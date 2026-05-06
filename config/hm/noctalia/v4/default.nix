@@ -9,6 +9,6 @@
     imports = [
         ./plugins
         ./settings
-        ./noctalia.nix
+        ./keybinds.nix
     ];
 }

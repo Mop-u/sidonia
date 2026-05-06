@@ -8,59 +8,59 @@
 let
     cfg = osConfig.sidonia;
 in
-lib.mkIf (cfg.desktop.enable && (cfg.desktop.shell == "noctalia")) {
+lib.mkIf (cfg.desktop.enable && (cfg.desktop.shell == "noctalia-legacy")) {
     wayland.desktopManager.sidonia.keybinds =
         let
-            noctalia = args: "noctalia msg ${args}";
+            noctalia = args: "noctalia-shell ipc call ${args}";
         in
         [
             {
                 name = "Toggle Launcher";
                 mod = "super";
                 key = "p";
-                exec = noctalia "panel-toggle launcher";
+                exec = noctalia "launcher toggle";
             }
             {
                 name = "Toggle Session Menu";
                 mod = "super";
                 key = "q";
-                exec = noctalia "panel-toggle session";
+                exec = noctalia "sessionMenu toggle";
             }
             {
                 name = "Lock Screen";
                 mod = "super";
                 key = "x";
-                exec = noctalia "screen-lock";
+                exec = noctalia "lockScreen lock";
             }
             {
                 name = "Volume Up";
                 key = "XF86AudioRaiseVolume";
-                exec = noctalia "volume-up";
+                exec = noctalia "volume increase";
             }
             {
                 name = "Volume Down";
                 key = "XF86AudioLowerVolume";
-                exec = noctalia "volume-down";
+                exec = noctalia "volume decrease";
             }
             {
                 name = "Mute Output";
                 key = "XF86AudioMute";
-                exec = noctalia "volume-mute";
+                exec = noctalia "volume muteOutput";
             }
             {
                 name = "Mute Input";
                 key = "XF86AudioMicMute";
-                exec = noctalia "mic-mute";
+                exec = noctalia "volume muteInput";
             }
             {
                 name = "Media Play";
                 key = "XF86AudioPlay";
-                exec = noctalia "media toggle";
+                exec = noctalia "media play";
             }
             {
                 name = "Media Pause";
                 key = "XF86AudioPause";
-                exec = noctalia "media toggle";
+                exec = noctalia "media pause";
             }
             {
                 name = "Media Next";
@@ -75,12 +75,12 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.shell == "noctalia")) {
             {
                 name = "Brightness Up";
                 key = "XF86MonBrightnessUp";
-                exec = noctalia "brightness-up";
+                exec = noctalia "brightness increase";
             }
             {
                 name = "Brightness Down";
                 key = "XF86MonBrightnessDown";
-                exec = noctalia "brightness-down";
+                exec = noctalia "brightness decrease";
             }
         ];
 }
