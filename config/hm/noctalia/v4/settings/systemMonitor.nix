@@ -30,18 +30,6 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.shell == "noctalia-legacy")) {
         useCustomColors = false;
         warningColor = "";
         criticalColor = "";
-        externalMonitor = lib.concatStringsSep " || " [
-            "resources"
-            "missioncenter"
-            "jdsystemmonitor"
-            "corestats"
-            "system-monitoring-center"
-            "gnome-system-monitor"
-            "plasma-systemmonitor"
-            "mate-system-monitor"
-            "ukui-system-monitor"
-            "deepin-system-monitor"
-            "pantheon-system-monitor"
-        ];
+        externalMonitor = lib.getExe pkgs.mission-center;
     };
 }
