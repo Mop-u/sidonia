@@ -10,6 +10,7 @@
         enable = lib.mkDefault true;
         defaultEditor = lib.mkDefault true;
         settings = {
+            editor.bufferline = "multiple";
             keys.normal = lib.mkMerge [
                 (lib.mkIf config.programs.lazygit.enable {
                     "C-g" = [
