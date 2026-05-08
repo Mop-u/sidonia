@@ -19,6 +19,11 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.compositor == "niri")) {
             # see: https://github.com/sodiboo/niri-flake/blob/main/docs.md
             # see: https://github.com/niri-wm/niri/blob/main/resources/default-config.kdl
 
+            cursor = {
+                hide-when-typing = lib.mkDefault true;
+                hide-after-inactive-ms = lib.mkDefault 5000;  
+            };
+
             xwayland-satellite = {
                 enable = lib.mkDefault true;
                 path = lib.mkDefault (lib.getExe pkgs.xwayland-satellite-unstable);
