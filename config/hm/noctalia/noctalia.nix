@@ -82,10 +82,10 @@ lib.mkIf (cfg.desktop.enable) (
                         center = [
                             "media"
                             "audio_visualizer"
-                            "volume"
                         ];
                         end = [
                             "active_window"
+                            "volume"
                             "network"
                             "bluetooth"
                             "brightness"
