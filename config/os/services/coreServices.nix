@@ -40,6 +40,10 @@ lib.mkIf (cfg.desktop.enable) {
         xfconf.enable = true;
     };
 
+    # For ddcutil
+    hardware.i2c.enable = true;
+    environment.systemPackages = [ pkgs.ddcutil ];
+
     # https://gitlab.com/mission-center-devs/mission-center/-/wikis/Home/CPU
     services.udev.extraRules = ''
         SUBSYSTEM=="powercap", KERNEL=="intel-rapl*", \
