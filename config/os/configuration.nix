@@ -93,7 +93,8 @@ in
         LC_TIME = "en_IE.UTF-8";
     };
 
-    console.keyMap = cfg.input.keyLayout;
+    console.useXkbConfig = lib.mkDefault true;
+    services.xserver.xkb.layout = lib.mkDefault "us";
 
     # Define a user account. Don't forget to set a password with ‘passwd’.
     users.users.${cfg.userName} = {
@@ -103,7 +104,7 @@ in
             "networkmanager"
             "wheel"
         ];
-        packages = with pkgs; [ ];
+        packages =  [];
         shell = pkgs.zsh;
     };
     programs.zsh.enable = true;

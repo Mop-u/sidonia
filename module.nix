@@ -97,27 +97,6 @@ in
                     };
                 };
             };
-            input = {
-                sensitivity = mkOption {
-                    description = "Mouse sensitivity range from -1.0 to 1.0";
-                    type = types.float;
-                    default = 0.0;
-                };
-                accelProfile = mkOption {
-                    description = "Hyprland mouse acceleration profile";
-                    type = types.enum [
-                        "adaptive"
-                        "flat"
-                        "custom"
-                    ];
-                    default = "flat";
-                };
-                keyLayout = mkOption {
-                    description = "Keyboard layout";
-                    type = types.str;
-                    default = "us";
-                };
-            };
             desktop = {
                 enable = mkEnableOption "Enable desktop environment";
                 compositor = mkOption {
