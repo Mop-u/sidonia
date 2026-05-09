@@ -68,8 +68,8 @@ lib.mkIf (cfg.desktop.enable) (
                         auto_hide = false;
                         reserve_space = true;
                         background_opacity = opacity;
-                        margin_h = 60;
-                        margin_v = 10;
+                        margin_ends = 16;
+                        margin_edge = 8;
                         widget_spacing = 8;
                         capsule = true;
                         start = [
