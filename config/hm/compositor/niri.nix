@@ -82,7 +82,7 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.compositor == "niri")) {
                     { proportion = 1.; }
                 ];
             };
-            overview.workspace-shadow.enable = lib.mkDefault (!cfg.graphics.legacyGpu);
+            overview.workspace-shadow.enable = lib.mkDefault false;
             hotkey-overlay.skip-at-startup = lib.mkDefault true;
             gestures.hot-corners.enable = lib.mkDefault false;
         };

@@ -36,6 +36,7 @@ lib.mkIf (cfg.desktop.enable) (
                     animation.enabled = (!cfg.graphics.legacyGpu);
                     panel.background_blur = (!cfg.graphics.legacyGpu);
                     font_family = "monospace";
+                    shadow.blur = 0;
                 };
                 notification = {
                     enable_daemon = true;
