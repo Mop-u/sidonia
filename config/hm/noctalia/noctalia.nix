@@ -60,10 +60,14 @@ lib.mkIf (cfg.desktop.enable) (
                     source = "builtin";
                     builtin = "Catppuccin";
                 };
-                dock.enabled = false;
+                dock = {
+                    enabled = false;
+                    shadow = false;
+                };
                 bar = {
                     order = [ "main" ];
                     main = {
+                        shadow = false;
                         position = "top";
                         enabled = true;
                         auto_hide = false;
