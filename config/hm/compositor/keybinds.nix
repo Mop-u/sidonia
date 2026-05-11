@@ -161,13 +161,25 @@ lib.mkIf cfg.desktop.enable {
             name = "Move Focus Down";
             mod = "Super";
             key = "J";
-            perCompositor.niri.action.focus-window-down = [ ];
+            perCompositor.niri.action.focus-window-or-workspace-down = [ ];
         }
         {
             name = "Move Focus Up";
             mod = "Super";
             key = "K";
-            perCompositor.niri.action.focus-window-up = [ ];
+            perCompositor.niri.action.focus-window-or-workspace-up = [ ];
+        }
+        {
+            name = "Focus Monitor Right";
+            mod = "Super";
+            key = "Period";
+            perCompositor.niri.action.focus-monitor-right = [ ];
+        }
+        {
+            name = "Focus Monitor Left";
+            mod = "Super";
+            key = "Comma";
+            perCompositor.niri.action.focus-monitor-left = [ ];
         }
         {
             name = "Center Column";
@@ -182,7 +194,7 @@ lib.mkIf cfg.desktop.enable {
                 "Shift"
             ];
             key = "J";
-            perCompositor.niri.action.move-window-down = [ ];
+            perCompositor.niri.action.move-window-down-or-to-workspace-down = [ ];
         }
         {
             name = "Move Window Up";
@@ -191,7 +203,25 @@ lib.mkIf cfg.desktop.enable {
                 "Shift"
             ];
             key = "K";
-            perCompositor.niri.action.move-window-up = [ ];
+            perCompositor.niri.action.move-window-up-or-to-workspace-up = [ ];
+        }
+        {
+            name = "Move Column to Right Monitor";
+            mod = [
+                "Super"
+                "Shift"
+            ];
+            key = "Period";
+            perCompositor.niri.action.move-column-to-monitor-right = [ ];
+        }
+        {
+            name = "Move Column to Left Monitor";
+            mod = [
+                "Super"
+                "Shift"
+            ];
+            key = "Comma";
+            perCompositor.niri.action.move-column-to-monitor-left = [ ];
         }
         {
             name = "Screenshot Monitor";
