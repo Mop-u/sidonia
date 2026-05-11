@@ -29,6 +29,7 @@ lib.mkIf (cfg.desktop.enable) {
             # https://codeberg.org/dnkl/foot/src/branch/master/foot.ini
             main.dpi-aware = "no";
             main.font = "monospace:size=10";
+            main.pad = "6x6 center-when-maximized-and-fullscreen";
             colors = {
                 alpha = builtins.toString config.wayland.desktopManager.sidonia.window.decoration.opacity.dec;
                 #blur = "yes";
