@@ -314,7 +314,7 @@ lib.mkIf cfg.desktop.enable {
                     perCompositor.niri.action.focus-workspace = index;
                 }
                 {
-                    name = "Move Window to Workspace ${name} and Focus";
+                    name = "Move Window to Workspace ${name}";
                     mod = [
                         "Super"
                         "Shift"
@@ -323,7 +323,7 @@ lib.mkIf cfg.desktop.enable {
                     perCompositor.niri.action.move-window-to-workspace = index;
                 }
                 {
-                    name = "Move Window to Workspace ${name}";
+                    name = "Move Window to Workspace ${name} (No Focus)";
                     mod = [
                         "Super"
                         "Ctrl"

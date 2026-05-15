@@ -21,7 +21,14 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.compositor == "niri")) {
 
             cursor = {
                 hide-when-typing = lib.mkDefault true;
-                hide-after-inactive-ms = lib.mkDefault 5000;  
+                hide-after-inactive-ms = lib.mkDefault 5000;
+            };
+
+            input = {
+                warp-mouse-to-focus = {
+                    enable = lib.mkDefault true;
+                    mode = lib.mkDefault "center-xy";
+                };
             };
 
             xwayland-satellite = {
