@@ -51,7 +51,7 @@ lib.mkIf (cfg.desktop.enable) (
                     automation = {
                         enabled = true;
                         order = "random";
-                        interval_minutes = 5;
+                        interval_minutes = 15;
                     };
                 };
                 backdrop.enabled = !cfg.graphics.legacyGpu;
@@ -84,11 +84,10 @@ lib.mkIf (cfg.desktop.enable) (
                             "taskbar"
                         ];
                         center = [
-                            "media"
-                            "audio_visualizer"
+                            "active_window"
                         ];
                         end = [
-                            "active_window"
+                            "media"
                             "volume"
                             "network"
                             "bluetooth"
