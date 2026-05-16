@@ -36,13 +36,13 @@ in
 
         home-manager.users.${cfg.userName} = {
             programs.niri.settings.window-rules = [
-                {
-                    matches = [
-                        { app-id = "^steam_app_[0-9]+$"; }
-                        { app-id = "^gamescope$"; }
-                    ];
-                    open-fullscreen = true;
-                }
+                # {
+                #     matches = [
+                #         { app-id = "^steam_app_[0-9]+$"; }
+                #         { app-id = "^gamescope$"; }
+                #     ];
+                #     open-fullscreen = true;
+                # }
                 {
                     matches = [
                         {
