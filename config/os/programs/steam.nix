@@ -36,13 +36,14 @@ in
 
         home-manager.users.${cfg.userName} = {
             programs.niri.settings.window-rules = [
-                # {
-                #     matches = [
-                #         { app-id = "^steam_app_[0-9]+$"; }
-                #         { app-id = "^gamescope$"; }
-                #     ];
-                #     open-fullscreen = true;
-                # }
+                {
+                    matches = [{ app-id = "^steam_app_[0-9]+$"; }];
+                    open-fullscreen = true;
+                }
+                {
+                    matches = [{ app-id = "^gamescope$"; }];
+                    open-fullscreen = true;
+                }
                 {
                     matches = [
                         {
@@ -50,6 +51,7 @@ in
                             title = "^notificationtoasts_[0-9]+_desktop$";
                         }
                     ];
+                    open-focused = false;
                     default-floating-position = {
                         x = 10.0;
                         y = 10.0;
