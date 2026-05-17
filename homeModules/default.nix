@@ -11,6 +11,7 @@
         ./discord.nix
         ./gtkwave.nix
         ./hyprland.nix
+        ./noctalia.nix
         ./niri.nix
         ./sublimeMerge.nix
         ./sublimeText.nix
