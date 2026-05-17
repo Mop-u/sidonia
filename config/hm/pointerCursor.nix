@@ -14,7 +14,7 @@ lib.mkIf (cfg.desktop.enable) (
         {
             catppuccin.cursors.enable = lib.mkDefault config.catppuccin.enable;
             home.pointerCursor = {
-                enable = true;
+                enable = lib.mkDefault config.catppuccin.enable;
                 size = lib.mkDefault 30;
                 gtk.enable = true;
                 x11.enable = true;
