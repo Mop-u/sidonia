@@ -35,7 +35,6 @@ lib.mkIf (cfg.desktop.enable && cfg.desktop.compositor == "niri") (
         })
         (lib.mkIf (cfg.desktop.shell == "noctalia") {
             programs.niri.settings = {
-                spawn-at-startup = [ { command = [ "noctalia" ]; } ];
                 window-rules = [
                     {
                         matches = [ { app-id = "dev.noctalia.Noctalia.Settings"; } ];

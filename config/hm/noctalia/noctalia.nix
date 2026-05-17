@@ -23,6 +23,7 @@ lib.mkIf (cfg.desktop.enable) (
         (lib.mkIf (cfg.desktop.shell == "noctalia") {
             programs.noctalia = {
                 enable = true;
+                systemd.enable = lib.mkDefault true;
                 settings = {
                     weather = lib.mapAttrs (n: v: lib.mkDefault v) {
                         enabled = cfg.geolocation.enable;

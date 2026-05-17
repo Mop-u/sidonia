@@ -9,6 +9,17 @@
     programs.helix = {
         enable = lib.mkDefault true;
         defaultEditor = lib.mkDefault true;
+        languages = {
+            language = [
+                {
+                    name = "nix";
+                    indent = {
+                        tab-width = 4;
+                        unit = "    "; 
+                    };
+                }  
+            ];
+        };
         settings = {
             editor.bufferline = "multiple";
             keys.normal = lib.mkMerge [

@@ -139,6 +139,7 @@ in
                         inputs.catppuccin.homeModules.catppuccin
                         inputs.niri.homeModules.niri
                         inputs.noctalia-legacy.homeModules.default
+                        inputs.noctalia.homeModules.default
                         {
                             config.nixpkgs = {
                                 inherit overlays;
