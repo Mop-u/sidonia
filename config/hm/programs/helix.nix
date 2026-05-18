@@ -9,15 +9,27 @@
     programs.helix = {
         enable = lib.mkDefault true;
         defaultEditor = lib.mkDefault true;
+        extraPackages = with pkgs; [
+            slang-server # verilog/systemverilog
+            vhdl-ls # vhdl
+            haskell-language-server # haskell/cabal
+            clang-tools # c/cpp/opencl
+            neocmakelsp # cmake
+            vscode-json-languageserver # json
+            nixd # nix
+            marksman # markdown
+            zls # zig
+            lldb # various debuggers
+        ];
         languages = {
             language = [
                 {
                     name = "nix";
                     indent = {
                         tab-width = 4;
-                        unit = "    "; 
+                        unit = "    ";
                     };
-                }  
+                }
             ];
         };
         settings = {
