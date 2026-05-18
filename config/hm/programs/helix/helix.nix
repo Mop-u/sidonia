@@ -10,7 +10,6 @@
         enable = lib.mkDefault true;
         defaultEditor = lib.mkDefault true;
         extraPackages = with pkgs; [
-            slang-server # verilog/systemverilog
             vhdl-ls # vhdl
             haskell-language-server # haskell/cabal
             clang-tools # c/cpp/opencl
@@ -22,14 +21,15 @@
             lldb # various debuggers
         ];
         languages = {
-            language = [
-                {
+            lanaguage = [
+                ( rec {
                     name = "nix";
-                    indent = {
-                        tab-width = 4;
-                        unit = "    ";
+                    indent = { tab-width = 4; unit = "    ";};
+                    formatter = {
+                        command = "nixfmt";
+                        args = ["--indent=${builtins.toString indent.tab-width}"];
                     };
-                }
+                })
             ];
         };
         settings = {
