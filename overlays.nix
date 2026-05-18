@@ -14,7 +14,6 @@ in
 [
     inputs.moppkgs.overlays.default
     inputs.cachyos.overlays.pinned
-    inputs.noctalia-legacy.overlays.default
     inputs.noctalia.overlays.default
     inputs.niri.overlays.niri
     (
@@ -53,7 +52,6 @@ in
 
         dwproton = inputs.dw-proton.packages.${getSystem prev}.default;
 
-        noctalia-shell = inputs.noctalia-legacy.packages.${getSystem prev}.default;
     })
     (overlayMissingFromFlake inputs.nixpkgs-xr) # use nixpkgs stable where possible
 ]

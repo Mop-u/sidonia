@@ -6,7 +6,6 @@
         nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
         nixpkgs-xr.url = "github:nix-community/nixpkgs-xr";
         moppkgs.url = "github:Mop-u/moppkgs";
-        noctalia-legacy.url = "github:noctalia-dev/noctalia-shell/legacy-v4";
         noctalia.url = "github:noctalia-dev/noctalia-shell/v5";
         dw-proton.url = "github:imaviso/dwproton-flake";
         cachyos.url = "github:xddxdd/nix-cachyos-kernel";

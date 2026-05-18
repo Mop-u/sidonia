@@ -109,10 +109,9 @@ in
                 shell = mkOption {
                     description = "What desktop shell to use";
                     type = types.enum [
-                        "noctalia-legacy"
                         "noctalia"
                     ];
-                    default = "noctalia-legacy";
+                    default = "noctalia";
                 };
             };
         };
@@ -138,7 +137,6 @@ in
                         ./nixSettings.nix
                         inputs.catppuccin.homeModules.catppuccin
                         inputs.niri.homeModules.niri
-                        inputs.noctalia-legacy.homeModules.default
                         inputs.noctalia.homeModules.default
                         {
                             config.nixpkgs = {
