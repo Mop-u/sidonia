@@ -11,87 +11,66 @@ let
 in
 lib.mkIf (cfg.desktop.enable && (cfg.desktop.compositor == "niri")) {
     home.packages = [ pkgs.xwayland-satellite-unstable ];
-    programs.niri = {
+    wayland.windowManager.niri = {
         enable = true;
-        inherit (osConfig.programs.niri) package;
+        package = pkgs.niri-unstable;
         settings = {
-            # see: https://github.com/linuxmobile/kaku/blob/niri/home/software/wayland/niri/settings.nix
-            # see: https://github.com/sodiboo/niri-flake/blob/main/docs.md
-            # see: https://github.com/niri-wm/niri/blob/main/resources/default-config.kdl
-
+            # see: https://codeberg.org/BANanaD3V/niri-nix/src/branch/main/home-options.md
             cursor = {
-                hide-when-typing = lib.mkDefault true;
+                hide-when-typing = [];
                 hide-after-inactive-ms = lib.mkDefault 5000;
             };
 
             input = {
-                warp-mouse-to-focus = {
-                    enable = lib.mkDefault true;
-                    mode = lib.mkDefault "center-xy";
-                };
+                warp-mouse-to-focus._props.mode = lib.mkDefault "center-xy";
             };
 
-            xwayland-satellite = {
-                enable = lib.mkDefault true;
-                path = lib.mkDefault (lib.getExe pkgs.xwayland-satellite-unstable);
-            };
-            prefer-no-csd = lib.mkDefault true;
-            blur.enable = lib.mkDefault (!cfg.graphics.legacyGpu);
-            window-rules = [
+            xwayland-satellite.path = lib.mkDefault (lib.getExe pkgs.xwayland-satellite-unstable);
+
+            prefer-no-csd = [];
+            blur = lib.mkIf cfg.graphics.legacyGpu { off = []; };
+            window-rule = [
                 {
                     open-fullscreen = false;
-                    shadow.enable = false;
+                    shadow.off = [];
                     draw-border-with-background = false;
                     opacity = 1.;
                     background-effect.blur = !cfg.graphics.legacyGpu;
                     popups.background-effect.xray = cfg.graphics.legacyGpu;
-                    geometry-corner-radius =
-                        let
-                            radius = window.decoration.rounding + .0;
-                        in
-                        {
-                            bottom-left = radius;
-                            bottom-right = radius;
-                            top-left = radius;
-                            top-right = radius;
-                        };
+                    geometry-corner-radius = window.decoration.rounding;
                 }
                 (lib.mkIf (!cfg.graphics.legacyGpu) {
-                    matches = [ { is-focused = false; } ];
+                    match._props.is-focused = false;
                     opacity = window.decoration.opacity.dec;
                 })
                 (lib.mkIf (!cfg.graphics.legacyGpu) {
-                    matches = [ { is-floating = true; } ];
+                    match._props.is-floating = true;
                     background-effect.xray = false;
                 })
             ];
-            layer-rules = [
-                {
-                    shadow.enable = false;
-                }
-            ];
+            layer-rule = [{ shadow.off = []; }];
             layout = {
-                always-center-single-column = lib.mkDefault true;
-                shadow.enable = lib.mkDefault false;
+                always-center-single-column = [];
+                shadow.off = [];
                 focus-ring = {
-                    enable = lib.mkDefault true;
+                    on = [];
                     width = lib.mkDefault window.decoration.borderWidth;
                 };
                 border = {
-                    enable = lib.mkDefault false;
+                    off = [];
                     width = lib.mkDefault window.decoration.borderWidth;
                 };
                 default-column-width.proportion = lib.mkDefault 0.5;
-                preset-column-widths = [
+                preset-column-widths._children = [
                     { proportion = 1. / 3.; }
                     { proportion = 1. / 2.; }
                     { proportion = 2. / 3.; }
                     { proportion = 1.; }
                 ];
             };
-            overview.workspace-shadow.enable = lib.mkDefault false;
-            hotkey-overlay.skip-at-startup = lib.mkDefault true;
-            gestures.hot-corners.enable = lib.mkDefault false;
+            overview.workspace-shadow.off = [];
+            hotkey-overlay.skip-at-startup = [];
+            gestures.hot-corners.off = [];
         };
     };
 }

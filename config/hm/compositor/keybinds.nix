@@ -18,8 +18,8 @@ lib.mkIf cfg.desktop.enable {
             ];
             key = "C";
             perCompositor.niri = {
-                repeat = false;
-                action.close-window = [ ];
+                _props.repeat = false;
+                close-window = [ ];
             };
         }
         {
@@ -27,8 +27,8 @@ lib.mkIf cfg.desktop.enable {
             mod = "Super";
             key = "MouseMiddle";
             perCompositor.niri = {
-                repeat = false;
-                action.close-window = [ ];
+                _props.repeat = false;
+                close-window = [ ];
             };
         }
         {
@@ -38,13 +38,13 @@ lib.mkIf cfg.desktop.enable {
                 "Shift"
             ];
             key = "Q";
-            perCompositor.niri.action.quit = [ ];
+            perCompositor.niri.quit = [ ];
         }
         {
             name = "Toggle Window Floating";
             mod = "Super";
             key = "V";
-            perCompositor.niri.action.toggle-window-floating = [ ];
+            perCompositor.niri.toggle-window-floating = [ ];
         }
         {
             name = "Switch Focus Between Floating and Tiling";
@@ -53,13 +53,13 @@ lib.mkIf cfg.desktop.enable {
                 "Shift"
             ];
             key = "V";
-            perCompositor.niri.action.switch-focus-between-floating-and-tiling = [ ];
+            perCompositor.niri.switch-focus-between-floating-and-tiling = [ ];
         }
         {
             name = "Maximize Column";
             mod = "Super";
             key = "F";
-            perCompositor.niri.action.maximize-column = [ ];
+            perCompositor.niri.maximize-column = [ ];
         }
         {
             name = "Expand Column to Available Width";
@@ -68,7 +68,7 @@ lib.mkIf cfg.desktop.enable {
                 "Ctrl"
             ];
             key = "F";
-            perCompositor.niri.action.expand-column-to-available-width = [ ];
+            perCompositor.niri.expand-column-to-available-width = [ ];
         }
         {
             name = "Toggle Fullscreen";
@@ -77,19 +77,19 @@ lib.mkIf cfg.desktop.enable {
                 "Shift"
             ];
             key = "F";
-            perCompositor.niri.action.fullscreen-window = [ ];
+            perCompositor.niri.fullscreen-window = [ ];
         }
         {
             name = "Move Focus Left";
             mod = "Super";
             key = "H";
-            perCompositor.niri.action.focus-column-left = [ ];
+            perCompositor.niri.focus-column-left = [ ];
         }
         {
             name = "Move Focus Right";
             mod = "Super";
             key = "L";
-            perCompositor.niri.action.focus-column-right = [ ];
+            perCompositor.niri.focus-column-right = [ ];
         }
         {
             name = "Move Column Left";
@@ -98,13 +98,13 @@ lib.mkIf cfg.desktop.enable {
                 "Shift"
             ];
             key = "H";
-            perCompositor.niri.action.move-column-left = [ ];
+            perCompositor.niri.move-column-left = [ ];
         }
         {
             name = "Move Column Left";
             mod = "Super";
             key = "MouseForward";
-            perCompositor.niri.action.move-column-left = [ ];
+            perCompositor.niri.move-column-left = [ ];
         }
         {
             name = "Move Column Right";
@@ -113,13 +113,13 @@ lib.mkIf cfg.desktop.enable {
                 "Shift"
             ];
             key = "L";
-            perCompositor.niri.action.move-column-right = [ ];
+            perCompositor.niri.move-column-right = [ ];
         }
         {
             name = "Move Column Right";
             mod = "Super";
             key = "MouseBack";
-            perCompositor.niri.action.move-column-right = [ ];
+            perCompositor.niri.move-column-right = [ ];
         }
         {
             name = "Decrease Column Width";
@@ -128,7 +128,7 @@ lib.mkIf cfg.desktop.enable {
                 "Alt"
             ];
             key = "H";
-            perCompositor.niri.action.switch-preset-column-width-back = [ ];
+            perCompositor.niri.switch-preset-column-width-back = [ ];
         }
         {
             name = "Decrease Column Width";
@@ -137,7 +137,7 @@ lib.mkIf cfg.desktop.enable {
                 "Alt"
             ];
             key = "WheelScrollDown";
-            perCompositor.niri.action.switch-preset-column-width-back = [ ];
+            perCompositor.niri.switch-preset-column-width-back = [ ];
         }
         {
             name = "Increase Column Width";
@@ -146,7 +146,7 @@ lib.mkIf cfg.desktop.enable {
                 "Alt"
             ];
             key = "L";
-            perCompositor.niri.action.switch-preset-column-width = [ ];
+            perCompositor.niri.switch-preset-column-width = [ ];
         }
         {
             name = "Increase Column Width";
@@ -155,37 +155,37 @@ lib.mkIf cfg.desktop.enable {
                 "Alt"
             ];
             key = "WheelScrollUp";
-            perCompositor.niri.action.switch-preset-column-width = [ ];
+            perCompositor.niri.switch-preset-column-width = [ ];
         }
         {
             name = "Move Focus Down";
             mod = "Super";
             key = "J";
-            perCompositor.niri.action.focus-window-or-workspace-down = [ ];
+            perCompositor.niri.focus-window-or-workspace-down = [ ];
         }
         {
             name = "Move Focus Up";
             mod = "Super";
             key = "K";
-            perCompositor.niri.action.focus-window-or-workspace-up = [ ];
+            perCompositor.niri.focus-window-or-workspace-up = [ ];
         }
         {
             name = "Focus Monitor Right";
             mod = "Super";
             key = "Period";
-            perCompositor.niri.action.focus-monitor-right = [ ];
+            perCompositor.niri.focus-monitor-right = [ ];
         }
         {
             name = "Focus Monitor Left";
             mod = "Super";
             key = "Comma";
-            perCompositor.niri.action.focus-monitor-left = [ ];
+            perCompositor.niri.focus-monitor-left = [ ];
         }
         {
             name = "Center Column";
             mod = "Super";
             key = "B";
-            perCompositor.niri.action.center-column = [ ];
+            perCompositor.niri.center-column = [ ];
         }
         {
             name = "Move Window Down";
@@ -194,7 +194,7 @@ lib.mkIf cfg.desktop.enable {
                 "Shift"
             ];
             key = "J";
-            perCompositor.niri.action.move-window-down-or-to-workspace-down = [ ];
+            perCompositor.niri.move-window-down-or-to-workspace-down = [ ];
         }
         {
             name = "Move Window Up";
@@ -203,7 +203,7 @@ lib.mkIf cfg.desktop.enable {
                 "Shift"
             ];
             key = "K";
-            perCompositor.niri.action.move-window-up-or-to-workspace-up = [ ];
+            perCompositor.niri.move-window-up-or-to-workspace-up = [ ];
         }
         {
             name = "Move Column to Right Monitor";
@@ -212,7 +212,7 @@ lib.mkIf cfg.desktop.enable {
                 "Shift"
             ];
             key = "Period";
-            perCompositor.niri.action.move-column-to-monitor-right = [ ];
+            perCompositor.niri.move-column-to-monitor-right = [ ];
         }
         {
             name = "Move Column to Left Monitor";
@@ -221,18 +221,18 @@ lib.mkIf cfg.desktop.enable {
                 "Shift"
             ];
             key = "Comma";
-            perCompositor.niri.action.move-column-to-monitor-left = [ ];
+            perCompositor.niri.move-column-to-monitor-left = [ ];
         }
         {
             name = "Screenshot Monitor";
             key = "Print";
-            perCompositor.niri.action.screenshot-screen = [ ];
+            perCompositor.niri.screenshot-screen = [ ];
         }
         {
             name = "Screenshot Window";
             mod = "Super";
             key = "Print";
-            perCompositor.niri.action.screenshot-window = [ ];
+            perCompositor.niri.screenshot-window = [ ];
         }
         {
             name = "Screenshot Region";
@@ -241,15 +241,15 @@ lib.mkIf cfg.desktop.enable {
                 "Shift"
             ];
             key = "Print";
-            perCompositor.niri.action.screenshot = [ ];
+            perCompositor.niri.screenshot = [ ];
         }
         {
             name = "Scroll to Next Workspace";
             mod = "Super";
             key = "WheelScrollDown";
             perCompositor.niri = {
-                cooldown-ms = 150;
-                action.focus-workspace-down = [ ];
+                _props.cooldown-ms = 150;
+                focus-workspace-down = [ ];
             };
         }
         {
@@ -257,8 +257,8 @@ lib.mkIf cfg.desktop.enable {
             mod = "Super";
             key = "WheelScrollUp";
             perCompositor.niri = {
-                cooldown-ms = 150;
-                action.focus-workspace-up = [ ];
+                _props.cooldown-ms = 150;
+                focus-workspace-up = [ ];
             };
         }
         {
@@ -269,8 +269,8 @@ lib.mkIf cfg.desktop.enable {
             ];
             key = "WheelScrollDown";
             perCompositor.niri = {
-                cooldown-ms = 150;
-                action.focus-column-right = [ ];
+                _props.cooldown-ms = 150;
+                focus-column-right = [ ];
             };
         }
         {
@@ -281,8 +281,8 @@ lib.mkIf cfg.desktop.enable {
             ];
             key = "WheelScrollUp";
             perCompositor.niri = {
-                cooldown-ms = 150;
-                action.focus-column-left = [ ];
+                _props.cooldown-ms = 150;
+                focus-column-left = [ ];
             };
         }
         {
@@ -290,8 +290,8 @@ lib.mkIf cfg.desktop.enable {
             mod = "Super";
             key = "Space";
             perCompositor.niri = {
-                repeat = false;
-                action.toggle-overview = [ ];
+                _props.repeat = false;
+                toggle-overview = [ ];
             };
         }
     ]
@@ -311,7 +311,7 @@ lib.mkIf cfg.desktop.enable {
                     name = "Focus Workspace ${name}";
                     mod = "Super";
                     inherit key;
-                    perCompositor.niri.action.focus-workspace = index;
+                    perCompositor.niri.focus-workspace = index;
                 }
                 {
                     name = "Move Window to Workspace ${name}";
@@ -320,7 +320,7 @@ lib.mkIf cfg.desktop.enable {
                         "Shift"
                     ];
                     inherit key;
-                    perCompositor.niri.action.move-window-to-workspace = index;
+                    perCompositor.niri.move-window-to-workspace = index;
                 }
                 {
                     name = "Move Window to Workspace ${name} (No Focus)";
@@ -329,10 +329,10 @@ lib.mkIf cfg.desktop.enable {
                         "Ctrl"
                     ];
                     inherit key;
-                    perCompositor.niri.action.move-window-to-workspace = [
-                        { focus = false; }
-                        index
-                    ];
+                    perCompositor.niri.move-window-to-workspace = {
+                        _props.focus = false; 
+                        _args = [ index ];
+                    };
                 }
             ]
         ) count

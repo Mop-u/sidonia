@@ -12,23 +12,23 @@ lib.mkIf
     (cfg.desktop.enable && (cfg.desktop.compositor == "niri") && (cfg.desktop.shell == "noctalia"))
     {
         wayland.desktopManager.sidonia.window.decoration.rounding = 20;
-        programs.niri.settings = {
-            window-rules = [
+        wayland.windowManager.niri.settings = {
+            window-rule = [
                 { clip-to-geometry = true; }
                 {
-                    matches = [ { app-id = "dev.noctalia.Noctalia.Settings"; } ];
+                    match._props.app-id = "dev.noctalia.Noctalia.Settings";
                     open-floating = true;
                     default-column-width.fixed = 1080;
                     default-window-height.fixed = 920;
                 }
             ];
-            layer-rules = [
+            layer-rule = [
                 {
-                    matches = [ { namespace = "^noctalia-backdrop"; } ];
+                    match._props.namespace._raw = ''r#"^noctalia-backdrop"#'';
                     place-within-backdrop = true;
                 }
                 (lib.mkIf (!cfg.graphics.legacyGpu) {
-                    matches = [ { namespace = "^noctalia-(bar-main|notification|dock|panel)$"; } ];
+                    match._props.namespace._raw = ''r#"^noctalia-(bar-main|notification|dock|panel)$"#'';
                     background-effect.xray = false;
                 })
             ];

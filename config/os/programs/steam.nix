@@ -35,24 +35,21 @@ in
         environment.systemPackages = [ pkgs.gamescope-wsi ]; # for gamescope hdr support
 
         home-manager.users.${cfg.userName} = {
-            programs.niri.settings.window-rules = [
+            wayland.windowManager.niri.settings.window-rule = [
                 {
-                    matches = [{ app-id = "^steam_app_[0-9]+$"; }];
-                    open-fullscreen = true;
-                }
-                {
-                    matches = [{ app-id = "^gamescope$"; }];
-                    open-fullscreen = true;
-                }
-                {
-                    matches = [
-                        {
-                            app-id = "steam";
-                            title = "^notificationtoasts_[0-9]+_desktop$";
-                        }
+                    _children = [
+                        { match._props.app-id._raw = ''r#"^steam_app_\d+$"#''; }
+                        { match._props.app-id._raw = ''r#"^gamescope$"#''; }
                     ];
+                    open-fullscreen = true;
+                }
+                {
+                    match._props = {
+                        app-id = "steam";
+                        title._raw = ''r#"^notificationtoasts_\d+_desktop$"#'';
+                    };
                     open-focused = false;
-                    default-floating-position = {
+                    default-floating-position._props = {
                         x = 10.0;
                         y = 10.0;
                         relative-to = "bottom-right";

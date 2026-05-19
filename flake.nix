@@ -9,6 +9,7 @@
         noctalia.url = "github:noctalia-dev/noctalia-shell/v5";
         dw-proton.url = "github:imaviso/dwproton-flake";
         cachyos.url = "github:xddxdd/nix-cachyos-kernel";
+        niri.url = "git+https://codeberg.org/BANanaD3V/niri-nix";
 
         home-manager = {
             url = "github:nix-community/home-manager/release-25.11";
@@ -28,13 +29,6 @@
         aagl = {
             url = "github:ezKEa/aagl-gtk-on-nix/release-25.11";
             inputs.nixpkgs.follows = "nixpkgs";
-        };
-
-        niri = {
-            #url = "github:sodiboo/niri-flake";
-            url = "github:myume/niri-flake/blur";
-            inputs.nixpkgs.follows = "unstable";
-            inputs.nixpkgs-stable.follows = "nixpkgs";
         };
 
         nix-vscode-extensions = {

@@ -121,6 +121,7 @@ in
         ./nixSettings.nix
         catppuccin.nixosModules.catppuccin
         home-manager.nixosModules.home-manager
+        niri.nixosModules.default
         aagl.nixosModules.default
         ./config
     ];
@@ -136,7 +137,7 @@ in
                     sharedModules = [
                         ./nixSettings.nix
                         inputs.catppuccin.homeModules.catppuccin
-                        inputs.niri.homeModules.niri
+                        inputs.niri.homeModules.default
                         inputs.noctalia.homeModules.default
                         {
                             config.nixpkgs = {

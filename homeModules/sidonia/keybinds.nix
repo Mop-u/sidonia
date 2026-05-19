@@ -68,16 +68,16 @@ in
         lib.mkIf osConfig.sidonia.desktop.enable (
             lib.mkMerge [
                 (lib.mkIf (osConfig.sidonia.desktop.compositor == "niri") {
-                    programs.niri.settings.binds = lib.mkMerge (
+                    wayland.windowManager.niri.settings.binds = lib.mkMerge (
                         (builtins.map (x: {
                             "${lib.concatStringsSep "+" (x.mod ++ [ x.key ])}" = {
-                                hotkey-overlay.title = x.name;
-                                action.spawn = "${pkgs.writeScript x.name x.exec}";
+                                _props.hotkey-overlay-title = x.name;
+                                spawn = "${pkgs.writeScript x.name x.exec}";
                             };
                         }) execs)
                         ++ (builtins.map (x: {
                             "${lib.concatStringsSep "+" (x.mod ++ [ x.key ])}" = {
-                                hotkey-overlay.title = x.name;
+                                _props.hotkey-overlay-title = x.name;
                             }
                             // x.perCompositor.niri;
                         }) niriBinds)

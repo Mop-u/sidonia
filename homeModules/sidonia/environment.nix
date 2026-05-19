@@ -45,7 +45,7 @@ in
                 };
             }
             (lib.mkIf (osConfig.sidonia.desktop.compositor == "niri") {
-                programs.niri.settings.environment = builtins.mapAttrs (n: v: lib.mkDefault v) (
+                wayland.windowManager.niri.settings.environment = builtins.mapAttrs (n: v: lib.mkDefault v) (
                     cfg.environment
                     // {
                         QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
