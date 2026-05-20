@@ -10,5 +10,6 @@
     imports = [
         ./helix.nix
         ./verilog.nix
+        ./haskell.nix
     ];
 }

@@ -11,11 +11,11 @@
         defaultEditor = lib.mkDefault true;
         extraPackages = with pkgs; [
             vhdl-ls # vhdl
-            haskell-language-server # haskell/cabal
             clang-tools # c/cpp/opencl
             neocmakelsp # cmake
             vscode-json-languageserver # json
             nixd # nix
+            nixfmt # nix
             marksman # markdown
             zls # zig
             lldb # various debuggers
@@ -24,9 +24,12 @@
             lanaguage = [
                 ( rec {
                     name = "nix";
-                    indent = { tab-width = 4; unit = "    ";};
+                    indent = {
+                        tab-width = 4;
+                        unit = "    ";
+                    };
                     formatter = {
-                        command = "nixfmt";
+                        command = lib.getExe pkgs.nixfmt;
                         args = ["--indent=${builtins.toString indent.tab-width}"];
                     };
                 })
