@@ -248,12 +248,12 @@ in
                                     hunk_header_bg = base; # "color(${base} l(+ 12%))";
 
                                     deleted_icon_fg = text;
-                                    deleted_header_bg = red;
-                                    deleted_header_bg-hover = "color(${red} l(+ 5%))";
+                                    deleted_header_bg = surface0;
+                                    deleted_header_bg-hover = surface1;
 
                                     unmerged_icon_fg = text;
-                                    unmerged_header_bg = blue;
-                                    unmerged_header_bg-hover = "color(${blue} l(+ 3%))";
+                                    unmerged_header_bg = surface0;
+                                    unmerged_header_bg-hover = surface1;
 
                                     recent_icon_fg = yellow;
                                     recent_icon_bg = "transparent";
