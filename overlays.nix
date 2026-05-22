@@ -13,7 +13,6 @@ let
 in
 [
     inputs.moppkgs.overlays.default
-    inputs.cachyos.overlays.pinned
     inputs.noctalia.overlays.default
     inputs.niri.overlays.niri-nix
     (

@@ -8,7 +8,6 @@
         moppkgs.url = "github:Mop-u/moppkgs";
         noctalia.url = "github:noctalia-dev/noctalia-shell/v5";
         dw-proton.url = "github:imaviso/dwproton-flake";
-        cachyos.url = "github:xddxdd/nix-cachyos-kernel";
         niri.url = "git+https://codeberg.org/BANanaD3V/niri-nix";
 
         home-manager = {
