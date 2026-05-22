@@ -39,10 +39,10 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.compositor == "niri")) {
                     popups.background-effect.xray = cfg.graphics.legacyGpu;
                     geometry-corner-radius = window.decoration.rounding;
                 }
-                (lib.mkIf (!cfg.graphics.legacyGpu) {
+                {
                     match._props.is-focused = false;
                     opacity = window.decoration.opacity.dec;
-                })
+                }
                 (lib.mkIf (!cfg.graphics.legacyGpu) {
                     match._props.is-floating = true;
                     background-effect.xray = false;
