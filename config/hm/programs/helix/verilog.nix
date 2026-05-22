@@ -11,12 +11,19 @@
         extraPackages = with pkgs; [
             slang-server # verilog/systemverilog
             verible # verilog formatter
+            yaml-language-server # fusesoc cores
         ];
         languages = {
             language-server = {
                 slang-server.command = "slang-server";
             };
             language = [
+                {
+                    name = "fusesoc";
+                    file-types = [ "core" ];
+                    language-servers = [ "yaml-language-server" ];
+                    grammar = "yaml";
+                }
                 ( rec {
                     name = "verilog";
                     file-types = [ "v" "vh" "sv" "svh" ];
