@@ -18,12 +18,6 @@
                 slang-server.command = "slang-server";
             };
             language = [
-                {
-                    name = "fusesoc";
-                    file-types = [ "core" ];
-                    language-servers = [ "yaml-language-server" ];
-                    grammar = "yaml";
-                }
                 ( rec {
                     name = "verilog";
                     file-types = [ "v" "vh" "sv" "svh" ];
