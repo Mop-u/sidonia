@@ -18,7 +18,8 @@ in
     (
         final: prev:
         let
-            getVsxVersion = pkg: lib.versions.pad 3 pkg.version;
+            getVsxVersion = pkg:
+                if pkg.version == "1.116.02821" then "1.116.0" else (pkg.vscodeVersion or pkg.version);
             getFlakeExts =
                 version: inputs.nix-vscode-extensions.extensions.${getSystem prev}.forVSCodeVersion version;
             overlayExtensions =
