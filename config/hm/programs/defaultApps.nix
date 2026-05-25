@@ -27,7 +27,7 @@ lib.mkMerge [
                 pinta # Paint.NET-like image editor
                 #plex-desktop # doesn't launch
                 heroic
-                protonvpn-gui
+                proton-vpn
                 slack
                 prismlauncher
                 #xivlauncher
@@ -44,6 +44,8 @@ lib.mkMerge [
             neovim = {
                 enable = lib.mkDefault true;
                 defaultEditor = lib.mkDefault false;
+                withPython3 = false;
+                withRuby = false;
             };
             bat = {
                 enable = lib.mkDefault true;

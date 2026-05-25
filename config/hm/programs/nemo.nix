@@ -24,7 +24,7 @@ let
 in
 lib.mkIf (cfg.desktop.enable) {
     home.packages = with pkgs; [
-        mate.engrampa # archive manager
+        engrampa # archive manager
         ffmpegthumbnailer
         webp-pixbuf-loader
         nemoPackage

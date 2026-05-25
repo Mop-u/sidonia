@@ -49,8 +49,10 @@ in
     networking.firewall.allowedUDPPorts = [ 5353 ];
     services.resolved = {
         enable = true;
-        llmnr = "true"; # true/false/resolve
-        dnsovertls = "opportunistic";
+        settings.Resolve = {
+            LLMNR = "true"; # true/false/resolve
+            DNSOverTLS = "opportunistic";
+        };
     };
     services.avahi = {
         enable = true;
