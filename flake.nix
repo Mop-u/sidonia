@@ -3,7 +3,7 @@
 
     inputs = {
         unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
-        nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
+        nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
         nixpkgs-xr.url = "github:nix-community/nixpkgs-xr";
         moppkgs.url = "github:Mop-u/moppkgs";
         noctalia.url = "github:noctalia-dev/noctalia-shell/v5";
@@ -11,12 +11,12 @@
         niri.url = "git+https://codeberg.org/BANanaD3V/niri-nix";
 
         home-manager = {
-            url = "github:nix-community/home-manager/release-25.11";
+            url = "github:nix-community/home-manager/release-26.05";
             inputs.nixpkgs.follows = "nixpkgs";
         };
 
         catppuccin = {
-            url = "github:catppuccin/nix/release-25.11";
+            url = "github:catppuccin/nix/release-26.05";
             inputs.nixpkgs.follows = "nixpkgs";
         };
 
@@ -26,7 +26,7 @@
         };
 
         aagl = {
-            url = "github:ezKEa/aagl-gtk-on-nix/release-25.11";
+            url = "github:ezKEa/aagl-gtk-on-nix/main"; # release-26.05";
             inputs.nixpkgs.follows = "nixpkgs";
         };
 
