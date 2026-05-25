@@ -136,11 +136,11 @@
     },
     "moppkgs": {
       "locked": {
-        "lastModified": 1779107680,
-        "narHash": "sha256-VdZtjq/0HfZRSZk4pSbTGs7Ee57TmwrVAPZYTQ32OkU=",
+        "lastModified": 1779736256,
+        "narHash": "sha256-ltpq/e+N9+hcYc2d16pFTy4OXT1e2DmkOJVKwK2sz5M=",
         "owner": "Mop-u",
         "repo": "moppkgs",
-        "rev": "a8925e84d13177cc7a702977377b625459574bc9",
+        "rev": "06e8e09f0c4cc2d2d12c84be5ee283438482a731",
         "type": "github"
       },
       "original": {

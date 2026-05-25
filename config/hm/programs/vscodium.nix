@@ -9,13 +9,12 @@ let
     cfg = osConfig.sidonia;
 in
 lib.mkIf (cfg.desktop.enable) {
-    programs.vscode = {
+    programs.vscodium = {
         enable = lib.mkDefault true;
-        package = pkgs.vscodium;
         profiles.default = {
             enableExtensionUpdateCheck = false;
             enableUpdateCheck = false;
-            extensions = with pkgs.vsxExtensionsFor pkgs.vscodium; [
+            extensions = with pkgs.vsxExtensionsFor config.programs.vscodium.package; [
                 haskell.haskell
                 jnoortheen.nix-ide
                 mkhl.direnv
