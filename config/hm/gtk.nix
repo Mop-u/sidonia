@@ -19,6 +19,7 @@ lib.mkIf (cfg.desktop.enable) {
     };
     gtk = {
         enable = true;
+        gtk4.theme = config.gtk.theme;
         theme =
             let
                 shade = if config.catppuccin.flavor == "latte" then "light" else "dark";
