@@ -21,6 +21,7 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.shell == "noctalia")) {
             };
             shell = lib.mapAttrs (n: v: lib.mkDefault v) {
                 offline_mode = false;
+                launch_apps_as_systemd_services = true;
                 telemetry_enabled = false;
                 polkit_agent = true;
                 animation.enabled = (!cfg.graphics.legacyGpu);
