@@ -49,10 +49,10 @@
 
     outputs =
         { self, nixpkgs, ... }@inputs:
-        rec {
-            nixosModules = rec {
-                sidonia = (import ./module.nix) { inherit inputs; };
-                default = sidonia;
+        {
+            nixosModules = {
+                sidonia = (import ./module.nix) inputs;
+                default = self.nixosModules.sidonia;
             };
             mkSidonia =
                 dir:
@@ -77,7 +77,7 @@
                             }
                             // specialArgs;
                             modules = [
-                                nixosModules.sidonia
+                                (self.nixosModules.sidonia)
                                 (lib.path.append dir hostName)
                             ]
                             ++ modules;

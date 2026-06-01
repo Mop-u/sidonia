@@ -1,10 +1,9 @@
-{
-    inputs,
-}:
+inputs:
 {
     config,
     lib,
     pkgs,
+    specialArgs,
     otherHosts,
     ...
 }:
@@ -134,6 +133,7 @@ in
             {
                 home-manager = {
                     backupFileExtension = "backup";
+                    extraSpecialArgs = removeAttrs specialArgs [ "otherHosts" ];
                     sharedModules = [
                         ./nixSettings.nix
                         inputs.catppuccin.homeModules.catppuccin
