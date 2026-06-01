@@ -9,16 +9,16 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1780254165,
-        "narHash": "sha256-ZHcOuSk2nu0Cy4HabzADoiqi+bC6Li5uMuApf29Or04=",
+        "lastModified": 1780254031,
+        "narHash": "sha256-QufhtAwIMFkg2wJOs4/fPL+8qPox51dqvulAlVN/M60=",
         "owner": "ezKEa",
         "repo": "aagl-gtk-on-nix",
-        "rev": "4d9e91601015351b8dc703deec8982b5a2d1170f",
+        "rev": "e72075e4f4231618f34221b3782348ae54a56f6a",
         "type": "github"
       },
       "original": {
         "owner": "ezKEa",
-        "ref": "main",
+        "ref": "release-26.05",
         "repo": "aagl-gtk-on-nix",
         "type": "github"
       }
@@ -329,11 +329,11 @@
         "nixpkgs": "nixpkgs_6"
       },
       "locked": {
-        "lastModified": 1780310964,
-        "narHash": "sha256-9fJVa98N0xoJCGuCwYnjegzFtINA0TaxzvFBZ/EZWVA=",
+        "lastModified": 1780312607,
+        "narHash": "sha256-TwEo8V7fnY7QsVYI9dhGj4Sz4smqVPJjExtMq30zpF8=",
         "owner": "noctalia-dev",
         "repo": "noctalia-shell",
-        "rev": "3760e194e8a633874d0bb26376ecd15bd92c4280",
+        "rev": "6bc13686b82630dda6a2b5503fe8f22cc0432d9b",
         "type": "github"
       },
       "original": {
