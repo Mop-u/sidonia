@@ -42,6 +42,7 @@ in
             magnetic-catppuccin-gtk
             surfer
             ;
+        helix-unstable = inputs.helix.packages.${getSystem prev}.helix;
 
         scopebuddy = inputs.scopebuddy.packages.${getSystem prev}.default;
 

@@ -30,9 +30,7 @@ lib.mkMerge [
                 proton-vpn
                 slack
                 prismlauncher
-                #xivlauncher
                 plexamp
-                bambu-studio
                 tageditor
             ]
             ++ (lib.optional config.services.shikane.enable config.services.shikane.package);

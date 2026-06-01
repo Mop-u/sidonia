@@ -9,6 +9,7 @@
         noctalia.url = "github:noctalia-dev/noctalia-shell/v5";
         dw-proton.url = "github:imaviso/dwproton-flake";
         niri.url = "git+https://codeberg.org/BANanaD3V/niri-nix";
+        helix.url = "github:helix-editor/helix";
 
         home-manager = {
             url = "github:nix-community/home-manager/release-26.05";

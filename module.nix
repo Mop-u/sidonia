@@ -9,7 +9,7 @@ inputs:
 }:
 let
     cfg = config.sidonia;
-    fromHexString = hex: (builtins.fromTOML "getInt = 0h${hex}").getInt;
+    fromHexString = hex: (fromTOML "getInt = 0h${hex}").getInt;
 in
 {
     options = with lib; {
@@ -29,7 +29,7 @@ in
                     fromHexToRgb =
                         hex:
                         concatStringsSep ", " (
-                            builtins.map (x: toString (fromHexString x)) [
+                            map (x: toString (fromHexString x)) [
                                 (builtins.substring 0 2 hex)
                                 (builtins.substring 2 2 hex)
                                 (builtins.substring 4 2 hex)
@@ -88,7 +88,7 @@ in
                     apply = x: {
                         inherit (x) enable;
                         package =
-                            if (builtins.isNull x.source) then
+                            if (isNull x.source) then
                                 pkgs.comic-code
                             else
                                 (pkgs.comic-code.overrideAttrs { src = x.source; });

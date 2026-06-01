@@ -8,6 +8,7 @@
 {
     programs.helix = {
         enable = lib.mkDefault true;
+        package = lib.mkDefault pkgs.helix-unstable;
         defaultEditor = lib.mkDefault true;
         extraPackages = with pkgs; [
             vhdl-ls # vhdl
@@ -30,7 +31,7 @@
                     };
                     formatter = {
                         command = lib.getExe pkgs.nixfmt;
-                        args = ["--indent=${builtins.toString indent.tab-width}"];
+                        args = ["--indent=${toString indent.tab-width}"];
                     };
                 })
             ];

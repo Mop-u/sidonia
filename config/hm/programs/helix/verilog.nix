@@ -17,10 +17,8 @@
             language-server = {
                 slang-server.command = "slang-server";
             };
-            language = [
-                ( rec {
-                    name = "verilog";
-                    file-types = [ "v" "vh" "sv" "svh" ];
+            language = 
+               map  (x:  rec {
                     language-servers = [{
                         name = "slang-server";
                         except-features = [ "format" ];
@@ -39,7 +37,7 @@
                                         if builtins.isBool v then
                                             if v == true then "true" else "false"
                                         else
-                                            builtins.toString v;
+                                            toString v;
                                 in
                                 "--${n}=${stringified}"
                             )
@@ -68,7 +66,10 @@
                         )
                         ++ ["-"];
                     };
-                })
+                } // x)
+            [
+                { name = "verilog"; file-types = [ "v" "vh" ]; }
+                { name = "systemverilog"; file-types = [ "sv" "svh" ];}
             ];
         };
     };
