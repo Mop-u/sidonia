@@ -13,7 +13,7 @@
     config = lib.mkIf config.programs.noctalia.enable {
         programs.noctalia.settings = lib.mkIf config.catppuccin.noctalia.enable {
             theme = {
-                mode = "auto";
+                mode = if config.catppuccin.flavor == "latte" then "light" else "dark";
                 source = "builtin";
                 builtin = "Catppuccin";
             };
