@@ -16,8 +16,10 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.shell == "noctalia")) {
         settings = {
             weather = lib.mapAttrs (n: v: lib.mkDefault v) {
                 enabled = cfg.geolocation.enable;
-                auto_locate = cfg.geolocation.enable;
                 unit = "celsius";
+            };
+            location = lib.mapAttrs (n: v: lib.mkDefault v) {
+                auto_locate = cfg.geolocation.enable;
             };
             shell = lib.mapAttrs (n: v: lib.mkDefault v) {
                 offline_mode = false;
