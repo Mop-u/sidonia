@@ -1,14 +1,14 @@
 {
-    osConfig,
-    config,
-    pkgs,
-    lib,
-    ...
+  osConfig,
+  config,
+  pkgs,
+  lib,
+  ...
 }:
 {
-    imports = [
-        ./compositorOverrides.nix
-        ./keybinds.nix
-        ./noctalia.nix
-    ];
+  imports = [
+    ./compositorOverrides.nix
+    ./keybinds.nix
+    ./noctalia.nix
+  ];
 }

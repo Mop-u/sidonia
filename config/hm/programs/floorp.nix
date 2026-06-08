@@ -1,16 +1,16 @@
 {
-    osConfig,
-    config,
-    pkgs,
-    lib,
-    ...
+  osConfig,
+  config,
+  pkgs,
+  lib,
+  ...
 }:
 let
-    cfg = osConfig.sidonia;
+  cfg = osConfig.sidonia;
 in
 lib.mkIf (cfg.desktop.enable) {
-    programs.floorp = {
-        enable = lib.mkDefault true;
-        #profiles.default.packages = [];
-    };
+  programs.floorp = {
+    enable = lib.mkDefault true;
+    #profiles.default.packages = [];
+  };
 }

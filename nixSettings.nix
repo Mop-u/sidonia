@@ -1,7 +1,7 @@
 {
-    nix = {
-        extraOptions = ''
-            !include access-tokens.conf
-        '';
-    };
+  nix = {
+    extraOptions = ''
+      !include access-tokens.conf
+    '';
+  };
 }

@@ -1,13 +1,13 @@
 {
-    osConfig,
-    config,
-    pkgs,
-    lib,
-    ...
+  osConfig,
+  config,
+  pkgs,
+  lib,
+  ...
 }:
 {
-    imports = [
-        ./niri.nix
-        ./keybinds.nix
-    ];
+  imports = [
+    ./niri.nix
+    ./keybinds.nix
+  ];
 }

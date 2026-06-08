@@ -1,9 +1,9 @@
 {
-    config,
-    pkgs,
-    lib,
-    ...
+  config,
+  pkgs,
+  lib,
+  ...
 }:
 {
-    imports = [ ./steam.nix ];
+  imports = [ ./steam.nix ];
 }

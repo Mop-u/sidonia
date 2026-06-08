@@ -1,20 +1,20 @@
 {
-    osConfig,
-    config,
-    pkgs,
-    lib,
-    ...
+  osConfig,
+  config,
+  pkgs,
+  lib,
+  ...
 }:
 {
-    imports = [
-        ./compositor
-        ./noctalia
-        ./programs
-        ./gtk.nix
-        ./keyring.nix
-        ./packages.nix
-        ./pointerCursor.nix
-        ./qt.nix
-        ./xdg.nix
-    ];
+  imports = [
+    ./compositor
+    ./noctalia
+    ./programs
+    ./gtk.nix
+    ./keyring.nix
+    ./packages.nix
+    ./pointerCursor.nix
+    ./qt.nix
+    ./xdg.nix
+  ];
 }

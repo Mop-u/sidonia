@@ -1,12 +1,12 @@
 {
-    config,
-    pkgs,
-    lib,
-    ...
+  config,
+  pkgs,
+  lib,
+  ...
 }:
 {
-    imports = [
-        ./memory.nix
-        ./audio.nix
-    ];
+  imports = [
+    ./memory.nix
+    ./audio.nix
+  ];
 }

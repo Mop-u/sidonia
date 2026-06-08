@@ -1,24 +1,24 @@
 {
-    osConfig,
-    config,
-    pkgs,
-    lib,
-    ...
+  osConfig,
+  config,
+  pkgs,
+  lib,
+  ...
 }:
 let
-    cfg = osConfig.sidonia;
+  cfg = osConfig.sidonia;
 in
 lib.mkIf (cfg.desktop.enable) {
-    home.packages = [ pkgs.mission-center ];
-    wayland.desktopManager.sidonia.keybinds = [
-        {
-            name = "Task Manager";
-            mod = [
-                "super"
-                "shift"
-            ];
-            key = "escape";
-            exec = "missioncenter";
-        }
-    ];
+  home.packages = [ pkgs.mission-center ];
+  wayland.desktopManager.sidonia.keybinds = [
+    {
+      name = "Task Manager";
+      mod = [
+        "super"
+        "shift"
+      ];
+      key = "escape";
+      exec = "missioncenter";
+    }
+  ];
 }

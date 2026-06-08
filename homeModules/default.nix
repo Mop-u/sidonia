@@ -1,20 +1,20 @@
 {
-    config,
-    pkgs,
-    lib,
-    ...
+  config,
+  pkgs,
+  lib,
+  ...
 }:
 {
-    imports = [
-        ./sidonia
-        ./bemenu.nix
-        ./discord.nix
-        ./gtkwave.nix
-        ./hyprland.nix
-        ./noctalia.nix
-        ./niri.nix
-        ./sublimeMerge.nix
-        ./sublimeText.nix
-        ./surfer.nix
-    ];
+  imports = [
+    ./sidonia
+    ./bemenu.nix
+    ./discord.nix
+    ./gtkwave.nix
+    ./hyprland.nix
+    ./noctalia.nix
+    ./niri.nix
+    ./sublimeMerge.nix
+    ./sublimeText.nix
+    ./surfer.nix
+  ];
 }

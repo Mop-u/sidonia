@@ -1,22 +1,22 @@
 {
-    osConfig,
-    config,
-    pkgs,
-    lib,
-    ...
+  osConfig,
+  config,
+  pkgs,
+  lib,
+  ...
 }:
 {
-    imports = [
-        ./helix
-        ./bemenu.nix
-        ./defaultApps.nix
-        ./floorp.nix
-        ./foot.nix
-        ./gtkwave.nix
-        ./missioncenter.nix
-        ./nemo.nix
-        ./sublime.nix
-        ./vscodium.nix
-        ./zsh.nix
-    ];
+  imports = [
+    ./helix
+    ./bemenu.nix
+    ./defaultApps.nix
+    ./floorp.nix
+    ./foot.nix
+    ./gtkwave.nix
+    ./missioncenter.nix
+    ./nemo.nix
+    ./sublime.nix
+    ./vscodium.nix
+    ./zsh.nix
+  ];
 }

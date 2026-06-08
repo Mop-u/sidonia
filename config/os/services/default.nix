@@ -1,14 +1,14 @@
 {
-    config,
-    pkgs,
-    lib,
-    ...
+  config,
+  pkgs,
+  lib,
+  ...
 }:
 {
-    imports = [
-        ./coreServices.nix
-        ./displayManager.nix
-        ./distributedBuilds.nix
-        ./vr.nix
-    ];
+  imports = [
+    ./coreServices.nix
+    ./displayManager.nix
+    ./distributedBuilds.nix
+    ./vr.nix
+  ];
 }

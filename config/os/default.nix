@@ -1,18 +1,18 @@
 {
-    config,
-    pkgs,
-    lib,
-    ...
+  config,
+  pkgs,
+  lib,
+  ...
 }:
 let
-    cfg = config.sidonia;
+  cfg = config.sidonia;
 in
 {
-    imports = [
-        ./programs
-        ./services
-        ./tweaks
-        ./configuration.nix
-        ./niri.nix
-    ];
+  imports = [
+    ./programs
+    ./services
+    ./tweaks
+    ./configuration.nix
+    ./niri.nix
+  ];
 }
