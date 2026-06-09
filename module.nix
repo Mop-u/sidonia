@@ -78,6 +78,7 @@ in
           type = types.submodule {
             options = {
               enable = mkEnableOption "Use Comic Code monospace font";
+              ligatures.enable = mkEnableOption "Use ligatures by default";
               source = mkOption {
                 description = "Source zip file containing the font";
                 type = types.nullOr types.path;
@@ -89,7 +90,11 @@ in
             inherit (x) enable;
             package =
               if (isNull x.source) then pkgs.comic-code else (pkgs.comic-code.overrideAttrs { src = x.source; });
-            name = if x.enable then "Comic Code" else "ComicShannsMono Nerd Font";
+            name =
+              if x.enable then
+                if x.ligatures.enable then "Comic Code Ligatures" else "Comic Code"
+              else
+                "ComicShannsMono Nerd Font";
           };
         };
       };
