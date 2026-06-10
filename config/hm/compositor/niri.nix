@@ -10,7 +10,10 @@ let
   inherit (config.wayland.desktopManager.sidonia) window;
 in
 lib.mkIf (cfg.desktop.enable && (cfg.desktop.compositor == "niri")) {
-  home.packages = [ pkgs.xwayland-satellite-unstable ];
+  home.packages = [
+    pkgs.xwayland-satellite-unstable
+    pkgs.wl-clipboard
+  ];
   wayland.windowManager.niri = {
     enable = true;
     package = pkgs.niri-unstable;
