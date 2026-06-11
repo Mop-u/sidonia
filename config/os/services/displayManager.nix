@@ -12,7 +12,7 @@ in
     services.displayManager = {
       autoLogin.enable = lib.mkDefault false;
       autoLogin.user = lib.mkDefault cfg.userName;
-      cosmic-greeter.enable = lib.mkDefault true;
     };
+    programs.noctalia-greeter.enable = lib.mkDefault true;
   };
 }
