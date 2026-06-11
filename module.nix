@@ -135,7 +135,7 @@ in
     lib.mkMerge [
       {
         home-manager = {
-          backupFileExtension = "backup";
+          backupFileExtension = "hmbackup";
           extraSpecialArgs = removeAttrs specialArgs [ "otherHosts" ];
           sharedModules = [
             ./nixSettings.nix
