@@ -49,6 +49,8 @@ in
 
     dwproton = inputs.dw-proton.packages.${getSystem prev}.default;
 
+    niri-legacy = inputs.niri-legacy.packages.${getSystem prev}.niri;
+
   })
   (overlayMissingFromFlake inputs.nixpkgs-xr) # use nixpkgs stable where possible
 ]

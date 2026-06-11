@@ -10,6 +10,7 @@
     noctalia-greeter.url = "github:noctalia-dev/noctalia-greeter";
     dw-proton.url = "github:imaviso/dwproton-flake";
     niri.url = "git+https://codeberg.org/BANanaD3V/niri-nix";
+    niri-legacy.url = "github:niri-wm/niri/v25.11";
     helix.url = "github:helix-editor/helix";
 
     home-manager = {
