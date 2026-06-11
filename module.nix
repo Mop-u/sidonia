@@ -121,6 +121,7 @@ in
   imports = with inputs; [
     ./nixSettings.nix
     catppuccin.nixosModules.catppuccin
+    noctalia-greeter.nixosModules.default
     home-manager.nixosModules.home-manager
     niri.nixosModules.default
     aagl.nixosModules.default
