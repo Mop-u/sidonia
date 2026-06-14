@@ -10,14 +10,13 @@ in
 lib.mkIf (cfg.desktop.enable) {
 
   security = {
-    pam.services = {
-      sddm.enableGnomeKeyring = true;
-      login.enableGnomeKeyring = true;
-    };
-    polkit.enable = true;
+    pam.services.login.enableGnomeKeyring = lib.mkDefault true;
+    polkit.enable = lib.mkDefault true;
   };
 
-  programs.dconf.enable = true;
+  catppuccin.cursors.enable = lib.mkDefault config.catppuccin.enable;
+
+  programs.dconf.enable = lib.mkDefault true;
 
   # https://nix-community.github.io/home-manager/options.xhtml#opt-xdg.portal.enable
   environment.pathsToLink = [
@@ -27,21 +26,21 @@ lib.mkIf (cfg.desktop.enable) {
 
   services = {
     logind.settings.Login = {
-      HandleLidSwitch = "suspend-then-hibernate";
-      HandleLidSwitchExternalPower = "ignore";
-      HandleLidSwitchDocked = "ignore";
+      HandleLidSwitch = lib.mkDefault "suspend-then-hibernate";
+      HandleLidSwitchExternalPower = lib.mkDefault "ignore";
+      HandleLidSwitchDocked = lib.mkDefault "ignore";
     };
-    gvfs.enable = true; # Mount, trash, and other functionalities
-    tumbler.enable = true; # Thumbnail support for images
+    gvfs.enable = lib.mkDefault true; # Mount, trash, and other functionalities
+    tumbler.enable = lib.mkDefault true; # Thumbnail support for images
   };
 
   programs = {
-    seahorse.enable = true;
-    xfconf.enable = true;
+    seahorse.enable = lib.mkDefault true;
+    xfconf.enable = lib.mkDefault true;
   };
 
   # For ddcutil
-  hardware.i2c.enable = true;
+  hardware.i2c.enable = lib.mkDefault true;
   environment.systemPackages = [ pkgs.ddcutil ];
 
   # https://gitlab.com/mission-center-devs/mission-center/-/wikis/Home/CPU
@@ -52,7 +51,7 @@ lib.mkIf (cfg.desktop.enable) {
   '';
 
   security.wrappers.nethogs = {
-    enable = true;
+    enable = lib.mkDefault true;
     owner = "root";
     group = "root";
     source = lib.getExe pkgs.nethogs;
