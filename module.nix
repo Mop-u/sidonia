@@ -12,23 +12,23 @@ let
   fromHexString = hex: (fromTOML "getInt = 0h${hex}").getInt;
 in
 {
-  options = with lib; {
+  options = {
     # environment.sidonia.excludePackages
     # services.desktopManager.sidonia.enable
     sidonia = {
-      lib = mkOption {
+      lib = lib.mkOption {
         readOnly = true;
-        type = types.attrs;
+        type = lib.types.attrs;
         default = {
           capitalize =
             str:
             let
-              chars = stringToCharacters str;
+              chars = lib.stringToCharacters str;
             in
-            concatStrings ([ (toUpper (builtins.head chars)) ] ++ (builtins.tail chars));
+            lib.concatStrings ([ (lib.toUpper (builtins.head chars)) ] ++ (builtins.tail chars));
           fromHexToRgb =
             hex:
-            concatStringsSep ", " (
+            lib.concatStringsSep ", " (
               map (x: toString (fromHexString x)) [
                 (builtins.substring 0 2 hex)
                 (builtins.substring 2 2 hex)
@@ -57,31 +57,35 @@ in
       };
       ssh = {
         pubKey = lib.mkOption {
-          type = types.str;
+          type = lib.types.str;
           default = "";
         };
         privKeyPath = lib.mkOption {
-          type = types.path;
+          type = lib.types.path;
           default = "/home/${cfg.userName}/.ssh/id_ed25519";
         };
       };
-      userName = mkOption {
+      userName = lib.mkOption {
         description = "Username of main user";
-        type = types.str;
+        type = lib.types.str;
       };
-      geolocation.enable = mkEnableOption "Turn on geolocation related services such as automatic timezone changing and geoclue";
-      isLaptop = mkEnableOption "Apply laptop-specific tweaks";
-      graphics.legacyGpu = mkEnableOption "Apply tweaks for OpenGL ES 2 device support";
+      geolocation.enable = lib.mkEnableOption "Turn on geolocation related services such as automatic timezone changing and geoclue";
+      isLaptop = lib.mkEnableOption "Apply laptop-specific tweaks";
+      graphics.legacyGpu = lib.mkEnableOption "Apply tweaks for OpenGL ES 2 device support";
       text = {
-        comicCode = mkOption {
+        comicCode = lib.mkOption {
           default = { };
-          type = types.submodule {
+          type = lib.types.submodule {
             options = {
-              enable = mkEnableOption "Use Comic Code monospace font";
-              ligatures.enable = mkEnableOption "Use ligatures by default";
-              source = mkOption {
+              enable = lib.mkEnableOption "Use Comic Code monospace font";
+              ligatures.enable = lib.mkOption {
+                description = "Use ligatures by default";
+                default = true;
+                type = lib.types.bool;
+              };
+              source = lib.mkOption {
                 description = "Source zip file containing the font";
-                type = types.nullOr types.path;
+                type = lib.types.nullOr lib.types.path;
                 default = null;
               };
             };
@@ -99,17 +103,17 @@ in
         };
       };
       desktop = {
-        enable = mkEnableOption "Enable desktop environment";
-        compositor = mkOption {
+        enable = lib.mkEnableOption "Enable desktop environment";
+        compositor = lib.mkOption {
           description = "Which compositor to use";
-          type = types.enum [
+          type = lib.types.enum [
             "niri"
           ];
           default = "niri";
         };
-        shell = mkOption {
+        shell = lib.mkOption {
           description = "What desktop shell to use";
-          type = types.enum [
+          type = lib.types.enum [
             "noctalia"
           ];
           default = "noctalia";
