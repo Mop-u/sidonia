@@ -36,6 +36,7 @@ lib.mkMerge [
       ++ (lib.optional config.services.shikane.enable config.services.shikane.package);
   })
   {
+    catppuccin.cache.enable = lib.mkDefault true;
     programs = {
       btop.enable = lib.mkDefault true;
       lazygit.enable = lib.mkDefault true;

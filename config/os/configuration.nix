@@ -14,6 +14,8 @@ in
 {
   boot.initrd.systemd.enable = true;
 
+  catppuccin.cache.enable = lib.mkDefault true;
+
   nix.settings = {
     auto-optimise-store = true;
     trusted-users = [ cfg.userName ];
