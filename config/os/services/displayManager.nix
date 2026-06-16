@@ -13,6 +13,14 @@ in
       autoLogin.enable = lib.mkDefault false;
       autoLogin.user = lib.mkDefault cfg.userName;
     };
-    programs.noctalia-greeter.enable = lib.mkDefault true;
+    programs.noctalia-greeter = {
+      enable = lib.mkDefault true;
+      settings.cursor =
+        with config.catppuccin;
+        lib.mkIf enable {
+          theme = lib.mkDefault "catppuccin-${flavor}-${accent}-cursors";
+          package = lib.mkDefault sources.cursors."${flavor}${lib.toSentenceCase accent}";
+        };
+    };
   };
 }
