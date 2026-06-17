@@ -22,7 +22,10 @@
       lldb # various debuggers
     ];
     settings = {
-      editor.bufferline = "multiple";
+      editor = {
+        bufferline = "multiple";
+        rainbow-brackets = true;
+      };
       keys.normal = lib.mkMerge [
         (lib.mkIf config.programs.lazygit.enable {
           "C-g" = [
