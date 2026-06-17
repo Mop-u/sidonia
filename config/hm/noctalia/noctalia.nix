@@ -75,7 +75,6 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.shell == "noctalia")) {
             "active_window"
           ];
           end = [
-            "media"
             "volume"
             "network"
             "bluetooth"
