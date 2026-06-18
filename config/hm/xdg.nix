@@ -11,29 +11,6 @@ in
 lib.mkIf (cfg.desktop.enable) {
   xdg = {
     autostart.enable = true;
-    portal = {
-      enable = true;
-      xdgOpenUsePortal = true;
-      extraPortals = [
-        pkgs.xdg-desktop-portal
-        pkgs.xdg-desktop-portal-gtk
-        pkgs.xdg-desktop-portal-gnome
-      ];
-      config = {
-        common = {
-          default = [ "gtk" ];
-        };
-        niri = {
-          default = [
-            "gtk"
-            "gnome"
-          ];
-          "org.freedesktop.impl.portal.ScreenCast" = [ "gnome" ];
-          "org.freedesktop.impl.portal.Screenshot" = [ "gnome" ];
-        };
-      };
-    };
-
     mimeApps =
       let
         browser = "floorp.desktop";
