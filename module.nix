@@ -13,8 +13,6 @@ let
 in
 {
   options = {
-    # environment.sidonia.excludePackages
-    # services.desktopManager.sidonia.enable
     sidonia = {
       lib = lib.mkOption {
         readOnly = true;

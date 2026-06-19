@@ -25,9 +25,6 @@ lib.mkIf (cfg.desktop.enable) {
       border-radius = rounding;
     };
   };
-  wayland.desktopManager.sidonia.environment = {
-    inherit (config.home.sessionVariables) BEMENU_OPTS;
-  };
   wayland.desktopManager.sidonia.keybinds = [
     {
       name = "Bemenu";

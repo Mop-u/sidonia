@@ -7,7 +7,6 @@
 }:
 {
   imports = [
-    ./environment.nix
     ./keybinds.nix
     ./window.nix
   ];
