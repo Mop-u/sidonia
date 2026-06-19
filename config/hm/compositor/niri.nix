@@ -20,6 +20,27 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.compositor == "niri")) {
     settings = lib.mkMerge [
       {
         # see: https://codeberg.org/BANanaD3V/niri-nix/src/branch/main/home-options.md
+        environment = builtins.mapAttrs (n: v: lib.mkDefault v) (
+          config.wayland.desktopManager.sidonia.environment
+          // {
+            CLUTTER_BACKEND = "wayland";
+            ELECTRON_ENABLE_WAYLAND = "1";
+            ELECTRON_OZONE_PLATFORM_HINT = "wayland";
+            ELM_DISPLAY = "wl";
+            MOZ_DBUS_REMOTE = "1";
+            MOZ_DISABLE_RDD_SANDBOX = "1";
+            MOZ_ENABLE_WAYLAND = "1";
+            NIXOS_OZONE_WL = "1";
+            QT_AUTO_SCREEN_SCALE_FACTOR = "1";
+            QT_ENABLE_HIGHDPI_SCALING = "1";
+            QT_QPA_PLATFORM = "wayland;xcb";
+            QT_QPA_PLATFORMTHEME = "gtk3";
+            QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
+            SDL_VIDEODRIVER = "wayland,x11";
+            SDL_VIDEO_DRIVER = "wayland,x11";
+            _JAVA_AWT_WM_NONREPARENTING = "1";
+          }
+        );
         cursor = {
           hide-when-typing = [ ];
           hide-after-inactive-ms = lib.mkDefault 5000;
