@@ -7,8 +7,9 @@
 }:
 {
   imports = [
+    ./fusesoc.nix
+    ./haskell.nix
     ./helix.nix
     ./verilog.nix
-    ./haskell.nix
   ];
 }

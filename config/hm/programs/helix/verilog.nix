@@ -10,7 +10,6 @@
     extraPackages = with pkgs; [
       slang-server # verilog/systemverilog
       verible # verilog formatter
-      yaml-language-server # fusesoc cores
     ];
     languages = {
       language-server = {
