@@ -2,25 +2,43 @@
   description = "Opinionated nixos configuration overlay";
 
   inputs = {
-    unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
     home-manager.url = "github:nix-community/home-manager/release-26.05";
-
     aagl.url = "github:ezKEa/aagl-gtk-on-nix/release-26.05";
     catppuccin.url = "github:catppuccin/nix/release-26.05";
-    dw-proton.url = "github:imaviso/dwproton-flake";
+
+    unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     helix.url = "github:helix-editor/helix";
     moppkgs.url = "github:Mop-u/moppkgs";
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
     nixpkgs-xr.url = "github:nix-community/nixpkgs-xr";
-    noctalia-greeter.url = "github:noctalia-dev/noctalia-greeter";
-    noctalia.url = "github:noctalia-dev/noctalia";
-    scopebuddy.url = "github:OpenGamingCollective/ScopeBuddy";
+
+    dw-proton = {
+      url = "github:imaviso/dwproton-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    noctalia-greeter = {
+      url = "github:noctalia-dev/noctalia-greeter";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    noctalia = {
+      url = "github:noctalia-dev/noctalia";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    scopebuddy = {
+      url = "github:OpenGamingCollective/ScopeBuddy";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     niri = {
       url = "git+https://codeberg.org/BANanaD3V/niri-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     niri-legacy = {
       url = "github:niri-wm/niri/v25.11";
       inputs.nixpkgs.follows = "nixpkgs";
