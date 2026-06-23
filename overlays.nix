@@ -40,6 +40,8 @@ in
   (final: prev: {
     helix-unstable = inputs.helix.packages.${getSystem prev}.helix;
 
+    inherit (inputs.zen-browser.packages.${getSystem prev}) zen-browser;
+
     scopebuddy = inputs.scopebuddy.packages.${getSystem prev}.default;
 
     sublimePackages = {
