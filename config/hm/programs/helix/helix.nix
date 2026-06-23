@@ -20,11 +20,12 @@
       marksman # markdown
       zls # zig
       lldb # various debuggers
+      yaml-language-server
+      yamlfmt
     ];
     settings = {
       editor = {
         bufferline = "multiple";
-        rainbow-brackets = true;
       };
       keys.normal = lib.mkMerge [
         (lib.mkIf config.programs.lazygit.enable {

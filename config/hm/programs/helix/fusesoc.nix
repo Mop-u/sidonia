@@ -7,10 +7,6 @@
 }:
 {
   programs.helix = {
-    extraPackages = with pkgs; [
-      yaml-language-server
-      yamlfmt
-    ];
     languages.language = [
       {
         name = "yaml";

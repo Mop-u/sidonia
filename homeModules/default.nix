@@ -6,13 +6,14 @@
 }:
 {
   imports = [
-    ./sidonia
     ./bemenu.nix
     ./discord.nix
     ./gtkwave.nix
+    ./helix.nix
     ./hyprland.nix
-    ./noctalia.nix
     ./niri.nix
+    ./noctalia.nix
+    ./sidonia
     ./sublimeMerge.nix
     ./sublimeText.nix
     ./surfer.nix
