@@ -30,10 +30,7 @@ lib.mkIf (cfg.desktop.enable) {
       main.dpi-aware = "no";
       main.font = "monospace:size=10";
       main.pad = "6x6 center-when-maximized-and-fullscreen";
-      colors-dark = {
-        alpha = builtins.toString config.wayland.desktopManager.sidonia.window.decoration.opacity.dec;
-        #blur = "yes";
-      };
+      colors-dark.alpha = toString config.wayland.desktopManager.sidonia.window.decoration.opacity.dec;
     };
   };
   wayland.desktopManager.sidonia.keybinds = [
