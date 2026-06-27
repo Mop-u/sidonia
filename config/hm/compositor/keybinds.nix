@@ -57,25 +57,16 @@ lib.mkIf cfg.desktop.enable {
     }
     {
       name = "Maximize Column";
-      mod = "Super";
+      mod = [
+        "Super"
+        "Alt"
+      ];
       key = "F";
       perCompositor.niri.maximize-column = [ ];
     }
     {
-      name = "Expand Column to Available Width";
-      mod = [
-        "Super"
-        "Ctrl"
-      ];
-      key = "F";
-      perCompositor.niri.expand-column-to-available-width = [ ];
-    }
-    {
       name = "Toggle Fullscreen";
-      mod = [
-        "Super"
-        "Shift"
-      ];
+      mod = "Super";
       key = "F";
       perCompositor.niri.fullscreen-window = [ ];
     }
@@ -303,8 +294,8 @@ lib.mkIf cfg.desktop.enable {
       x:
       let
         index = x + 1;
-        key = builtins.toString (lib.mod index count);
-        name = builtins.toString index;
+        key = toString (lib.mod index count);
+        name = toString index;
       in
       [
         {

@@ -28,18 +28,21 @@ lib.mkIf (cfg.desktop.enable) {
   wayland.desktopManager.sidonia.keybinds = [
     {
       name = "Bemenu";
-      mod = [ "super" ];
-      key = "o";
+      mod = [
+        "Super"
+        "Shift"
+      ];
+      key = "P";
       exec = "$(bemenu-run)";
     }
   ]
   ++ (lib.optional osConfig.hardware.nvidia.prime.offload.enableOffloadCmd {
     name = "Bemenu (Discrete GPU)";
     mod = [
-      "super"
-      "shift"
+      "Super"
+      "Ctrl"
     ];
-    key = "o";
+    key = "P";
     exec = "LIBVA_DRIVER_NAME=nvidia VDPAU_NAME=nvidia nvidia-offload $(bemenu-run)";
   });
 }
