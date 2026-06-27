@@ -25,8 +25,6 @@ lib.mkMerge [
       [
         # GUI apps
         pinta # Paint.NET-like image editor
-        #plex-desktop # doesn't launch
-        heroic
         proton-vpn
         slack
         prismlauncher
