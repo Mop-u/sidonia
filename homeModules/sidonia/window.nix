@@ -19,9 +19,9 @@
         default = 4;
       };
       opacity = lib.mkOption {
-        description = "Decimal opacity value for floating window transparency.";
+        description = "Decimal value for inactive window opacity.";
         type = lib.types.float;
-        default = 0.98;
+        default = 0.965;
         apply = dec: {
           inherit dec;
           hex = lib.toHexString (builtins.floor (dec * 255));
