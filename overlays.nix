@@ -52,7 +52,13 @@ in
     dwproton = inputs.dw-proton.packages.${getSystem prev}.default;
 
     niri-legacy = inputs.niri-legacy.packages.${getSystem prev}.niri;
-
   })
   (overlayMissingFromFlake inputs.nixpkgs-xr) # use nixpkgs stable where possible
+  (
+    final: prev:
+    if (builtins.hasAttr "pnpm_10_29_2" prev) then
+      { pnpm_10_29_2 = final.pnpm_10; }
+    else
+      (builtins.warn "pnpm_10_29_2 is no longer in nixpkgs. Remove the workaround from overlays.nix" { })
+  )
 ]
