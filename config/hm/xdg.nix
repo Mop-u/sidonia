@@ -28,17 +28,11 @@ lib.mkIf (cfg.desktop.enable) {
     };
     mimeApps =
       let
-        browser = "floorp.desktop";
         imageViewer = "qimgv.desktop";
       in
       {
         enable = true;
         defaultApplications = {
-          "text/html" = [ browser ];
-          "x-scheme-handler/http" = [ browser ];
-          "x-scheme-handler/https" = [ browser ];
-          "x-scheme-handler/about" = [ browser ];
-          "x-scheme-handler/unknown" = [ browser ];
           "image/jpg" = [ imageViewer ];
           "image/jpeg" = [ imageViewer ];
           "image/png" = [ imageViewer ];

@@ -134,48 +134,49 @@ in
     let
       overlays = (import ./overlays.nix) { inherit inputs lib; };
     in
-    lib.mkMerge [
-      {
-        home-manager = {
-          backupFileExtension = lib.mkDefault "backup";
-          extraSpecialArgs = removeAttrs specialArgs [ "otherHosts" ];
-          sharedModules = [
-            ./nixSettings.nix
-            inputs.catppuccin.homeModules.catppuccin
-            inputs.niri.homeModules.default
-            inputs.noctalia.homeModules.default
-            {
-              config.nixpkgs = {
+    {
+      home-manager = {
+        backupFileExtension = lib.mkDefault "backup";
+        extraSpecialArgs = removeAttrs specialArgs [ "otherHosts" ];
+        sharedModules = [
+          ./nixSettings.nix
+          inputs.catppuccin.homeModules.catppuccin
+          inputs.niri.homeModules.default
+          inputs.noctalia.homeModules.default
+          inputs.zen-browser.homeModules.default
+          {
+            options.catppuccin.lib.color = lib.mkOption {
+              readOnly = true;
+              type = lib.types.attrsOf lib.types.str;
+              default =
+                let
+                  theme = (import ./lib/catppuccin.nix).${config.catppuccin.flavor};
+                in
+                theme
+                // {
+                  accent = theme.${config.catppuccin.accent};
+                };
+            };
+            config = {
+              nixpkgs = {
                 inherit overlays;
                 config.allowUnfree = true;
               };
-              options.catppuccin.lib.color = lib.mkOption {
-                readOnly = true;
-                type = lib.types.attrsOf lib.types.str;
-                default =
-                  let
-                    theme = (import ./lib/catppuccin.nix).${config.catppuccin.flavor};
-                  in
-                  theme
-                  // {
-                    accent = theme.${config.catppuccin.accent};
-                  };
+              catppuccin = lib.mapAttrs (n: v: lib.mkDefault v) {
+                inherit (config.catppuccin) enable accent flavor;
               };
-            }
-            ./homeModules
-          ];
-          users.${cfg.userName} = {
-            home = {
-              username = config.sidonia.userName;
-              homeDirectory = "/home/${config.sidonia.userName}";
-              stateVersion = lib.mkDefault config.system.stateVersion;
+              home.stateVersion = lib.mkDefault config.system.stateVersion;
             };
-            catppuccin = {
-              inherit (config.catppuccin) enable accent flavor;
-            };
+          }
+          ./homeModules
+        ];
+        users.${cfg.userName} = {
+          home = {
+            username = config.sidonia.userName;
+            homeDirectory = "/home/${config.sidonia.userName}";
           };
         };
-        nixpkgs = { inherit overlays; };
-      }
-    ];
+      };
+      nixpkgs = { inherit overlays; };
+    };
 }

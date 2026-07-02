@@ -7,16 +7,16 @@
 }:
 {
   imports = [
-    ./helix
     ./bemenu.nix
     ./defaultApps.nix
-    ./floorp.nix
     ./foot.nix
     ./gtkwave.nix
+    ./helix
     ./missioncenter.nix
     ./nemo.nix
     ./sublime.nix
     ./vscodium.nix
+    ./zenBrowser.nix
     ./zsh.nix
   ];
 }

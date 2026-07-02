@@ -14,13 +14,14 @@
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
     nixpkgs-xr.url = "github:nix-community/nixpkgs-xr";
 
-    dw-proton = {
-      url = "github:imaviso/dwproton-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
+    zen-browser = {
+      url = "github:0xc000022070/zen-browser-flake";
+      inputs.nixpkgs.follows = "unstable";
+      inputs.home-manager.follows = "home-manager";
     };
 
-    zen-browser = {
-      url = "github:youwen5/zen-browser-flake";
+    dw-proton = {
+      url = "github:imaviso/dwproton-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
