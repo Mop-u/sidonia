@@ -52,6 +52,10 @@ lib.mkIf (cfg.desktop.enable && (cfg.desktop.shell == "noctalia")) {
         enabled = false;
         shadow = false;
       };
+      widget.control-center = {
+        custom_image = "${config.programs.noctalia.package}/share/noctalia/assets/images/distros/nixos.svg";
+        custom_image_colorize = true;
+      };
       bar = {
         order = [ "main" ];
         main = lib.mapAttrs (n: v: lib.mkDefault v) {
