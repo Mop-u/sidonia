@@ -127,7 +127,6 @@ in
     home-manager.nixosModules.home-manager
     niri.nixosModules.default
     aagl.nixosModules.default
-    ./config
   ];
 
   config =
