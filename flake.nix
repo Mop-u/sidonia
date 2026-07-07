@@ -20,6 +20,16 @@
       inputs.home-manager.follows = "home-manager";
     };
 
+    nix-monitored = {
+      url = "github:ners/nix-monitored";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     dw-proton = {
       url = "github:imaviso/dwproton-flake";
       inputs.nixpkgs.follows = "nixpkgs";

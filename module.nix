@@ -121,12 +121,13 @@ in
   };
 
   imports = with inputs; [
-    ./nixSettings.nix
+    aagl.nixosModules.default
     catppuccin.nixosModules.catppuccin
-    noctalia-greeter.nixosModules.default
     home-manager.nixosModules.home-manager
     niri.nixosModules.default
-    aagl.nixosModules.default
+    nix-monitored.nixosModules.default
+    noctalia-greeter.nixosModules.default
+    sops-nix.nixosModules.default
   ];
 
   config =
@@ -138,7 +139,6 @@ in
         backupFileExtension = lib.mkDefault "backup";
         extraSpecialArgs = removeAttrs specialArgs [ "otherHosts" ];
         sharedModules = [
-          ./nixSettings.nix
           inputs.catppuccin.homeModules.catppuccin
           inputs.niri.homeModules.default
           inputs.noctalia.homeModules.default
