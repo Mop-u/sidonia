@@ -69,13 +69,13 @@ in
       lib.mkMerge [
         (lib.mkIf (osConfig.sidonia.desktop.compositor == "niri") {
           wayland.windowManager.niri.settings.binds = lib.mkMerge (
-            (builtins.map (x: {
+            (map (x: {
               "${lib.concatStringsSep "+" (x.mod ++ [ x.key ])}" = {
                 _props.hotkey-overlay-title = x.name;
                 spawn = "${pkgs.writeScript x.name x.exec}";
               };
             }) execs)
-            ++ (builtins.map (x: {
+            ++ (map (x: {
               "${lib.concatStringsSep "+" (x.mod ++ [ x.key ])}" = {
                 _props.hotkey-overlay-title = x.name;
               }
