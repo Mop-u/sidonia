@@ -48,7 +48,9 @@ in
             {
               extraFlags = [ "--load-credential=${rootCredName}:${path}" ];
               config = lib.mkMerge [
-                { systemd.services."${service}".serviceConfig.LoadCredential = "${localCredName}:${rootCredName}"; }
+                {
+                  systemd.services."${service}".serviceConfig.LoadCredential = [ "${localCredName}:${rootCredName}" ];
+                }
                 (f "/run/credentials/${service}.service/${localCredName}")
               ];
             };
