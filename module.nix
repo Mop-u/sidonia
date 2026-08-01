@@ -41,8 +41,9 @@ in
           configContainerCredential =
             f: service: path:
             let
-              rootCredName = "${service}CredentialRoot";
-              localCredName = "${service}CredentialLocal";
+              hash = builtins.hashFile "sha256" path;
+              rootCredName = "${service}-${hash}-Root";
+              localCredName = "${service}-${hash}-Local";
             in
             {
               extraFlags = [ "--load-credential=${rootCredName}:${path}" ];
