@@ -41,7 +41,7 @@ in
           configContainerCredential =
             f: service: path:
             let
-              hash = builtins.hashFile "sha256" path;
+              hash = builtins.hashString "sha256" "${path}";
               rootCredName = "${service}-${hash}-Root";
               localCredName = "${service}-${hash}-Local";
             in
