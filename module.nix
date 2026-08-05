@@ -33,6 +33,41 @@ in
                 (builtins.substring 4 2 hex)
               ]
             );
+          patchDesktop =
+            pkg: appName: f:
+            lib.hiPrio (
+              pkgs.writeTextFile {
+                name = "${appName}.desktop";
+                destination = "/share/applications/${appName}.desktop";
+                text = lib.concatLines (
+                  lib.mapAttrsToList
+                    (
+                      group: keys:
+                      lib.concatLines ([ "[${group}]" ] ++ (lib.mapAttrsToList (key: value: "${key}=${value}") keys))
+                    )
+                    (
+                      f (
+                        lib.importTOML (
+                          pkgs.runCommand "desktop-to-toml-${appName}" { } ''
+                            sed -r 's/^(\[)(.*)(\])$/\1"\2"\3/;s/^(.*=)(.*)$/\1"\2"/' ${pkg}/share/applications/${appName}.desktop > $out
+                          ''
+                        )
+                      )
+                    )
+                );
+                checkPhase = ''${pkgs.desktop-file-utils}/bin/desktop-file-validate "$target"'';
+              }
+            );
+          addDesktopFlags =
+            pkg: appName: flags:
+            cfg.lib.patchDesktop pkg appName (
+              prev:
+              lib.recursiveUpdate prev {
+                "Desktop Entry" = {
+                  Exec = lib.concatStringsSep " " ([ prev."Desktop Entry".Exec ] ++ flags);
+                };
+              }
+            );
 
           home = {
             applications = "/home/${cfg.userName}/.nix-profile/share/applications";

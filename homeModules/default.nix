@@ -17,5 +17,6 @@
     ./sublimeMerge.nix
     ./sublimeText.nix
     ./surfer.nix
+    ./vesktop.nix
   ];
 }
